@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/10/15 06:16:30 by toliver          ###   ########.fr        #
+#    Updated: 2018/10/15 07:42:52 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra #-g3 -fsanitize=addres
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main) \
-	   $(addprefix rays/, definition operations operations1) \
+	   $(addprefix rays/, definition operations operations1 matrix utility) \
 		))
 
 all: $(NAME)

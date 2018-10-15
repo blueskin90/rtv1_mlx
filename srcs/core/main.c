@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/15 06:10:32 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/15 07:51:24 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,59 @@ int					main(void)
 	t_vector vtccross2 = vector_crossproduct(vtcXunit, vtcYunit);
 	printf("x = %f, y = %f, z = %f\n", vtccross.x, vtccross.y, vtccross.z);
 	printf("x = %f, y = %f, z = %f\n", vtccross2.x, vtccross2.y, vtccross2.z);
+
+	t_matrix identity = identity_matrix_init();
+	for (int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+			printf("[%f]", identity.matrix[y][x]);
+		printf("\n");
+	}
+	printf("\n");
+
+	identity = scale_matrix_init(20);
+	for (int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+			printf("[%f]", identity.matrix[y][x]);
+		printf("\n");
+	}
+	printf("\n");
+
+	identity = translation_matrix_init(20, 10, -5);
+	for (int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+			printf("[%f]", identity.matrix[y][x]);
+		printf("\n");
+	}
+	printf("\n");
+
+	identity = rotx_matrix_init(45);
+	for (int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+			printf("[%f]", identity.matrix[y][x]);
+		printf("\n");
+	}
+	printf("\n");
+
+	identity = roty_matrix_init(90);
+	for (int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+			printf("[%f]", identity.matrix[y][x]);
+		printf("\n");
+	}
+	printf("\n");
+
+	identity = rotz_matrix_init(180);
+	for (int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+			printf("[%f]", identity.matrix[y][x]);
+		printf("\n");
+	}
+	printf("\n");
 	return (0);
 }

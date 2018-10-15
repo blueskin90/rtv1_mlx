@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/15 06:07:22 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/15 07:47:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,13 @@ typedef struct		s_ray
 	t_vector		dir;
 }					t_ray;
 
+typedef struct		s_matrix
+{
+	float			matrix[4][4];
+}					t_matrix;
+
 /*
-** Vector and Vertex handling functions
+** Vector and Vertex matrix and math handling functions
 */
 
 t_vertex			vertex_init(float x, float y, float z);
@@ -58,5 +63,16 @@ float				vector_magnitude(t_vector a);
 float				vector_cos(t_vector a, t_vector b);
 
 t_ray				ray_init(t_vertex origin, t_vector direction);
+
+t_matrix			identity_matrix_init(void);
+t_matrix			scale_matrix_init(float scale);
+t_matrix			translation_matrix_init(float xval, float yval, float zval);
+t_matrix			rotx_matrix_init(float degrees);
+t_matrix			roty_matrix_init(float degrees);
+t_matrix			rotz_matrix_init(float degrees);
+
+
+float				degtorad(float deg);
+float				radtodeg(float rad);
 
 #endif
