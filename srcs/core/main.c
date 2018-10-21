@@ -6,13 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/15 07:51:24 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/21 20:05:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int					main(void)
+int					test(void)
 {
 	t_vertex vtx0 = vertex_init(0, 0, 0);
 	t_vertex vtxX = vertex_init(1, 0, 0);
@@ -76,7 +76,7 @@ int					main(void)
 	}
 	printf("\n");
 
-	identity = translation_matrix_init(20, 10, -5);
+	identity = translation_matrix_init(vector_init(vertex_init(0,0,0), vertex_init(20, 10, -5)));
 	for (int y = 0; y < 4; y++)
 	{
 		for(int x = 0; x < 4; x++)
@@ -112,4 +112,13 @@ int					main(void)
 	}
 	printf("\n");
 	return (0);
+}
+
+int					main(void)
+{
+	t_env			*env;
+
+	env = env_init();
+	raytracing(env);
+	return (1);
 }

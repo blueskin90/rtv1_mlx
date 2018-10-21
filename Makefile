@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/10/15 07:42:52 by toliver          ###   ########.fr        #
+#    Updated: 2018/10/21 17:19:12 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/
 FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra #-g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main) \
+	   $(addprefix core/, main init tools) \
+	   $(addprefix raytracer/, raytracing) \
 	   $(addprefix rays/, definition operations operations1 matrix utility) \
 		))
 
@@ -35,6 +36,7 @@ objs/%.o: srcs/%.c
 objs:
 	mkdir -p objs/rays
 	mkdir objs/core
+	mkdir objs/raytracer
 
 clean:
 	make -C ./libs/mlx clean

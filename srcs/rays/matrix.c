@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 06:24:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/15 07:59:19 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/15 09:24:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ t_matrix		scale_matrix_init(float scale)
 	return (scalematrix);
 }
 
-t_matrix		translation_matrix_init(float xtran, float ytran, float ztran)
+t_matrix		translation_matrix_init(t_vector tranvec)
 {
 	t_matrix	translationmatrix;
 
 	translationmatrix = identity_matrix_init();
-	translationmatrix.matrix[0][3] = xtran;
-	translationmatrix.matrix[1][3] = ytran;
-	translationmatrix.matrix[2][3] = ztran;
+	translationmatrix.matrix[0][3] = tranvec.x;
+	translationmatrix.matrix[1][3] = tranvec.y;
+	translationmatrix.matrix[2][3] = tranvec.z;
 	return (translationmatrix);
 }
 
