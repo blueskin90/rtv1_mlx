@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/21 20:30:58 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/23 17:58:00 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,10 @@ typedef struct		s_matrix
 }					t_matrix;
 
 
+/*
+** struct of objects
+*/
 
-
-typedef struct		s_light
-{
-	t_vertex		pos;
-	struct s_light	*next;
-}					t_light;
-
-typedef struct		s_sphere
-{
-	float			radius;
-	t_vertex		center;
-	struct s_sphere	*next;
-}					t_sphere;
 
 typedef struct		s_camera
 {
@@ -72,17 +62,57 @@ typedef struct		s_camera
 	struct s_camera	*next;
 }					t_camera;
 
+typedef struct		s_viewplane
+{
+	float			width;
+	float			height;
+}					t_viewplane;
+
+typedef struct		s_rgb
+{
+	int				r;
+	int				g;
+	int				b;
+	int				value;
+}					t_rgb;
+
+typedef struct		s_hsv
+{
+	int				h;
+	int				s;
+	int				v;
+}					t_hsv;
+
+typedef struct		s_color
+{
+	t_rgb			rgb;
+	t_hsv			hsv;	
+}					t_color;
+
+typedef struct		s_sphere
+{
+	float			radius;
+	t_vertex		center;
+	t_color			color;
+	struct s_sphere	*next;
+}					t_sphere;
+
+typedef struct		s_light
+{
+	t_vertex		pos;
+	t_color			color;
+	struct s_light	*next;
+}					t_light;
+
 typedef struct		s_scene
 {
 	t_sphere		*sphere;
 	t_light			*light;
 }					t_scene;
 
-typedef struct		s_viewplane
-{
-	float			width;
-	float			height;
-}					t_viewplane;
+/*
+** End of struct object
+*/
 
 
 
@@ -122,6 +152,20 @@ int					shootray(t_ray ray, t_scene *scene);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
 
 /*
+** Color functions
+*/
+
+int					hsv_to_rgb(t_hsv hsv);
+t_hsv				rgb_to_hsv(int color);
+void				modifyhue(int y, t_color *color);
+void				modifysv(int x, int y, t_color *color);
+t_rgb				int_to_rgb(int c);
+int					get_rgb(unsigned char r, unsigned char g, unsigned char b);
+int					rgb_to_int(t_rgb rgb);
+int					get_closestcolor(t_color *color);
+t_color				color_init(int color);
+
+/*
 ** Env initialization and minilibx init
 */
 
@@ -136,7 +180,8 @@ t_img				*img_init(int width, int height, void *mlx);
 
 void				*ft_malloc(unsigned int size);
 void				ft_error(char *str);
-
+float				ft_min(float a, float b, float c);
+float				ft_max(float a, float b, float c);
 /*
 ** Vector and Vertex matrix and math handling functions
 */
@@ -163,8 +208,8 @@ t_matrix			translation_matrix_init(t_vector tranvec);
 t_matrix			rotx_matrix_init(float degrees);
 t_matrix			roty_matrix_init(float degrees);
 t_matrix			rotz_matrix_init(float degrees);
-
-
+t_matrix			matrix_mult(t_matrix a, t_matrix b);
+t_vertex			matrix_mult_vertex(t_matrix a, t_vertex b);
 float				degtorad(float deg);
 float				radtodeg(float rad);
 

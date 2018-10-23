@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/10/21 17:19:12 by toliver          ###   ########.fr        #
+#    Updated: 2018/10/23 16:44:01 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra #-g3 -fsanitize=addres
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main init tools) \
 	   $(addprefix raytracer/, raytracing) \
+	   $(addprefix colors/, colorconversion colorconversion2) \
 	   $(addprefix rays/, definition operations operations1 matrix utility) \
 		))
 
@@ -36,6 +37,7 @@ objs/%.o: srcs/%.c
 objs:
 	mkdir -p objs/rays
 	mkdir objs/core
+	mkdir objs/colors
 	mkdir objs/raytracer
 
 clean:

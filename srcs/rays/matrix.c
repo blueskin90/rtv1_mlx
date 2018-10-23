@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 06:24:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/15 09:24:28 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/23 17:58:57 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,35 @@ t_matrix		projection_matrix_init(float fov, float ratio, float near, float far)
 	t_matrix	projectionmatrix;
 	
 	return (projectionmatrix);
+}
+
+t_matrix		matrix_mult(t_matrix a, t_matrix b)
+{
+	t_matrix	c;
+	int			x;
+	int			y;
+
+	y = 0;
+	while (y < 4)
+	{
+		x = 0;
+		while (x < 4)
+		{
+			c.matrix[y][x] = a.matrix[y][0] * b.matrix[0][x]+ a.matrix[y][1] * b.matrix[1][x]+ a.matrix[y][2] * b.matrix[2][x] + a.matrix[y][3] * b.matrix[3][x];
+			x++;
+		}
+		y++;
+	}
+	return (c);
+}
+
+t_vertex		matrix_mult_vertex(t_matrix a, t_vertex b)
+{
+	t_vertex	c;
+
+	c.x = a.matrix[0][0] * b.x+ a.matrix[0][1] * b.y + a.matrix[0][2] * b.z + a.matrix[0][3] * b.w;
+	c.y = a.matrix[1][0] * b.x + a.matrix[1][1] * b.y + a.matrix[1][2] * b.z + a.matrix[1][3] * b.w;
+	c.z = a.matrix[2][0] * b.x+ a.matrix[2][1] * b.y + a.matrix[2][2] * b.z + a.matrix[2][3] * b.w;
+	c.w = a.matrix[3][0] * b.x+ a.matrix[3][1] * b.y + a.matrix[3][2] * b.z + a.matrix[3][3] * b.w;
+	return (c);
 }
