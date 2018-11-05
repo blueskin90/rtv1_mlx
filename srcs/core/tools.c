@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:16:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/23 16:53:12 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/05 18:21:27 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,4 @@ void				ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
 	exit(0);
-}
-
-float		ft_max(float a, float b, float c)
-{
-	if (a >= b && a >= c)
-		return (a);
-	if (b >= a && b >= c)
-		return (b);
-	return (c);
-}
-
-float		ft_min(float a, float b, float c)
-{
-	if (a <= b && a <= c)
-		return (a);
-	if (b <= a && b <= c)
-		return (b);
-	return (c);
 }
