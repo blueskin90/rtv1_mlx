@@ -6,79 +6,27 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/11/05 17:51:32 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/05 18:07:01 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libftg.a
 
 FLAGS = -Wall -Wextra -Werror -Ofast
 
-FILES = atoi \
-	   bzero \
-	   isalnum \
-	   isalpha \
-	   isascii \
-	   isdigit \
-	   isprint \
-	   ftoa \
-	   itoa \
-	   memalloc \
-	   memccpy \
-	   memchr \
-	   memcmp \
-	   memcpy \
-	   memdel \
-	   memmove \
-	   memset \
-	   putchar \
-	   putchar_fd \
-	   putendl \
-	   putendl_fd \
-	   putstr \
-	   putstr_fd \
-	   putnbr \
-	   putnbr_fd \
-	   strcat \
-	   strchr \
-	   strclr \
-	   strcmp \
-	   strcpy \
-	   strdel \
-	   strdup \
-	   strequ \
-	   striter \
-	   striteri \
-	   strjoin \
-	   strlcat \
-	   strlen \
-	   strmap \
-	   strmapi \
-	   strncat \
-	   strncmp \
-	   strncpy \
-	   strnequ \
-	   strnew \
-	   strnstr \
-	   strrchr \
-	   strsplit \
-	   strstr \
-	   strsub \
-	   strtrim \
-	   tolower \
-	   toupper \
-	   lstnew\
-	   lstdelone \
-	   lstdel \
-	   lstadd \
-	   lstiter \
-	   lstmap \
-	   get_next_line \
+FILES = colorconversion \
+		colorconversion2\
+		definition\
+		matrix\
+		operations\
+		operations1\
+		tools\
+		utility 
 
 INCLUDES = -I./includes
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix ft_, $(FILES)) \
+	   $(FILES) \
 		))
 
 .PHONY: all clean fclean re
