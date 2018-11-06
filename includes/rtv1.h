@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 18:23:37 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/05 22:47:08 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct		s_viewplane
 typedef struct		s_sphere
 {
 	float			radius;
-	t_vertex		center;
+	t_vector		orientation;
+	t_vertex		pos;
 	t_color			color;
 	struct s_sphere	*next;
 }					t_sphere;
@@ -91,7 +92,16 @@ typedef struct		s_env
 {
 	void			*mlx;
 	t_win			*win;
+	t_scene			*scene;
+	t_scene			*scene_copy;
+	t_camera		*camera;
 }					t_env;
+
+/*
+** Objects Malloc
+*/
+
+t_sphere			*sphere_malloc(t_vertex pos,float radius, t_vector orientation, t_color color);
 
 /*
 ** Raytracing functions

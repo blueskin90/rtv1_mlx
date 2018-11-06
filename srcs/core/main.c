@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/23 17:58:55 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/05 23:09:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,198 @@ int					test(void)
 	return (0);
 }
 
+t_sphere			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c)
+{
+	t_sphere		*sphere;
+
+	sphere = (t_sphere*)ft_malloc(sizeof(t_sphere));
+	sphere->pos = p;
+	sphere->radius = rad;
+	sphere->orientation = r;
+	sphere->color = c;
+	sphere->next = NULL;
+	return (sphere);
+}
+
+t_camera			*camera_malloc(t_vertex pos, t_vector orientation)
+{
+	t_camera		*camera;
+
+	camera = (t_camera*)ft_malloc(sizeof(t_camera));
+	camera->pos = pos;
+	camera->orientation = orientation;
+	camera->next = NULL;
+	return (camera);
+}
+
+// manque la rotation en z de la cam, il faut son orientation (le vecteur) et sa rotation sur ce vecteur
+
+t_light				*light_malloc(t_vertex pos, t_color color)
+{
+	t_light			*light;
+
+	light = (t_light*)ft_malloc(sizeof(t_light));
+	light->pos = pos;
+	light->color = color;
+	light->next = NULL;
+	return (light);
+}
+
+int					parse_scene(t_env *env)
+{
+	t_scene			*scene;
+	t_vertex		pos;
+	t_vector		orientation;
+	t_color			color;
+
+	scene = (t_scene*)ft_malloc(sizeof(t_scene));
+	pos = vertex_init(10, 10, 10);
+	orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
+	color = color_init(0xff00ff);
+	scene->sphere = sphere_malloc(pos, 3.0, orientation, color);
+	pos = vertex_init(-10, -5, 0);
+	scene->sphere->next = sphere_malloc(pos, 2.0, orientation, color);
+	pos = vertex_init(20, -10, 2);
+	scene->sphere->next->next = sphere_malloc(pos, 6.0, orientation, color);
+	pos = vertex_init(20, 0, 10);
+	color = color_init(0xffffff);
+	scene->light = light_malloc(pos, color);
+	pos = vertex_init(-5, 0.2, 3.6);
+	scene->light->next = light_malloc(pos, color);
+	env->scene = scene;
+	pos = vertex_init(10, 5, 1);
+	env->camera = camera_malloc(pos, orientation);
+	return (1);
+}
+
+int					light_copy(t_env *env)
+{
+	t_light			*ptr;
+	t_light			*cpyptr;
+
+	ptr = env->scene->light;
+	if (ptr)
+	{
+		env->scene_copy->light = light_malloc(ptr->pos, ptr->color);
+		cpyptr = env->scene_copy->light;
+		ptr = ptr->next;
+		while (ptr)
+		{
+			cpyptr->next = light_malloc(ptr->pos, ptr->color);
+			cpyptr = cpyptr->next;
+			ptr = ptr->next;
+		}
+	}
+	return (1);
+}
+
+int					sphere_copy(t_env *env)
+{
+	t_sphere		*ptr;
+	t_sphere		*cpyptr;
+
+	ptr = env->scene->sphere;
+	if (ptr)
+	{
+		env->scene_copy->sphere = sphere_malloc(ptr->pos, ptr->radius, ptr->orientation, ptr->color);
+		cpyptr = env->scene_copy->sphere;
+		ptr = ptr->next;
+		while (ptr)
+		{
+			cpyptr->next = sphere_malloc(ptr->pos, ptr->radius, ptr->orientation, ptr->color);
+			cpyptr = cpyptr->next;
+			ptr = ptr->next;
+		}
+	}
+	return (1);
+}
+
+int					scene_copy(t_env *env)
+{
+	env->scene_copy = (t_scene*)ft_malloc(sizeof(t_scene));
+	sphere_copy(env);
+	light_copy(env);
+	return (1);
+}
+
+int					print_objets(t_scene *scene)
+{
+	t_sphere		*ptr;
+	t_light			*ptr2;
+	int				i;
+
+	ptr = scene->sphere;
+	i = 1;
+	while (ptr)
+	{
+		printf("SPHERE NUMBER %d\ncenter = [%.2f][%.2f][%.2f]\nRadius = %f\norientation = [%.2f][%.2f][%.2f]\ncolor = [%d][%d][%d]\n\n", i, ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->radius, ptr->orientation.x, ptr->orientation.y, ptr->orientation.z, ptr->color.rgb.r, ptr->color.rgb.g, ptr->color.rgb.b);
+		i++;
+		ptr = ptr->next;
+	}
+	ptr2 = scene->light;
+	i = 1;
+	while (ptr2)
+	{
+		printf("LIGHT NUMBER %d\npos = [%.2f][%.2f][%.2f]\ncolor = [%d][%d][%d]\n\n", i, ptr2->pos.x, ptr2->pos.y, ptr2->pos.z, ptr2->color.rgb.r, ptr2->color.rgb.g, ptr2->color.rgb.b);
+		i++;
+		ptr2 = ptr2->next;
+	}
+	printf("\n");
+	return (1);
+}
+
+int					print_camera(t_camera *cam)
+{
+	t_camera		*ptr;
+
+	ptr = cam;
+	while (ptr)
+	{
+		printf("CAMERA (actually only one)\npos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n", ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->orientation.x, ptr->orientation.y, ptr->orientation.z);
+		ptr = ptr->next;
+	}
+	printf("\n");
+	return (1);
+}
+
+int					world_to_cam(t_camera *cam, t_scene *copy)
+{
+	void			*ptr;
+	t_matrix		matrix;
+
+	matrix = translation_matrix_init(vector_opposite(vector_init(vertex_init(0,0,0), cam->pos)));
+	ptr = copy->sphere;
+	while (ptr)
+	{
+		((t_sphere*)ptr)->pos = matrix_mult_vertex(matrix, ((t_sphere*)ptr)->pos);
+		ptr = ((t_sphere*)ptr)->next;
+	}
+	ptr = copy->light;
+	while (ptr)
+	{
+		((t_light*)ptr)->pos = matrix_mult_vertex(matrix, ((t_light*)ptr)->pos);
+		ptr = ((t_light*)ptr)->next;
+	}
+	return (1);
+}
+
 int					main(void)
 {
 	t_env			*env;
 
 //	test();
 	env = env_init();
+	parse_scene(env);
+	scene_copy(env);
+	if (env->scene)
+	{
+		print_camera(env->camera);
+		print_objets(env->scene);
+		world_to_cam(env->camera, env->scene_copy);
+		print_camera(env->camera);
+		print_objets(env->scene_copy);
+		exit(1);
+	}
 	raytracing(env);
 	return (1);
 }
