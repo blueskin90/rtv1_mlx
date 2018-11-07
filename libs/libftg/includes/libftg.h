@@ -110,6 +110,7 @@ t_matrix			roty_matrix_init(float degrees);
 t_matrix			rotz_matrix_init(float degrees);
 t_matrix			matrix_mult(t_matrix a, t_matrix b);
 t_vertex			matrix_mult_vertex(t_matrix a, t_vertex b);
+t_vector			matrix_mult_vector(t_matrix a, t_vector b);
 float				degtorad(float deg);
 float				radtodeg(float rad);
 

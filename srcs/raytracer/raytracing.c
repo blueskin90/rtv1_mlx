@@ -59,7 +59,7 @@ int				raytracing(t_env *env)
 	t_light		light;
 
 	test.radius = 10;
-	test.center = vertex_init(10, 20, 30);
+	test.pos = vertex_init(10, 20, 30);
 	test.next = NULL;
 	camera.pos = vertex_init(0, 0, 0);
 	camera.orientation = vector_init(camera.pos, vertex_init(0, 0, 1));

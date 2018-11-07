@@ -168,3 +168,12 @@ t_vertex		matrix_mult_vertex(t_matrix a, t_vertex b)
 	c.w = a.matrix[3][0] * b.x+ a.matrix[3][1] * b.y + a.matrix[3][2] * b.z + a.matrix[3][3] * b.w;
 	return (c);
 }
+
+t_vector		matrix_mult_vector(t_matrix a, t_vector b)
+{
+	t_vertex	cheat;
+
+	cheat = *((t_vertex*)(&b));
+	cheat = matrix_mult_vertex(a, cheat);
+	return (*(t_vector*)(&cheat));
+}
