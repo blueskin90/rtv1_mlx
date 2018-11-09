@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 22:47:08 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/09 19:04:40 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,34 @@ typedef struct		s_env
 	t_camera		*camera;
 }					t_env;
 
+/*
+** TO DELETE
+*/
+int					test(void);
+/*
+** STRUCTURES 
+*/
+int					light_copy(t_env *env);
+int					sphere_copy(t_env *env);
+int					scene_copy(t_env *env);
+t_sphere			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c);
+t_camera			*camera_malloc(t_vertex pos, t_vector orientation);
+t_light				*light_malloc(t_vertex pos, t_color color);
+/*
+** Print functions
+*/
+void				print_matrix(t_matrix m);
+int					print_objets(t_scene *scene);
+int					print_camera(t_camera *cam);
+int					print_vector(t_vector v);
+
+/*
+** Camera rotation and translation 
+*/
+int					rotation_type(t_vector a, t_vector b);
+t_matrix			*camrotmatrix(t_camera *cam);
+int					world_to_cam(t_camera *cam, t_scene *copy);
+int					world_to_cam2(t_camera *cam, t_scene *copy);
 /*
 ** Objects Malloc
 */
