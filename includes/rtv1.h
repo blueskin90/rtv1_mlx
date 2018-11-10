@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 17:50:02 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 21:21:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # include "libftg.h"
 # include "keys.h"
+# include <limits.h>
 
 # define MALLOC_FAIL "Malloc failed\n"
 # define MLX_FAIL "Couldn't start MLX\n"
@@ -132,7 +133,7 @@ int					print_vector(t_vector v);
 int					rotation_type(t_vector a, t_vector b);
 t_matrix			*camrotmatrix(t_camera *cam);
 int					world_to_cam(t_camera *cam, t_scene *copy);
-int					world_to_cam2(t_camera *cam, t_scene *copy);
+int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy);
 /*
 ** Objects Malloc
 */

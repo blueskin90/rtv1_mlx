@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 19:52:50 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 21:11:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,6 @@ int		shootray(t_ray ray, t_scene *scene)
 	(void)ray;
 	(void)scene;
 	return (0xffffff);	
-}
-
-int				renderer(t_scene *scene, t_camera *camera, t_img *img)
-{
-	int			x;
-	int			y;
-
-	y = 0;
-	while (y < img->height)
-	{
-		x = 0;
-		while (x < img->width)
-		{
-			if ((x > 200 && x < 600) && (y > 100 && y < 500))
-				mlx_px_to_img(img, x, y, 0xff0000);
-			else
-				mlx_px_to_img(img, x, y, 0x00ffff);
-			x++;
-		}
-		y++;
-	}
-	(void)scene;
-	(void)camera;
-	return (1);
 }
 
 t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
@@ -75,7 +51,7 @@ int				tracing(t_vector ray, t_env *env, int x, int y)
 	
 	nearest_hit = INFINITY;
 	objs_hit = NULL;
-	objs_ptr = env->scene->sphere;
+	objs_ptr = env->scene_copy->sphere;
 	while (objs_ptr)
 	{
 		if ((current_hit = sphere_intersection(objs_ptr, ray)) != INFINITY 
@@ -106,7 +82,6 @@ int				raytracing(t_env *env)
 	t_vector	ray;
 
 	a = get_top_left_vertex(env->camera, env->win, &xinc, &yinc);
-	printf("[%f][%f][%f] xinc = %f, yinc = %f\n", a.x, a.y, a.z, xinc, yinc);
 	y = 0;
 	while (y < env->win->winy)
 	{
@@ -115,16 +90,12 @@ int				raytracing(t_env *env)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
 			ray = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
-	//		if (y == 0 || y == env->win->winy - 1)
-	//			printf("[%.30f][%.30f][%.30f] x %d y %d\n", ray.x, ray.y, ray.z, x, y);
 			tracing(ray, env, x, y);
 			x++;
 		}
 		y++;
 	}
-	printf("zlkdjlskdjaslkds %d\n", X_KEYPRESS);
 	printf("fini\n");
-//	renderer(env->scene, env->camera, env->win->img);
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
 	return (1);
 }

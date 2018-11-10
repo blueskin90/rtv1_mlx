@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 19:52:55 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 20:51:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ int					main(void)
 //	test();
 	env = env_init();
 	parse_scene(env);
-//	scene_copy(env);
+	scene_copy(env);
 //	if (env->scene)
 
 //	{
 //		print_camera(env->camera);
-//		print_objets(env->scene);
-//		world_to_cam2(env->camera, env->scene_copy);
+		print_objets(env->scene);
+		print_objets(env->scene_copy);
+	world_to_cam2(env->camera, env->scene, env->scene_copy);
 //		print_camera(env->camera);
 //		print_objets(env->scene_copy);
 //		exit(1);
