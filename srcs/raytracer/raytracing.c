@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 19:42:26 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 19:52:50 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
 	float		half_fovrad;
 
 	half_fovrad = degtorad(cam->fov * 0.5);
-	x = -tanf(half_fovrad * (float)((float)window->winx / (float)window->winy));
 	y = tanf(half_fovrad);
+	x = -y * (window->winx / (float)window->winy);
 	*xinc = -x / ((float)window->winx / 2.0);
 	*yinc = -y / ((float)window->winy / 2.0);
 	return (vertex_init(x + (*xinc / 2), y + (*yinc / 2), 1));
@@ -126,7 +126,5 @@ int				raytracing(t_env *env)
 	printf("fini\n");
 //	renderer(env->scene, env->camera, env->win->img);
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
-	events_listener(env);
-	mlx_loop(env->mlx);
 	return (1);
 }

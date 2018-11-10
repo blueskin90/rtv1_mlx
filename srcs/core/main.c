@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 02:28:20 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 19:52:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ int					main(void)
 //		exit(1);
 //	}
 	raytracing(env);
+	events_listener(env);
+	mlx_loop(env->mlx);
 	return (1);
 }
