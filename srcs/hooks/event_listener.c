@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/10 21:21:41 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 21:28:20 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vector	vec_initO_ver(t_vertex a)
 	return (vector_init(vertex_init(0, 0, 0), a));
 }
 
-t_vector	vec_initO_int(int x, int y, int z)
+t_vector	vec_initO_int(float x, float y, float z)
 {
 	t_vector	retval;
 

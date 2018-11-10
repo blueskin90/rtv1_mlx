@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 21:11:40 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 23:58:11 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,37 @@ t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
 	return (vertex_init(x + (*xinc / 2), y + (*yinc / 2), 1));
 }
 
-int				tracing(t_vector ray, t_env *env, int x, int y)
+float			shoot_ray(t_ray ray, t_env *env, t_sphere **objs_hit)
 {
-	t_sphere 	*objs_ptr;
-	t_sphere	*objs_hit;
+	t_sphere	*objs_ptr;
 	float		nearest_hit;
 	float		current_hit;
 	
 	nearest_hit = INFINITY;
-	objs_hit = NULL;
 	objs_ptr = env->scene_copy->sphere;
 	while (objs_ptr)
 	{
 		if ((current_hit = sphere_intersection(objs_ptr, ray)) != INFINITY 
 				&& current_hit < nearest_hit)
 		{
-			objs_hit = objs_ptr;
+			(*objs_hit) = objs_ptr;
 			nearest_hit = current_hit;
 		}
 		objs_ptr = objs_ptr->next;
 	}
+	return (nearest_hit);
+}
+
+int				tracing(t_ray ray, t_env *env, int x, int y)
+{
+	t_sphere	*objs_hit;
+	float		nearest_hit;
+	
+	objs_hit = NULL;
+	nearest_hit = shoot_ray(ray, env, &objs_hit);
 	if (nearest_hit != INFINITY)
 	{
-//		printf("%#x\n", objs_hit->color.rgb.value);
+		// colorization(env, ray, nearest_hit, objs_hit);
 		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
 	}
 	else 
@@ -79,7 +87,8 @@ int				raytracing(t_env *env)
 	float		yinc;
 	int			x;
 	int			y;
-	t_vector	ray;
+	t_vector	ray_vec;
+	t_ray		ray;
 
 	a = get_top_left_vertex(env->camera, env->win, &xinc, &yinc);
 	y = 0;
@@ -89,8 +98,10 @@ int				raytracing(t_env *env)
 		while (x < env->win->winx)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
-			ray = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
+			ray_vec = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
+			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(ray, env, x, y);
+			// ICI COULEUR
 			x++;
 		}
 		y++;

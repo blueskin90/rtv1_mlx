@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 21:21:29 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 23:58:02 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,12 @@ t_sphere			*sphere_malloc(t_vertex pos,float radius, t_vector orientation, t_col
 int					raytracing(t_env *env);
 int					renderer(t_scene *scene, t_camera *camera, t_img *img);
 int					shootray(t_ray ray, t_scene *scene);
+float				shoot_ray(t_ray ray, t_env *env, t_sphere **objs);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
 /*
 ** INTERSECTIONS
 */
-float				sphere_intersection(t_sphere *sphere, t_vector ray);
+float				sphere_intersection(t_sphere *sphere, t_ray ray);
 /*
 ** Env initialization and minilibx init
 */

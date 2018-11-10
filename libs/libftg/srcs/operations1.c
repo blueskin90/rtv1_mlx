@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 06:15:34 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 17:59:57 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 20:16:56 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ float		vector_cos(t_vector a, t_vector b)
 {
 	return (vector_dotproduct(a, b) / (vector_magnitude(a)
 				* vector_magnitude(b)));
+}
+
+float		vec_dot(t_vector a, t_vector b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 float		vector_dotproduct(t_vector a, t_vector b)

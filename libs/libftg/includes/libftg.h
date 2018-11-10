@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 17:59:57 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 20:15:10 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_vertex			vertex_init(float x, float y, float z);
 
 t_vector			vector_init(t_vertex a, t_vertex b);
 t_vector			vector_normalize(t_vector a);
+t_vector			vec_norm(t_vector a);
 t_vector			vector_add(t_vector a, t_vector b);
 t_vector			vector_sub(t_vector a, t_vector b);
 t_vector			vector_mul(t_vector a, float s);
@@ -97,6 +98,7 @@ t_vector			vector_div(t_vector a, float s);
 t_vector			vector_opposite(t_vector a);
 t_vector			vector_crossproduct(t_vector a, t_vector b);
 float				vector_dotproduct(t_vector a, t_vector b);
+float				vec_dot(t_vector a, t_vector b);
 float				vector_magnitude(t_vector a);
 float				vector_cos(t_vector a, t_vector b);
 
