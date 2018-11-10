@@ -6,7 +6,7 @@
 /*   By: nfinkel <nfinkel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 17:40:18 by nfinkel           #+#    #+#             */
-/*   Updated: 2018/11/05 19:04:14 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 01:30:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_env(t_env *env, t_mlx *mlx, t_cam *cam)
 	env->invHeight = 1.0 / (double)env->height;
 	env->light =  ft_v3new(0, 10, -25);
 	env->cam = cam;
-	cam->fov = 10;
+	cam->fov = 60;
 	cam->angle = 0.3; // CA CEST UN ZOOM/FOV
 	// TROUVER COMMENT FAIRE L ANGLE DE LA CAM
 	//tan(M_PI * 0.5 * cam->fov / 180.0);

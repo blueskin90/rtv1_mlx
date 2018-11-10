@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/09 19:04:40 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 02:30:50 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define WINDOW_FAIL "Couldn't open a new window\n"
 # define MLX_IMG_FAIL "MLX couldn't get a new image\n"
 
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+
 /*
 ** struct of objects
 */
@@ -31,6 +34,7 @@ typedef struct		s_camera
 {
 	t_vertex		pos;
 	t_vector		orientation;
+	float			fov;
 	struct s_camera	*next;
 }					t_camera;
 
@@ -108,7 +112,7 @@ int					light_copy(t_env *env);
 int					sphere_copy(t_env *env);
 int					scene_copy(t_env *env);
 t_sphere			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c);
-t_camera			*camera_malloc(t_vertex pos, t_vector orientation);
+t_camera			*camera_malloc(t_vertex pos, t_vector orientation, float angle);
 t_light				*light_malloc(t_vertex pos, t_color color);
 /*
 ** Print functions
@@ -139,7 +143,10 @@ int					raytracing(t_env *env);
 int					renderer(t_scene *scene, t_camera *camera, t_img *img);
 int					shootray(t_ray ray, t_scene *scene);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
-
+/*
+** INTERSECTIONS
+*/
+float				sphere_intersection(t_sphere *sphere, t_vector ray);
 /*
 ** Env initialization and minilibx init
 */

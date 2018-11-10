@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:37:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 21:54:03 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/09 22:55:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_env				*env_init(void)
 	env = (t_env*)ft_malloc(sizeof(t_env));
 	if (!(env->mlx = mlx_init()))
 		ft_error(MLX_FAIL);
-	if (!(env->win = win_init(800, 600, "RTv1",env->mlx)))
+	if (!(env->win = win_init(WIN_WIDTH, WIN_HEIGHT, "RTv1",env->mlx)))
 		ft_error(WINDOW_FAIL);
 	env->scene = NULL;
 	return (env);

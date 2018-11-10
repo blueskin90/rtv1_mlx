@@ -6,7 +6,7 @@
 /*   By: nfinkel <nfinkel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 20:51:28 by nfinkel           #+#    #+#             */
-/*   Updated: 2018/11/05 15:48:28 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 01:29:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static inline t_obj	*objctor(t_v3 pt, double scale, t_type type)
 
 inline t_obj		**add_objs(void)
 {
-	*(t_obj **)ft_varypush(g_vary) = objctor(ft_v3new(-5, 0, -25), 2, E_SPHERE);
-	*(t_obj **)ft_varypush(g_vary) = objctor(ft_v3new(5, 0, -15), 2, E_SPHERE);
-	*(t_obj **)ft_varypush(g_vary) = objctor(ft_v3new(5, 0, -50), 2, E_SPHERE);
+	*(t_obj **)ft_varypush(g_vary) = objctor(ft_v3new(1, 1, 25), 2, E_SPHERE);
+	*(t_obj **)ft_varypush(g_vary) = objctor(ft_v3new(5, 0, 15), 2, E_SPHERE);
+	*(t_obj **)ft_varypush(g_vary) = objctor(ft_v3new(5, 0, 50), 2, E_SPHERE);
 	*(t_obj **)ft_varypush(g_vary) = NULL;
 	GIMME(g_vary->buff);
 }

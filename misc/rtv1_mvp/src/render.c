@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 12:58:22 by cvermand          #+#    #+#             */
-/*   Updated: 2018/06/25 12:42:44 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 01:28:21 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		render(t_env env)
 		while (++x < env.width)
 		{
 			xx = cam_to_world_x((double)x, &env);
-			ray = ft_v3new(xx, yy, -1);
+			ray = ft_v3new(xx, yy, 1);
 			ft_v3norm(&ray);
 			trace(env, &ray, x, y);
 		}

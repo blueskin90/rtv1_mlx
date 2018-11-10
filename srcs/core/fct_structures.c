@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/09 19:02:10 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/09 22:53:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ t_sphere			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c)
 	return (sphere);
 }
 
-t_camera			*camera_malloc(t_vertex pos, t_vector orientation)
+t_camera			*camera_malloc(t_vertex pos, t_vector orientation, float angle)
 {
 	t_camera		*camera;
 
 	camera = (t_camera*)ft_malloc(sizeof(t_camera));
 	camera->pos = pos;
 	camera->orientation = orientation;
+	camera->fov = angle;
 	camera->next = NULL;
 	return (camera);
 }

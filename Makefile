@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/09 19:05:24 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/09 23:35:57 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libft
 FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra #-g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam) \
+	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
 	   $(addprefix utils/, print) \
-	   $(addprefix raytracer/, raytracing) \
+	   $(addprefix raytracer/, raytracing intersections) \
 		))
 
 all: $(NAME)

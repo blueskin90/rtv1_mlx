@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/22 11:57:17 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 02:30:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,79 @@ int				renderer(t_scene *scene, t_camera *camera, t_img *img)
 	return (1);
 }
 
+t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
+				float *yinc)
+{
+	float		x;
+	float		y;
+	float		half_fovrad;
+
+	half_fovrad = degtorad(cam->fov * 0.5);
+	x = -tanf(half_fovrad * (float)((float)window->winx / (float)window->winy));
+	y = tanf(half_fovrad);
+	*xinc = -x / ((float)window->winx / 2.0);
+	*yinc = -y / ((float)window->winy / 2.0);
+	return (vertex_init(x + (*xinc / 2), y + (*yinc / 2), 1));
+}
+
+int				tracing(t_vector ray, t_env *env, int x, int y)
+{
+	t_sphere 	*objs_ptr;
+	t_sphere	*objs_hit;
+	float		nearest_hit;
+	float		current_hit;
+	
+	nearest_hit = INFINITY;
+	objs_hit = NULL;
+	objs_ptr = env->scene->sphere;
+	while (objs_ptr)
+	{
+		if ((current_hit = sphere_intersection(objs_ptr, ray)) != INFINITY 
+				&& current_hit < nearest_hit)
+		{
+			objs_hit = objs_ptr;
+			nearest_hit = current_hit;
+		}
+		objs_ptr = objs_ptr->next;
+	}
+	if (nearest_hit != INFINITY)
+	{
+//		printf("%#x\n", objs_hit->color.rgb.value);
+		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
+	}
+	else 
+		mlx_px_to_img(env->win->img, x, y, 0x000000);
+	return (1);
+}
+
 int				raytracing(t_env *env)
 {
-	t_scene		scene;
-	t_camera	camera;
-	t_sphere	test;
-	t_light		light;
+	t_vertex	a;
+	float		xinc;
+	float		yinc;
+	int			x;
+	int			y;
+	t_vector	ray;
 
-	test.radius = 10;
-	test.pos = vertex_init(10, 20, 30);
-	test.next = NULL;
-	camera.pos = vertex_init(0, 0, 0);
-	camera.orientation = vector_init(camera.pos, vertex_init(0, 0, 1));
-	light.pos = vertex_init(40, 40, 40);
-	light.next = NULL;
-	scene.sphere = &test;
-	scene.light = &light;
-	renderer(&scene, &camera, env->win->img);
+	a = get_top_left_vertex(env->camera, env->win, &xinc, &yinc);
+	printf("[%f][%f][%f] xinc = %f, yinc = %f\n", a.x, a.y, a.z, xinc, yinc);
+	y = 0;
+	while (y < env->win->winy)
+	{
+		x = 0;
+		while (x < env->win->winx)
+		{
+			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
+			ray = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
+			if (y == 0 || y == env->win->winy - 1)
+				printf("[%.30f][%.30f][%.30f] x %d y %d\n", ray.x, ray.y, ray.z, x, y);
+			tracing(ray, env, x, y);
+			x++;
+		}
+		y++;
+	}
+	printf("fini\n");
+//	renderer(env->scene, env->camera, env->win->img);
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
 	mlx_loop(env->mlx);
 	return (1);

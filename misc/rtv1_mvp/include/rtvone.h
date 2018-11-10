@@ -6,7 +6,7 @@
 /*   By: nfinkel <nfinkel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 17:43:01 by nfinkel           #+#    #+#             */
-/*   Updated: 2018/11/03 18:19:52 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/10 01:27:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <libft.h>
 # include <mlx.h>
 # include "utils.h"
-# define WIN_X 640
-# define WIN_Y 480
+# define WIN_X 800
+# define WIN_Y 600
 
 typedef enum	e_type
 {
