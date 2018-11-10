@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 02:30:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 19:42:26 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,18 @@ int				raytracing(t_env *env)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
 			ray = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
-			if (y == 0 || y == env->win->winy - 1)
-				printf("[%.30f][%.30f][%.30f] x %d y %d\n", ray.x, ray.y, ray.z, x, y);
+	//		if (y == 0 || y == env->win->winy - 1)
+	//			printf("[%.30f][%.30f][%.30f] x %d y %d\n", ray.x, ray.y, ray.z, x, y);
 			tracing(ray, env, x, y);
 			x++;
 		}
 		y++;
 	}
+	printf("zlkdjlskdjaslkds %d\n", X_KEYPRESS);
 	printf("fini\n");
 //	renderer(env->scene, env->camera, env->win->img);
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
+	events_listener(env);
 	mlx_loop(env->mlx);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 02:30:50 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/10 17:50:02 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libftg.h"
+# include "keys.h"
 
 # define MALLOC_FAIL "Malloc failed\n"
 # define MLX_FAIL "Couldn't start MLX\n"
@@ -100,7 +101,10 @@ typedef struct		s_env
 	t_scene			*scene_copy;
 	t_camera		*camera;
 }					t_env;
-
+/*
+** Event Listeners
+*/
+void		events_listener(t_env *env);
 /*
 ** TO DELETE
 */

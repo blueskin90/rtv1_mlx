@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/09 23:35:57 by toliver          ###   ########.fr        #
+#    Updated: 2018/11/10 19:39:17 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,12 @@ LIBS = ./libs/libft/libft.a \
 
 INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libftg/includes/
 
-FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra #-g3 -fsanitize=address
+FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra -g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
 	   $(addprefix utils/, print) \
+	   $(addprefix hooks/, event_listener) \
 	   $(addprefix raytracer/, raytracing intersections) \
 		))
 
@@ -41,6 +42,7 @@ objs/%.o: srcs/%.c
 objs:
 	mkdir -p objs/core
 	mkdir objs/raytracer
+	mkdir objs/hooks
 	mkdir objs/utils/
 
 clean:
