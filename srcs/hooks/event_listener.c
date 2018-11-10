@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/10 21:21:41 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/11 00:01:50 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,14 +141,16 @@ int		mousemove(int x, int y, t_env *env)
 	xinc = 0;
 	yinc = 0;
 	if (oldx == INT_MIN)
+	{
 		oldx = x;
-	else
-		xinc = x - oldx;
-	if (oldy == INT_MIN)
 		oldy = y;
+	}
 	else
+	{
+		xinc = x - oldx;
 		yinc = y - oldy;
-	printf("x %d xinc %d, y %d yinc %d\n", x, xinc,  y, yinc);
+		printf("x %d xinc %d, y %d yinc %d\n", x, xinc,  y, yinc);
+	}
 	return (1);
 }
 
