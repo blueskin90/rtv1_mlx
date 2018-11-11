@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 23:58:11 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/11 00:23:23 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ int				tracing(t_ray ray, t_env *env, int x, int y)
 {
 	t_sphere	*objs_hit;
 	float		nearest_hit;
+	int			color;
 	
 	objs_hit = NULL;
 	nearest_hit = shoot_ray(ray, env, &objs_hit);
 	if (nearest_hit != INFINITY)
 	{
-		// colorization(env, ray, nearest_hit, objs_hit);
-		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
+		color = colorization(env, ray, nearest_hit, objs_hit);
+		mlx_px_to_img(env->win->img, x, y, color);
+		//mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
 	}
 	else 
 		mlx_px_to_img(env->win->img, x, y, 0x000000);

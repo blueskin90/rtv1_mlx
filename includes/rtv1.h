@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 23:58:02 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/11 00:10:40 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int					renderer(t_scene *scene, t_camera *camera, t_img *img);
 int					shootray(t_ray ray, t_scene *scene);
 float				shoot_ray(t_ray ray, t_env *env, t_sphere **objs);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
+int					colorization(t_env *env, t_ray ray, double nearest, t_sphere *sphere);
 /*
 ** INTERSECTIONS
 */

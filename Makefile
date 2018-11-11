@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/10 19:39:17 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/11 00:05:02 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
 	   $(addprefix utils/, print) \
 	   $(addprefix hooks/, event_listener) \
-	   $(addprefix raytracer/, raytracing intersections) \
+	   $(addprefix raytracer/, raytracing intersections colorize) \
 		))
 
 all: $(NAME)
