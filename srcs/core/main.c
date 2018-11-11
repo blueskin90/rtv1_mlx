@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 20:51:35 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/12 00:18:12 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int					parse_scene(t_env *env)
 	pos = vertex_init(0, 0, 5);
 	orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
 	color = color_init(0xff0000);
-	scene->sphere = sphere_malloc(pos, 2.0, orientation, color);
+	scene->sphere = sphere_malloc(pos, 2, orientation, color);
 	pos = vertex_init(0, 0, 10);
 	color = color_init(0x00ff00);
 	scene->sphere->next = sphere_malloc(pos, 2, orientation, color);
-	pos = vertex_init(0, 0, 50);
+	pos = vertex_init(0, 0, 15);
 	color = color_init(0x0000ff);
 	scene->sphere->next->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vertex_init(20, 0, 10);
@@ -57,8 +57,8 @@ int					main(void)
 
 //	{
 //		print_camera(env->camera);
-		print_objets(env->scene);
-		print_objets(env->scene_copy);
+//		print_objets(env->scene);
+//		print_objets(env->scene_copy);
 	world_to_cam2(env->camera, env->scene, env->scene_copy);
 //		print_camera(env->camera);
 //		print_objets(env->scene_copy);
