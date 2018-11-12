@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/12 00:18:12 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/12 00:27:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					parse_scene(t_env *env)
 	pos = vertex_init(-5, 0.2, -3.6);
 	scene->light->next = light_malloc(pos, color);
 	env->scene = scene;
-	pos = vertex_init(0, 0, 0);
+	pos = vertex_init(1, 1, -1);
 	orientation.z = 1;
 	orientation.y = 0;
 	orientation.x = 0;
