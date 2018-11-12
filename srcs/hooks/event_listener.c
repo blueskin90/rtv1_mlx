@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/11 00:06:24 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/11 20:28:00 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ t_vector	vec_normalize(t_vector a)
 
 void	pos_notify(int x, int y, t_env *env)
 {
-	printf("------------------\n");
+/*	printf("------------------\n");
 	printf("x : %d y : %d\n", x, y);
 ///	ft_printf("xx : %d yy : %d\n", cam_to_world_x((double)x, env), 
 //			cam_to_world_y((double)y, env));
-	printf("------------------\n");
+	printf("------------------\n");*/
 }
 
 t_vertex		vertex_add_vector(t_vertex a, t_vector b)
@@ -149,7 +149,7 @@ int		mousemove(int x, int y, t_env *env)
 	{
 		xinc = x - oldx;
 		yinc = y - oldy;
-		printf("x %d xinc %d, y %d yinc %d\n", x, xinc,  y, yinc);
+//		printf("x %d xinc %d, y %d yinc %d\n", x, xinc,  y, yinc);
 	}
 	return (1);
 }

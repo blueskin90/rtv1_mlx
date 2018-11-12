@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 20:15:10 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/11 23:31:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ typedef struct		s_rgb
 	int				b;
 	int				value;
 }					t_rgb;
+
+typedef struct		s_hsl
+{
+	int				h;
+	int				s;
+	int				l;
+
+}					t_hsl;
 
 typedef struct		s_hsv
 {
