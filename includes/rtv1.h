@@ -114,6 +114,10 @@ typedef struct		s_env
 
 t_vector			vec_initO_ver(t_vertex a);
 t_matrix			camrotmatrix(t_camera *cam);
+int					is_equal_float(float a, float b);
+int					is_equal_vector(t_vector a, t_vector b);
+int					is_opposite_vector(t_vector a, t_vector b);
+
 
 /*
 ** Event Listeners

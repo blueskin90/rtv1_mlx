@@ -63,10 +63,7 @@ int				tracing(t_vector ray, t_env *env, int x, int y)
 		objs_ptr = objs_ptr->next;
 	}
 	if (nearest_hit != INFINITY)
-	{
-//		printf("%#x\n", objs_hit->color.rgb.value);
 		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
-	}
 	else 
 		mlx_px_to_img(env->win->img, x, y, 0x000000);
 	return (1);
