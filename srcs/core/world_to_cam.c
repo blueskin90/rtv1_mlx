@@ -45,6 +45,16 @@ t_matrix			find_rotation_matrix(t_vector to_rotate, t_vector goal)
 }
 
 dd*/
+t_matrix			camrotmatrix_inverse(t_camera *cam)
+{
+	t_matrix		matrixrot;
+
+	matrixrot = rotx_matrix_init(cam->rotx);
+	matrixrot = matrix_mult(matrixrot, roty_matrix_init(cam->roty));
+	matrixrot = matrix_mult(matrixrot, rotz_matrix_init(cam->rotz));
+	return (matrixrot);
+}
+
 t_matrix			camrotmatrix(t_camera *cam)
 {
 	t_matrix		matrixrot;
@@ -62,6 +72,12 @@ int					matrix_to_obj(t_matrix matrix, t_obj *original, t_obj *copy, t_camera *c
 	return (1);
 }
 
+int					print_vertex(t_vertex a)
+{
+	printf("[%.10f][%.10f][%.10f]\n", a.x, a.y, a.z);
+	return (1);
+}
+
 int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 {
 	t_obj			*ptr;
@@ -71,6 +87,8 @@ int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 	t_matrix		matrix_tran;
 	t_matrix		matrix_rot;
 	t_matrix		final_matrix;
+	t_vector		tmp;
+
 
 	matrix_tran = translation_matrix_init(vector_opposite(vector_init(vertex_init(0, 0, 0), cam->pos)));
 	matrix_rot = camrotmatrix(cam);
@@ -79,11 +97,20 @@ int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 	ptr2 = copy->objs;
 	while (ptr)
 	{
-		matrix_to_obj(final_matrix, ptr, ptr2, cam);
+//		matrix_to_obj(final_matrix, ptr, ptr2, cam);
 		ptr2->pos = matrix_mult_vertex(matrix_rot, matrix_mult_vertex(matrix_tran, ptr->pos));
+//		ptr2->pos = matrix_mult_vertex(final_matrix, ptr->pos);
 		ptr2->rot = matrix_mult_vector(matrix_rot, matrix_mult_vector(matrix_tran, ptr->rot));
 		if (ptr2->type == PLANE)
-			ptr2->params.plane.normale = matrix_mult_vector(matrix_rot, matrix_mult_vector(matrix_tran, ptr->params.plane.normale));
+		{
+//			tmp = vector_init(vertex_init(0,0,0), ptr->pos);
+//			tmp = vector_add(tmp, ptr->params.plane.normal);
+//			tmp = matrix_mult_vector(matrix_rot, tmp);
+//			tmp = vector_sub(tmp, vector_init(vertex_init(0,0,0), ptr->pos));
+//			ptr2->params.plane.normal = tmp;
+			matrix_rot = camrotmatrix_inverse(cam);
+			ptr2->params.plane.normal = matrix_mult_vector(matrix_rot, matrix_mult_vector(matrix_tran, ptr->params.plane.normal));
+		}
 			// deplace et rotate la position;
 //		((t_sphere*)ptr2)->rot = ((t_sphere*)ptr)->orientation; 
 //		if (matrix_rot)

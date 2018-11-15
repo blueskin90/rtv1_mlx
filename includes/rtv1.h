@@ -79,7 +79,7 @@ typedef struct		s_spheree
 
 typedef struct		s_plane
 {
-	t_vector		normale;
+	t_vector		normal;
 }					t_plane;
 
 typedef struct		s_cone

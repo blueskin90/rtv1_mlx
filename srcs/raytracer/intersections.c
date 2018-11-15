@@ -69,12 +69,11 @@ float			plane_intersection(t_ray ray, t_obj *plane)
 	float		denom;
 	float		length;
 
-	length = vector_dotproduct(plane->params.plane.normale, ray.direction);
-	denom = vector_dotproduct(plane->params.plane.normale, ray.direction);
-	if (denom != 0.0)
+	denom = vector_dotproduct(ray.direction, plane->params.plane.normal);
+	if (!fabs(is_equal_float(denom, 0.0)))
 	{
-		length = vector_dotproduct(vector_init(plane->pos, ray.origin), ray.direction) / length;
-		if (length > 0)
+		length = vector_dotproduct(vector_init(ray.origin, plane->pos), ray.direction) / denom;
+		if (length > 0.0)
 			return (length);
 		return (INFINITY);
 	}
