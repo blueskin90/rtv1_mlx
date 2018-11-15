@@ -32,20 +32,23 @@ int					light_copy(t_env *env)
 	}
 	return (1);
 }
+
 int					sphere_copy(t_env *env)
 {
-	t_sphere		*ptr;
-	t_sphere		*cpyptr;
+	t_obj			*ptr;
+	t_obj			*cpyptr;
 
-	ptr = env->scene->sphere;
+	ptr = env->scene->objs;
 	if (ptr)
 	{
-		env->scene_copy->sphere = sphere_malloc(ptr->pos, ptr->radius, ptr->orientation, ptr->color);
-		cpyptr = env->scene_copy->sphere;
+		env->scene_copy->objs = ft_malloc(sizeof(t_obj));
+		ft_memcpy(env->scene_copy->objs, ptr, sizeof(t_obj));
+		cpyptr = env->scene_copy->objs;
 		ptr = ptr->next;
 		while (ptr)
 		{
-			cpyptr->next = sphere_malloc(ptr->pos, ptr->radius, ptr->orientation, ptr->color);
+			cpyptr->next = ft_malloc(sizeof(t_obj));
+			ft_memcpy(cpyptr->next, ptr, sizeof(t_obj));
 			cpyptr = cpyptr->next;
 			ptr = ptr->next;
 		}

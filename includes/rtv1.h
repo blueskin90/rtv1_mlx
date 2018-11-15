@@ -30,7 +30,11 @@
 /*
 ** struct of objects
 */
-
+typedef struct		s_ray
+{
+	t_vertex		origin;
+	t_vector		direction;
+}					t_ray;
 
 typedef struct		s_camera
 {
@@ -51,34 +55,75 @@ typedef struct		s_viewplane
 	float			height;
 }					t_viewplane;
 
-typedef struct		s_sphere
-{
-	float			radius;
-	t_vector		orientation;
-	t_vertex		pos;
-	t_color			color;
-	struct s_sphere	*next;
-}					t_sphere;
-
 typedef struct		s_light
 {
 	t_vertex		pos;
 	t_color			color;
 	struct s_light	*next;
 }					t_light;
-
-typedef struct		s_scene
-{
-	t_sphere		*sphere;
-	t_light			*light;
-}					t_scene;
-
 /*
 ** End of struct object
 */
+typedef enum		e_type
+{
+	SPHERE,
+	PLANE,
+	CONE,
+	CYLINDER,
+}					t_type;
 
+typedef struct		s_spheree
+{
+	float			radius;
+}					t_sphere;
 
+typedef struct		s_plane
+{
+	t_vector		normale;
+}					t_plane;
 
+typedef struct		s_cone
+{
+	t_vector		axis;
+	float			angle;
+}					t_cone;
+
+typedef struct		s_cylinder
+{
+	t_vector		axis;
+	float			radius;
+}					t_cylinder;
+
+typedef union		u_params
+{
+	t_sphere		sphere;
+	t_plane			plane;
+	t_cone			cone;
+	t_cylinder		cylinder;
+}					t_params;
+
+typedef struct		s_obj
+{
+	t_vertex		pos;
+	t_vector		rot;
+	float			rotx;
+	float			roty;
+	float			rotz;
+	t_vector		xworld;
+	t_vector		yworld;
+	t_vector		zworld;
+	t_color			color;
+	t_type			type;
+	float			(*intersect)(t_ray, struct s_obj*);
+	t_params		params;
+	struct s_obj	*next;
+}					t_obj;
+
+typedef struct		s_scene
+{
+	t_obj			*objs;
+	t_light			*light;
+}					t_scene;
 
 typedef struct		s_img
 {
@@ -133,7 +178,8 @@ int					test(void);
 int					light_copy(t_env *env);
 int					sphere_copy(t_env *env);
 int					scene_copy(t_env *env);
-t_sphere			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c);
+t_obj				*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c);
+t_obj				*plane_malloc(t_vertex p, t_vector dir, t_vector normal, t_color c);
 t_camera			*camera_malloc(t_vertex pos, t_vector orientation, float angle);
 t_light				*light_malloc(t_vertex pos, t_color color);
 /*
@@ -151,11 +197,6 @@ int					rotation_type(t_vector a, t_vector b);
 t_matrix			camrotmatrix(t_camera *cam);
 int					world_to_cam(t_camera *cam, t_scene *copy);
 int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy);
-/*
-** Objects Malloc
-*/
-
-t_sphere			*sphere_malloc(t_vertex pos,float radius, t_vector orientation, t_color color);
 
 /*
 ** Raytracing functions
@@ -168,7 +209,8 @@ void				mlx_px_to_img(t_img *img, int x, int y, int color);
 /*
 ** INTERSECTIONS
 */
-float				sphere_intersection(t_sphere *sphere, t_vector ray);
+float				sphere_intersection(t_ray ray, t_obj *sphere);
+float				plane_intersection(t_ray ray, t_obj *plan);
 /*
 ** Env initialization and minilibx init
 */

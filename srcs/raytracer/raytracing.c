@@ -44,17 +44,20 @@ t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
 
 int				tracing(t_vector ray, t_env *env, int x, int y)
 {
-	t_sphere 	*objs_ptr;
-	t_sphere	*objs_hit;
+	t_obj	 	*objs_ptr;
+	t_obj		*objs_hit;
 	float		nearest_hit;
 	float		current_hit;
-	
+	t_ray		rayon;
+
+	rayon.origin = vertex_init(0, 0, 0);
+	rayon.direction = ray;
 	nearest_hit = INFINITY;
 	objs_hit = NULL;
-	objs_ptr = env->scene_copy->sphere;
+	objs_ptr = env->scene_copy->objs;
 	while (objs_ptr)
 	{
-		if ((current_hit = sphere_intersection(objs_ptr, ray)) != INFINITY 
+		if ((current_hit = objs_ptr->intersect(rayon, objs_ptr)) != INFINITY 
 				&& current_hit < nearest_hit)
 		{
 			objs_hit = objs_ptr;

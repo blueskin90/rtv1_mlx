@@ -33,12 +33,3 @@ t_vector		vector_init(t_vertex a, t_vertex b)
 	c.w = 0;
 	return (c);
 }
-
-t_ray			ray_init(t_vertex a, t_vector b)
-{
-	t_ray		c;
-
-	c.origin = a;
-	c.dir = b;
-	return (c);
-}
