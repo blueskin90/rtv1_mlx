@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/11 00:05:02 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/18 19:29:13 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 all: $(NAME)
 
 $(NAME): objs $(OBJS)
-	make -C ./libs/mlx
-	make -C ./libs/libft
-	make -C ./libs/libftg
+#	make -C ./libs/mlx
+#	make -C ./libs/libft
+#	make -C ./libs/libftg
 	gcc -o $(NAME) $(FLAGS) $(MLX) $(LIBS) $(OBJS) $(INCLUDES)
 
 objs/%.o: srcs/%.c
@@ -46,20 +46,20 @@ objs:
 	mkdir objs/utils/
 
 clean:
-	make -C ./libs/mlx clean
-	make -C ./libs/libft clean
-	make -C ./libs/libftg clean
+#	make -C ./libs/mlx clean
+#	make -C ./libs/libft clean
+#	make -C ./libs/libftg clean
 	rm -rf objs
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(MLX)
-	make -C ./libs/libft fclean
-	make -C ./libs/libftg fclean
+#	rm -f $(MLX)
+#	make -C ./libs/libft fclean
+#	make -C ./libs/libftg fclean
 
 re:
 	$(MAKE) fclean
 	$(MAKE)
-	make -C ./libs/libft re
-	make -C ./libs/libftg re
-	make -C ./libs/mlx re
+#	make -C ./libs/libft re
+#	make -C ./libs/libftg re
+#	make -C ./libs/mlx re
