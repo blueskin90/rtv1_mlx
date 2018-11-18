@@ -12,11 +12,10 @@
 
 #include "rtv1.h"
 
-
+/*
 int					rotation_type(t_vector a, t_vector b)
 {
 	char			flags;
-	t_vector		tmp;
 
 	flags = 0;
 	if (a.x == b.x && a.y == b.y && a.z == b.z)
@@ -45,64 +44,74 @@ t_matrix			find_rotation_matrix(t_vector to_rotate, t_vector goal)
 	return (finalrotmatrix);
 }
 
-t_matrix			camrotmatrix(t_camera *cam)
+dd*/
+t_matrix			camrotmatrix_inverse(t_camera *cam)
 {
 	t_matrix		matrixrot;
-	int				rot_type;
 
 	matrixrot = rotx_matrix_init(cam->rotx);
 	matrixrot = matrix_mult(matrixrot, roty_matrix_init(cam->roty));
 	matrixrot = matrix_mult(matrixrot, rotz_matrix_init(cam->rotz));
-//	comparaison = vector_init(vertex_init(0,0,0), vertex_init(0,0,1));
-//	rot_type = rotation_type(cam->orientation, comparaison);
-//	if (rot_type == 0)
-//	{
-//		printf("same direction\n");
-//		matrixrot = NULL;
-//	}
-//	else
-//	{
-//		if (rot_type == 1)
-//		{
-//				printf("opposite direction\n");
-//			*matrixrot = scale_matrix_init(-1);
-//		}
-//		else
-//		{
-//			*matrixrot = find_rotation_matrix(cam->orientation, comparaison);
-//			printf("other\n");
-//		}
-//	}
 	return (matrixrot);
 }
 
-int					matrix_to_sphere(t_matrix matrix, t_sphere *original, t_sphere *copy, t_camera *cam)
+t_matrix			camrotmatrix(t_camera *cam)
+{
+	t_matrix		matrixrot;
+
+	matrixrot = rotx_matrix_init(cam->rotx);
+	matrixrot = matrix_mult(matrixrot, roty_matrix_init(cam->roty));
+	matrixrot = matrix_mult(matrixrot, rotz_matrix_init(cam->rotz));
+	return (matrixrot);
+}
+
+int					matrix_to_obj(t_matrix matrix, t_obj *original, t_obj *copy, t_camera *cam)
 {
 	copy->pos = matrix_mult_vertex(matrix, original->pos);
-	copy->orientation = vector_normalize(vector_sub(matrix_mult_vector(matrix, vector_add(vector_init(cam->pos, original->pos), original->orientation)), vector_init(cam->pos, original->pos)));
+	copy->rot = vector_normalize(vector_sub(matrix_mult_vector(matrix, vector_add(vector_init(cam->pos, original->pos), original->rot)), vector_init(cam->pos, original->pos)));
+	return (1);
+}
+
+int					print_vertex(t_vertex a)
+{
+	printf("[%.10f][%.10f][%.10f]\n", a.x, a.y, a.z);
 	return (1);
 }
 
 int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 {
-	void			*ptr;
-	void			*ptr2;
+	t_obj			*ptr;
+	t_obj			*ptr2;
+	t_light			*lightptr;
+	t_light			*lightptr2;
 	t_matrix		matrix_tran;
 	t_matrix		matrix_rot;
 	t_matrix		final_matrix;
-//	t_matrix		matrix_rotx;
-//	t_matrix		matrix_roty;
-//	t_matrix		matrix_rotz;
+	t_vector		tmp;
+
 
 	matrix_tran = translation_matrix_init(vector_opposite(vector_init(vertex_init(0, 0, 0), cam->pos)));
 	matrix_rot = camrotmatrix(cam);
 	final_matrix = matrix_mult(matrix_tran, matrix_rot);
-	ptr = scene->sphere;
-	ptr2 = copy->sphere;
+	ptr = scene->objs;
+	ptr2 = copy->objs;
 	while (ptr)
 	{
-		matrix_to_sphere(final_matrix, ptr, ptr2, cam);
-		((t_sphere*)ptr2)->pos = matrix_mult_vertex(matrix_rot, matrix_mult_vertex(matrix_tran, ((t_sphere*)ptr)->pos)); // deplace et rotate la position;
+//		matrix_to_obj(final_matrix, ptr, ptr2, cam);
+		ptr2->pos = matrix_mult_vertex(matrix_rot, matrix_mult_vertex(matrix_tran, ptr->pos));
+//		ptr2->pos = matrix_mult_vertex(final_matrix, ptr->pos);
+		ptr2->rot = matrix_mult_vector(matrix_rot, matrix_mult_vector(matrix_tran, ptr->rot));
+		if (ptr2->type == PLANE)
+		{
+//			tmp = vector_init(vertex_init(0,0,0), ptr->pos);
+//			tmp = vector_add(tmp, ptr->params.plane.normal);
+//			tmp = matrix_mult_vector(matrix_rot, tmp);
+//			tmp = vector_sub(tmp, vector_init(vertex_init(0,0,0), ptr->pos));
+//			ptr2->params.plane.normal = tmp;
+			matrix_rot = camrotmatrix_inverse(cam);
+			ptr2->params.plane.normal = matrix_mult_vector(matrix_rot, matrix_mult_vector(matrix_tran, ptr->params.plane.normal));
+		}
+			// deplace et rotate la position;
 //		((t_sphere*)ptr2)->rot = ((t_sphere*)ptr)->orientation; 
 //		if (matrix_rot)
 //		{
@@ -112,21 +121,21 @@ int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 //		}
 //		else
 //			printf("matrice nulle !\n");
-		ptr = ((t_sphere*)ptr)->next;
-		ptr2 = ((t_sphere*)ptr2)->next;
+		ptr = ptr->next;
+		ptr2 = ptr2->next;
 	}
-	ptr = scene->light;
-	ptr2 = copy->light;
-	while (ptr)
+	lightptr = scene->light;
+	lightptr2 = copy->light;
+	while (lightptr)
 	{
-		((t_light*)ptr2)->pos = matrix_mult_vertex(matrix_tran, ((t_light*)ptr)->pos);
-		ptr = ((t_light*)ptr)->next;
-		ptr2 = ((t_light*)ptr2)->next;
+		lightptr2->pos = matrix_mult_vertex(matrix_tran, lightptr->pos);
+		lightptr = lightptr->next;
+		lightptr2 = lightptr2->next;
 	}
 	return (1);
 
 }
-
+/*
 int					world_to_cam(t_camera *cam, t_scene *copy)
 {
 	void			*ptr;
@@ -153,4 +162,4 @@ int					world_to_cam(t_camera *cam, t_scene *copy)
 		ptr = ((t_light*)ptr)->next;
 	}
 	return (1);
-}
+}*/

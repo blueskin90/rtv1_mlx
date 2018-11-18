@@ -31,12 +31,6 @@ typedef struct		s_vector
 	float			w;
 }					t_vector;
 
-typedef struct		s_ray
-{
-	t_vertex		origin;
-	t_vector		dir;
-}					t_ray;
-
 typedef struct		s_matrix
 {
 	float			matrix[4][4];
@@ -99,8 +93,6 @@ t_vector			vector_crossproduct(t_vector a, t_vector b);
 float				vector_dotproduct(t_vector a, t_vector b);
 float				vector_magnitude(t_vector a);
 float				vector_cos(t_vector a, t_vector b);
-
-t_ray				ray_init(t_vertex origin, t_vector direction);
 
 t_matrix			identity_matrix_init(void);
 t_matrix			scale_matrix_init(float scale);

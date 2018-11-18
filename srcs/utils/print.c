@@ -24,15 +24,18 @@ void			print_matrix(t_matrix m)
 
 int					print_objets(t_scene *scene)
 {
-	t_sphere		*ptr;
+	t_obj			*ptr;
 	t_light			*ptr2;
 	int				i;
 
-	ptr = scene->sphere;
+	ptr = scene->objs;
 	i = 1;
 	while (ptr)
 	{
-		printf("SPHERE NUMBER %d\ncenter = [%.2f][%.2f][%.2f]\nRadius = %f\norientation = [%.2f][%.2f][%.2f]\ncolor = [%d][%d][%d]\n\n", i, ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->radius, ptr->orientation.x, ptr->orientation.y, ptr->orientation.z, ptr->color.rgb.r, ptr->color.rgb.g, ptr->color.rgb.b);
+		if (ptr->type == SPHERE)
+		{
+			printf("SPHERE NUMBER %d\ncenter = [%.2f][%.2f][%.2f]\nRadius = %f\norientation = [%.2f][%.2f][%.2f]\ncolor = [%d][%d][%d]\n\n", i, ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->params.sphere.radius, ptr->rotx, ptr->roty, ptr->rotz, ptr->color.rgb.r, ptr->color.rgb.g, ptr->color.rgb.b);
+		}
 		i++;
 		ptr = ptr->next;
 	}

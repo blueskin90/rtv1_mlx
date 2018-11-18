@@ -6,21 +6,38 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/12 00:29:24 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 14:33:18 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_sphere			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c)
+t_obj			*plane_malloc(t_vertex p, t_vector dir, t_vector normal, t_color c)
 {
-	t_sphere		*sphere;
+	t_obj		*plane;
 
-	sphere = (t_sphere*)ft_malloc(sizeof(t_sphere));
+	plane = (t_obj*)ft_malloc(sizeof(t_obj));
+	plane->pos = p;
+	plane->params.plane.normal = normal;
+	plane->rot = dir;
+	plane->color = c;
+	plane->type = PLANE;
+	plane->intersect = &plane_intersection;
+	plane->next = NULL;
+	return (plane);
+}
+
+t_obj			*sphere_malloc(t_vertex p, float rad, t_vector r, t_color c)
+{
+	t_obj		*sphere;
+
+	sphere = (t_obj*)ft_malloc(sizeof(t_obj));
 	sphere->pos = p;
-	sphere->radius = rad;
-	sphere->orientation = r;
+	sphere->params.sphere.radius = rad;
+	sphere->rot = r;
 	sphere->color = c;
+	sphere->type = SPHERE;
+	sphere->intersect = &sphere_intersection;
 	sphere->next = NULL;
 	return (sphere);
 }
