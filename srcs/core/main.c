@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 21:41:04 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 23:40:57 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ int					parse_scene(t_env *env)
 	scene->objs = sphere_malloc(pos, 2, orientation, color);
 	pos = vec_init0(0, 0, 35);
 	color = color_init_hsl(0x00ff00);
-	scene->objs->next = sphere_malloc(pos, 2, orientation, color);
+	//scene->objs->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vec_init0(0, 0, 75);
 	color = color_init_hsl(0x0000ff);
-	scene->objs->next->next = sphere_malloc(pos, 2, orientation, color);
-	pos = vec_init0(20, 0, 10);
+	//scene->objs->next->next = sphere_malloc(pos, 2, orientation, color);
+	pos = vec_init0(0, 20, 10);
 	color = color_init_hsl(0xaabbcc);
 	//orientation = vec_init0(0, 0, 1);
 	//scene->objs->next->next->next = plane_malloc(pos, orientation, orientation, color);
 	color = color_init_hsl(0xffffff);
 	scene->light = light_malloc(pos, color);
-	pos = vec_init0(0, 40, 10);
-	scene->light->next = light_malloc(pos, color);
+	//pos = vec_init0(12313, 1000, 1231231);
+	//scene->light->next = light_malloc(pos, color);
 	env->scene = scene;
-	pos = vec_init0(1, 1, -1);
+	pos = vec_init0(0, 0, 0);
 	orientation.z = 1;
 	orientation.y = 0;
 	orientation.x = 0;

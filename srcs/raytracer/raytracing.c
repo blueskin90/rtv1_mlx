@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 21:37:09 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 22:47:11 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int				raytracing(t_env *env)
 		y++;
 	}
 	printf("smallest : %f, biggest : %f\n", g_smallest, g_biggest);
+	g_smallest = 0;
+	g_biggest = 0;
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
 	return (1);
 }

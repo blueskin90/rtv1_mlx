@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 18:12:31 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 23:43:49 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				is_equal_float(float a, float b)
 
 	c = a - b;
 	c = (c < 0) ? -c : c;
-	if (c < 0.00001)
+	if (c < 0.0001)
 		return (1);
 	return (0);
 }
@@ -56,10 +56,10 @@ float			sphere_intersection(t_ray ray, t_obj *sphere)
 		proj_to_center = powf(vec_magnitude(origin_to_sphere), 2) - powf(length, 2);
 		proj_to_center = (proj_to_center < 0) ? sqrtf(-proj_to_center) : sqrtf(proj_to_center);
 		if (is_equal_float(proj_to_center, sphere_radius(sphere)))
-			return (length);
-		if (proj_to_center > sphere_radius(sphere) + 0.000001)
+			return (length - 0.0001);
+		if (proj_to_center > sphere_radius(sphere) + 0.0001)
 			return (INFINITY);
-		return (length - (sqrtf(powf(sphere_radius(sphere), 2) - powf(proj_to_center, 2))));
+		return (length - (sqrtf(powf(sphere_radius(sphere), 2) - powf(proj_to_center, 2))) - 0.0001);
 	}
 	return (INFINITY);
 }

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/18 21:43:26 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 23:39:06 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,55 +35,56 @@ int		colorization(t_env *env, t_ray ray, float nearest, t_obj *sphere)
 	}*/
 	// une seule light
 	light_ray = vec_sub(env->scene->light->pos, ray_hit);
+	//print_vec(light_ray);
 	light_ray = vec_norm(light_ray);
-	temp = vec_add(ray_hit, norm_hit);
+	//temp = vec_add(ray_hit, norm_hit);
 	// DONT FORGET TO THINK ABOUT OBJECT THAT ARE AFTER THE LIGHT
-	if ((c = shoot_ray(ray_init(temp, light_ray),
-				env, &objs_hit)) != INFINITY && c < vec_magnitude(vec_init(ray_hit, env->scene->light->pos)))
+	if ((c = shoot_ray(ray_init(ray_hit, light_ray), env, &objs_hit)) != INFINITY && c < vec_magnitude(vec_init(ray_hit, env->scene->light->pos)))
 	{
+		t_vec	test;
+		test = vec_init(sphere->pos, ray_hit);
+		printf("magnitude : %f\n", vec_magnitude(test));
+		printf("distance hit : %f\n", c);
+		printf("light ray : ");
+		print_vec(light_ray);
 		printf("ray_hit : ");
 		print_vec(ray_hit);
 		printf("point : %f,%f,%f\n",temp.x, temp.y, temp.z);
 		printf("%#x\n", objs_hit->color.rgb.value);
 		printf("center of object : ");
 		print_vec(objs_hit->pos);
+		printf("\n\n\n");
 		return (0x123456);
+		//return (0);
 	}
 	double val;
 	val = vec_dot(norm_hit, light_ray);
-	if (val > g_biggest)
-		g_biggest = val;
-	if (val < g_smallest)
-		g_smallest = val;
 	//printf("val : %f\n", val);
 	//float angle = acosf(val);
 	//printf("angle : %f\n", radtodeg(angle));
-	if (val >= -1){
+	hsl.l = val * 0.5 + 0.2;
+	if (hsl.l >= 0){
 		hsl.h = sphere->color.type.hsl.h;
 		hsl.s = sphere->color.type.hsl.s;
 		//hsl.l = sphere->color.type.hsl.l;
-		hsl.l = val/1.5 * 0.5 + 0.33;
+		//hsl.l = (val + 1)/2;
+	//	hsl.l = val * 0.5 + 0.1;
+		if (hsl.l > g_biggest)
+			g_biggest = hsl.l;
+		if (hsl.l < g_smallest)
+			g_smallest = hsl.l;
 		if (hsl.l > 1)
 			hsl.l = 1;
 		return hsl_to_rgb(hsl);
-	/*	printf("rgb : [%d][%d][%d] hsv : [%d][%d][%d]\n", sphere->color.rgb.r, 
-				sphere->color.rgb.g, 
-				sphere->color.rgb.b, 
-				sphere->color.type.hsl.h,
-				sphere->color.type.hsl.s,
-				sphere->color.type.hsl.l);*/
-
-	/*	if (val >= 1){
-			return 0x000000;
-		}
-		return (255.0 * val);*/
 	}
 	else {
 		hsl.h = sphere->color.type.hsl.h;
 		hsl.s = sphere->color.type.hsl.s;
 		//hsl.l = sphere->color.type.hsl.l;
-		hsl.l = 0.1;
-		//return hsl_to_rgb(hsl);
+		hsl.l = 0.04;
+//		return hsl_to_rgb(hsl);
+		return (0);
 	}
-	return 0x000000;
+	return (0);
+	//return 0x000000;
 }

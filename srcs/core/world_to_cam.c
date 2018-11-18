@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:54:19 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/18 21:37:58 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 22:44:54 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,14 @@ int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 		ptr = ptr->next;
 		ptr2 = ptr2->next;
 	}
-	lightptr = scene->light;
+/*	lightptr = scene->light;
 	lightptr2 = copy->light;
 	while (lightptr)
 	{
 		lightptr2->pos = matrix_mult_vec(matrix_tran, lightptr->pos);
 		lightptr = lightptr->next;
 		lightptr2 = lightptr2->next;
-	}
+	}*/
 	return (1);
 
 }
