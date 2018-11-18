@@ -6,12 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 17:07:01 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 19:01:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
+float g_smallest;
+float g_biggest;
 
 int					parse_scene(t_env *env)
 {
@@ -25,7 +26,7 @@ int					parse_scene(t_env *env)
 	orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
 	color = color_init_hsl(0xff0000);
 	scene->objs = sphere_malloc(pos, 2, orientation, color);
-	pos = vertex_init(0, 0, 25);
+	pos = vertex_init(0, 0, 35);
 	color = color_init_hsl(0x00ff00);
 	scene->objs->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vertex_init(0, 0, 75);
@@ -33,12 +34,13 @@ int					parse_scene(t_env *env)
 	scene->objs->next->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vertex_init(20, 0, 10);
 	color = color_init_hsl(0xaabbcc);
-	//orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
-	//scene->objs->next->next->next = plane_malloc(pos, orientation, orientation, color);
+	orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
+//	scene->objs->next->next->next = plane_malloc(pos, orientation, orientation, color);
+	pos = vertex_init(0, 5, 20);
 	color = color_init_hsl(0xffffff);
 	scene->light = light_malloc(pos, color);
-	pos = vertex_init(0, 40, 10);
-	scene->light->next = light_malloc(pos, color);
+	//pos = vertex_init(0, 40, 20);
+	//scene->light->next = light_malloc(pos, color);
 	env->scene = scene;
 	pos = vertex_init(1, 1, -1);
 	orientation.z = 1;
@@ -52,6 +54,8 @@ int					main(void)
 {
 	t_env			*env;
 
+	g_smallest = INFINITY;
+	g_biggest = -INFINITY;
 //	test();
 	env = env_init();
 	parse_scene(env);

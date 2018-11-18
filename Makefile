@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/11 00:05:02 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/18 18:56:12 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,20 +46,20 @@ objs:
 	mkdir objs/utils/
 
 clean:
-	make -C ./libs/mlx clean
-	make -C ./libs/libft clean
-	make -C ./libs/libftg clean
+	#make -C ./libs/mlx clean
+	#make -C ./libs/libft clean
+	#make -C ./libs/libftg clean
 	rm -rf objs
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f $(MLX)
-	make -C ./libs/libft fclean
-	make -C ./libs/libftg fclean
+	#make -C ./libs/libft fclean
+	#make -C ./libs/libftg fclean
 
 re:
 	$(MAKE) fclean
 	$(MAKE)
-	make -C ./libs/libft re
-	make -C ./libs/libftg re
-	make -C ./libs/mlx re
+	#make -C ./libs/libft re
+	#make -C ./libs/libftg re
+	#make -C ./libs/mlx re
