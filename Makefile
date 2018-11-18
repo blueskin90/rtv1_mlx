@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/18 19:29:13 by toliver          ###   ########.fr        #
+#    Updated: 2018/11/18 21:40:22 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 all: $(NAME)
 
 $(NAME): objs $(OBJS)
-#	make -C ./libs/mlx
-#	make -C ./libs/libft
-#	make -C ./libs/libftg
+	make -C ./libs/mlx
+	make -C ./libs/libft
+	make -C ./libs/libftg
 	gcc -o $(NAME) $(FLAGS) $(MLX) $(LIBS) $(OBJS) $(INCLUDES)
 
 objs/%.o: srcs/%.c

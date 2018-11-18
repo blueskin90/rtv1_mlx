@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 18:11:48 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 21:39:11 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
+extern float g_smallest;
+extern float g_biggest;
 /*
 ** struct of objects
 */
@@ -212,7 +214,7 @@ int					renderer(t_scene *scene, t_camera *camera, t_img *img);
 int					shootray(t_ray ray, t_scene *scene);
 float				shoot_ray(t_ray ray, t_env *env, t_obj **objs);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
-int					colorization(t_env *env, t_ray ray, double nearest, t_obj *sphere);
+int					colorization(t_env *env, t_ray ray, float nearest, t_obj *sphere);
 /*
 ** INTERSECTIONS
 */

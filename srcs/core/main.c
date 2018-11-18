@@ -6,12 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 17:47:21 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 21:41:04 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
+float g_smallest;
+float g_biggest;
 
 int					parse_scene(t_env *env)
 {
@@ -25,7 +26,7 @@ int					parse_scene(t_env *env)
 	orientation = vec_init0(0, 0, 1);
 	color = color_init_hsl(0xff0000);
 	scene->objs = sphere_malloc(pos, 2, orientation, color);
-	pos = vec_init0(0, 0, 25);
+	pos = vec_init0(0, 0, 35);
 	color = color_init_hsl(0x00ff00);
 	scene->objs->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vec_init0(0, 0, 75);
@@ -52,6 +53,8 @@ int					main(void)
 {
 	t_env			*env;
 
+	g_smallest = INFINITY;
+	g_biggest = -INFINITY;
 //	test();
 	env = env_init();
 	parse_scene(env);

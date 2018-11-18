@@ -6,13 +6,13 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/18 17:59:09 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 21:43:26 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rtv1.h>
 
-int		colorization(t_env *env, t_ray ray, double nearest, t_obj *sphere)
+int		colorization(t_env *env, t_ray ray, float nearest, t_obj *sphere)
 {
 	t_vec	ray_hit;
 	t_vec	norm_hit;
@@ -27,32 +27,44 @@ int		colorization(t_env *env, t_ray ray, double nearest, t_obj *sphere)
 	ray_hit = vec_mul(ray.direction, nearest);
 	norm_hit = vec_sub(ray_hit, sphere->pos);
 	norm_hit = vec_norm(norm_hit);
-	c = vec_dot(norm_hit, ray.direction);
-	// ? 
-	if (c <= 0)
+	/*c = vec_dot(norm_hit, ray.direction);
+	f (c < 0)
 	{	
 		//printf("INSIDE\n");
-		return (0);
-	}
+		return (0xffea00);
+	}*/
 	// une seule light
 	light_ray = vec_sub(env->scene->light->pos, ray_hit);
 	light_ray = vec_norm(light_ray);
 	temp = vec_add(ray_hit, norm_hit);
 	// DONT FORGET TO THINK ABOUT OBJECT THAT ARE AFTER THE LIGHT
-	if ((c = shoot_ray(ray_init(vec_init0(temp.x, temp.y, temp.z), light_ray),
-				env, &objs_hit)) != INFINITY)
+	if ((c = shoot_ray(ray_init(temp, light_ray),
+				env, &objs_hit)) != INFINITY && c < vec_magnitude(vec_init(ray_hit, env->scene->light->pos)))
 	{
-		return (0);
+		printf("ray_hit : ");
+		print_vec(ray_hit);
+		printf("point : %f,%f,%f\n",temp.x, temp.y, temp.z);
+		printf("%#x\n", objs_hit->color.rgb.value);
+		printf("center of object : ");
+		print_vec(objs_hit->pos);
+		return (0x123456);
 	}
 	double val;
 	val = vec_dot(norm_hit, light_ray);
+	if (val > g_biggest)
+		g_biggest = val;
+	if (val < g_smallest)
+		g_smallest = val;
+	//printf("val : %f\n", val);
 	//float angle = acosf(val);
 	//printf("angle : %f\n", radtodeg(angle));
-	if (val >= 0){
+	if (val >= -1){
 		hsl.h = sphere->color.type.hsl.h;
 		hsl.s = sphere->color.type.hsl.s;
 		//hsl.l = sphere->color.type.hsl.l;
-		hsl.l = val;
+		hsl.l = val/1.5 * 0.5 + 0.33;
+		if (hsl.l > 1)
+			hsl.l = 1;
 		return hsl_to_rgb(hsl);
 	/*	printf("rgb : [%d][%d][%d] hsv : [%d][%d][%d]\n", sphere->color.rgb.r, 
 				sphere->color.rgb.g, 
@@ -65,6 +77,13 @@ int		colorization(t_env *env, t_ray ray, double nearest, t_obj *sphere)
 			return 0x000000;
 		}
 		return (255.0 * val);*/
+	}
+	else {
+		hsl.h = sphere->color.type.hsl.h;
+		hsl.s = sphere->color.type.hsl.s;
+		//hsl.l = sphere->color.type.hsl.l;
+		hsl.l = 0.1;
+		//return hsl_to_rgb(hsl);
 	}
 	return 0x000000;
 }

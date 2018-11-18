@@ -1,0 +1,7 @@
+/objs
+*.[oa]
+*~
+*.sw*{1}
+*.swp
+*.swo
+*rtv1
