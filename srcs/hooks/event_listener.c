@@ -6,76 +6,45 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/12 00:22:34 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 18:01:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_vertex		vertex_add_vector(t_vertex a, t_vector b)
+t_vec	vec_init_origin()
 {
-	return (vertex_init(a.x + b.x, a.y + b.y, a.z + b.z));
+	return (vec_init0(0, 0, 0));
 }
 
-t_vector	vec_initO_ver(t_vertex a)
+t_vec	vec_left()
 {
-	return (vector_init(vertex_init(0, 0, 0), a));
+	return (vec_init0(-1, 0, 0));
 }
 
-t_vector	vec_initO_int(float x, float y, float z)
+t_vec	vec_right()
 {
-	t_vector	retval;
-
-	retval.x = x;
-	retval.y = y;
-	retval.z = z;
-	retval.w = 0;
-	return (retval);
+	return (vec_init0(1, 0, 0));
 }
 
-t_vector	vec_init_origin()
+t_vec	vec_forward()
 {
-	return (vec_initO_int(0, 0, 0));
+	return (vec_init0(0, 0, 1));
 }
 
-t_vector	vec_left()
+t_vec	vec_backward()
 {
-	return (vec_initO_int(-1, 0, 0));
+	return (vec_init0(0, 0, -1));
 }
 
-t_vector	vec_right()
+t_vec	vec_up()
 {
-	return (vec_initO_int(1, 0, 0));
+	return (vec_init0(0, 1, 0));
 }
 
-t_vector	vec_forward()
+t_vec	vec_down()
 {
-	return (vec_initO_int(0, 0, 1));
-}
-
-t_vector	vec_backward()
-{
-	return (vec_initO_int(0, 0, -1));
-}
-
-t_vector	vec_up()
-{
-	return (vec_initO_int(0, 1, 0));
-}
-
-t_vector	vec_down()
-{
-	return (vec_initO_int(0, -1, 0));
-}
-
-t_vector	vec_add(t_vector a, t_vector b)
-{
-	return (vector_add(a, b));
-}
-
-t_vector	vec_normalize(t_vector a)
-{
-	return (vector_normalize(a));
+	return (vec_init0(0, -1, 0));
 }
 
 void	pos_notify(int x, int y, t_env *env)
@@ -89,12 +58,12 @@ void	pos_notify(int x, int y, t_env *env)
 
 int				move(int key, t_env *env)
 {
-	t_vector	dir;
+	t_vec	dir;
 
 	dir = vec_init_origin();
 	if (key == X_KEY_A)
 	{
-		dir = vec_add(dir, vector_opposite(env->camera->right));
+		dir = vec_add(dir, vec_opposite(env->camera->right));
 	}
 	if (key == X_KEY_D)
 	{
@@ -106,7 +75,7 @@ int				move(int key, t_env *env)
 	}
 	if (key == X_KEY_S)
 	{
-		dir = vec_add(dir, vector_opposite(env->camera->orientation));
+		dir = vec_add(dir, vec_opposite(env->camera->orientation));
 	}
 	if (key == X_KEY_SPACE)
 	{
@@ -114,10 +83,10 @@ int				move(int key, t_env *env)
 	}
 	if (key == X_KEY_L_CTRL)
 	{
-		dir = vec_add(dir, vector_opposite(env->camera->top));
+		dir = vec_add(dir, vec_opposite(env->camera->top));
 	}
 	dir = vec_normalize(dir);
-	env->camera->pos = vertex_add_vector(env->camera->pos, dir);
+	env->camera->pos = vec_add(env->camera->pos, dir);
 	world_to_cam2(env->camera, env->scene, env->scene_copy);
 	raytracing(env);
 	return (1);
@@ -136,13 +105,13 @@ int		keypressed(int key, t_env *env)
 	return 0;
 }
 
-t_vector		rotate_vector_angle(t_vector vec, float xangle, float yangle, float zangle)
+t_vec		rotate_vec_angle(t_vec vec, float xangle, float yangle, float zangle)
 {
 	t_matrix	matrix;
 
 	matrix = matrix_mult(rotx_matrix_init(xangle), roty_matrix_init(yangle));
 	matrix = matrix_mult(matrix, rotz_matrix_init(zangle));
-	return (matrix_mult_vector(matrix, vec));
+	return (matrix_mult_vec(matrix, vec));
 }
 
 int		mousemove(int x, int y, t_env *env)
@@ -165,9 +134,9 @@ int		mousemove(int x, int y, t_env *env)
 		yinc = ((float)(y - oldy)) / 10.0;
 		env->camera->rotx -= yinc;
 		env->camera->roty -= xinc;
-		env->camera->orientation = rotate_vector_angle(env->camera->orientation, yinc, xinc, 0);
-		env->camera->top = rotate_vector_angle(env->camera->top, yinc, xinc, 0);
-		env->camera->right = rotate_vector_angle(env->camera->right, yinc, xinc, 0);
+		env->camera->orientation = rotate_vec_angle(env->camera->orientation, yinc, xinc, 0);
+		env->camera->top = rotate_vec_angle(env->camera->top, yinc, xinc, 0);
+		env->camera->right = rotate_vec_angle(env->camera->right, yinc, xinc, 0);
 		oldx = x;
 		oldy = y;	
 		world_to_cam2(env->camera, env->scene, env->scene_copy);
@@ -178,7 +147,7 @@ int		mousemove(int x, int y, t_env *env)
 
 void		events_listener(t_env *env)
 {
-//	printf("%d", X_KEYPRESS)vector_init(cam->pos, original->pos), ;
+//	printf("%d", X_KEYPRESS)vec_init(cam->pos, original->pos), ;
 //	mlx_hook(env->win, 2, 0, key, env);
 	mlx_hook(env->win->winptr, X_MOTIONNOTIFY, 0, mousemove, env); 
 	mlx_hook(env->win->winptr, X_KEYPRESS, X_KEYPRESS_MASK, keypressed, env);

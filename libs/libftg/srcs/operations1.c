@@ -6,31 +6,31 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 06:15:34 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 20:16:56 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 17:34:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-float		vector_cos(t_vector a, t_vector b)
+float		vec_cos(t_vec a, t_vec b)
 {
-	return (vector_dotproduct(a, b) / (vector_magnitude(a)
-				* vector_magnitude(b)));
+	return (vec_dotproduct(a, b) / (vec_magnitude(a)
+				* vec_magnitude(b)));
 }
 
-float		vec_dot(t_vector a, t_vector b)
+float		vec_dot(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-float		vector_dotproduct(t_vector a, t_vector b)
+float		vec_dotproduct(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_vector	vector_div(t_vector a, float s)
+t_vec	vec_div(t_vec a, float s)
 {
-	t_vector	b;
+	t_vec	b;
 
 	if (s == 0.0)
 		return (a);
@@ -41,9 +41,9 @@ t_vector	vector_div(t_vector a, float s)
 	return (b);
 }
 
-t_vector	vector_opposite(t_vector a)
+t_vec	vec_opposite(t_vec a)
 {
-	t_vector	b;
+	t_vec	b;
 
 	b.x = -a.x;
 	b.y = -a.y;
@@ -52,9 +52,9 @@ t_vector	vector_opposite(t_vector a)
 	return (b);
 }
 
-t_vector	vector_crossproduct(t_vector a, t_vector b)
+t_vec	vec_crossproduct(t_vec a, t_vec b)
 {
-	t_vector c;
+	t_vec c;
 
 	c.x = a.y * b.z - a.z * b.y;
 	c.y = a.z * b.x - a.x * b.z;

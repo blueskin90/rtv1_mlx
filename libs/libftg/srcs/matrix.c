@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 06:24:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 18:09:21 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 17:29:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_matrix		scale_matrix_init(float scale)
 	return (scalematrix);
 }
 
-t_matrix		translation_matrix_init(t_vector tranvec)
+t_matrix		translation_matrix_init(t_vec tranvec)
 {
 	t_matrix	translationmatrix;
 
@@ -158,22 +158,13 @@ t_matrix		matrix_mult(t_matrix a, t_matrix b)
 	return (c);
 }
 
-t_vertex		matrix_mult_vertex(t_matrix a, t_vertex b)
+t_vec			matrix_mult_vec(t_matrix a, t_vec b)
 {
-	t_vertex	c;
+	t_vec		c;
 
 	c.x = a.matrix[0][0] * b.x+ a.matrix[0][1] * b.y + a.matrix[0][2] * b.z + a.matrix[0][3] * b.w;
 	c.y = a.matrix[1][0] * b.x + a.matrix[1][1] * b.y + a.matrix[1][2] * b.z + a.matrix[1][3] * b.w;
 	c.z = a.matrix[2][0] * b.x+ a.matrix[2][1] * b.y + a.matrix[2][2] * b.z + a.matrix[2][3] * b.w;
 	c.w = a.matrix[3][0] * b.x+ a.matrix[3][1] * b.y + a.matrix[3][2] * b.z + a.matrix[3][3] * b.w;
 	return (c);
-}
-
-t_vector		matrix_mult_vector(t_matrix a, t_vector b)
-{
-	t_vertex	cheat;
-
-	cheat = *((t_vertex*)(&b));
-	cheat = matrix_mult_vertex(a, cheat);
-	return (*(t_vector*)(&cheat));
 }

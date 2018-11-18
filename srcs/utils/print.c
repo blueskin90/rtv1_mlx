@@ -64,9 +64,8 @@ int					print_camera(t_camera *cam)
 	return (1);
 }
 
-int					print_vector(t_vector v)
+int					print_vec(t_vec v)
 {
 	printf("[%f][%f][%f] [%f]\n", v.x, v.y, v.z, v.w);
 	return (1);
 }
-

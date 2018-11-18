@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 16:44:33 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 17:56:12 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int		shootray(t_ray ray, t_scene *scene)
 	return (0xffffff);	
 }
 
-t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
-				float *yinc)
+t_vec		get_top_left_vec(t_camera *cam, t_win *window, float *xinc, float *yinc)
 {
 	float		x;
 	float		y;
@@ -39,7 +38,7 @@ t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
 	x = -y * (window->winx / (float)window->winy);
 	*xinc = -x / ((float)window->winx / 2.0);
 	*yinc = -y / ((float)window->winy / 2.0);
-	return (vertex_init(x + (*xinc / 2), y + (*yinc / 2), 1));
+	return (vec_init0(x + (*xinc / 2), y + (*yinc / 2), 1));
 }
 
 float			shoot_ray(t_ray ray, t_env *env, t_obj **objs_hit)
@@ -48,10 +47,7 @@ float			shoot_ray(t_ray ray, t_env *env, t_obj **objs_hit)
 //	t_obj		*objs_hit;
 	float		nearest_hit;
 	float		current_hit;
-	//t_ray		rayon;
 
-	//rayon.origin = vertex_init(0, 0, 0);
-	//rayon.direction = ray.direction;
 	nearest_hit = INFINITY;
 	objs_ptr = env->scene_copy->objs;
 	while (objs_ptr)
@@ -88,15 +84,15 @@ int				tracing(t_ray ray, t_env *env, int x, int y)
 
 int				raytracing(t_env *env)
 {
-	t_vertex	a;
+	t_vec	a;
 	float		xinc;
 	float		yinc;
 	int			x;
 	int			y;
-	t_vector	ray_vec;
+	t_vec	ray_vec;
 	t_ray		ray;
 
-	a = get_top_left_vertex(env->camera, env->win, &xinc, &yinc);
+	a = get_top_left_vec(env->camera, env->win, &xinc, &yinc);
 	y = 0;
 	while (y < env->win->winy)
 	{
@@ -104,7 +100,7 @@ int				raytracing(t_env *env)
 		while (x < env->win->winx)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
-			ray_vec = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
+			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1));
 			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(ray, env, x, y);
 			// ICI COULEUR

@@ -6,22 +6,23 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 04:25:54 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/10 20:14:09 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/18 17:25:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-float		vector_magnitude(t_vector a)
+float		vec_magnitude(t_vec a)
 {
 	return (sqrtf(powf(a.x, 2) + powf(a.y, 2) + powf(a.z, 2)));
 }
-t_vector	vec_norm(t_vector a) 
+
+t_vec		vec_norm(t_vec a) 
 {
 	float		magnitude;
-	t_vector	b;
+	t_vec	b;
 
-	magnitude = vector_magnitude(a);
+	magnitude = vec_magnitude(a);
 	if (magnitude == 0.0)
 		return (a);
 	b.x = a.x / magnitude;
@@ -31,12 +32,12 @@ t_vector	vec_norm(t_vector a)
 	return (b);
 }
 
-t_vector	vector_normalize(t_vector a)
+t_vec	vec_normalize(t_vec a)
 {
 	float		magnitude;
-	t_vector	b;
+	t_vec	b;
 
-	magnitude = vector_magnitude(a);
+	magnitude = vec_magnitude(a);
 	if (magnitude == 0.0)
 		return (a);
 	b.x = a.x / magnitude;
@@ -46,9 +47,9 @@ t_vector	vector_normalize(t_vector a)
 	return (b);
 }
 
-t_vector	vector_add(t_vector a, t_vector b)
+t_vec	vec_add(t_vec a, t_vec b)
 {
-	t_vector	c;
+	t_vec	c;
 
 	c.x = a.x + b.x;
 	c.y = a.y + b.y;
@@ -57,9 +58,9 @@ t_vector	vector_add(t_vector a, t_vector b)
 	return (c);
 }
 
-t_vector	vector_sub(t_vector a, t_vector b)
+t_vec	vec_sub(t_vec a, t_vec b)
 {
-	t_vector	c;
+	t_vec	c;
 
 	c.x = a.x - b.x;
 	c.y = a.y - b.y;
@@ -68,9 +69,9 @@ t_vector	vector_sub(t_vector a, t_vector b)
 	return (c);
 }
 
-t_vector	vector_mul(t_vector a, float s)
+t_vec	vec_mul(t_vec a, float s)
 {
-	t_vector	b;
+	t_vec	b;
 
 	b.x = a.x * s;
 	b.y = a.y * s;
