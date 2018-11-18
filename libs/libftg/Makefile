@@ -15,6 +15,7 @@ NAME = libftg.a
 FLAGS = -Wall -Wextra -Werror -Ofast
 
 FILES = colorconversion \
+		colorconversionhsl \
 		colorconversion2\
 		definition\
 		matrix\

@@ -61,12 +61,12 @@ t_hsv		rgb_to_hsv(int color)
 	return (hsv);
 }
 
-void		modifyhue(int y, t_color *color)
+void		modifyhue_hsv(int y, t_color *color)
 {
 	y = (y < 100) ? 100 : y;
 	y = (y > 279) ? 279 : y;
-	color->hsv.h = ((float)(279 - y) / 179 * 359);
-	color->rgb.value = hsv_to_rgb(color->hsv);
+	color->type.hsv.h = ((float)(279 - y) / 179 * 359);
+	color->rgb.value = hsv_to_rgb(color->type.hsv);
 	color->rgb = int_to_rgb(color->rgb.value);
 }
 
@@ -76,8 +76,8 @@ void		modifysv(int x, int y, t_color *color)
 	x = (x > 275) ? 275 : x;
 	y = (y < 100) ? 100 : y;
 	y = (y > 279) ? 279 : y;
-	color->hsv.s = ((float)(x - 96) / 179 * 100);
-	color->hsv.v = ((float)(279 - y) / 179 * 100);
-	color->rgb.value = hsv_to_rgb(color->hsv);
+	color->type.hsv.s = ((float)(x - 96) / 179 * 100);
+	color->type.hsv.v = ((float)(279 - y) / 179 * 100);
+	color->rgb.value = hsv_to_rgb(color->type.hsv);
 	color->rgb = int_to_rgb(color->rgb.value);
 }

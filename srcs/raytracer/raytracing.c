@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/11 03:11:29 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 16:44:33 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,45 @@ t_vertex		get_top_left_vertex(t_camera *cam, t_win *window, float *xinc,
 	return (vertex_init(x + (*xinc / 2), y + (*yinc / 2), 1));
 }
 
-int				tracing(t_vector ray, t_env *env, int x, int y)
+float			shoot_ray(t_ray ray, t_env *env, t_obj **objs_hit)
 {
 	t_obj	 	*objs_ptr;
-	t_obj		*objs_hit;
+//	t_obj		*objs_hit;
 	float		nearest_hit;
 	float		current_hit;
-	t_ray		rayon;
+	//t_ray		rayon;
 
-	rayon.origin = vertex_init(0, 0, 0);
-	rayon.direction = ray;
+	//rayon.origin = vertex_init(0, 0, 0);
+	//rayon.direction = ray.direction;
 	nearest_hit = INFINITY;
-	objs_hit = NULL;
 	objs_ptr = env->scene_copy->objs;
 	while (objs_ptr)
 	{
-		if ((current_hit = objs_ptr->intersect(rayon, objs_ptr)) != INFINITY 
+		if ((current_hit = objs_ptr->intersect(ray, objs_ptr)) != INFINITY 
 				&& current_hit < nearest_hit)
 		{
-			objs_hit = objs_ptr;
+			(*objs_hit) = objs_ptr;
 			nearest_hit = current_hit;
 		}
 		objs_ptr = objs_ptr->next;
 	}
+	return (nearest_hit);
+}
+
+int				tracing(t_ray ray, t_env *env, int x, int y)
+{
+	t_obj		*objs_hit;
+	float		nearest_hit;
+	int			color;
+	
+	//objs_hit = NULL;
+	nearest_hit = shoot_ray(ray, env, &objs_hit);
 	if (nearest_hit != INFINITY)
-		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
+	{
+		color = colorization(env, ray, nearest_hit, objs_hit);
+		mlx_px_to_img(env->win->img, x, y, color);
+//		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
+	}
 	else 
 		mlx_px_to_img(env->win->img, x, y, 0x000000);
 	return (1);
@@ -79,7 +93,8 @@ int				raytracing(t_env *env)
 	float		yinc;
 	int			x;
 	int			y;
-	t_vector	ray;
+	t_vector	ray_vec;
+	t_ray		ray;
 
 	a = get_top_left_vertex(env->camera, env->win, &xinc, &yinc);
 	y = 0;
@@ -89,8 +104,10 @@ int				raytracing(t_env *env)
 		while (x < env->win->winx)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
-			ray = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
+			ray_vec = vector_normalize(vector_init(vertex_init(0, 0, 0), vertex_init(a.x + xinc * x, a.y + yinc * y, 1)));
+			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(ray, env, x, y);
+			// ICI COULEUR
 			x++;
 		}
 		y++;

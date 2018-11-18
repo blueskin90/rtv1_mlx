@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/12 00:26:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/18 15:01:08 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 /*
 ** struct of objects
 */
-typedef struct		s_ray
+/*typedef struct		s_ray
 {
 	t_vertex		origin;
 	t_vector		direction;
 }					t_ray;
-
+*/
 typedef struct		s_camera
 {
 	t_vertex		pos;
@@ -205,7 +205,9 @@ int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy);
 int					raytracing(t_env *env);
 int					renderer(t_scene *scene, t_camera *camera, t_img *img);
 int					shootray(t_ray ray, t_scene *scene);
+float				shoot_ray(t_ray ray, t_env *env, t_obj **objs);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
+int					colorization(t_env *env, t_ray ray, double nearest, t_obj *sphere);
 /*
 ** INTERSECTIONS
 */

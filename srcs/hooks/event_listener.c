@@ -22,7 +22,7 @@ t_vector	vec_initO_ver(t_vertex a)
 	return (vector_init(vertex_init(0, 0, 0), a));
 }
 
-t_vector	vec_initO_int(int x, int y, int z)
+t_vector	vec_initO_int(float x, float y, float z)
 {
 	t_vector	retval;
 
@@ -80,11 +80,11 @@ t_vector	vec_normalize(t_vector a)
 
 void	pos_notify(int x, int y, t_env *env)
 {
-	printf("------------------\n");
+/*	printf("------------------\n");
 	printf("x : %d y : %d\n", x, y);
 ///	ft_printf("xx : %d yy : %d\n", cam_to_world_x((double)x, env), 
 //			cam_to_world_y((double)y, env));
-	printf("------------------\n");
+	printf("------------------\n");*/
 }
 
 int				move(int key, t_env *env)
