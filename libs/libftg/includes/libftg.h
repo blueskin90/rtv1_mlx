@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/11 23:31:13 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/11 02:32:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ typedef struct		s_rgb
 
 typedef struct		s_hsl
 {
-	int				h;
-	int				s;
-	int				l;
-
+	float			h;
+	float			s;
+	float			l;
 }					t_hsl;
 
 typedef struct		s_hsv
@@ -65,10 +64,17 @@ typedef struct		s_hsv
 	int				v;
 }					t_hsv;
 
+typedef	union				
+{
+	t_hsv			hsv;
+	t_hsl			hsl;
+// verifier norme
+}					u_color_type;
 typedef struct		s_color
 {
 	t_rgb			rgb;
-	t_hsv			hsv;	
+	//t_hsv			hsv;	
+	u_color_type	type;
 }					t_color;
 
 /*
@@ -76,14 +82,20 @@ typedef struct		s_color
 */
 
 int					hsv_to_rgb(t_hsv hsv);
+int					hsl_to_rgb(t_hsl hsl);
 t_hsv				rgb_to_hsv(int color);
-void				modifyhue(int y, t_color *color);
+t_hsl				rgb_to_hsl(int color);
+void				modifyhue_hsv(int y, t_color *color);
+void				modifyhue_hsl(int y, t_color *color);
 void				modifysv(int x, int y, t_color *color);
+void				modifyhsl(int x, int y, t_color *color);
 t_rgb				int_to_rgb(int c);
 int					get_rgb(unsigned char r, unsigned char g, unsigned char b);
 int					rgb_to_int(t_rgb rgb);
-int					get_closestcolor(t_color *color);
-t_color				color_init(int color);
+int					get_closestcolor_hsv(t_color *color);
+int					get_closestcolor_hsl(t_color *color);
+t_color				color_init_hsv(int color);
+t_color				color_init_hsl(int color);
 
 /*
 ** Generic functions

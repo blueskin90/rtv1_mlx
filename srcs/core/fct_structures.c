@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/09 22:53:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/12 00:29:24 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,13 @@ t_camera			*camera_malloc(t_vertex pos, t_vector orientation, float angle)
 
 	camera = (t_camera*)ft_malloc(sizeof(t_camera));
 	camera->pos = pos;
-	camera->orientation = orientation;
+	camera->orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));//orientation a set correctement apres
+	camera->top = vector_init(vertex_init(0, 0, 0), vertex_init(0, 1, 0));
+	camera->right = vector_init(vertex_init(0, 0, 0), vertex_init(1, 0, 0));
 	camera->fov = angle;
+	camera->rotx = 0; // get l'angle de l'orientation;
+	camera->roty = 0;
+	camera->rotz = 0;
 	camera->next = NULL;
 	return (camera);
 }

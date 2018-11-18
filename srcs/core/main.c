@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/11 23:34:31 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/12 00:27:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ int					parse_scene(t_env *env)
 	t_color			color;
 
 	scene = (t_scene*)ft_malloc(sizeof(t_scene));
-	pos = vertex_init(0, 0, 15);
-	orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
-	color = color_init(0xff0000);
-	scene->sphere = sphere_malloc(pos, 2.0, orientation, color);
-	pos = vertex_init(0, 0, 25);
-	color = color_init(0x00ff00);
-	scene->sphere->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vertex_init(0, 0, 75);
-	color = color_init(0x0000ff);
+	orientation = vector_init(vertex_init(0, 0, 0), vertex_init(0, 0, 1));
+	color = color_init_hsl(0xff0000);
+	scene->sphere = sphere_malloc(pos, 2, orientation, color);
+	pos = vertex_init(0, 0, 10);
+	color = color_init_hsl(0x00ff00);
+	scene->sphere->next = sphere_malloc(pos, 2, orientation, color);
+	pos = vertex_init(0, 0, 15);
+	color = color_init_hsl(0x0000ff);
 	scene->sphere->next->next = sphere_malloc(pos, 2, orientation, color);
 	pos = vertex_init(20, 5, 10);
-	color = color_init(0xffffff);
+	color = color_init_hsl(0xffffff);
 	scene->light = light_malloc(pos, color);
-	pos = vertex_init(0, 0, 10);
+	pos = vertex_init(0, 10, 10);
 	scene->light->next = light_malloc(pos, color);
 	env->scene = scene;
-	pos = vertex_init(0, 0, 0);
+	pos = vertex_init(1, 1, -1);
 	orientation.z = 1;
 	orientation.y = 0;
 	orientation.x = 0;
@@ -57,8 +57,8 @@ int					main(void)
 
 //	{
 //		print_camera(env->camera);
-		print_objets(env->scene);
-		print_objets(env->scene_copy);
+//		print_objets(env->scene);
+//		print_objets(env->scene_copy);
 	world_to_cam2(env->camera, env->scene, env->scene_copy);
 //		print_camera(env->camera);
 //		print_objets(env->scene_copy);

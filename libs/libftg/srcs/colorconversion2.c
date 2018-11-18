@@ -12,11 +12,20 @@
 
 #include "libftg.h"
 
-t_color			color_init(int color)
+t_color			color_init_hsl(int color)
 {
 	t_color		finalcolor;
 
-	finalcolor.hsv = rgb_to_hsv(color);
+	finalcolor.type.hsl = rgb_to_hsl(color);
+	finalcolor.rgb = int_to_rgb(color);
+	return (finalcolor);
+}
+
+t_color			color_init_hsv(int color)
+{
+	t_color		finalcolor;
+
+	finalcolor.type.hsv = rgb_to_hsv(color);
 	finalcolor.rgb = int_to_rgb(color);
 	return (finalcolor);
 }
@@ -47,11 +56,20 @@ int				rgb_to_int(t_rgb rgb)
 	return (get_rgb(rgb.r, rgb.g, rgb.b));
 }
 
-int				get_closestcolor(t_color *color)
+int				get_closestcolor_hsl(t_color *color)
+{
+	t_hsl		hsl;
+
+	hsl.h = color->type.hsl.h;
+	hsl.s = 100;
+	hsl.l = 50;
+	return (hsl_to_rgb(hsl));
+}
+int				get_closestcolor_hsv(t_color *color)
 {
 	t_hsv		hsv;
 
-	hsv.h = color->hsv.h;
+	hsv.h = color->type.hsv.h;
 	hsv.s = 100;
 	hsv.v = 100;
 	return (hsv_to_rgb(hsv));

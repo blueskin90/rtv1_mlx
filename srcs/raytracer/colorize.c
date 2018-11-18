@@ -43,12 +43,12 @@ int		colorization(t_env *env, t_ray ray, double nearest, t_sphere *sphere)
 	
 	val = vec_dot(norm_hit, light_ray);
 	if (val >= 0){
-		printf("rgb : [%d][%d][%d] hsv : [%d][%d][%d]\n", sphere->color.rgb.r, 
+	/*	printf("rgb : [%d][%d][%d] hsv : [%d][%d][%d]\n", sphere->color.rgb.r, 
 				sphere->color.rgb.g, 
 				sphere->color.rgb.b, 
-				sphere->color.hsv.h,
-				sphere->color.hsv.s,
-				sphere->color.hsv.v);
+				sphere->color.type.hsl.h,
+				sphere->color.type.hsl.s,
+				sphere->color.type.hsl.l);*/
 		if (val > 1){
 			printf("NOP \n");
 			return 0x0000FF;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/11 23:30:46 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/11 03:11:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int				tracing(t_ray ray, t_env *env, int x, int y)
 	nearest_hit = shoot_ray(ray, env, &objs_hit);
 	if (nearest_hit != INFINITY)
 	{
-	//	color = colorization(env, ray, nearest_hit, objs_hit);
-	//	mlx_px_to_img(env->win->img, x, y, color);
-		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
+		color = colorization(env, ray, nearest_hit, objs_hit);
+		mlx_px_to_img(env->win->img, x, y, color);
+	//	mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
 	}
 	else 
 		mlx_px_to_img(env->win->img, x, y, 0x000000);
@@ -108,7 +108,6 @@ int				raytracing(t_env *env)
 		}
 		y++;
 	}
-	printf("fini\n");
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
 	return (1);
 }
