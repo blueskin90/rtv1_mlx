@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 05:03:39 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 08:41:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ float			shoot_ray(t_ray ray, t_env *env, t_obj **objs_hit)
 		{
 			(*objs_hit) = objs_ptr;
 			nearest_hit = current_hit;
+
 		}
 		objs_ptr = objs_ptr->next;
 	}

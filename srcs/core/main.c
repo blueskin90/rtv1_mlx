@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 06:04:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 08:54:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int					parse_scene(t_env *env)
 	orientation = vec_init0(0, 0, 5);
 	pos = vec_init0(0, -1, 5);
 	scene->objs->next->next->next = plane_malloc(pos, orientation, color);
+	orientation = vec_init0(0, 0, 1);
+	pos = vec_init0(-3, 0, 2);
+	color = color_init_hsl(0x00ff00);
+//	scene->objs->next->next->next->next = cylinder_malloc(pos, 2, orientation, color);
 	pos = vec_init0(5, 10, 5);
 	color = color_init_hsl(0xffffff);
 	scene->light = light_malloc(pos, color, 0.6);

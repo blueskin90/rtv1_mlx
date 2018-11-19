@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 04:26:21 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 08:41:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,46 @@ float			plane_intersection(t_ray ray, t_obj *plane)
 	}
 	*/
 	return (INFINITY);
+}
+
+/*
+float			cylinder_intersection(t_ray ray, t_obj *cylinder)
+{
+	t_vec		to_center;
+	float		a;
+	float		b;
+	float		c;
+	float		delta;
+	float		length;
+
+	to_center = vec_init(ray.origin, cylinder->pos);
+	a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
+	b = ray.direction.x * to_center.x + ray.direction.z * to_center.z;
+	c = to_center.x * to_center.x + to_center.z * to_center.z - cylinder->params.cylinder.radius * cylinder->params.cylinder.radius;
+	delta = b * b - a * c;
+	if (delta < TOLERANCE)
+		return (INFINITY);
+	length = (-b - sqrtf(delta)) / a;
+	if (length < TOLERANCE)
+		return (INFINITY);
+	return (length);
+}
+*/
+
+float			cylinder_intersection(t_ray ray, t_obj *cylinder)
+{
+	float		a;
+	float		b;
+	float		c;
+	float		delta;
+	float		length;
+
+	a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
+	b = (2 * (ray.direction.x * (ray.origin.x - cylinder->pos.x))) + (2 * (ray.direction.z * (ray.origin.z - cylinder->pos.z)));
+	c = powf(ray.origin.x - cylinder->pos.x, 2) + powf(ray.origin.z - cylinder->pos.z, 2) - cylinder->params.cylinder.radius * cylinder->params.cylinder.radius;
+	delta = b * b - 4 * a * c;
+	if (delta < TOLERANCE)
+		return (INFINITY);
+	length = ((-b - sqrtf(delta)) / (2 * a)) > TOLERANCE ? (-b - sqrtf(delta)) / (2 * a) : (-b + sqrtf(delta)) / (2 * a);
+	return (length - TOLERANCE);
 }

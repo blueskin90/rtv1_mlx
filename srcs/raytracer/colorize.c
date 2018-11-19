@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 05:55:39 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 08:54:30 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 	float		to_light_hit;
 	t_obj		*to_light_hit_obj;	
 
+	if (obj_hit->type == CYLINDER)
+		return(0xffffff);
 	hit_pos = vec_add(vec_mul(ray.direction, nearest), ray.origin);
 	to_light = vec_norm(vec_init(hit_pos, env->scene->light->pos));
 	to_light_hit = shoot_ray(ray_init(hit_pos, to_light), env, &to_light_hit_obj);
@@ -59,6 +61,10 @@ int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 	else if (obj_hit->type == PLANE)
 	{
 		normal = vec_norm(obj_hit->params.plane.normal); // prendre celle qui fait le plus face au viewer
+	}
+	else if (obj_hit->type == CYLINDER)
+	{
+		normal = vec_normalize(vec_add(vec_init0(hit_pos.x, 0, hit_pos.z), vec_opposite(vec_init0(obj_hit->pos.x, 0, obj_hit->pos.z))));
 	}
 	else
 		normal = obj_hit->rot;

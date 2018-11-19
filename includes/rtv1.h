@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 06:04:45 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 06:46:13 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define WINDOW_FAIL "Couldn't open a new window\n"
 # define MLX_IMG_FAIL "MLX couldn't get a new image\n"
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1200
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 # define TOLERANCE 0.00001
 extern float g_smallest;
 extern float g_biggest;
@@ -188,6 +188,7 @@ int					sphere_copy(t_env *env);
 int					scene_copy(t_env *env);
 t_obj				*sphere_malloc(t_vec p, float rad, t_vec r, t_color c);
 t_obj				*plane_malloc(t_vec p, t_vec lookat, t_color c);
+t_obj				*cylinder_malloc(t_vec p, float rad, t_vec lookat, t_color c);
 t_camera			*camera_malloc(t_vec pos, t_vec lookat, float angle);
 t_light				*light_malloc(t_vec pos, t_color color, float intensity);
 t_ray				ray_init(t_vec origin, t_vec pos);
@@ -222,6 +223,7 @@ int					colorization(t_env *env, t_ray ray, float nearest, t_obj *sphere);
 */
 float				sphere_intersection(t_ray ray, t_obj *sphere);
 float				plane_intersection(t_ray ray, t_obj *plan);
+float				cylinder_intersection(t_ray ray, t_obj *cylinder);
 /*
 ** Env initialization and minilibx init
 */

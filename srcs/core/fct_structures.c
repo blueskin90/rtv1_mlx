@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 05:39:31 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 08:27:52 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ t_obj			*sphere_malloc(t_vec p, float rad, t_vec r, t_color c)
 	sphere->intersect = &sphere_intersection;
 	sphere->next = NULL;
 	return (sphere);
+}
+
+t_obj			*cylinder_malloc(t_vec p, float rad, t_vec lookat, t_color c)
+{
+	t_obj		*cylinder;
+
+	cylinder = (t_obj*)ft_malloc(sizeof(t_obj));
+	cylinder->pos = p;
+	cylinder->params.cylinder.radius = rad;
+	cylinder->params.cylinder.axis = vec_normalize(vec_init(p, lookat));
+	cylinder->rot = cylinder->params.cylinder.axis;
+	cylinder->color = c;
+	cylinder->type = CYLINDER;
+	cylinder->intersect = &cylinder_intersection;
+	cylinder->next = NULL;
+	return (cylinder);
 }
 
 t_vec				get_top_vector(t_vec orientation)
