@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 21:37:09 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/19 05:03:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,21 @@ int				raytracing(t_env *env)
 	t_vec	ray_vec;
 	t_ray		ray;
 
+	t_vec		axis;
+	float		angle;
+	t_matrix	matrix;
+
+	angle = vec_dotproduct(env->camera->orientation, vec_init0(0,0,1));
+	if (!isequalfloat(angle, 0.0) && !isequalfloat(fabs(angle), 1.0))
+		angle = acosf(angle);
+	else if (isequalfloat(angle, 1.0))
+		angle = 0;
+	else if (isequalfloat(angle, -1))
+		angle = degtorad(180);
+	else
+		angle = degtorad(90);
+	axis = vec_crossproduct(env->camera->orientation, vec_init0(0,0,1));
+	matrix = rotmatrix_axis_angle(axis, -angle);
 	a = get_top_left_vec(env->camera, env->win, &xinc, &yinc);
 	y = 0;
 	while (y < env->win->winy)
@@ -101,6 +116,7 @@ int				raytracing(t_env *env)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
 			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1));
+			ray_vec = matrix_mult_vec(matrix, ray_vec);
 			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(ray, env, x, y);
 			// ICI COULEUR
@@ -108,7 +124,7 @@ int				raytracing(t_env *env)
 		}
 		y++;
 	}
-	printf("smallest : %f, biggest : %f\n", g_smallest, g_biggest);
+//	printf("smallest : %f, biggest : %f\n", g_smallest, g_biggest);
 	mlx_put_image_to_window(env->mlx, env->win->winptr, env->win->img->imgptr, 0, 0);
 	return (1);
 }

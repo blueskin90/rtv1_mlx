@@ -6,21 +6,21 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/18 18:09:13 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 03:01:53 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj			*plane_malloc(t_vec p, t_vec dir, t_vec normal, t_color c)
+t_obj			*plane_malloc(t_vec p, t_vec lookat, t_color c)
 {
 	t_obj		*plane;
 
 	plane = (t_obj*)ft_malloc(sizeof(t_obj));
 	plane->pos = p;
-	plane->params.plane.normal = normal;
-	plane->params.plane.normal_norm = vec_normalize(normal);
-	plane->rot = dir;
+	plane->params.plane.lookat = lookat;
+	plane->params.plane.normal = vec_norm(vec_init(p, lookat));
+	plane->rot = plane->params.plane.normal;
 	plane->color = c;
 	plane->type = PLANE;
 	plane->intersect = &plane_intersection;
@@ -43,6 +43,29 @@ t_obj			*sphere_malloc(t_vec p, float rad, t_vec r, t_color c)
 	return (sphere);
 }
 
+t_vec				get_top_vector(t_vec orientation)
+{
+	t_vec			axis;
+	float			angle;
+	t_matrix		matrix;
+
+	angle = vec_dotproduct(orientation, vec_init0(0,1,0));
+	if (!isequalfloat(angle, 0.0) && !isequalfloat(fabs(angle), 1.0))
+		angle = acosf(angle);
+	else if (isequalfloat(angle, 1.0))
+		angle = 0;
+	else if (isequalfloat(angle, -1))
+		angle = degtorad(180);
+	else
+		angle = degtorad(90);
+	angle = degtorad(90) - angle;
+	if (isequalfloat(angle, 0.0))
+		return (vec_init0(0,1,0));
+	axis = vec_crossproduct(orientation, vec_init0(0,1,0));
+	matrix = rotmatrix_axis_angle(axis, -angle);
+	return (matrix_mult_vec(matrix, vec_init0(0,1,0)));
+}
+
 t_camera			*camera_malloc(t_vec pos, t_vec lookat, float angle)
 {
 	t_camera		*camera;
@@ -50,9 +73,9 @@ t_camera			*camera_malloc(t_vec pos, t_vec lookat, float angle)
 	camera = (t_camera*)ft_malloc(sizeof(t_camera));
 	camera->pos = pos;
 	camera->lookat = lookat;
-	camera->orientation = vec_normalize(lookat);//orientation a set correctement apres
-	camera->top = vec_init0(0, 1, 0);
-	camera->right = vec_init0(1, 0, 0);
+	camera->orientation = vec_normalize(vec_init(pos, lookat));//orientation a set correctement apres
+	camera->top = get_top_vector(camera->orientation);
+	camera->right = vec_opposite(vec_crossproduct(camera->orientation, camera->top));
 	camera->fov = angle;
 	camera->rotx = 0; // get l'angle de l'orientation;
 	camera->roty = 0;
@@ -79,7 +102,7 @@ t_ray			ray_init(t_vec a, t_vec b)
 	t_ray		c;
 
 	c.origin = a;
-	c.direction = b;
+	c.direction = vec_norm(b);
 	ft_memset(&c.color, 0,sizeof(c.color));
 	c.obj = 0;
 	return (c);

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 21:39:11 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/19 03:30:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-
+# define TOLERANCE 0.00001
 extern float g_smallest;
 extern float g_biggest;
 /*
@@ -77,8 +77,8 @@ typedef struct		s_spheree
 
 typedef struct		s_plane
 {
+	t_vec			lookat;
 	t_vec			normal;
-	t_vec			normal_norm;
 }					t_plane;
 
 typedef struct		s_cone
@@ -168,7 +168,8 @@ t_matrix			camrotmatrix(t_camera *cam);
 int					is_equal_float(float a, float b);
 int					is_equal_vector(t_vec a, t_vec b);
 int					is_opposite_vector(t_vec a, t_vec b);
-
+t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
+int					isequalfloat(float a, float b);
 
 /*
 ** Event Listeners
@@ -185,7 +186,7 @@ int					light_copy(t_env *env);
 int					sphere_copy(t_env *env);
 int					scene_copy(t_env *env);
 t_obj				*sphere_malloc(t_vec p, float rad, t_vec r, t_color c);
-t_obj				*plane_malloc(t_vec p, t_vec dir, t_vec normal, t_color c);
+t_obj				*plane_malloc(t_vec p, t_vec lookat, t_color c);
 t_camera			*camera_malloc(t_vec pos, t_vec lookat, float angle);
 t_light				*light_malloc(t_vec pos, t_color color);
 t_ray				ray_init(t_vec origin, t_vec pos);
