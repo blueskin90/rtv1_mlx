@@ -6,11 +6,35 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 05:32:09 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 05:55:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rtv1.h>
+
+float			get_ratio(t_env *env, t_vec hit_pos, t_vec normal)
+{
+	t_light		*ptr;
+	float		total;
+	float		actual;
+	t_obj		*to_light_hit_obj;
+	t_vec		to_light;
+	float		to_light_hit;
+
+	total = 0.0;
+	actual = 0.1;
+	ptr = env->scene->light;
+	while (ptr)
+	{
+		to_light = vec_norm(vec_init(hit_pos, ptr->pos));
+		to_light_hit = shoot_ray(ray_init(hit_pos, to_light), env, &to_light_hit_obj);
+		if (!(to_light_hit != INFINITY && to_light_hit < vec_magnitude(vec_init(hit_pos, env->scene->light->pos))))
+			actual += ptr->intensity * vec_dotproduct(normal, to_light);
+		total += ptr->intensity;
+		ptr = ptr->next;
+	}
+	return (actual / total);
+}
 
 int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 {
@@ -29,19 +53,17 @@ int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 	color.s = obj_hit->color.type.hsl.s;
 	color.l = obj_hit->color.type.hsl.l;
 	if (to_light_hit != INFINITY && to_light_hit < vec_magnitude(vec_init(hit_pos, env->scene->light->pos)))
-	{
-		color.l *= 0.01;
-		return (hsl_to_rgb(color));
-	}
+		ratio = 0.01;
 	if (obj_hit->type == SPHERE)
 		normal = vec_norm(vec_init(obj_hit->pos, hit_pos));
 	else if (obj_hit->type == PLANE)
 	{
-		normal = vec_norm(obj_hit->params.plane.normal);
+		normal = vec_norm(obj_hit->params.plane.normal); // prendre celle qui fait le plus face au viewer
 	}
 	else
 		normal = obj_hit->rot;
-	ratio = vec_dotproduct(normal, to_light);
+	ratio = get_ratio(env, hit_pos, normal);
+//	ratio = env->scene->light->intensity * vec_dotproduct(normal, to_light); // ici faire que le ratio soit le ratio de toutes les lampes genre : 2 lampes a 0.6 et a 0.9 = total a 1.5, on divise le resultat des 2 ratios par 1.5 et on a notre ratio final (je crois);
 	ratio = (ratio < 0.01 ) ? 0.01 : ratio;
 	color.l *= ratio;
 	return (hsl_to_rgb(color));

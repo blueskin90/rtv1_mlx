@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:58:50 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/10 20:49:58 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 06:05:57 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int					light_copy(t_env *env)
 	ptr = env->scene->light;
 	if (ptr)
 	{
-		env->scene_copy->light = light_malloc(ptr->pos, ptr->color);
+		env->scene_copy->light = light_malloc(ptr->pos, ptr->color, ptr->intensity);
 		cpyptr = env->scene_copy->light;
 		ptr = ptr->next;
 		while (ptr)
 		{
-			cpyptr->next = light_malloc(ptr->pos, ptr->color);
+			cpyptr->next = light_malloc(ptr->pos, ptr->color, ptr->intensity);
 			cpyptr = cpyptr->next;
 			ptr = ptr->next;
 		}

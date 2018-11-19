@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 03:01:53 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 05:39:31 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,14 @@ t_camera			*camera_malloc(t_vec pos, t_vec lookat, float angle)
 
 // manque la rotation en z de la cam, il faut son orientation (le vecteur) et sa rotation sur ce vecteur
 
-t_light				*light_malloc(t_vec pos, t_color color)
+t_light				*light_malloc(t_vec pos, t_color color, float intensity)
 {
 	t_light			*light;
 
 	light = (t_light*)ft_malloc(sizeof(t_light));
 	light->pos = pos;
 	light->color = color;
+	light->intensity = intensity;
 	light->next = NULL;
 	return (light);
 }
