@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 08:54:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 19:30:37 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ int					parse_scene(t_env *env)
 	scene = (t_scene*)ft_malloc(sizeof(t_scene));
 	pos = vec_init0(0, 0, 5);
 	orientation = vec_init0(0, 0, 1);
-	color = color_init_hsl(0xff0000);
+	color = color_init_hsl(0xa600ff);
+	printf("h : %f, s : %f, l : %f\n", color.type.hsl.h, color.type.hsl.s ,color.type.hsl.l);
 	scene->objs = sphere_malloc(pos, 5, orientation, color);
 	pos = vec_init0(0, 6 , 5);
 	color = color_init_hsl(0x00ff00);
+	printf("h : %f, s : %f, l : %f\n", color.type.hsl.h, color.type.hsl.s ,color.type.hsl.l);
 	scene->objs->next = sphere_malloc(pos, 1, orientation, color);
 	pos = vec_init0(15, 15, 15);
 	color = color_init_hsl(0x0000ff);
@@ -52,9 +54,11 @@ int					parse_scene(t_env *env)
 	return (1);
 }
 
-int					main(void)
+int					main(int ac, char **av)
 {
 	t_env			*env;
+
+	(void *) ac;
 
 	g_smallest = INFINITY;
 	g_biggest = -INFINITY;
@@ -62,6 +66,7 @@ int					main(void)
 	env = env_init();
 	parse_scene(env);
 	scene_copy(env);
+//	json_parser(av[1]);
 //	if (env->scene)
 
 //	{
@@ -73,6 +78,7 @@ int					main(void)
 //		print_objets(env->scene_copy);
 //		exit(1);
 //	}
+	
 	raytracing(env);
 	events_listener(env);
 	mlx_loop(env->mlx);

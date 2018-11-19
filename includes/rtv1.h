@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 06:46:13 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/19 18:28:59 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@
 # include "libftg.h"
 # include "keys.h"
 # include <limits.h>
-
-# define MALLOC_FAIL "Malloc failed\n"
-# define MLX_FAIL "Couldn't start MLX\n"
-# define WINDOW_FAIL "Couldn't open a new window\n"
-# define MLX_IMG_FAIL "MLX couldn't get a new image\n"
-
+# include "fail_errors.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.00001
@@ -180,6 +175,10 @@ void				events_listener(t_env *env);
 ** TO DELETE
 */
 int					test(void);
+/*
+** JSON PARSER
+*/
+void				json_parser(char *file);
 /*
 ** STRUCTURES 
 */

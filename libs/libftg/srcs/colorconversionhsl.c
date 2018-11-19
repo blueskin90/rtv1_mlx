@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 23:19:38 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/18 17:05:08 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/19 19:33:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ t_hsl			rgb_to_hsl(int color)
 	t_hsl	hsl;
 	float	max;
 	float	min;
-	t_rgb	rgb;
+	float	r;
+	float	g;
+	float	b;
 
-	rgb.r = (float)int_to_rgb(color).r / 255;
-	rgb.g = (float)int_to_rgb(color).g / 255;
-	rgb.b = (float)int_to_rgb(color).b / 255;
-	printf("rgb : [%d][%d][%d]\n", rgb.r, rgb.g, rgb.b);
-	max = (float)ft_max(rgb.r, rgb.g, rgb.b);
-	min = (float)ft_min(rgb.r, rgb.g, rgb.b);
+	r = (float)int_to_rgb(color).r / 255;
+	g = (float)int_to_rgb(color).g / 255;
+	b = (float)int_to_rgb(color).b / 255;
+	printf("rgb : [%f][%f][%f]\n", r, g, b);
+	max = (float)ft_max(r, g, b);
+	min = (float)ft_min(r, g, b);
 	printf("min : %f max : %f\n", min, max);
 	hsl.l = (max + min) / 2.0;
 	printf("l : %f\n", hsl.l);
@@ -34,22 +36,22 @@ t_hsl			rgb_to_hsl(int color)
 		hsl.h = 0;
 	}
 	else {
-		if (hsl.l < 0.5)
-			hsl.s = (max - min) / (max + min);
+		if (hsl.l == 1)
+			hsl.s = 0;
 		else
-			hsl.s = (max - min) / (2 - max - min);
-		if (rgb.r == max)
+			hsl.s = (max - min) / (1 - (fabs(2 * hsl.l - 1)));
+		if (r == max)
 		{
-			hsl.h = 60 * (rgb.g - rgb.b) / (max - min);
-			if (hsl.h < 0)
-				hsl.h = 360 + hsl.h;
+			hsl.h = 60 * fmod(((g - b) / (max - min)), 6);
 		}
-		else if (rgb.g == max)
-			hsl.h = 120 + 60 * (rgb.b - rgb.r) / (max - min);
+		else if (g == max)
+			hsl.h = 60 * (((b - r) / (max - min)) + 2);
 		else 
-			hsl.h = 240 + 60 * (rgb.r - rgb.g) / (max - min);
+			hsl.h = 60 * (((r - g) / (max - min)) + 4);
 	}
-	printf("h: %f s: %f l: %f\n", hsl.h, hsl.s, hsl.l);
+	if (hsl.h < 0)
+		hsl.h = 360 + hsl.h;
+	//printf("h: %f s: %f l: %f\n", hsl.h, hsl.s, hsl.l);
 	return hsl;
 }
 
@@ -60,19 +62,19 @@ int			hsl_to_rgb(t_hsl hsl)
 	float	x;
 	float	m;
 
-	c = (1 - fabs(2 * (float)hsl.l - 1) * (float)hsl.s);
-	x = c * (1  - fabs(fmod((float)hsl.h / 60.0, 2)) - 1);
+	c = (1.0 - fabs(2.0 * (float)hsl.l - 1.0) * (float)hsl.s);
+	x = c * (1.0  - fabs(fmod((float)hsl.h / 60.0, 2.0)) - 1.0);
 	m = (float)hsl.l - c / 2.0;
 	h = (float)hsl.h / 60;
-	if (h >= 0 && h < 1)
+	if (h >= 0.0 && h < 1.0)
 		return (get_rgb(round((c + m) * 255), round((x + m) * 255), round(m * 255)));
-	if (h >= 1 && h < 2)
+	if (h >= 1.0 && h < 2.0)
 		return (get_rgb(round((x + m) * 255), round((c + m) * 255), round(m * 255)));
-	if (h >= 2 && h < 3)
+	if (h >= 2.0 && h < 3.0)
 		return (get_rgb(round(m * 255), round((c + m) * 255), round((x + m) * 255)));
-	if (h >= 3 && h < 4)
+	if (h >= 3.0 && h < 4.0)
 		return (get_rgb(round(m * 255), round((x + m) * 255), round((c + m) * 255)));
-	if (h >= 4 && h < 5)
+	if (h >= 4.0 && h < 5.0)
 		return (get_rgb(round((x + m) * 255), round(m * 255), round((c + m) * 255)));
 	return (get_rgb(round((c + m) * 255), round(m * 255), round((x + m) * 255)));
 }
