@@ -63,9 +63,11 @@ int			hsl_to_rgb(t_hsl hsl)
 	float	m;
 
 	c = (1.0 - fabs(2.0 * (float)hsl.l - 1.0) * (float)hsl.s);
-	x = c * (1.0  - fabs(fmod((float)hsl.h / 60.0, 2.0)) - 1.0);
+	x = c * (1.0  - fabs(fmod((float)hsl.h / 60.0, 2.0) - 1.0));
 	m = (float)hsl.l - c / 2.0;
 	h = (float)hsl.h / 60;
+//	printf("HSL : %f, %f, %f\n", hsl.h, hsl.s, hsl.l);
+//	printf("c : %f, x : %f, m : %f, h : %f\n", c, x, m, h);
 	if (h >= 0.0 && h < 1.0)
 		return (get_rgb(round((c + m) * 255), round((x + m) * 255), round(m * 255)));
 	if (h >= 1.0 && h < 2.0)

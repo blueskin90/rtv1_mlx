@@ -29,7 +29,7 @@ t_color			color_init_hsv(int color)
 	finalcolor.rgb = int_to_rgb(color);
 	return (finalcolor);
 }
-
+#include <stdio.h>
 t_rgb			int_to_rgb(int c)
 {
 	t_rgb		rgb;
@@ -45,9 +45,11 @@ int				get_rgb(unsigned char r, unsigned char g, unsigned char b)
 {
 	int			result;
 
+	//printf("BEFORE RGB : (%hhd, %hhd, %hhd)\n", r, g, b);
 	result = r;
 	result = (result << 8) + g;
 	result = (result << 8) + b;
+	//printf("HEX : %#x\n", result);
 	return (result);
 }
 
