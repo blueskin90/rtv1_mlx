@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:09:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/01/26 09:38:01 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/21 18:41:03 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+unsigned long		ft_atoi_base_ll(const char *val, unsigned int from);
+int					ft_strisvalidint(const char *str);
 #endif

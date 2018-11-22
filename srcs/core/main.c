@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 19:30:37 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/21 18:16:21 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int					main(int ac, char **av)
 	env = env_init();
 	parse_scene(env);
 	scene_copy(env);
-//	json_parser(av[1]);
+	json_parser(av[1]);
 //	if (env->scene)
 
 //	{
@@ -79,8 +79,8 @@ int					main(int ac, char **av)
 //		exit(1);
 //	}
 	
-	raytracing(env);
-	events_listener(env);
-	mlx_loop(env->mlx);
+//	raytracing(env);
+//	events_listener(env);
+//	mlx_loop(env->mlx);
 	return (1);
 }

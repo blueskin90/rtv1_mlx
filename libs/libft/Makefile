@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/11/05 17:51:32 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/21 18:43:20 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ FILES = atoi \
 	   lstiter \
 	   lstmap \
 	   get_next_line \
+	   strisvalidint \
+	   atoi_base_ll
 
 INCLUDES = -I./includes
 

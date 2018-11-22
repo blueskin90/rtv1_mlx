@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 18:28:10 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 18:30:23 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/22 01:10:20 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,11 @@
 */
 # define FD_FAIL "Could not open file\n"
 # define EMPTY_FILE	"file is empty\n"
+
+/*
+** ERROR PARSING
+*/
+# define JSON_PARSING_ERROR "JSON HAS WRONG FORMAT\n"
+# define KEY_NOT_FOUND "KEY WAS NOT RECOGNIZED\n"
 
 #endif

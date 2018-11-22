@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:16:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/05 18:21:27 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/21 22:35:30 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void				*ft_malloc(unsigned int size)
 
 	if (!(ptr = malloc(size)))
 		ft_error(MALLOC_FAIL);
+	ft_bzero(ptr, size);
 	return (ptr);
 }
 
