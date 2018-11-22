@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 08:54:30 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/22 08:09:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ float			get_ratio(t_env *env, t_vec hit_pos, t_vec normal)
 	t_light		*ptr;
 	float		total;
 	float		actual;
-	t_obj		*to_light_hit_obj;
 	t_vec		to_light;
-	float		to_light_hit;
+	t_ray		to_light_ray;
 
 	total = 0.0;
 	actual = 0.1;
@@ -27,8 +26,9 @@ float			get_ratio(t_env *env, t_vec hit_pos, t_vec normal)
 	while (ptr)
 	{
 		to_light = vec_norm(vec_init(hit_pos, ptr->pos));
-		to_light_hit = shoot_ray(ray_init(hit_pos, to_light), env, &to_light_hit_obj);
-		if (!(to_light_hit != INFINITY && to_light_hit < vec_magnitude(vec_init(hit_pos, env->scene->light->pos))))
+		to_light_ray = ray_init(hit_pos, to_light);
+		shoot_ray(&to_light_ray, env->scene);
+		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(hit_pos, env->scene->light->pos))))
 			actual += ptr->intensity * vec_dotproduct(normal, to_light);
 		total += ptr->intensity;
 		ptr = ptr->next;
@@ -36,21 +36,131 @@ float			get_ratio(t_env *env, t_vec hit_pos, t_vec normal)
 	return (actual / total);
 }
 
+float			get_ambiant(t_ray *ray)
+{
+	(void)ray;
+	return (0.2); // 0.2 * ray->obj_hit->ambient_value;
+}
+
+float			get_diffuse(t_ray *ray, t_scene *scene) // reduire cette fonction plus tard
+{
+	t_light		*ptr;
+	float		total;
+	float		actual;
+	t_vec		to_light;
+	t_ray		to_light_ray;
+	float		dotproduct;
+
+	total = 0.0;
+	actual = 0.0;
+	ptr = scene->light;
+	while (ptr)
+	{
+		to_light = vec_norm(vec_init(ray->hit_pos, ptr->pos));
+		to_light_ray = ray_init(ray->hit_pos, to_light);
+		shoot_ray(&to_light_ray, scene);
+		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos))))
+		{
+			dotproduct = vec_dotproduct(ray->normal, to_light);
+			dotproduct = (dotproduct >= 0) ? dotproduct : 0;
+			actual += ptr->intensity * dotproduct;
+		}
+		total += ptr->intensity;
+		ptr = ptr->next;
+	}
+	return (actual / total);
+}
+
+t_ray			reflect_ray(t_ray *ray)
+{
+	t_matrix	rotmatrix;
+	t_vec		reflected;
+
+	rotmatrix = rotmatrix_axis_angle(ray->normal, degtorad(180));
+	reflected = matrix_mult_vec(rotmatrix, vec_opposite(ray->direction));
+	return (ray_init(ray->hit_pos, vec_norm(reflected)));
+}
+
+float			get_specular(t_ray *ray, t_scene *scene, t_camera *cam)
+{
+	t_light		*ptr;
+	float		total;
+	float		actual;
+	t_ray		to_light_ray;
+	t_ray		reflection;
+	float		dotproduct;
+	t_vec		to_light;
+
+	total = 0.0;
+	actual = 0.0;
+	ptr = scene->light;
+	while (ptr)
+	{
+		to_light = vec_norm(vec_init(ray->hit_pos, ptr->pos));
+		to_light_ray = ray_init(ray->hit_pos, to_light);
+		shoot_ray(&to_light_ray, scene);
+		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos))))
+		{
+			to_light_ray.origin = ray->hit_pos;
+			to_light_ray.direction = vec_opposite(to_light);
+			to_light_ray.normal = ray->normal;
+			reflection = reflect_ray(&to_light_ray);
+			dotproduct = vec_dotproduct(reflection.direction, vec_norm(vec_init(ray->hit_pos, cam->pos)));
+			dotproduct = (dotproduct >= 0) ? dotproduct : 0;
+			dotproduct = powf(dotproduct, 100);
+			actual += dotproduct * ptr->intensity; // * ptr->obj_hit->specular_value
+		}
+		total += ptr->intensity;
+		ptr = ptr->next;
+	}
+	return (actual / total);
+}
+
+int				colorization(t_ray *ray, t_env *env)
+{
+	float		ratio;
+	t_hsl		color;
+
+	float		ambiant;
+	float		diffuse;
+	float		specular;
+
+//	color = ray->obj_hit->color.type.hsl;
+	ambiant = get_ambiant(ray);
+	diffuse = get_diffuse(ray, env->scene);
+	specular = get_specular(ray, env->scene, env->camera);
+//	color.l *= (ambiant + diffuse + specular);
+//	color.l = (color.l > 1) ? 1 : color.l;
+
+	t_color		rgb;
+	rgb = ray->obj_hit->color;
+	rgb.rgb.r *= (ambiant + diffuse + specular);
+	rgb.rgb.r = (rgb.rgb.r > 255) ? 255 : rgb.rgb.r;
+	rgb.rgb.g *= (ambiant + diffuse + specular);
+	rgb.rgb.g = (rgb.rgb.g > 255) ? 255 : rgb.rgb.g;
+	rgb.rgb.b *= (ambiant + diffuse + specular);
+	rgb.rgb.b = (rgb.rgb.b > 255) ? 255 : rgb.rgb.b;
+	return (get_rgb(rgb.rgb.r, rgb.rgb.g, rgb.rgb.b));
+//	return (hsl_to_rgb(color));
+}
+/*
 int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 {
 	t_vec		hit_pos;
-	t_vec		normal;
+	t_vec		normal
 	t_vec		to_light;
 	t_hsl		color;
 	float		ratio;
 	float		to_light_hit;
-	t_obj		*to_light_hit_obj;	
+	t_ray		to_light_ray;
 
 	if (obj_hit->type == CYLINDER)
 		return(0xffffff);
 	hit_pos = vec_add(vec_mul(ray.direction, nearest), ray.origin);
 	to_light = vec_norm(vec_init(hit_pos, env->scene->light->pos));
-	to_light_hit = shoot_ray(ray_init(hit_pos, to_light), env, &to_light_hit_obj);
+	to_light_ray = ray_init(hit_pos, to_light);
+	shoot_ray(&to_light_ray, env->scene);
+	to_light_hit = to_light_ray.length;
 	color.h = obj_hit->color.type.hsl.h;
 	color.s = obj_hit->color.type.hsl.s;
 	color.l = obj_hit->color.type.hsl.l;
@@ -74,81 +184,4 @@ int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 	color.l *= ratio;
 	return (hsl_to_rgb(color));
 }	
-
-/*
-int		colorization(t_env *env, t_ray ray, float nearest, t_obj *sphere)
-{
-	t_vec	ray_hit;
-	t_vec	norm_hit;
-	t_vec	light_ray;
-	float		c;
-	t_vec	temp;
-	t_obj		*objs_hit;
-	t_hsl		hsl;
-	
-
-//	printf("COLORIZATION\n");
-	ray_hit = vec_mul(ray.direction, nearest);
-	norm_hit = vec_sub(ray_hit, sphere->pos);
-	norm_hit = vec_norm(norm_hit);
-//	c = vec_dot(norm_hit, ray.direction);
-//	f (c < 0)
-//	{	
-//		//printf("INSIDE\n");
-//		return (0xffea00);
-//	}
-	// une seule light
-	light_ray = vec_init(ray_hit, env->scene->light->pos);
-	light_ray = vec_norm(light_ray);
-	temp = vec_add(ray_hit, norm_hit);
-	// DONT FORGET TO THINK ABOUT OBJECT THAT ARE AFTER THE LIGHT
-	if ((c = shoot_ray(ray_init(ray_hit, light_ray),
-				env, &objs_hit)) != INFINITY && c < vec_magnitude(vec_init(ray_hit, env->scene->light->pos)))
-	{
-//		printf("ray_hit : ");
-//		print_vec(ray_hit);
-//		printf("point : %f,%f,%f\n",temp.x, temp.y, temp.z);
-//		printf("%#x\n", objs_hit->color.rgb.value);
-//		printf("center of object : ");
-//		print_vec(objs_hit->pos);
-//		
-		return (0x123456);
-	}
-	float val;
-	val = vec_dot(norm_hit, light_ray);
-	if (val > g_biggest)
-		g_biggest = val;
-	if (val < g_smallest)
-		g_smallest = val;
-	//printf("val : %f\n", val);
-	//float angle = acosf(val);
-	//printf("angle : %f\n", radtodeg(angle));
-	if (fabs(val) >= TOLERANCE){
-		hsl.h = sphere->color.type.hsl.h;
-		hsl.s = sphere->color.type.hsl.s;
-		//hsl.l = sphere->color.type.hsl.l;
-		hsl.l = val * 0.5 + 0.5;
-		if (hsl.l > 1)
-			hsl.l = 1;
-		return hsl_to_rgb(hsl);
-	//	printf("rgb : [%d][%d][%d] hsv : [%d][%d][%d]\n", sphere->color.rgb.r, 
-	//			sphere->color.rgb.g, 
-	//			sphere->color.rgb.b, 
-	//			sphere->color.type.hsl.h,
-	//			sphere->color.type.hsl.s,
-	//			sphere->color.type.hsl.l);
-
-//		if (val >= 1){
-//			return 0x000000;
-//		}
-//		return (255.0 * val);
-	}
-	else {
-		hsl.h = sphere->color.type.hsl.h;
-		hsl.s = sphere->color.type.hsl.s;
-		//hsl.l = sphere->color.type.hsl.l;
-		hsl.l = 0.1;
-		//return hsl_to_rgb(hsl);
-	}
-	return 0x000000;
-}*/
+*/

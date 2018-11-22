@@ -6,11 +6,15 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:58:50 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 06:39:53 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/22 03:29:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+/*
+** ON NE SE SERT PLUS DE RIEN ICI, CONSERVER OCAZOU
+*/
 
 int					light_copy(t_env *env)
 {

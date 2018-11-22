@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 23:19:38 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 19:33:13 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/22 06:34:08 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_hsl			rgb_to_hsl(int color)
 	r = (float)int_to_rgb(color).r / 255;
 	g = (float)int_to_rgb(color).g / 255;
 	b = (float)int_to_rgb(color).b / 255;
-	printf("rgb : [%f][%f][%f]\n", r, g, b);
+//	printf("rgb : [%f][%f][%f]\n", r, g, b);
 	max = (float)ft_max(r, g, b);
 	min = (float)ft_min(r, g, b);
-	printf("min : %f max : %f\n", min, max);
+//	printf("min : %f max : %f\n", min, max);
 	hsl.l = (max + min) / 2.0;
-	printf("l : %f\n", hsl.l);
+//	printf("l : %f\n", hsl.l);
 	if (max == min)
 	{
 		hsl.s = 0;
@@ -51,7 +51,7 @@ t_hsl			rgb_to_hsl(int color)
 	}
 	if (hsl.h < 0)
 		hsl.h = 360 + hsl.h;
-	//printf("h: %f s: %f l: %f\n", hsl.h, hsl.s, hsl.l);
+//	printf("h: %f s: %f l: %f\n", hsl.h, hsl.s, hsl.l);
 	return hsl;
 }
 
@@ -62,10 +62,10 @@ int			hsl_to_rgb(t_hsl hsl)
 	float	x;
 	float	m;
 
-	c = (1.0 - fabs(2.0 * (float)hsl.l - 1.0) * (float)hsl.s);
-	x = c * (1.0  - fabs(fmod((float)hsl.h / 60.0, 2.0) - 1.0));
+	c = (1.0 - fabs(2.0 * (float)hsl.l - 1.0)) * (float)hsl.s;
 	m = (float)hsl.l - c / 2.0;
 	h = (float)hsl.h / 60;
+	x = c * (1.0  - fabs(fmod(h, 2.0) - 1.0));
 //	printf("HSL : %f, %f, %f\n", hsl.h, hsl.s, hsl.l);
 //	printf("c : %f, x : %f, m : %f, h : %f\n", c, x, m, h);
 	if (h >= 0.0 && h < 1.0)

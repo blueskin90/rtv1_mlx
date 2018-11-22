@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 18:28:59 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/22 07:06:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.00001
-extern float g_smallest;
-extern float g_biggest;
 /*
 ** struct of objects
 */
@@ -102,7 +100,10 @@ typedef struct		s_ray
 	t_vec			origin;
 	t_vec			direction;
 	t_color			color;
-	struct s_obj	*obj;
+	t_vec			normal;
+	t_vec			hit_pos;
+	float			length;
+	struct s_obj	*obj_hit;
 }					t_ray;
 
 typedef struct		s_obj
@@ -213,10 +214,12 @@ int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy);
 
 int					raytracing(t_env *env);
 int					renderer(t_scene *scene, t_camera *camera, t_img *img);
-int					shootray(t_ray ray, t_scene *scene);
-float				shoot_ray(t_ray ray, t_env *env, t_obj **objs);
+int					shoot_ray(t_ray *ray, t_scene *scene);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
-int					colorization(t_env *env, t_ray ray, float nearest, t_obj *sphere);
+//int					colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit);
+int					colorization(t_ray *ray, t_env *env);
+t_ray				reflect_ray(t_ray *ray);
+
 /*
 ** INTERSECTIONS
 */

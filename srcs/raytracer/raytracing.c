@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 08:41:55 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/22 04:58:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@ void	mlx_px_to_img(t_img *img, int x, int y, int color)
 	img->img_str[x * 4 + y * img->width * 4 + 1] = ((color >> 8) & 0xff);
 	img->img_str[x * 4 + y * img->width * 4 + 2] = ((color >> 16) & 0xff);
 	img->img_str[x * 4 + y * img->width * 4 + 3] = 0;
-}
-
-int		shootray(t_ray ray, t_scene *scene)
-{
-	(void)ray;
-	(void)scene;
-	return (0xffffff);	
 }
 
 t_vec		get_top_left_vec(t_camera *cam, t_win *window, float *xinc, float *yinc)
@@ -41,40 +34,58 @@ t_vec		get_top_left_vec(t_camera *cam, t_win *window, float *xinc, float *yinc)
 	return (vec_init0(x + (*xinc / 2), y + (*yinc / 2), 1));
 }
 
-float			shoot_ray(t_ray ray, t_env *env, t_obj **objs_hit)
+int				get_normal(t_ray *ray)
+{
+	if (ray->obj_hit->type == SPHERE)
+		ray->normal = vec_norm(vec_init(ray->obj_hit->pos, ray->hit_pos));
+	else if (ray->obj_hit->type == PLANE)
+	{
+		ray->normal = vec_norm(ray->obj_hit->params.plane.normal); // prendre celle qui fait le plus face au viewer
+	}
+	else if (ray->obj_hit->type == CYLINDER)
+	{
+		ray->normal = vec_normalize(vec_add(vec_init0(ray->hit_pos.x, 0, ray->hit_pos.z), vec_opposite(vec_init0(ray->obj_hit->pos.x, 0, ray->obj_hit->pos.z))));
+	}
+	else
+		ray->normal = ray->obj_hit->rot;
+	return (1);
+}
+
+int				shoot_ray(t_ray *ray, t_scene *scene)
 {
 	t_obj	 	*objs_ptr;
-//	t_obj		*objs_hit;
-	float		nearest_hit;
 	float		current_hit;
 
-	nearest_hit = INFINITY;
-	objs_ptr = env->scene_copy->objs;
+	objs_ptr = scene->objs;
 	while (objs_ptr)
 	{
-		if ((current_hit = objs_ptr->intersect(ray, objs_ptr)) != INFINITY 
-				&& current_hit < nearest_hit)
+		if ((current_hit = objs_ptr->intersect(*ray, objs_ptr)) != INFINITY 
+				&& current_hit < ray->length)
 		{
-			(*objs_hit) = objs_ptr;
-			nearest_hit = current_hit;
-
+			ray->obj_hit = objs_ptr;
+			ray->length = current_hit;
 		}
 		objs_ptr = objs_ptr->next;
 	}
-	return (nearest_hit);
+	if (ray->length != INFINITY)
+	{
+		ray->length -= TOLERANCE;	
+		ray->hit_pos = vec_add(ray->origin, vec_mul(ray->direction, ray->length));
+		get_normal(ray);
+	}
+	return ((ray->length != INFINITY) ? 1 : 0);
 }
 
-int				tracing(t_ray ray, t_env *env, int x, int y)
+int				tracing(t_ray *ray, t_env *env, int x, int y)
 {
-	t_obj		*objs_hit;
-	float		nearest_hit;
 	int			color;
 	
 	//objs_hit = NULL;
-	nearest_hit = shoot_ray(ray, env, &objs_hit);
-	if (nearest_hit != INFINITY)
+	shoot_ray(ray, env->scene);
+	if (ray->length != INFINITY)
 	{
-		color = colorization(env, ray, nearest_hit, objs_hit);
+//		color = colorization(env, *ray, ray->length, ray->obj_hit);
+		color = colorization(ray, env);
 		mlx_px_to_img(env->win->img, x, y, color);
 //		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
 	}
@@ -119,7 +130,7 @@ int				raytracing(t_env *env)
 			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1));
 			ray_vec = matrix_mult_vec(matrix, ray_vec);
 			ray = ray_init(env->camera->pos, ray_vec);
-			tracing(ray, env, x, y);
+			tracing(&ray, env, x, y);
 			// ICI COULEUR
 			x++;
 		}

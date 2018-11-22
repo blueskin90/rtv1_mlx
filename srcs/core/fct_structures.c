@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 08:27:52 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/22 03:31:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,9 @@ t_ray			ray_init(t_vec a, t_vec b)
 {
 	t_ray		c;
 
+	ft_bzero(&c, sizeof(t_ray));
 	c.origin = a;
 	c.direction = vec_norm(b);
-	ft_memset(&c.color, 0,sizeof(c.color));
-	c.obj = 0;
+	c.length = INFINITY;
 	return (c);
 }

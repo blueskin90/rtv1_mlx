@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 19:30:37 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/22 08:09:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,20 @@ int					parse_scene(t_env *env)
 	pos = vec_init0(0, 0, 5);
 	orientation = vec_init0(0, 0, 1);
 	color = color_init_hsl(0xa600ff);
-	printf("h : %f, s : %f, l : %f\n", color.type.hsl.h, color.type.hsl.s ,color.type.hsl.l);
 	scene->objs = sphere_malloc(pos, 5, orientation, color);
 	pos = vec_init0(0, 6 , 5);
-	color = color_init_hsl(0x00ff00);
-	printf("h : %f, s : %f, l : %f\n", color.type.hsl.h, color.type.hsl.s ,color.type.hsl.l);
+	color = color_init_hsl(0x30ff30);
 	scene->objs->next = sphere_malloc(pos, 1, orientation, color);
 	pos = vec_init0(15, 15, 15);
-	color = color_init_hsl(0x0000ff);
+	color = color_init_hsl(0x3030ff);
 	scene->objs->next->next = sphere_malloc(pos, 8, orientation, color);
-	color = color_init_hsl(0xff);
+	color = color_init_hsl(0xaabbcc);
 	orientation = vec_init0(0, 0, 5);
 	pos = vec_init0(0, -1, 5);
 	scene->objs->next->next->next = plane_malloc(pos, orientation, color);
 	orientation = vec_init0(0, 0, 1);
-	pos = vec_init0(-3, 0, 2);
-	color = color_init_hsl(0x00ff00);
+//	pos = vec_init0(-3, 0, 2);
+//	color = color_init_hsl(0x00ff00);
 //	scene->objs->next->next->next->next = cylinder_malloc(pos, 2, orientation, color);
 	pos = vec_init0(5, 10, 5);
 	color = color_init_hsl(0xffffff);
@@ -48,8 +46,8 @@ int					parse_scene(t_env *env)
 	pos = vec_init0(-5, 10, 8);
 	scene->light->next = light_malloc(pos, color, 0.9);
 	env->scene = scene;
-	pos = vec_init0(0, 0, -10);
-	orientation = vec_init0(0, 0, 1);
+	pos = vec_init0(0, 10, -10);
+	orientation = vec_init0(0, 0, 10);
 	env->camera = camera_malloc(pos, orientation, 60.0);
 	return (1);
 }
@@ -58,27 +56,11 @@ int					main(int ac, char **av)
 {
 	t_env			*env;
 
-	(void *) ac;
-
-	g_smallest = INFINITY;
-	g_biggest = -INFINITY;
-//	test();
+	(void)ac;
+	(void)av;
 	env = env_init();
 	parse_scene(env);
-	scene_copy(env);
-//	json_parser(av[1]);
-//	if (env->scene)
-
-//	{
-//		print_camera(env->camera);
-//		print_objets(env->scene);
-//		print_objets(env->scene_copy);
-//	world_to_cam2(env->camera, env->scene, env->scene_copy);
-//		print_camera(env->camera);
-//		print_objets(env->scene_copy);
-//		exit(1);
-//	}
-	
+//	scene_copy(env);
 	raytracing(env);
 	events_listener(env);
 	mlx_loop(env->mlx);
