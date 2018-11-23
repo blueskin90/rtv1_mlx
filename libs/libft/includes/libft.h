@@ -6,15 +6,17 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:09:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/21 18:41:03 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/23 02:52:52 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "libft_errors.h"
 # include <unistd.h>
 # include <string.h>
+# include <float.h> // utilise pour limit des floats
 # include <stdlib.h>
 # include <sys/uio.h>
 # include <sys/types.h>
@@ -84,6 +86,8 @@ int					ft_isalnum(int c);
 int					ft_isdigit(int c);
 int					ft_isalpha(int c);
 int					ft_atoi(const char *str);
+float				ft_atof(char *str);
+double				ft_atod(char *str);
 int					ft_memcmp(const void *b1, const void *b2, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
@@ -97,4 +101,6 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 unsigned long		ft_atoi_base_ll(const char *val, unsigned int from);
 int					ft_strisvalidint(const char *str);
+void				*ft_malloc(unsigned int size);
+void				ft_error(char *str);
 #endif

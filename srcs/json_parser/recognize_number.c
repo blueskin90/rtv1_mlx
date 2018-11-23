@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 17:00:31 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/21 23:03:30 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/23 01:09:50 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		valid_number(char *line, int i, int *len)
 int		json_recognize_number(t_elem *current, char *line, int *i)
 {
 	int				x;
+	float			dec;
 	int				len;
 	char			type;
 	char			*tmp;
@@ -62,15 +63,30 @@ int		json_recognize_number(t_elem *current, char *line, int *i)
 		printf("value is not a number : %d\n", type);
 		return (0);	
 	}
-	//tmp = ft_memcpy(line, i, (size_t)*len);
 	if ((tmp = ft_strsub(line, *i, (size_t)len)) == NULL)
 		ft_error(MALLOC_FAIL);
-	if (type == 1 && len <= 11)
+	if (type == 1)
+	{
 		x = ft_atoi(tmp);
-	free(tmp);
-	current->value.inty = x;
-	current->type = INTEGER;
-		printf("ELEM IS NUMBER : %d\n", x);
-	*i = *i + len;
-	return (1);
+		printf("x : %d\n", x);
+		free(tmp);
+		current->value.inty = x;
+		current->type = INTEGER;
+		printf("ELEM IS INTEGER NUMBER : %d\n", x);
+		*i = *i + len;
+		return (current->type);
+	}
+	if (type == 2)
+	{
+		//printf("str before atof : %s\n", tmp);
+		dec = ft_atof(tmp);
+		printf("x : %f\n", dec);
+		free(tmp);
+		current->value.floaty = dec;
+		current->type = FLOAT;
+		printf("ELEM IS FLOAT NUMBER : %d\n", x);
+		*i = *i + len;
+		return (current->type);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/11/21 18:43:20 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/23 02:42:44 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = libft.a
 FLAGS = -Wall -Wextra -Werror -Ofast
 
 FILES = atoi \
+	   atof \
 	   bzero \
 	   isalnum \
 	   isalpha \
@@ -75,7 +76,9 @@ FILES = atoi \
 	   lstmap \
 	   get_next_line \
 	   strisvalidint \
-	   atoi_base_ll
+	   atoi_base_ll \
+	   malloc \
+	   error \
 
 INCLUDES = -I./includes
 

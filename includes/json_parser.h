@@ -6,14 +6,15 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/22 01:01:35 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/23 04:08:50 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef JSON_PARSER_H
 # define JSON_PARSER_H
 
-# include "rtv1.h"
+# include "json_parser_errors.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 typedef int bool;
@@ -27,20 +28,20 @@ typedef enum		s_type
 	STRING,
 	FLOAT,
 	BOOL,
-	ASSOC_ARRAY,
-	NUM_ARRAY,
+	OBJECT,
 	NULL_ELEM,
+	ARRAY,
 }					e_type;
 
 typedef union		s_value
 {
-	int				inty;
-	float			floaty;
-	bool			booly;
-	char			*stringy;
+	int				inty; // ok 
+	float			floaty; // ok
+	bool			booly; // ok
+	char			*stringy; // ok
 	void			*arrayi;
 	void			*objecty;
-	int				nully;
+	int				nully; // ok
 }					u_value;
 
 typedef struct		s_elem
@@ -56,7 +57,10 @@ typedef struct		s_elem
 typedef struct		s_key
 {
 	char			*name;
-	t_type			type;
+	e_type			type;
+	bool			required;
+	void			*defaulty;
+	struct s_key	*child_key;
 }					t_key;
 
 /*
@@ -65,6 +69,10 @@ typedef struct		s_key
 void		show_elem(t_elem *elem);
 void		show_every_elem(t_elem *elem, int padding);
 
+/*
+** JSON PARSER
+*/
+t_elem				*json_parser(char *file);
 /*
 ** Utils
 */
@@ -81,7 +89,20 @@ t_elem		*create_elem();
 **	Recognize elements
 */
 t_elem		*json_recursive(int fd, char **line, int *i);
+t_elem		*array_recursive(int fd, char **line, int *i);
+int			recognize_type(t_elem *current, char **line, int *i);
 int			recognize_key(int *i, t_elem *current, char *line, int fd);
 int			json_recognize_number(t_elem *current, char *line, int *i);
 int			json_recognize_string(t_elem *current, char *line, int *i);
+int			json_recognize_bool(t_elem *current, char *line, int *i);
+int			json_recognize_null(t_elem *current, char *line, int *i);
+int			json_recognize_array(t_elem *current, char **line, int *i, int fd);
+int			json_recognize_object(t_elem *current, char **line, int *i, int fd);
+
+/*
+** Generic functions
+*/
+
+void				*ft_malloc(unsigned int size);
+void				ft_error(char *str);
 #endif

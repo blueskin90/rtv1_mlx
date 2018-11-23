@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/19 18:28:59 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/23 02:51:44 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libftg.h"
+# include "json_parser.h"
 # include "keys.h"
 # include <limits.h>
-# include "fail_errors.h"
+# include "mlx_errors.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.00001
@@ -176,10 +177,6 @@ void				events_listener(t_env *env);
 */
 int					test(void);
 /*
-** JSON PARSER
-*/
-void				json_parser(char *file);
-/*
 ** STRUCTURES 
 */
 int					light_copy(t_env *env);
@@ -232,11 +229,5 @@ void				ft_error(char *error);
 t_win				*win_init(int width, int height, char *name, void *mlx);
 t_img				*img_init(int width, int height, void *mlx);
 
-/*
-** Generic functions
-*/
-
-void				*ft_malloc(unsigned int size);
-void				ft_error(char *str);
 
 #endif

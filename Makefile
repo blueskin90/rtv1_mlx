@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/22 01:02:31 by cvermand         ###   ########.fr        #
+#    Updated: 2018/11/23 03:00:18 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,11 @@ FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra -g3 -fsanitize=address
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
 	   $(addprefix utils/, print) \
-	   $(addprefix json_parser/, json_parser recognize_key elem_struct_functions recognize_number recognize_string print_elem_architecture) \
+	   $(addprefix json_parser/, json_parser recognize_key elem_struct_functions \
+	   recognize_number recognize_string print_elem_architecture \
+		json_utils recognize_bool recognize_null recognize_array \
+		recognize_object object_recursive array_recursive \
+		recognize_type ) \
 	   $(addprefix hooks/, event_listener) \
 	   $(addprefix raytracer/, raytracing intersections colorize) \
 		))
