@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 05:32:42 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 09:14:15 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,38 @@ int				get_normal(t_ray *ray)
 		len = vec_dotproduct(center_to_hit, ray->obj_hit->rot);
 		center_under_hit = vec_add(ray->obj_hit->pos, vec_mul(ray->obj_hit->rot, len));
 		ray->normal = vec_normalize(vec_init(center_under_hit, ray->hit_pos));
+	}
+	else if (ray->obj_hit->type == CONE)
+	{
+		t_vec	center_to_hit;
+		t_vec	axis1;
+		t_vec	axis2;
+		t_vec	hit_to_axis1;
+		t_vec	hit_to_axis2;
+		t_vec	real_axis;
+		t_vec	rot_axis;
+		t_vec	hypotenuse;
+		float	hypotenuse_len;
+		t_vec	normal;
+
+		center_to_hit = vec_init(ray->obj_hit->pos, ray->hit_pos); // a
+		axis1 = vec_add(ray->obj_hit->rot, ray->obj_hit->pos);	
+		axis2 = vec_add(vec_opposite(ray->obj_hit->rot), ray->obj_hit->pos);
+		hit_to_axis1 = vec_init(ray->hit_pos, axis1);
+		hit_to_axis2 = vec_init(ray->hit_pos, axis2);
+		if (vec_magnitude(hit_to_axis1) < vec_magnitude(hit_to_axis2))
+			real_axis = axis1;
+		else
+			real_axis = axis2;
+		real_axis = vec_normalize(vec_sub(real_axis, ray->obj_hit->pos));
+		rot_axis = vec_normalize(vec_opposite(vec_crossproduct(vec_normalize(center_to_hit), real_axis)));
+		hypotenuse = vec_normalize(matrix_mult_vec(rotmatrix_axis_angle(rot_axis, degtorad(90)), real_axis));
+		hypotenuse_len = vec_magnitude(center_to_hit) / cosf(degtorad(90) - ray->obj_hit->params.cone.angle);
+		hypotenuse = vec_add(vec_mul(hypotenuse, hypotenuse_len), ray->obj_hit->pos);
+		normal = vec_init(ray->hit_pos, hypotenuse);
+		normal = vec_normalize(normal);
+		ray->normal = normal;
+		// marche pas, faire les derivees partielles de fonctions :D
 	}
 	else
 		ray->normal = ray->obj_hit->rot;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 06:29:58 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 09:14:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +155,14 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 	float		len2;
 	t_vec		v1;
 	t_vec		v2;
+	float		tansquare;
 
 	ray = ray_to_cylinder(ray, cone);
-	a = ray.direction.x * ray.direction.x + ray.direction.y * ray.direction.y- ray.direction.z * ray.direction.z;
-	b = 2 * ray.origin.x * ray.direction.x + 2 * ray.origin.y * ray.direction.y - 2 * ray.origin.z * ray.direction.z;
-	c = ray.origin.x * ray.origin.x + ray.origin.y * ray.origin.y - ray.origin.z * ray.origin.z ;
+	tansquare = tanf(cone->params.cone.angle);
+	tansquare *= tansquare;
+	a = ray.direction.x * ray.direction.x + ray.direction.y * ray.direction.y- ray.direction.z * ray.direction.z * tansquare;
+	b = 2 * ray.origin.x * ray.direction.x + 2 * ray.origin.y * ray.direction.y - 2 * ray.origin.z * ray.direction.z * tansquare;
+	c = ray.origin.x * ray.origin.x + ray.origin.y * ray.origin.y - ray.origin.z * ray.origin.z * tansquare;
 	d = b * b - 4 * a * c;
 	if (a == 0.0 || d <= TOLERANCE)
 		return (INFINITY);

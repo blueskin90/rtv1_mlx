@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 06:09:02 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 09:14:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ typedef struct		s_obj
 	t_matrix		world_to_obj;
 	float			world_to_obj_angle;
 	t_vec			world_to_obj_vec;
+	t_matrix		obj_to_world;
+	float			obj_to_world_angle;
+	t_vec			obj_to_world_vec;
+
 	float			(*intersect)(t_ray, struct s_obj*);
 	t_params		params;
 	struct s_obj	*next;

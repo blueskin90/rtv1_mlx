@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 06:29:57 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 08:36:18 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int					parse_scene(t_env *env)
 	color = color_init_hsl(0xa610ff);
 	scene->objs = sphere_malloc(pos, 5, orientation, color);
 
-	pos = vec_init0(-10, 20, 10);
+	pos = vec_init0(-10, 5, 20);
 	color = color_init_hsl(0x30ff30);
-	scene->objs->next = sphere_malloc(pos, 2, orientation, color);
+	scene->objs->next = sphere_malloc(pos, 1, orientation, color);
 
 	pos = vec_init0(-25, 0, 5);
 	color = color_init_hsl(0x3030ff);
@@ -47,10 +47,9 @@ int					parse_scene(t_env *env)
 	scene->objs->next->next->next->next = cylinder_malloc(pos, 1, orientation, color);
 
 	pos = vec_init0(-10, 5, 20);
-	orientation = vec_init0(-10, 6, 20);
+	orientation = vec_init0(-11, 6, 20);
 	color = color_init_hsl(0xff0000);
-	scene->objs->next->next->next->next->next = cone_malloc(pos, degtorad(25), orientation, color);
-
+	scene->objs->next->next->next->next->next = cone_malloc(pos, degtorad(22), orientation, color);
 
 	orientation = vec_init0(0, -3, 1);
 	pos = vec_init0(5, 10, 5);
@@ -68,12 +67,40 @@ int					parse_scene(t_env *env)
 	return (1);
 }
 
+void				angles_print(void)
+{
+	int				angle;
+
+	angle = -360;
+	while (angle <= 360)
+	{
+		printf("cos : %d degree = %f rad = %f\n", angle, cosf(degtorad(angle)), degtorad(angle));
+		angle +=45;
+	}
+	printf("\n");
+	angle = -360;
+	while (angle <= 360)
+	{
+		printf("sin : %d degree = %f rad = %f\n", angle, sinf(degtorad(angle)), degtorad(angle));
+		angle += 45;
+	}
+	printf("\n");
+	angle = -360;
+	while (angle <= 360)
+	{
+		printf("tan : %d degree = %f rad = %f\n", angle, tanf(degtorad(angle)), degtorad(angle));
+		angle += 45;
+	}
+	printf("\n");
+}
+
 int					main(int ac, char **av)
 {
 	t_env			*env;
 
 	(void)ac;
 	(void)av;
+	angles_print();
 	env = env_init();
 	parse_scene(env);
 //	scene_copy(env);
