@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/19 02:43:36 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 05:39:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ t_vec	vec_down()
 
 void	pos_notify(int x, int y, t_env *env)
 {
+	(void)x;
+	(void)y;
+	(void)env;
 /*	printf("------------------\n");
 	printf("x : %d y : %d\n", x, y);
 ///	ft_printf("xx : %d yy : %d\n", cam_to_world_x((double)x, env), 
@@ -100,9 +103,11 @@ int		keypressed(int key, t_env *env)
 		//freeenv(env);
 		exit(EXIT_SUCCESS);
 	}
-	if (key == X_KEY_A || key == X_KEY_D || key == X_KEY_W || key == X_KEY_S
-			|| key == X_KEY_SPACE || key == X_KEY_L_CTRL)
-		return (move(key, env));
+	(void)key;
+	(void)env;
+//	if (key == X_KEY_A || key == X_KEY_D || key == X_KEY_W || key == X_KEY_S
+//			|| key == X_KEY_SPACE || key == X_KEY_L_CTRL)
+//		return (move(key, env));
 	return 0;
 }
 
@@ -200,6 +205,9 @@ int		mousemove(int x, int y, t_env *env)
 	float	xinc;
 	float	yinc;
 	t_matrix	matrix;
+
+	(void)env;
+	(void)matrix;
 	xinc = 0;
 	yinc = 0;
 	if (oldx == INT_MIN)
@@ -223,8 +231,8 @@ int		mousemove(int x, int y, t_env *env)
 //		env->camera->right = qrot(env->camera->right, q);
 		oldx = x;
 		oldy = y;	
-		world_to_cam2(env->camera, env->scene, env->scene_copy);
-		raytracing(env);
+//		world_to_cam2(env->camera, env->scene, env->scene_copy);
+//		raytracing(env);
 	}
 	return (1);
 }

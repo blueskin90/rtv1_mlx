@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/22 06:35:28 by toliver          ###   ########.fr        #
+#    Updated: 2018/11/25 05:44:54 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ LIBS = ./libs/libft/libft.a \
 
 INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libftg/includes/
 
-FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -g3 -fsanitize=address 
+
+MLXFLAGS = -framework OpenGL -framework AppKit
+
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
@@ -35,7 +38,7 @@ $(NAME): objs $(OBJS)
 	make -C ./libs/mlx
 	make -C ./libs/libft
 	make -C ./libs/libftg
-	gcc -o $(NAME) $(FLAGS) $(MLX) $(LIBS) $(OBJS) $(INCLUDES)
+	gcc -o $(NAME) $(FLAGS) $(MLX) $(MLXFLAGS) $(LIBS) $(OBJS) $(INCLUDES)
 
 objs/%.o: srcs/%.c
 	gcc -o $@ -c $< $(FLAGS) $(INCLUDES)

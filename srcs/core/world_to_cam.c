@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:54:19 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/22 08:09:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 05:43:01 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ int					isequalfloat(float a, float b)
 
 int					world_to_cam2(t_camera *cam, t_scene *scene, t_scene *copy)
 {
+	(void)cam;
+	(void)scene;
+	(void)copy;
 	/*
 	t_obj			*ptr;
 	t_obj			*ptr2;

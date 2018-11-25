@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/22 08:09:43 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 05:42:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ float			get_ratio(t_env *env, t_vec hit_pos, t_vec normal)
 float			get_ambiant(t_ray *ray)
 {
 	(void)ray;
-	return (0.2); // 0.2 * ray->obj_hit->ambient_value;
+	return (0.2); // 0.1 * ray->obj_hit->ambient_value; tweak la value (0.2 trop clair la ou rien n;est allume)
 }
 
 float			get_diffuse(t_ray *ray, t_scene *scene) // reduire cette fonction plus tard
@@ -118,8 +118,7 @@ float			get_specular(t_ray *ray, t_scene *scene, t_camera *cam)
 
 int				colorization(t_ray *ray, t_env *env)
 {
-	float		ratio;
-	t_hsl		color;
+//	t_hsl		color;
 
 	float		ambiant;
 	float		diffuse;

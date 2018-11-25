@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/22 07:06:10 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 06:09:02 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 # include "fail_errors.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-# define TOLERANCE 0.00001
+# define TOLERANCE 0.001
 /*
 ** struct of objects
 */
+
+# include <stdio.h> // a suppr apres !
 
 typedef struct		s_camera
 {
@@ -77,12 +79,14 @@ typedef struct		s_plane
 
 typedef struct		s_cone
 {
+	t_vec			lookat;
 	t_vec			axis;
 	float			angle;
 }					t_cone;
 
 typedef struct		s_cylinder
 {
+	t_vec			lookat;
 	t_vec			axis;
 	float			radius;
 }					t_cylinder;
@@ -118,6 +122,9 @@ typedef struct		s_obj
 	t_vec			zworld;
 	t_color			color;
 	t_type			type;
+	t_matrix		world_to_obj;
+	float			world_to_obj_angle;
+	t_vec			world_to_obj_vec;
 	float			(*intersect)(t_ray, struct s_obj*);
 	t_params		params;
 	struct s_obj	*next;
@@ -186,6 +193,7 @@ void				json_parser(char *file);
 int					light_copy(t_env *env);
 int					sphere_copy(t_env *env);
 int					scene_copy(t_env *env);
+t_obj				*cone_malloc(t_vec p, float angle, t_vec r, t_color c);
 t_obj				*sphere_malloc(t_vec p, float rad, t_vec r, t_color c);
 t_obj				*plane_malloc(t_vec p, t_vec lookat, t_color c);
 t_obj				*cylinder_malloc(t_vec p, float rad, t_vec lookat, t_color c);
@@ -226,6 +234,7 @@ t_ray				reflect_ray(t_ray *ray);
 float				sphere_intersection(t_ray ray, t_obj *sphere);
 float				plane_intersection(t_ray ray, t_obj *plan);
 float				cylinder_intersection(t_ray ray, t_obj *cylinder);
+float				cone_intersection(t_ray ray, t_obj *cone);
 /*
 ** Env initialization and minilibx init
 */

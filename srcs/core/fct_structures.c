@@ -6,11 +6,20 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:01:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/22 03:31:47 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 06:30:00 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+t_matrix		world_to_obj(t_obj *obj)
+{
+	obj->world_to_obj_vec =  vec_normalize(vec_opposite(vec_crossproduct(obj->rot, vec_init0(0,0,1))));
+	obj->world_to_obj_angle = -acos(vec_dotproduct(obj->rot, vec_init0(0, 0, 1)));
+	if (vec_magnitude(obj->world_to_obj_vec) == 0)
+		return (identity_matrix_init());
+	return (rotmatrix_axis_angle(obj->world_to_obj_vec, obj->world_to_obj_angle));
+}
 
 t_obj			*plane_malloc(t_vec p, t_vec lookat, t_color c)
 {
@@ -24,6 +33,7 @@ t_obj			*plane_malloc(t_vec p, t_vec lookat, t_color c)
 	plane->color = c;
 	plane->type = PLANE;
 	plane->intersect = &plane_intersection;
+	plane->world_to_obj = world_to_obj(plane);
 	plane->next = NULL;
 	return (plane);
 }
@@ -39,6 +49,7 @@ t_obj			*sphere_malloc(t_vec p, float rad, t_vec r, t_color c)
 	sphere->color = c;
 	sphere->type = SPHERE;
 	sphere->intersect = &sphere_intersection;
+	sphere->world_to_obj = world_to_obj(sphere);
 	sphere->next = NULL;
 	return (sphere);
 }
@@ -50,13 +61,40 @@ t_obj			*cylinder_malloc(t_vec p, float rad, t_vec lookat, t_color c)
 	cylinder = (t_obj*)ft_malloc(sizeof(t_obj));
 	cylinder->pos = p;
 	cylinder->params.cylinder.radius = rad;
+	cylinder->params.cylinder.lookat = lookat;
 	cylinder->params.cylinder.axis = vec_normalize(vec_init(p, lookat));
 	cylinder->rot = cylinder->params.cylinder.axis;
 	cylinder->color = c;
 	cylinder->type = CYLINDER;
 	cylinder->intersect = &cylinder_intersection;
+	cylinder->world_to_obj = world_to_obj(cylinder);
 	cylinder->next = NULL;
 	return (cylinder);
+}
+
+t_obj			*cone_malloc(t_vec p, float angle, t_vec lookat, t_color c)
+{
+	t_obj		*cone;
+
+	cone = (t_obj*)ft_malloc(sizeof(t_obj));
+	cone->pos = p;
+	cone->params.cone.lookat = lookat;
+	cone->params.cone.angle = angle;// a voir si je degtorad ici ou a linit
+	cone->params.cone.axis = vec_normalize(vec_init(p, lookat));
+	cone->rot = cone->params.cone.axis;
+	cone->color = c;
+	cone->type = CONE;
+	cone->intersect = &cone_intersection;
+	cone->world_to_obj = world_to_obj(cone);
+	printf("cone pos :");
+	print_vec(cone->pos);
+	printf("cone axis :");
+	print_vec(cone->rot);
+	printf("cone world rot axis :");
+	print_vec(cone->world_to_obj_vec);
+	printf("angle = %f\n", radtodeg(cone->world_to_obj_angle));
+	cone->next = NULL;
+	return (cone);
 }
 
 t_vec				get_top_vector(t_vec orientation)

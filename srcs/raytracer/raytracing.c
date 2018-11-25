@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/22 04:58:54 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 05:32:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,26 @@ int				get_normal(t_ray *ray)
 		ray->normal = vec_norm(vec_init(ray->obj_hit->pos, ray->hit_pos));
 	else if (ray->obj_hit->type == PLANE)
 	{
-		ray->normal = vec_norm(ray->obj_hit->params.plane.normal); // prendre celle qui fait le plus face au viewer
+		t_vec	vec1;
+		t_vec	vec2;
+
+		vec1 = vec_add(ray->obj_hit->pos, ray->obj_hit->params.plane.normal);
+		vec2 = vec_add(ray->obj_hit->pos, vec_opposite(ray->obj_hit->params.plane.normal));
+		if (vec_magnitude(vec_init(ray->origin, vec1)) < vec_magnitude(vec_init(ray->origin, vec2)))
+			ray->normal = ray->obj_hit->params.plane.normal; // prendre celle qui fait le plus face au viewer
+		else
+			ray->normal = vec_opposite(ray->obj_hit->params.plane.normal);
 	}
 	else if (ray->obj_hit->type == CYLINDER)
 	{
-		ray->normal = vec_normalize(vec_add(vec_init0(ray->hit_pos.x, 0, ray->hit_pos.z), vec_opposite(vec_init0(ray->obj_hit->pos.x, 0, ray->obj_hit->pos.z))));
+		// valeur absolue dotproduct to_hit . cylinderaxis
+		t_vec	center_to_hit;
+		float	len;
+		t_vec	center_under_hit;
+		center_to_hit = vec_init(ray->obj_hit->pos, ray->hit_pos);
+		len = vec_dotproduct(center_to_hit, ray->obj_hit->rot);
+		center_under_hit = vec_add(ray->obj_hit->pos, vec_mul(ray->obj_hit->rot, len));
+		ray->normal = vec_normalize(vec_init(center_under_hit, ray->hit_pos));
 	}
 	else
 		ray->normal = ray->obj_hit->rot;
@@ -69,7 +84,7 @@ int				shoot_ray(t_ray *ray, t_scene *scene)
 	}
 	if (ray->length != INFINITY)
 	{
-		ray->length -= TOLERANCE;	
+//		ray->length -= TOLERANCE;	
 		ray->hit_pos = vec_add(ray->origin, vec_mul(ray->direction, ray->length));
 		get_normal(ray);
 	}
@@ -84,10 +99,8 @@ int				tracing(t_ray *ray, t_env *env, int x, int y)
 	shoot_ray(ray, env->scene);
 	if (ray->length != INFINITY)
 	{
-//		color = colorization(env, *ray, ray->length, ray->obj_hit);
 		color = colorization(ray, env);
 		mlx_px_to_img(env->win->img, x, y, color);
-//		mlx_px_to_img(env->win->img, x, y, objs_hit->color.rgb.value);
 	}
 	else 
 		mlx_px_to_img(env->win->img, x, y, 0x000000);
@@ -108,17 +121,20 @@ int				raytracing(t_env *env)
 	float		angle;
 	t_matrix	matrix;
 
-	angle = vec_dotproduct(env->camera->orientation, vec_init0(0,0,1));
-	if (!isequalfloat(angle, 0.0) && !isequalfloat(fabs(angle), 1.0))
-		angle = acosf(angle);
-	else if (isequalfloat(angle, 1.0))
-		angle = 0;
-	else if (isequalfloat(angle, -1))
-		angle = degtorad(180);
+	angle = -acos(vec_dotproduct(env->camera->orientation, vec_init0(0,0,1)));
+//	if (!isequalfloat(angle, 0.0) && !isequalfloat(fabs(angle), 1.0))
+//		angle = acosf(angle);
+//	else if (isequalfloat(angle, 1.0))
+//		angle = 0;
+//	else if (isequalfloat(angle, -1))
+//		angle = degtorad(180);
+//	else
+//		angle = degtorad(90);
+	axis = vec_normalize(vec_opposite(vec_crossproduct(env->camera->orientation, vec_init0(0,0,1))));
+	if (vec_magnitude(axis) == 0)
+		matrix = identity_matrix_init();
 	else
-		angle = degtorad(90);
-	axis = vec_crossproduct(env->camera->orientation, vec_init0(0,0,1));
-	matrix = rotmatrix_axis_angle(axis, -angle);
+		matrix = rotmatrix_axis_angle(axis, -angle);
 	a = get_top_left_vec(env->camera, env->win, &xinc, &yinc);
 	y = 0;
 	while (y < env->win->winy)
@@ -127,8 +143,9 @@ int				raytracing(t_env *env)
 		while (x < env->win->winx)
 		{
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
-			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1));
-			ray_vec = matrix_mult_vec(matrix, ray_vec);
+			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1)); // ici remplacer le 1 par la distance du viewplane
+			if (angle != NAN)
+				ray_vec = matrix_mult_vec(matrix, ray_vec);
 			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(&ray, env, x, y);
 			// ICI COULEUR

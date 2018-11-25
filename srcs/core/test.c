@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 19:03:22 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/18 17:46:27 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/25 05:41:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int					test(void)
 	t_vec vtcZunit = vec_init(vtx0, vtxZ);
 	t_vec vtc0unit = vec_init(vtx0, vtx0);
 
+	(void)vtc0unit;
 	printf("x = %f, y = %f, z = %f\n", vtcXunit.x, vtcXunit.y, vtcXunit.z);
 	printf("x = %f, y = %f, z = %f\n", vtcYunit.x, vtcYunit.y, vtcYunit.z);
 	printf("x = %f, y = %f, z = %f\n", vtcZunit.x, vtcZunit.y, vtcZunit.z);

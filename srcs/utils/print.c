@@ -16,10 +16,11 @@
 // ATTENTIOB VRAI PRINTF
 void			print_matrix(t_matrix m)
 {
-	printf("| %5f %5f %5f %5f |", m.matrix[0][0],m.matrix[0][1],m.matrix[0][2],m.matrix[0][3]);
-	printf("| %5f %5f %5f %5f |", m.matrix[1][0],m.matrix[1][1],m.matrix[1][2],m.matrix[1][3]);
-	printf("| %5f %5f %5f %5f |", m.matrix[2][0],m.matrix[2][1],m.matrix[2][2],m.matrix[2][3]);
-	printf("| %5f %5f %5f %5f |", m.matrix[3][0],m.matrix[3][1],m.matrix[3][2],m.matrix[3][3]);
+	printf("| %5f %5f %5f %5f |\n", m.matrix[0][0],m.matrix[0][1],m.matrix[0][2],m.matrix[0][3]);
+	printf("| %5f %5f %5f %5f |\n", m.matrix[1][0],m.matrix[1][1],m.matrix[1][2],m.matrix[1][3]);
+	printf("| %5f %5f %5f %5f |\n", m.matrix[2][0],m.matrix[2][1],m.matrix[2][2],m.matrix[2][3]);
+	printf("| %5f %5f %5f %5f |\n", m.matrix[3][0],m.matrix[3][1],m.matrix[3][2],m.matrix[3][3]);
+	printf("\n");
 }
 
 int					print_objets(t_scene *scene)
