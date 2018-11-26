@@ -17,7 +17,10 @@ int			recognize_type(t_elem *current, char **line, int *i)
 	int	type_found;
 
 	if ((type_found = json_recognize_number(current, *line, i)) != 0)
+	{
+		printf("position of string : %s\n", &(*line)[*i]);
 		return (type_found);
+	}
 	else if ((type_found = json_recognize_string(current, *line, i)) != 0)
 		return (type_found);
 	else if ((type_found = json_recognize_bool(current, *line, i)) != 0)

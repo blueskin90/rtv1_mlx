@@ -72,7 +72,7 @@ int		json_recognize_number(t_elem *current, char *line, int *i)
 		free(tmp);
 		current->value.inty = x;
 		current->type = INTEGER;
-		printf("ELEM IS INTEGER NUMBER : %d\n", x);
+		printf("ELEM IS INTEGER NUMBER : %d len : %d s : %s\n", x, len, &line[*i]);
 		*i = *i + len;
 		return (current->type);
 	}

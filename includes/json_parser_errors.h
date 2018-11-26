@@ -17,6 +17,7 @@
 */
 # define FD_FAIL "Could not open file\n"
 # define EMPTY_FILE	"file is empty\n"
+# define END_OF_FILE_BAD_FORMAT "Too much caracters at end of file\n"
 
 /*
 ** ERROR PARSING

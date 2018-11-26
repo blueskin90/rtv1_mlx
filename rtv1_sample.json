@@ -1,0 +1,43 @@
+{
+	"scene" : {
+		"objs" : {
+			"sphere" : [],
+			"cylinder" : [],
+			"plane" : [],
+			"cone" : []
+		},
+		"light" : [
+
+		]
+	},
+	"camera" : [ 
+		{
+		"pos" : {
+			"x" : 0.0,
+			"y" : 0.0,
+			"z" : 0.0
+		},
+		"lookat" : {
+			"x" : 0.0,
+			"y" : 0.0,
+			"z" : 0.0
+		},
+		"orientation" : {
+
+
+		},
+		"top" : {
+
+
+		},
+		"right" : {
+
+
+		},
+		"rotx" : 0.0,
+		"roty" : 0.0,
+		"rotz" : 0.0,
+		"fov" : 0.0
+		} 
+	]
+}

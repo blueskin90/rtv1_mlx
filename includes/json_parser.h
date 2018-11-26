@@ -40,7 +40,7 @@ typedef union		s_value
 	bool			booly; // ok
 	char			*stringy; // ok
 	void			*arrayi;
-	void			*objecty;
+	void			*objecty;// ok
 	int				nully; // ok
 }					u_value;
 

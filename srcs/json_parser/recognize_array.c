@@ -17,7 +17,9 @@ int			json_recognize_array(t_elem *current, char **line, int *i, int fd)
 {
 	t_elem	*child;
 	t_elem	*previous;
+	char	first_elem;
 
+	first_elem = 1;
 	child = NULL;
 	previous = NULL;
 	printf("ENTERING ARRAY PARSER i : %d\n", *i);
@@ -30,7 +32,7 @@ int			json_recognize_array(t_elem *current, char **line, int *i, int fd)
 	current->type = ARRAY;
 	if ((ignore_tab_and_spaces(line, i, fd) != 1))
 			ft_error(UNEXPECTED_END_OF_FILE);
-	while ((*line)[*i] == ',' || !(current->value.arrayi))
+	while ((*line)[*i] == ',' || (first_elem && (*line)[*i] != ']'))
 	{
 		if ((*line)[*i] == ',') 
 			*i = *i + 1;
@@ -52,6 +54,7 @@ int			json_recognize_array(t_elem *current, char **line, int *i, int fd)
 	printf("ARRAY  OUT  : %s i : %d\n", &((*line)[*i]), *i);
 	if ((*line)[*i] != ']')
 		ft_error(ARRAY_BAD_FORMAT);
+	current->closed = 1;
 	*i = *i + 1;
 	return (current->type);
 }
