@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/27 17:51:48 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/27 23:01:48 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct		s_key
 	struct s_key	*child_key;
 	struct s_key	*bro_key;
 }					t_key;
+
+
 
 /*
 **	TO DELETE
