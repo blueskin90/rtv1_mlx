@@ -1,14 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 17:16:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/23 02:45:49 by cvermand         ###   ########.fr       */
+/*   Created: 2018/11/23 02:45:29 by cvermand          #+#    #+#             */
+/*   Updated: 2018/11/23 02:45:44 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "libft.h"
+
+void				*ft_malloc(unsigned int size)
+{
+	void			*ptr;
+
+	if (!(ptr = malloc(size)))
+		ft_error(MALLOC_FAIL);
+	ft_bzero(ptr, size);
+	return (ptr);
+}
 

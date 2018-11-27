@@ -1,14 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   libft_errors.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 17:16:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/23 02:45:49 by cvermand         ###   ########.fr       */
+/*   Created: 2018/11/23 02:49:49 by cvermand          #+#    #+#             */
+/*   Updated: 2018/11/23 02:50:28 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#ifndef LIBFT_ERRORS_H
+# define LIBFT_ERRORS_H
 
+# define MALLOC_FAIL "Malloc failed\n"
+#endif

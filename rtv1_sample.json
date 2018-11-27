@@ -1,0 +1,336 @@
+[
+	 {
+		"name" : "ma premiere scene",
+		"objects" : {
+			"sphere" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "sphere",
+					"radius" : 0.0
+				}
+			],
+			"cylinder" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "cylinder",
+					"radius" : 0.0,
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					}
+				}
+			],
+			"plane" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "plane",
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					}
+				}
+			],
+			"cone" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "cone",
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					}
+				}
+			]
+		},
+		"lights" : [
+			{
+				"orientation" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"color" : {
+					"r" : 0,
+					"g" : 0,
+					"b" : 0,
+					"hex" : "0xffffff"
+				},
+				"intensity" : 0.0
+			}
+		],
+		"cameras" : [ 
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"lookat" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"orientation" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"angle" : 0.0
+			}
+		]
+	 },
+	{
+		"name" : "ma deuxieme scene",
+		"objects" : {
+			"sphere" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "sphere",
+					"radius" : 0.0
+				}
+			],
+			"cylinder" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "cylinder",
+					"radius" : 0.0,
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					}
+				}
+			],
+			"plane" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "plane",
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					}
+				}
+			],
+			"cone" : [
+				{
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"orientation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 0,
+						"g" : 0,
+						"b" : 0,
+						"hex" : "0xffffff"
+					},
+					"type" : "cone",
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					}
+				}
+			]
+		},
+		"lights" : [
+			{
+				"orientation" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"color" : {
+					"r" : 0,
+					"g" : 0,
+					"b" : 0,
+					"hex" : "0xffffff"
+				},
+				"intensity" : 0.0
+			}
+		],
+		"cameras" : [ 
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"lookat" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"orientation" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"angle" : 0.0
+			}
+		]
+	}
+]

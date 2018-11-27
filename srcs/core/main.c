@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 08:36:18 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/27 17:12:55 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ int					main(int ac, char **av)
 	t_env			*env;
 
 	(void)ac;
-	(void)av;
+	// rajouter test AC
 	angles_print();
 	env = env_init();
 	parse_scene(env);
-//	scene_copy(env);
+	json_parser(av[1]);
 	raytracing(env);
 	events_listener(env);
 	mlx_loop(env->mlx);

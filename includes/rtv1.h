@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 09:14:16 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/27 21:47:47 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libftg.h"
+# include "json_parser.h"
 # include "keys.h"
 # include <limits.h>
-# include "fail_errors.h"
+# include "mlx_errors.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.001
@@ -138,6 +139,7 @@ typedef struct		s_scene
 {
 	t_obj			*objs;
 	t_light			*light;
+	struct s_scene	*next;
 }					t_scene;
 
 typedef struct		s_img
@@ -178,7 +180,10 @@ int					is_equal_vector(t_vec a, t_vec b);
 int					is_opposite_vector(t_vec a, t_vec b);
 t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
 int					isequalfloat(float a, float b);
-
+/*
+** PARSING
+*/
+t_env				*rtv1_parsing(t_elem *elem, t_env *env);
 /*
 ** Event Listeners
 */
@@ -187,10 +192,6 @@ void				events_listener(t_env *env);
 ** TO DELETE
 */
 int					test(void);
-/*
-** JSON PARSER
-*/
-void				json_parser(char *file);
 /*
 ** STRUCTURES 
 */
@@ -248,11 +249,5 @@ void				ft_error(char *error);
 t_win				*win_init(int width, int height, char *name, void *mlx);
 t_img				*img_init(int width, int height, void *mlx);
 
-/*
-** Generic functions
-*/
-
-void				*ft_malloc(unsigned int size);
-void				ft_error(char *str);
 
 #endif
