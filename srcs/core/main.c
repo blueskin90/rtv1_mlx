@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 08:36:18 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/28 22:50:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,136 @@
 float g_smallest;
 float g_biggest;
 
+int					obj_add(t_scene *scene, t_obj *obj)
+{
+	t_obj			*ptr;
+
+	ptr = scene->objs;
+	if (ptr)
+	{
+		while (ptr->next)
+			ptr = ptr->next;
+		ptr->next = obj;
+	}
+	else
+		scene->objs = obj;
+	return (1);
+}
+
 int					parse_scene(t_env *env)
 {
 	t_scene			*scene;
 	t_vec			pos;
 	t_vec			orientation;
 	t_color			color;
+	t_obj			*objptr;
 
 	scene = (t_scene*)ft_malloc(sizeof(t_scene));
+	ft_bzero(scene, sizeof(t_scene));
 
 	pos = vec_init0(0, 0, 5);
 	orientation = vec_init0(0, 0, 1);
 	color = color_init_hsl(0xa610ff);
-	scene->objs = sphere_malloc(pos, 5, orientation, color);
+//	objptr = sphere_malloc(pos, 5, orientation, color);
+//	scene->objs = objptr;
 
 	pos = vec_init0(-10, 5, 20);
 	color = color_init_hsl(0x30ff30);
-	scene->objs->next = sphere_malloc(pos, 1, orientation, color);
+//	objptr = sphere_malloc(pos, 1, orientation, color);
+//	obj_add(scene, objptr);
 
-	pos = vec_init0(-25, 0, 5);
-	color = color_init_hsl(0x3030ff);
-	scene->objs->next->next = sphere_malloc(pos, 8, orientation, color);
+	pos = vec_init0(0, 0, 0);
+	color = color_init_hsl(0x8080ff);
+	objptr = sphere_malloc(pos, 1, orientation, color);
+	obj_add(scene, objptr);
 
 	color = color_init_hsl(0xaabbcc);
-	orientation = vec_init0(0, 1, 5);
-	pos = vec_init0(0, 0, 5);
-	scene->objs->next->next->next = plane_malloc(pos, orientation, color);
+	orientation = vec_init0(0, -4, 0);
+	pos = vec_init0(0, -5, 0);
+	objptr = plane_malloc(pos, orientation, color);
+//	scene->objs = objptr;
+	obj_add(scene, objptr);
 
-	orientation = vec_init0(7, 7, 8);
-	pos = vec_init0(6, 6, 5);
+	orientation = vec_init0(6, 6, 6);
+	pos = vec_init0(5, 5, 5);
 	color = color_init_hsl(0xaaff00);
-	scene->objs->next->next->next->next = cylinder_malloc(pos, 1, orientation, color);
+	objptr = cylinder_malloc(pos, 1, orientation, color);
+//	obj_add(scene, objptr);
 
-	pos = vec_init0(-10, 5, 20);
-	orientation = vec_init0(-11, 6, 20);
-	color = color_init_hsl(0xff0000);
-	scene->objs->next->next->next->next->next = cone_malloc(pos, degtorad(22), orientation, color);
+
+	pos = vec_init0(-10, 0, 20);
+	orientation = vec_init0(-11, 1, 21);
+	color = color_init_hsl(0xff5050);
+	objptr = cone_malloc(pos, degtorad(22), orientation, color);
+	obj_add(scene, objptr);
+
+	/*
+	pos = vec_init0(10, 0, -20);
+	orientation = vec_init0(-1, 1, 1);
+	color = color_init_hsl(0xff3030);
+	objptr = cone_malloc(pos, degtorad(22), orientation, color);
+	obj_add(scene, objptr);
+*/
+	pos = vec_init0(-5, 25, -15);
+	orientation = vec_init0(0, 1, 0);
+	color = color_init_hsl(0xffffff);
+	objptr = cone_malloc(pos, degtorad(22), orientation, color);
+//	obj_add(scene, objptr);
+
+	pos = vec_init0(5, 25, -15);
+	orientation = vec_init0(0, 1, 0);
+	color = color_init_hsl(0xffffff);
+	objptr = cone_malloc(pos, degtorad(22), orientation, color);
+//	obj_add(scene, objptr);
+
+
+	color = color_init_hsl(0xaabbcc);
+	orientation = vec_init0(0, 50, 0);
+	pos = vec_init0(0, 51, 0);
+	objptr = plane_malloc(pos, orientation, color);
+	obj_add(scene, objptr);
+
+	color = color_init_hsl(0xaabbcc);
+	orientation = vec_init0(49, 0, 0);
+	pos = vec_init0(50, 0, 0);
+	objptr = plane_malloc(pos, orientation, color);
+	obj_add(scene, objptr);
+
+	color = color_init_hsl(0xaabbcc);
+	orientation = vec_init0(-49, 0, 0);
+	pos = vec_init0(-50, 0, 0);
+	objptr = plane_malloc(pos, orientation, color);
+	obj_add(scene, objptr);
+
+	color = color_init_hsl(0xaabbcc);
+	orientation = vec_init0(0, 0, 50);
+	pos = vec_init0(0, 0, 49);
+	objptr = plane_malloc(pos, orientation, color);
+	obj_add(scene, objptr);
+	
+	pos = vec_init0(-5, 25, -10);
+	color = color_init_hsl(0xffffff);
+	objptr = sphere_malloc(pos, 1, orientation, color);
+	obj_add(scene, objptr);
+
+	pos = vec_init0(5, 25, -10);
+	color = color_init_hsl(0xffffff);
+	objptr = sphere_malloc(pos, 1, orientation, color);
+	obj_add(scene, objptr);
+
 
 	orientation = vec_init0(0, -3, 1);
-	pos = vec_init0(5, 10, 5);
+	pos = vec_init0(5, 25, -15);
 	color = color_init_hsl(0xffffff);
 	scene->light = light_malloc(pos, color, 0.6);
 
-	pos = vec_init0(-5, 10, 8);
+	pos = vec_init0(-5, 25, -15);
+	color = color_init_hsl(0xffffff);
 	scene->light->next = light_malloc(pos, color, 0.9);
 
 	env->scene = scene;
 
-	pos = vec_init0(0, 15, -50);
+	pos = vec_init0(0, 15, -100);
 	orientation = vec_init0(0, 0, 5);
 	env->camera = camera_malloc(pos, orientation, 60.0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/25 05:42:29 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/28 19:40:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ float			get_diffuse(t_ray *ray, t_scene *scene) // reduire cette fonction plus t
 		to_light = vec_norm(vec_init(ray->hit_pos, ptr->pos));
 		to_light_ray = ray_init(ray->hit_pos, to_light);
 		shoot_ray(&to_light_ray, scene);
-		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos))))
-		{
+		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos)) && to_light_ray.obj_hit->color.rgb.value != 0xffffff))
+		{// enlever le x0fffff
 			dotproduct = vec_dotproduct(ray->normal, to_light);
 			dotproduct = (dotproduct >= 0) ? dotproduct : 0;
 			actual += ptr->intensity * dotproduct;
@@ -124,6 +124,8 @@ int				colorization(t_ray *ray, t_env *env)
 	float		diffuse;
 	float		specular;
 
+	if (ray->obj_hit->color.rgb.value == 0xffffff)
+		return (0xffffff); // this = display light, to delete !
 //	color = ray->obj_hit->color.type.hsl;
 	ambiant = get_ambiant(ray);
 	diffuse = get_diffuse(ray, env->scene);

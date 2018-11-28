@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 09:14:16 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/28 18:33:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "fail_errors.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-# define TOLERANCE 0.001
+# define TOLERANCE 0.01
 /*
 ** struct of objects
 */
