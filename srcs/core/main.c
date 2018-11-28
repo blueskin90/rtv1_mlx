@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 22:50:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/29 00:06:09 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,23 @@ int					parse_scene(t_env *env)
 	objptr = cylinder_malloc(pos, 1, orientation, color);
 //	obj_add(scene, objptr);
 
-
-	pos = vec_init0(-10, 0, 20);
-	orientation = vec_init0(-11, 1, 21);
+	pos = vec_init0(-50, -5, 49);
+	orientation = vec_init0(-51, -4, 50);
 	color = color_init_hsl(0xff5050);
 	objptr = cone_malloc(pos, degtorad(22), orientation, color);
 	obj_add(scene, objptr);
 
+	pos = vec_init0(-5, 25, -15);
+	orientation = vec_init0(-6, 26, -14);
+	color = color_init_hsl(0xffffff);
+	objptr = cone_malloc(pos, degtorad(22), orientation, color);
+//	obj_add(scene, objptr);
+
+	pos = vec_init0(5, 23, -15);
+	orientation = vec_init0(4, 23, -14);
+	color = color_init_hsl(0xffffff);
+	objptr = cone_malloc(pos, degtorad(22), orientation, color);
+//	obj_add(scene, objptr);
 	/*
 	pos = vec_init0(10, 0, -20);
 	orientation = vec_init0(-1, 1, 1);
@@ -124,26 +134,26 @@ int					parse_scene(t_env *env)
 	pos = vec_init0(-5, 25, -10);
 	color = color_init_hsl(0xffffff);
 	objptr = sphere_malloc(pos, 1, orientation, color);
-	obj_add(scene, objptr);
+	//obj_add(scene, objptr);
 
 	pos = vec_init0(5, 25, -10);
 	color = color_init_hsl(0xffffff);
 	objptr = sphere_malloc(pos, 1, orientation, color);
-	obj_add(scene, objptr);
+	//obj_add(scene, objptr);
 
 
 	orientation = vec_init0(0, -3, 1);
-	pos = vec_init0(5, 25, -15);
+	pos = vec_init0(15, 25, -15);
 	color = color_init_hsl(0xffffff);
 	scene->light = light_malloc(pos, color, 0.6);
 
-	pos = vec_init0(-5, 25, -15);
+	pos = vec_init0(-15, 25, -15);
 	color = color_init_hsl(0xffffff);
 	scene->light->next = light_malloc(pos, color, 0.9);
 
 	env->scene = scene;
 
-	pos = vec_init0(0, 15, -100);
+	pos = vec_init0(0, 15, -150);
 	orientation = vec_init0(0, 0, 5);
 	env->camera = camera_malloc(pos, orientation, 60.0);
 	return (1);
