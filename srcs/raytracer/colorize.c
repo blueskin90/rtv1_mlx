@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/28 19:40:43 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/29 00:00:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,30 @@ int				colorization(t_ray *ray, t_env *env)
 	float		diffuse;
 	float		specular;
 
-	if (ray->obj_hit->color.rgb.value == 0xffffff)
-		return (0xffffff); // this = display light, to delete !
+	t_vec		to_light;
+	t_vec		to_light_dir;
+	t_ray		to_light_ray;
+	float		lenray;
+	t_light		*ptr;
+
+//	if (ray->obj_hit->color.rgb.value == 0xffffff)
+//		return (0xffffff); // this = display light, to delete !
+
+	ptr = env->scene->light;
+	while (ptr)
+	{
+		to_light_dir = vec_norm(vec_init(ray->hit_pos, ptr->pos));
+		to_light = ray->hit_pos;
+		to_light_ray = ray_init(to_light, to_light_dir);
+		shoot_ray(&to_light_ray, env->scene);
+		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos))))
+		{
+			return (ray->obj_hit->color.rgb.value);
+		}
+		ptr = ptr->next;
+	}
+	return (0);
+
 //	color = ray->obj_hit->color.type.hsl;
 	ambiant = get_ambiant(ray);
 	diffuse = get_diffuse(ray, env->scene);
@@ -144,6 +166,37 @@ int				colorization(t_ray *ray, t_env *env)
 	return (get_rgb(rgb.rgb.r, rgb.rgb.g, rgb.rgb.b));
 //	return (hsl_to_rgb(color));
 }
+/* WORKING !!
+int				colorization(t_ray *ray, t_env *env)
+{
+//	t_hsl		color;
+
+	float		ambiant;
+	float		diffuse;
+	float		specular;
+
+	if (ray->obj_hit->color.rgb.value == 0xffffff)
+		return (0xffffff); // this = display light, to delete !
+
+//	color = ray->obj_hit->color.type.hsl;
+	ambiant = get_ambiant(ray);
+	diffuse = get_diffuse(ray, env->scene);
+	specular = get_specular(ray, env->scene, env->camera);
+//	color.l *= (ambiant + diffuse + specular);
+//	color.l = (color.l > 1) ? 1 : color.l;
+
+	t_color		rgb;
+	rgb = ray->obj_hit->color;
+	rgb.rgb.r *= (ambiant + diffuse + specular);
+	rgb.rgb.r = (rgb.rgb.r > 255) ? 255 : rgb.rgb.r;
+	rgb.rgb.g *= (ambiant + diffuse + specular);
+	rgb.rgb.g = (rgb.rgb.g > 255) ? 255 : rgb.rgb.g;
+	rgb.rgb.b *= (ambiant + diffuse + specular);
+	rgb.rgb.b = (rgb.rgb.b > 255) ? 255 : rgb.rgb.b;
+	return (get_rgb(rgb.rgb.r, rgb.rgb.g, rgb.rgb.b));
+//	return (hsl_to_rgb(color));
+}
+*/
 /*
 int		colorization(t_env *env, t_ray ray, float nearest, t_obj *obj_hit)
 {

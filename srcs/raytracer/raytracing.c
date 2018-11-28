@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 18:43:03 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/28 23:00:20 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int				raytracing(t_env *env)
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
 			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1)); // ici remplacer le 1 par la distance du viewplane
 			if (angle != NAN)
-				ray_vec = matrix_mult_vec(matrix, ray_vec);
+				ray_vec = vec_normalize(matrix_mult_vec(matrix, ray_vec));
 			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(&ray, env, x, y);
 			// ICI COULEUR

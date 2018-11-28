@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 22:50:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/29 00:00:56 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,12 @@ int					parse_scene(t_env *env)
 	pos = vec_init0(-5, 25, -10);
 	color = color_init_hsl(0xffffff);
 	objptr = sphere_malloc(pos, 1, orientation, color);
-	obj_add(scene, objptr);
+//	obj_add(scene, objptr);
 
 	pos = vec_init0(5, 25, -10);
 	color = color_init_hsl(0xffffff);
 	objptr = sphere_malloc(pos, 1, orientation, color);
-	obj_add(scene, objptr);
+//	obj_add(scene, objptr);
 
 
 	orientation = vec_init0(0, -3, 1);
