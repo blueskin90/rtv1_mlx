@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 00:36:25 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/23 03:17:25 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/28 19:45:54 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	show_elem(t_elem *elem)
 		printf("%c--------\n",  '-');
 	}
 }
-static void	show_one_elem(t_elem *elem, int padding)
+void	show_one_elem(t_elem *elem, int padding)
 {
 	t_elem	*bro;
 

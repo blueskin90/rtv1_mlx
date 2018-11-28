@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/27 17:12:55 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/28 22:11:57 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,16 @@ void				angles_print(void)
 int					main(int ac, char **av)
 {
 	t_env			*env;
+	t_elem			*json;
 
 	(void)ac;
 	// rajouter test AC
 	angles_print();
 	env = env_init();
 	parse_scene(env);
-	json_parser(av[1]);
+	json = json_parser(av[1]);
+	env = rtv1_parsing(json, env);
+	printf("%-5d\n", 123456);
 	raytracing(env);
 	events_listener(env);
 	mlx_loop(env->mlx);

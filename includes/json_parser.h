@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/27 23:01:48 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/28 19:46:03 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,6 @@ typedef struct		s_elem
 	struct s_elem	*next;
 }					t_elem;
 
-typedef struct		s_key
-{
-	char			*name;
-	e_type			type;
-	bool			required;
-	void			*defaulty;
-	struct s_key	*child_key;
-	struct s_key	*bro_key;
-}					t_key;
 
 
 
@@ -70,6 +61,7 @@ typedef struct		s_key
 **	TO DELETE
 */
 void		show_elem(t_elem *elem);
+void		show_one_elem(t_elem *elem, int padding);
 void		show_every_elem(t_elem *elem, int padding);
 
 /*
@@ -88,6 +80,8 @@ char		end_of_value(char c);
 ** Elem structures
 */
 t_elem		*create_elem();
+u_value		set_value_of_type(e_type type, void *defaulty);
+t_elem		*create_init_elem(char *key, e_type type, void *value);
 /*
 **	Recognize elements
 */

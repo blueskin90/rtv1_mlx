@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/27 21:47:47 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/11/28 19:38:41 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,16 @@ typedef struct		s_env
 	t_scene			*scene_copy;
 	t_camera		*camera;
 }					t_env;
+
+typedef struct		s_key
+{
+	char			*name;
+	e_type			type;
+	bool			required;
+	u_value			defaulty;
+	struct s_key	*child_key;
+	struct s_key	*next;
+}					t_key;
 /*
 ** TMP
 */
@@ -184,6 +194,13 @@ int					isequalfloat(float a, float b);
 ** PARSING
 */
 t_env				*rtv1_parsing(t_elem *elem, t_env *env);
+t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
+t_elem				*default_vector_values();
+t_elem				*default_vector_object(char *name);
+t_key				*basic_object_keys(char *name);
+t_key				*basic_vector_keys();
+
+
 /*
 ** Event Listeners
 */
@@ -191,6 +208,7 @@ void				events_listener(t_env *env);
 /*
 ** TO DELETE
 */
+void				print_keys(t_key *key, int padding);
 int					test(void);
 /*
 ** STRUCTURES 
