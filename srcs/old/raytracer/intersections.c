@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 22:51:38 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/01 15:32:45 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int				quadratic(float a, float b, float c, float s[2])
 	return (2);
 }
 */
+
 t_ray			ray_to_cylinder(t_ray ray, t_obj *cyl)
 {
 	t_ray		new_ray;

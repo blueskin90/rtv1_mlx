@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/11/25 05:44:54 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/01 17:15:00 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,13 @@ LIBS = ./libs/libft/libft.a \
 
 INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libftg/includes/
 
-FLAGS = -Wall -Wextra -g3 -fsanitize=address 
+FLAGS = -Wall -Wextra -g3 -fsanitize=address -Ofast 
 
 MLXFLAGS = -framework OpenGL -framework AppKit
 
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
-	   $(addprefix utils/, print) \
-	   $(addprefix json_parser/, json_parser) \
-	   $(addprefix hooks/, event_listener) \
-	   $(addprefix raytracer/, raytracing intersections colorize) \
+	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections colorize) \
 		))
 
 all: $(NAME)
@@ -45,10 +41,6 @@ objs/%.o: srcs/%.c
 
 objs:
 	mkdir -p objs/core
-	mkdir objs/raytracer
-	mkdir objs/hooks
-	mkdir objs/utils/
-	mkdir objs/json_parser/
 
 clean:
 #	make -C ./libs/mlx clean

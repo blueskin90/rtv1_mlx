@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/29 00:00:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/01 17:09:20 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ float			get_diffuse(t_ray *ray, t_scene *scene) // reduire cette fonction plus t
 			dotproduct = (dotproduct >= 0) ? dotproduct : 0;
 			actual += ptr->intensity * dotproduct;
 		}
+		else
+			printf("%x\n", to_light_ray.obj_hit->color.rgb.value);
 		total += ptr->intensity;
 		ptr = ptr->next;
 	}
@@ -133,7 +135,7 @@ int				colorization(t_ray *ray, t_env *env)
 //	if (ray->obj_hit->color.rgb.value == 0xffffff)
 //		return (0xffffff); // this = display light, to delete !
 
-	ptr = env->scene->light;
+	ptr = env->scene->light->next;
 	while (ptr)
 	{
 		to_light_dir = vec_norm(vec_init(ray->hit_pos, ptr->pos));
@@ -144,7 +146,8 @@ int				colorization(t_ray *ray, t_env *env)
 		{
 			return (ray->obj_hit->color.rgb.value);
 		}
-		ptr = ptr->next;
+//		ptr = ptr->next->next;
+		ptr = NULL;
 	}
 	return (0);
 
@@ -166,7 +169,9 @@ int				colorization(t_ray *ray, t_env *env)
 	return (get_rgb(rgb.rgb.r, rgb.rgb.g, rgb.rgb.b));
 //	return (hsl_to_rgb(color));
 }
-/* WORKING !!
+
+
+/*
 int				colorization(t_ray *ray, t_env *env)
 {
 //	t_hsl		color;

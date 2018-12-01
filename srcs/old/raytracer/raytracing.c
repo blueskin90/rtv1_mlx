@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 23:00:20 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/01 10:04:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int				tracing(t_ray *ray, t_env *env, int x, int y)
 	shoot_ray(ray, env->scene);
 	if (ray->length != INFINITY)
 	{
+//		color = ray->obj_hit->color.rgb.value;
 		color = colorization(ray, env);
 		mlx_px_to_img(env->win->img, x, y, color);
 	}

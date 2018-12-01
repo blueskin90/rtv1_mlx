@@ -6,19 +6,18 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:16:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/01 07:04:57 by toliver          ###   ########.fr       */
+/*   Updated: 2018/11/05 18:21:27 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void				*ft_malloc(size_t size)
+void				*ft_malloc(unsigned int size)
 {
 	void			*ptr;
 
 	if (!(ptr = malloc(size)))
 		ft_error(MALLOC_FAIL);
-	ft_bzero(ptr, size);
 	return (ptr);
 }
 
