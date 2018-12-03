@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 07:14:06 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 11:49:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@
  *
  *
 */
+
+// STRUCTURE EN TEST !!
+typedef struct		s_RGB
+{
+	float			r;
+	float			g;
+	float			b;
+	int				value;
+}					t_RGB;
+
+
 
 typedef enum		e_type
 {
@@ -93,7 +104,7 @@ typedef struct		s_ray
 {
 	t_vec			pos;
 	t_vec			dir;
-	t_color			color;
+	t_RGB			color;
 	t_vec			normal;
 	t_vec			hit_pos;
 	float			length;
@@ -105,7 +116,7 @@ typedef struct		s_obj
 	t_vec			pos;
 	t_vec			dir;
 	t_vec			up;
-	t_color			color;
+	t_RGB			color;
 	t_matrix		world_to_obj;
 	t_matrix		obj_to_world;
 	
@@ -154,6 +165,7 @@ typedef struct		s_env
 
 t_ray				ray_to_obj(t_ray ray, t_obj *obj);
 t_ray				ray_init(t_vec pos, t_vec dir);
+t_ray				ray_init_lookat(t_vec pos, t_vec lookat);
 
 void				shoot_ray(t_ray *ray);
 void				get_normal(t_ray *ray);
@@ -161,13 +173,6 @@ int					is_equal_float(float a, float b);
 int					is_equal_vec(t_vec a, t_vec b);
 int					is_opposite_vec(t_vec a, t_vec b);
 float				sphere_radius(t_obj *sphere);
-
-float				get_ratio(t_vec hit_pos, t_vec normal);
-float				get_ambiant(t_ray *ray);
-float				get_diffuse(t_ray *ray, t_scene *scene);
-float				get_speculat(t_ray *ray, t_scene *scene, t_camera *cam);
-t_ray				reflect_ray(t_ray *ray);
-int					colorization(t_ray *ray, t_env *env);
 
 /*
 ** INIT FUNCTIONS
@@ -181,9 +186,12 @@ t_img				*img_init(int width, int height, void *mlx);
 ** BASIC UTILS FUNCTIONS
 */
 
+float				maxf(float a, float b);
+float				minf(float a, float b);
 void				*ft_malloc(size_t size);
 void				ft_error(char *str);
-
+int					clampi(int a, int inf_limit, int sup_limit);
+float				clampf(float a, float inf_limit, float sup_limit);
 /*
 ** SINGLETON FUNCTIONS
 */
@@ -216,8 +224,8 @@ void				cursor_mode_set(int value);
 ** OBJET MALLOC
 */
 
-t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_color c);
-t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_color c);
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
 void				obj_sphere_params(t_obj *obj, float radius);
 void				obj_cylinder_params(t_obj *obj, float radius);
 void				obj_cone_params(t_obj *obj, float angle);
@@ -233,8 +241,13 @@ void				renderer_malloc(t_obj *camera);
 void				raytracing(void);
 void				raytracing_lights(void);
 void				shoot_ray(t_ray *ray);
+void				shoot_ray_lights(t_ray *ray);
 void				get_normal(t_ray *ray);
-void				printing(void);
+t_ray				reflect_ray(t_ray *ray);
+t_RGB				get_ambiant(t_ray *ray);
+t_RGB				get_specular(t_ray *ray, t_ray to_light, t_obj light);
+t_RGB				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
+
 
 /*
 ** INTERSECTION FUNCTIONS
@@ -286,13 +299,25 @@ void				print_final_ray_color_mode(void);
 void				print_obj_hit_color_length_mode(void);
 void				print_obj_hit_color_mode(void);
 
+/*
+** COLOR HANDLING FUNCTIONS
+*/
+
+t_RGB				rgb_init(int value);
+t_RGB				rgb_add(t_RGB a, t_RGB b);
+t_RGB				rgb_mul(t_RGB a, float scalar);
+t_RGB				rgb_mul_rgb(t_RGB a, t_RGB b);
+void				rgb_updatevalue(t_RGB *rgb);
+
 /* 
 ** DEBUG FUNCTIONS
 */
 
 void				print_to_light_infos(t_ray *ray);
 void				print_obj_hit_infos(t_ray *ray);
+void				print_lightobj_hit_infos(t_ray *ray);
 void				display_cursor_infos(void);
+void				display_cursor_lightinfos(t_ray *ray);
 void				print_angles(void);
 void				print_matrix(t_matrix matrix);
 void				print_vec(t_vec v);
@@ -302,4 +327,5 @@ void				print_cameras(t_scene *scene);
 void				print_scene(t_scene *scene);
 void				print_renderer(t_ray *ray);
 void				print_ray(t_ray *ray);
+void				print_lightray(t_ray *ray);
 #endif

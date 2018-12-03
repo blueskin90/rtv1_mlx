@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 06:47:57 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 07:11:17 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 08:18:49 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void				print_obj_hit_color_mode(void)
 		{
 			ray = renderer_getray(x + y * win_getx());
 			if (ray->length != INFINITY)
-				mlx_px_to_img(env_get()->win->img, x, y, ray->obj_hit->color.rgb.value);
+				mlx_px_to_img(env_get()->win->img, x, y, ray->obj_hit->color.value);
 			else
 				mlx_px_to_img(env_get()->win->img, x, y, 0);
 			x++;
@@ -60,7 +60,7 @@ void				print_obj_hit_color_length_mode(void)
 	t_ray			*ray;
 	float			multvalue;
 	float			max_len;
-	t_rgb			color;
+	t_RGB			color;
 
 	y = 0;
 	max_len = get_max_raylen();
@@ -73,11 +73,8 @@ void				print_obj_hit_color_length_mode(void)
 			if (ray->length != INFINITY)
 			{
 				multvalue = 1 - ray->length / max_len;
-				color = ray->obj_hit->color.rgb;
-				color.r = color.r * multvalue;
-				color.g = color.g * multvalue;
-				color.b = color.b * multvalue;
-				mlx_px_to_img(env_get()->win->img, x, y, rgb_to_int(color));
+				color = rgb_mul(ray->obj_hit->color, multvalue);
+				mlx_px_to_img(env_get()->win->img, x, y, color.value);
 			}
 			else
 				mlx_px_to_img(env_get()->win->img, x, y, 0);
@@ -100,7 +97,7 @@ void				print_final_ray_color_mode(void)
 		while (x < win_getx())
 		{
 			ray = renderer_getray(x + y * win_getx());
-			mlx_px_to_img(env_get()->win->img, x, y, ray->color.rgb.value);
+			mlx_px_to_img(env_get()->win->img, x, y, ray->color.value);
 			x++;
 		}
 		y++;

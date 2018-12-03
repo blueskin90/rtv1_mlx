@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 04:29:27 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 11:39:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ float			sphere_intersection(t_ray ray, t_obj *sphere)
 
 	origin_to_sphere = vec_init(ray.pos, sphere->pos);
 	length = vec_dotproduct(ray.dir, origin_to_sphere); // projette le centre de la sphere sur le vecteur de rayon et retourne la longueur
-	if (length < TOLERANCE) // attention si la sphere est derriere et assey grande pour etre vue de l'interieur ?
+	if (length <= 0) // attention si la sphere est derriere et assey grande pour etre vue de l'interieur ?
 		return (INFINITY);
 	else
 	{
@@ -61,7 +61,7 @@ float			sphere_intersection(t_ray ray, t_obj *sphere)
 		proj_to_center = (proj_to_center < 0) ? sqrtf(-proj_to_center) : sqrtf(proj_to_center);
 		if (is_equal_float(proj_to_center, sphere_radius(sphere)))
 			return (length - TOLERANCE);
-		if (proj_to_center > sphere_radius(sphere) + TOLERANCE)
+		if (proj_to_center > sphere_radius(sphere))
 			return (INFINITY);
 		return (length - (sqrtf(powf(sphere_radius(sphere), 2) - powf(proj_to_center, 2))) - TOLERANCE);
 	}
@@ -85,6 +85,12 @@ float			plane_intersection(t_ray ray, t_obj *plane)
 	}
 	return (INFINITY);
 }
+
+t_ray			ray_init_lookat(t_vec pos, t_vec lookat)
+{
+	return (ray_init(pos, vec_sub(lookat, pos)));
+}
+
 t_ray			ray_init(t_vec pos, t_vec dir)
 {
 	t_ray		ray;
@@ -127,13 +133,13 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 	b = 2 * ray.pos.x * ray.dir.x + 2 * ray.pos.y * ray.dir.y;
 	c = ray.pos.x * ray.pos.x + ray.pos.y * ray.pos.y - cylinder->params.cylinder.radius * cylinder->params.cylinder.radius;
 	d = b * b - 4 * a * c;
-	if (a == 0.0 || d <= TOLERANCE)
+	if (a == 0.0 || d <= 0)
 		return (INFINITY);
 	len1 = (-b + sqrtf(d)) / (2 * a);
 	len2 = (-b - sqrtf(d)) / (2 * a);
 	v1 = vec_mul(ray.dir, len1);
 	v2 = vec_mul(ray.dir, len2);
-	if (len1 < TOLERANCE && len2 < TOLERANCE)
+	if (len1 <= 0 && len2 <= 0)
 			return (INFINITY);
 	len1 = vec_magnitude(v1);
 	len2 = vec_magnitude(v2);
@@ -162,13 +168,13 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 	b = 2 * ray.pos.x * ray.dir.x + 2 * ray.pos.y * ray.dir.y - 2 * ray.pos.z * ray.dir.z * tansquare;
 	c = ray.pos.x * ray.pos.x + ray.pos.y * ray.pos.y - ray.pos.z * ray.pos.z * tansquare;
 	d = b * b - 4 * a * c;
-	if (a == 0.0 || d <= TOLERANCE)
+	if (a == 0.0 || d <= 0)
 		return (INFINITY);
 	len1 = (-b + sqrtf(d)) / (2 * a);
 	len2 = (-b - sqrtf(d)) / (2 * a);
 	v1 = vec_mul(ray.dir, len1);
 	v2 = vec_mul(ray.dir, len2);
-	if (len1 < TOLERANCE && len2 < TOLERANCE)
+	if (len1 <= 0 && len2 <= 0)
 			return (INFINITY);
 	len1 = vec_magnitude(v1);
 	len2 = vec_magnitude(v2);

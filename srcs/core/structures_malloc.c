@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 04:41:58 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 08:39:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ t_matrix		obj_to_world_matrix(t_obj *obj)
 	return (matrix);
 }
 
-t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_color c)
+t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c)
 {
 	return (obj_malloc_dir(pos, vec_sub(lookat, pos), up, c));
 }
 
-t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_color c)
+t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 {
 	t_obj		*obj;
 

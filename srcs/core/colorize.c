@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/03 07:14:52 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 09:13:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ float			get_diffuse(t_ray *ray, t_scene *scene) // reduire cette fonction plus t
 		to_light = vec_norm(vec_init(ray->hit_pos, ptr->pos));
 		to_light_ray = ray_init(ray->hit_pos, to_light);
 		shoot_ray(&to_light_ray);
-		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos)) && to_light_ray.obj_hit->color.rgb.value != 0xffffff))
+		if (!(to_light_ray.length != INFINITY && to_light_ray.length < vec_magnitude(vec_init(ray->hit_pos, ptr->pos)) && to_light_ray.obj_hit->color.value != 0xffffff))
 		{// enlever le x0fffff
 			dotproduct = vec_dotproduct(ray->normal, to_light);
 			dotproduct = (dotproduct >= 0) ? dotproduct : 0;
@@ -69,16 +69,6 @@ float			get_diffuse(t_ray *ray, t_scene *scene) // reduire cette fonction plus t
 		ptr = ptr->next;
 	}
 	return (actual / total);
-}
-
-t_ray			reflect_ray(t_ray *ray)
-{
-	t_matrix	rotmatrix;
-	t_vec		reflected;
-
-	rotmatrix = rotmatrix_axis_angle(ray->normal, degtorad(180));
-	reflected = matrix_mult_vec(rotmatrix, vec_opposite(ray->dir));
-	return (ray_init(ray->hit_pos, vec_norm(reflected)));
 }
 
 float			get_specular(t_ray *ray, t_scene *scene, t_obj *cam)
@@ -115,7 +105,7 @@ float			get_specular(t_ray *ray, t_scene *scene, t_obj *cam)
 	}
 	return (actual / total);
 }
-
+/*
 int				colorization(t_ray *ray, t_env *env)
 {
 	float		ambiant;
@@ -129,13 +119,10 @@ int				colorization(t_ray *ray, t_env *env)
 	diffuse = get_diffuse(ray, env->scene);
 	specular = get_specular(ray, scene_get(), camera_get());
 
-	t_color		rgb;
+	t_RGB		rgb;
 	rgb = ray->obj_hit->color;
-	rgb.rgb.r *= (ambiant + diffuse + specular);
-	rgb.rgb.r = (rgb.rgb.r > 255) ? 255 : rgb.rgb.r;
-	rgb.rgb.g *= (ambiant + diffuse + specular);
-	rgb.rgb.g = (rgb.rgb.g > 255) ? 255 : rgb.rgb.g;
-	rgb.rgb.b *= (ambiant + diffuse + specular);
-	rgb.rgb.b = (rgb.rgb.b > 255) ? 255 : rgb.rgb.b;
-	return (get_rgb(rgb.rgb.r, rgb.rgb.g, rgb.rgb.b));
+	rgb = rgb_mul(rgb, ambiant + diffuse + specular);
+	return (rgb.value);
 }
+*/
+
