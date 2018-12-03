@@ -32,7 +32,7 @@ t_matrix	rotmatrix_axis_angle(t_vec v, float angle)
 	float		cos;
 	float		sin;
 
-	if (angle == 0.0 || angle == NAN || vec_magnitude(v) < TOLERANCE)
+	if (angle == 0.0 || angle == NAN || vec_magnitude(v) == 0)
 		return (identity_matrix_init());
 	cos = cosf(angle);
 	sin = sinf(angle);
@@ -65,7 +65,7 @@ t_matrix		world_to_obj_matrix(t_obj *obj)
 	angle = acos(vec_dotproduct(obj->dir, vec_z()));
 	if (vec_magnitude(axis) == 0)
 		return (identity_matrix_init());
-	matrix = rotmatrix_axis_angle(axis, angle);
+	matrix = rotmatrix_axis_angle(axis, -angle);
 	return (matrix);
 }
 
@@ -79,7 +79,7 @@ t_matrix		obj_to_world_matrix(t_obj *obj)
 	angle = acos(vec_dotproduct(obj->dir, vec_z()));
 	if (vec_magnitude(axis) == 0)
 		return (identity_matrix_init());
-	matrix = rotmatrix_axis_angle(axis, -angle);
+	matrix = rotmatrix_axis_angle(axis, angle);
 	return (matrix);
 }
 
@@ -193,7 +193,7 @@ void			renderer_malloc(t_obj *camera)
 		while (x < win_getx())
 		{
 			ray.dir = vec_norm(get_actual_dir(topleft, increment, x, y));
-			ray.dir = vec_norm(matrix_mult_vec(camera->world_to_obj, ray.dir));
+			ray.dir = vec_norm(matrix_mult_vec(camera->obj_to_world, ray.dir));
 			camera->params.camera.rays[x + y * win_getx()] = ray;
 			x++;
 		}

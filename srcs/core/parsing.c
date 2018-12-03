@@ -79,10 +79,16 @@ int					parse_scene(t_env *env)
 	obj_add(scene, objptr);
 
 
-	pos = vec_init0(-5, 5, 20);
+	pos = vec_init0(-10, 0, 20);
 	color = rgb_init(0x30ff30);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
-	obj_sphere_params(objptr, 1.0);
+	obj_sphere_params(objptr, 0.5);
+	obj_add(scene, objptr);
+
+	pos = vec_init0(0, 0, 20);
+	color = rgb_init(0x9010f0);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_sphere_params(objptr, 0.5);
 	obj_add(scene, objptr);
 
 	color = rgb_init(0xaabbcc);
@@ -99,16 +105,29 @@ int					parse_scene(t_env *env)
 	obj_cylinder_params(objptr, 1);
 	obj_add(scene, objptr);
 	
-	pos = vec_init0(-10, 0, 20);
-	color = rgb_init(0x8080ff);
+	pos = vec_init0(6, 6, 6);
+	color = rgb_init(0x9010f0);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_sphere_params(objptr, 2);
+	obj_add(scene, objptr);
+
+	pos = vec_init0(10, -2, -3);
+	color = rgb_init(0x9010f0);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_sphere_params(objptr, 2);
+	obj_add(scene, objptr);
+
+	pos = vec_init0(-11, 1, 21);
+	color = rgb_init(0x8080ff);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_sphere_params(objptr, 0.7);
 	obj_add(scene, objptr);
 
 
 	pos = vec_init0(-10, 0, 20);
 	lookat = vec_init0(-11, 1, 21);
-	color = rgb_init(0xff5050);
+	color = rgb_init(0xaabbcc);
+//	color = rgb_init(0xff5050);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_cone_params(objptr, 22);
 	obj_add(scene, objptr);

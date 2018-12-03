@@ -87,11 +87,9 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 	v2 = vec_mul(ray.dir, len2);
 	if (len1 <= 0 && len2 <= 0)
 			return (INFINITY);
-	len1 = vec_magnitude(v1);
-	len2 = vec_magnitude(v2);
 	if (len1 < len2)
-		return (len1 - TOLERANCE);
-	return (len2 - TOLERANCE);
+		return (vec_magnitude(v1) - TOLERANCE);
+	return (vec_magnitude(v2) - TOLERANCE);
 }
 
 float			cone_intersection(t_ray ray, t_obj *cone)
@@ -106,6 +104,9 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 	t_vec		v1;
 	t_vec		v2;
 	float		tansquare;
+	
+	t_ray		testray;
+	testray = ray;
 
 	ray = ray_to_obj(ray, cone);
 	tansquare = tanf(cone->params.cone.angle);
@@ -118,14 +119,11 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 		return (INFINITY);
 	len1 = (-b + sqrtf(d)) / (2 * a);
 	len2 = (-b - sqrtf(d)) / (2 * a);
-	v1 = vec_mul(ray.dir, len1);
-	v2 = vec_mul(ray.dir, len2);
+	v1 = vec_mul(testray.dir, len1);
+	v2 = vec_mul(testray.dir, len2);
 	if (len1 <= 0 && len2 <= 0)
 			return (INFINITY);
-	len1 = vec_magnitude(v1);
-	len2 = vec_magnitude(v2);
 	if (len1 < len2)
-		return (len1 - TOLERANCE);
-	return (len2 - TOLERANCE);
-	return (INFINITY);
+		return (vec_magnitude(v1) - TOLERANCE);
+	return (vec_magnitude(v2) - TOLERANCE);
 }
