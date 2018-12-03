@@ -243,6 +243,10 @@ void				raytracing_lights(void);
 void				shoot_ray(t_ray *ray);
 void				shoot_ray_lights(t_ray *ray);
 void				get_normal(t_ray *ray);
+void				get_planenormal(t_ray *ray);
+void				get_cylindernormal(t_ray *ray);
+void				get_conenormal(t_ray *ray);
+void				get_spherenormal(t_ray *ray);
 t_ray				reflect_ray(t_ray *ray);
 t_RGB				get_ambiant(t_ray *ray);
 t_RGB				get_specular(t_ray *ray, t_ray to_light, t_obj light);
@@ -308,6 +312,15 @@ t_RGB				rgb_add(t_RGB a, t_RGB b);
 t_RGB				rgb_mul(t_RGB a, float scalar);
 t_RGB				rgb_mul_rgb(t_RGB a, t_RGB b);
 void				rgb_updatevalue(t_RGB *rgb);
+
+/*
+** TEMPORARY PARSING FUNCTIONS
+*/
+
+int					parse_scene(t_env *env);
+void				camera_add(t_scene *scene, t_obj *camera);
+void				light_add(t_scene *scene, t_obj *light);
+void				obj_add(t_scene *scene, t_obj *obj);
 
 /* 
 ** DEBUG FUNCTIONS

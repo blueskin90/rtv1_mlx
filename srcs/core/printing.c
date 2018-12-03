@@ -63,7 +63,7 @@ void				print_obj_hit_color_length_mode(void)
 	t_RGB			color;
 
 	y = 0;
-	max_len = get_max_raylen();
+	max_len = get_max_raylen(); // definie au dessus, utilisee uniquement ici
 	while (y < win_gety())
 	{
 		x = 0;

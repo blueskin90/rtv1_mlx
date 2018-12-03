@@ -25,7 +25,7 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color) \
+	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color ray normal float vector parsing) \
 		))
 
 all: $(NAME)
