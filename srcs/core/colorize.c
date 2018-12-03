@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:59:40 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/01 17:24:21 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 07:14:52 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,6 @@ int				colorization(t_ray *ray, t_env *env)
 	float		diffuse;
 	float		specular;
 
-	t_vec		to_light;
-	t_vec		to_light_dir;
-	t_ray		to_light_ray;
 	t_obj		*ptr;
 
 	ptr = scene_get()->lights;

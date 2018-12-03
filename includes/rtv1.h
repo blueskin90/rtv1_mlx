@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/01 17:24:20 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 07:14:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.01
+
+# define OBJ_HIT_MODE 0
+# define OBJ_HIT_LENGTH_MODE 1
+# define RAY_COLOR_MODE 2
+# define MODE_MAX 2
 
 # include <stdio.h> // a suppr apres !
 
@@ -91,7 +96,6 @@ typedef struct		s_ray
 	t_color			color;
 	t_vec			normal;
 	t_vec			hit_pos;
-//	char			status;
 	float			length;
 	struct s_obj	*obj_hit;
 }					t_ray;
@@ -104,7 +108,7 @@ typedef struct		s_obj
 	t_color			color;
 	t_matrix		world_to_obj;
 	t_matrix		obj_to_world;
-
+	
 	float			(*intersect)(t_ray, struct s_obj*);
 	t_type			type;
 	t_params		params;
@@ -198,7 +202,16 @@ t_win				*win_get(void);
 int					win_getx(void);
 int					win_gety(void);
 void				*mlx_get(void);
-
+int					print_mode_get(void);
+void				print_mode_set(int mode);
+int					cursor_getx(void);
+int					cursor_gety(void);
+void				cursor_movex(int x);
+void				cursor_movey(int y);
+void				cursor_reset(void);
+int					cursor_mode_get(void);
+void				cursor_mode_toggle(void);
+void				cursor_mode_set(int value);
 /*
 ** OBJET MALLOC
 */
@@ -218,6 +231,9 @@ void				renderer_malloc(t_obj *camera);
 */
 
 void				raytracing(void);
+void				raytracing_lights(void);
+void				shoot_ray(t_ray *ray);
+void				get_normal(t_ray *ray);
 void				printing(void);
 
 /*
@@ -235,6 +251,7 @@ float				sphere_intersection(t_ray ray, t_obj *sphere);
 
 void				events_listener(t_env *env);
 int					key_pressed(int key);
+int					mouse_move(int x, int y);
 
 /*
 ** MATRIX FUNCTIONS
@@ -258,10 +275,24 @@ t_vec				vec_z(void);
 
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
 
+/*
+** PRINTING FUNCTIONS
+*/
+
+float				get_max_raylen(void);// kinda accessoire mais utile qu'ici.
+void				printing(void);
+void				print_cursor_over_image(void);
+void				print_final_ray_color_mode(void);
+void				print_obj_hit_color_length_mode(void);
+void				print_obj_hit_color_mode(void);
+
 /* 
 ** DEBUG FUNCTIONS
 */
 
+void				print_to_light_infos(t_ray *ray);
+void				print_obj_hit_infos(t_ray *ray);
+void				display_cursor_infos(void);
 void				print_angles(void);
 void				print_matrix(t_matrix matrix);
 void				print_vec(t_vec v);

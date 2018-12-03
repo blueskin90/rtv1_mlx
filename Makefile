@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/01 17:15:00 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/03 06:50:28 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections colorize) \
+	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections colorize raytracing printing) \
 		))
 
 all: $(NAME)

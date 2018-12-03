@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:41:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/01 17:23:54 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/03 07:14:53 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,20 +134,59 @@ void				print_renderer(t_ray *ray)
 	}
 }
 
+void				print_to_light_infos(t_ray *ray)
+{
+	(void)ray;
+}
+
+void				print_obj_hit_infos(t_ray *ray)
+{
+	printf("	ray has struck : ");
+	if (ray->obj_hit->type == SPHERE)
+		printf("A SPHERE\n");
+	else if (ray->obj_hit->type == PLANE)
+		printf("A PLANE\n");
+	else if (ray->obj_hit->type == CYLINDER)
+		printf("A CYLINDER\n");
+	else if (ray->obj_hit->type == CONE)
+		printf("A CONE\n");
+	else
+		printf("SOMETHING (not correct obj_hit->type)\n");
+	printf("	which pos is : ");
+	print_vec(ray->obj_hit->pos);
+	printf("	direction is : ");
+	print_vec(ray->obj_hit->dir);
+	printf("	and color is : %x\n", ray->obj_hit->color.rgb.value);
+	print_to_light_infos(ray);
+}
+
 void				print_ray(t_ray *ray)
 {
+	printf("///////////// RAY INFORMATIONS :\n");
 	printf("position : ");
 	print_vec(ray->pos);
 	printf("direction : ");
 	print_vec(ray->dir);
-	printf("color : %x\n", ray->color);
-	printf("normal : ");
-	print_vec(ray->normal);
-	printf("hit_pos : ");
-	print_vec(ray->hit_pos);
-	printf("length : %f\n", ray->length);
+	printf("ray color : %x\n", ray->color.rgb.value);
 	if (ray->obj_hit)
-		printf("ray has struck : %d\n", ray->obj_hit->type);
+	{
+		print_obj_hit_infos(ray);
+		printf("normal : ");
+		print_vec(ray->normal);
+		printf("hit_pos : ");
+		print_vec(ray->hit_pos);
+		printf("length : %f\n", ray->length);
+	}
 	else
 		printf("ray has gone nowhere\n");
+	printf("///////////////// END OF RAY INFORMATIONS\n");
+}
+
+void				display_cursor_infos(void)
+{
+	t_ray			*ray;
+
+	ray = renderer_getray(cursor_getx() + cursor_gety() * win_getx());
+	printf("ray shot at x: %d y: %d\n", cursor_getx(), cursor_gety());
+	print_ray(ray);
 }
