@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 08:39:28 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/04 19:15:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,36 @@ t_vec			vec_z(void)
 	return (vec_init0(0, 0, 1));
 }
 
-t_matrix	rotmatrix_axis_angle(t_vec v, float angle)
+t_matrix	rotmatrix_axis_angle(t_vec axis, float angle)
 {
+	float	cos;
+	float	sin;
+	float	t;
+	float	tmp1;
+	float	tmp2;
 	t_matrix	matrix;
-	float		cos;
-	float		sin;
 
-	if (angle == 0.0 || angle == NAN || vec_magnitude(v) == 0)
-		return (identity_matrix_init());
+	matrix = identity_matrix_init();
+	if (angle == 0 || angle == NAN || vec_magnitude(axis) == 0)
+		return (matrix);
 	cos = cosf(angle);
 	sin = sinf(angle);
-	matrix.matrix[0][0] = cos + v.x * v.x * (1 - cos);
-	matrix.matrix[0][1] = v.x * v.y * (1 - cos) - v.z * sin;
-	matrix.matrix[0][2] = v.x * v.z * (1 - cos) + v.y * sin;
-	matrix.matrix[0][3] = 0;
-	matrix.matrix[1][0] = v.y * v.x * (1 - cos) + v.z * sin;
-	matrix.matrix[1][1] = cos + v.y * v.y * (1 - cos);
-	matrix.matrix[1][2] = v.y * v.z * (1 - cos) - v.x * sin;
-	matrix.matrix[1][3] = 0;
-	matrix.matrix[2][0] = v.z * v.x * (1 - cos) - v.y * sin;
-	matrix.matrix[2][1] = v.z * v.y * (1 - cos) + v.x * sin; 
-	matrix.matrix[2][2] = cos + v.z * v.z * (1 - cos);
-	matrix.matrix[2][3] = 0;
-	matrix.matrix[3][0] = 0; 
-	matrix.matrix[3][1] = 0;
-	matrix.matrix[3][2] = 0;
-	matrix.matrix[3][3] = 1;
+	t = 1.0 - cos;
+	matrix.matrix[0][0] = cos + axis.x * axis.x * t;
+	matrix.matrix[1][1] = cos + axis.y * axis.y * t;
+	matrix.matrix[2][2] = cos + axis.z * axis.z * t;
+	tmp1 = axis.x * axis.y * t;
+	tmp2 = axis.z * sin;
+	matrix.matrix[1][0] = tmp1 + tmp2;
+	matrix.matrix[0][1] = tmp1 - tmp2;
+	tmp1 = axis.x * axis.z * t;
+	tmp2 = axis.y * sin;
+	matrix.matrix[2][0] = tmp1 - tmp2;
+	matrix.matrix[0][2] = tmp1 + tmp2;
+	tmp1 = axis.y * axis.z * t;
+	tmp2 = axis.x * sin;
+	matrix.matrix[2][1] = tmp1 + tmp2;
+	matrix.matrix[1][2] = tmp1 - tmp2;
 	return (matrix);
 }
 
@@ -88,6 +92,36 @@ t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c)
 	return (obj_malloc_dir(pos, vec_sub(lookat, pos), up, c));
 }
 
+t_vec			get_rightdir(t_vec dir)
+{
+	t_vec		right;
+
+	if (is_equal_vec(dir, vec_y()))
+		return (vec_x());
+	else if (is_opposite_vec(dir, vec_y()))
+		return (vec_x());
+	right = vec_opposite(vec_crossproduct(dir, vec_y()));
+	return (vec_norm(right));
+}
+
+t_vec			get_updir(t_vec dir, t_vec rightdir)
+{
+	t_vec		up;
+
+	up = vec_crossproduct(dir, rightdir);
+	return (vec_norm(up));
+}
+/*
+t_matrix		obj_to_world_matrix(t_obj *obj)
+{
+	return (identity_matrix_init());
+}
+
+t_matrix		world_to_obj_matrix(t_obj *obj)
+{
+	return (identity_matrix_init());
+}
+*/
 t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 {
 	t_obj		*obj;
@@ -95,7 +129,8 @@ t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 	obj = (t_obj*)ft_malloc(sizeof(t_obj));
 	obj->pos = pos;
 	obj->dir = vec_normalize(dir);
-	obj->up = up;
+	obj->right = get_rightdir(obj->dir);
+	obj->up = get_updir(obj->dir, obj->right);
 	obj->color = c;
 	obj->world_to_obj = world_to_obj_matrix(obj);
 	obj->obj_to_world = obj_to_world_matrix(obj);

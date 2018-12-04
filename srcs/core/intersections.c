@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 11:39:55 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/04 07:14:00 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ float			plane_intersection(t_ray ray, t_obj *plane)
 	return (INFINITY);
 }
 
+int				quadratic(float a, float b, float c, float l[2])
+{
+	float		d;
+
+	if (a == 0.0)
+		return (0);
+	d = b * b - 4 * a * c;
+	if (d < 0.0)
+		return (0);
+	d = sqrtf(d);
+	l[0] = (-b + d) / (2 * a);
+	l[1] = (-b - d) / (2 * a);
+	return (2);
+}
+
 float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 {
 	float		a;
@@ -69,8 +84,7 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 	float		c;
 	float		d;
 
-	float		len1;
-	float		len2;
+	float		l[2];
 	t_vec		v1;
 	t_vec		v2;
 
@@ -78,20 +92,33 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y;
 	b = 2 * ray.pos.x * ray.dir.x + 2 * ray.pos.y * ray.dir.y;
 	c = ray.pos.x * ray.pos.x + ray.pos.y * ray.pos.y - cylinder->params.cylinder.radius * cylinder->params.cylinder.radius;
-	d = b * b - 4 * a * c;
-	if (a == 0.0 || d <= 0)
+	if (!quadratic(a, b, c, l))
 		return (INFINITY);
-	len1 = (-b + sqrtf(d)) / (2 * a);
-	len2 = (-b - sqrtf(d)) / (2 * a);
-	v1 = vec_mul(ray.dir, len1);
-	v2 = vec_mul(ray.dir, len2);
-	if (len1 <= 0 && len2 <= 0)
+//	d = b * b - 4 * a * c;
+//	if (a == 0.0 || d <= 0)
+//		return (INFINITY);
+//	len1 = (-b + sqrtf(d)) / (2 * a);
+//	len2 = (-b - sqrtf(d)) / (2 * a);
+	v1 = vec_mul(ray.dir, l[0]);
+	v2 = vec_mul(ray.dir, l[1]);
+	if (l[0] <= TOLERANCE)
+	{
+		if (l[1] <= TOLERANCE)
 			return (INFINITY);
-	if (len1 < len2)
-		return (vec_magnitude(v1) - TOLERANCE);
-	return (vec_magnitude(v2) - TOLERANCE);
+//		return (l[1]);
+		vec_magnitude(v2);
+	}
+	if (l[1] <= TOLERANCE)
+//		return (l[0]);
+		vec_magnitude(v1);
+	if (l[0] < l[1])
+		return (vec_magnitude(v1));
+	//	return (l[0]);
+	return (vec_magnitude(v2));
+//	return (l[1]);
+//		return (vec_magnitude(v1) - TOLERANCE);
+//	return (vec_magnitude(v2) - TOLERANCE);
 }
-
 float			cone_intersection(t_ray ray, t_obj *cone)
 {
 	float		a;

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/03 07:14:51 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/04 06:52:01 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int		key_pressed(int key)
 		if (key == X_KEY_R)
 			cursor_reset();
 		if (key == X_KEY_SPACE)
+		{
+			print_lights(scene_get());
 			display_cursor_infos();
+		}
 		if (key == X_KEY_L_ARROW)
 			cursor_movex(-1);
 		if (key == X_KEY_R_ARROW)
