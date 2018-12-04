@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:57:58 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/28 19:45:04 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:08:06 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ t_key		*basic_object_keys(char *name)
 	val = 0.0;
 	key = new_key(name, OBJECT, false, NULL);
 	key->defaulty.objecty = default_vector_values();
-	key->child_key = basic_vector_keys();
+	key->child = basic_vector_keys();
 	return (key);
 }

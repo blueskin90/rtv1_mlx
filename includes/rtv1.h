@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 19:38:41 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:19:29 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ typedef struct		s_key
 	e_type			type;
 	bool			required;
 	u_value			defaulty;
-	struct s_key	*child_key;
+	struct s_key	*child;
 	struct s_key	*next;
 }					t_key;
 /*
@@ -209,6 +209,7 @@ void				events_listener(t_env *env);
 ** TO DELETE
 */
 void				print_keys(t_key *key, int padding);
+void				show_one_key(t_key *elem, int padding);
 int					test(void);
 /*
 ** STRUCTURES 

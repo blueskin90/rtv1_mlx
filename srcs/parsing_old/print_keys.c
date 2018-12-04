@@ -6,15 +6,16 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 16:28:41 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/28 19:45:28 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:22:18 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	show_one_key(t_key *elem, int padding)
+void	show_one_key(t_key *elem, int padding)
 {
 	t_key	*bro;
+	t_key	*child;
 
 	printf("%*c--------\n", padding, '-');
 	printf("%*cname : %s\n", padding,' ', elem->name);
@@ -52,7 +53,7 @@ static void	show_one_key(t_key *elem, int padding)
 	if (elem->type == ARRAY)
 	{
 		printf("%*ctype : %s\n",padding,' ', "ARRAY");
-		bro = (t_key *)elem->defaulty.arrayi;
+		bro = elem->next;
 		while (bro)
 		{
 			show_one_key(bro, padding + 10);
@@ -62,10 +63,13 @@ static void	show_one_key(t_key *elem, int padding)
 	if (elem->type == OBJECT)
 	{
 		printf("%*ctype : %s\n",padding,' ', "OBJECT");
-		bro = (t_key *)elem->defaulty.objecty;
+		bro = elem->next;
+		child = elem->child;
+		if (child)
+			show_one_key(child, padding + 10);
 		while (bro)
 		{
-			show_one_key(bro, padding + 10);
+			show_one_key(bro, padding);
 			bro = bro->next;
 		}
 	}
@@ -77,10 +81,10 @@ void		print_keys(t_key *key, int padding)
 	t_key	*current;
 
 	current = key;
-	while (current)
+	show_one_key(current, padding);
+	/*while (current)
 	{
-		show_one_key(current, padding);
 		current = current->next;
-	}
+	}*/
 
 }

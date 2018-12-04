@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/28 22:11:57 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:12:54 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int					main(int ac, char **av)
 	json = json_parser(av[1]);
 	env = rtv1_parsing(json, env);
 	printf("%-5d\n", 123456);
-	raytracing(env);
+	//raytracing(env);
 	events_listener(env);
 	mlx_loop(env->mlx);
 	return (1);
