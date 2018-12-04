@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   fail_errors.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 18:25:28 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/04 19:00:31 by cvermand         ###   ########.fr       */
+/*   Created: 2018/11/19 18:28:10 by cvermand          #+#    #+#             */
+/*   Updated: 2018/11/19 18:30:23 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#ifndef FAIL_ERRORS_H
+# define FAIL_ERRORS_H
 
-t_env		*rtv1_parsing(t_elem *begin, t_env *env)
-{
-	
-	printf("qweqewq\n");
+# define MALLOC_FAIL "Malloc failed\n"
+# define MLX_FAIL "Couldn't start MLX\n"
+# define WINDOW_FAIL "Couldn't open a new window\n"
+# define MLX_IMG_FAIL "MLX couldn't get a new image\n"
 
-	return (env);
-}
+/*
+** FILE OPEN READ WRITE ERRORS
+*/
+# define FD_FAIL "Could not open file\n"
+# define EMPTY_FILE	"file is empty\n"
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:18:15 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 09:14:15 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/01 10:04:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int				tracing(t_ray *ray, t_env *env, int x, int y)
 	shoot_ray(ray, env->scene);
 	if (ray->length != INFINITY)
 	{
+//		color = ray->obj_hit->color.rgb.value;
 		color = colorization(ray, env);
 		mlx_px_to_img(env->win->img, x, y, color);
 	}
@@ -177,7 +178,7 @@ int				raytracing(t_env *env)
 			// si jamais code marche pas, changer env->camera->pos par vertex_init(0,0,0)
 			ray_vec = vec_normalize(vec_init0(a.x + xinc * x, a.y + yinc * y, 1)); // ici remplacer le 1 par la distance du viewplane
 			if (angle != NAN)
-				ray_vec = matrix_mult_vec(matrix, ray_vec);
+				ray_vec = vec_normalize(matrix_mult_vec(matrix, ray_vec));
 			ray = ray_init(env->camera->pos, ray_vec);
 			tracing(&ray, env, x, y);
 			// ICI COULEUR

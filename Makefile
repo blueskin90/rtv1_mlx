@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/04 18:24:55 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/04 18:55:04 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,22 +19,22 @@ LIBS = ./libs/libft/libft.a \
 
 INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libftg/includes/
 
-FLAGS = -Wall -Wextra -g3 -fsanitize=address 
+FLAGS = -Wall -Wextra -g3 -fsanitize=address -Ofast 
 
 MLXFLAGS = -framework OpenGL -framework AppKit
 
-
+# $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam )  \
+ 	   $(addprefix utils/, print) \ 
+	   #$(addprefix hooks/, event_listener) \
+	   $(addprefix raytracer/, raytracing intersections colorize) 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools copy_structures fct_structures test world_to_cam ) \
-	   $(addprefix utils/, print) \
-	   $(addprefix parsing/, parser) \
+	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color ray normal float vector parsing) \
+	   $(addprefix parsing/, parsing) \
 	   $(addprefix json_parser/, json_parser recognize_key elem_struct_functions \
 	   recognize_number recognize_string print_elem_architecture \
 		json_utils recognize_bool recognize_null recognize_array \
 		recognize_object object_recursive array_recursive \
 		recognize_type ) \
-	   $(addprefix hooks/, event_listener) \
-	   $(addprefix raytracer/, raytracing intersections colorize) \
 		))
 
 all: $(NAME)
@@ -53,11 +53,12 @@ objs/%.o: srcs/%.c
 
 objs:
 	@mkdir -p objs/core
-	@mkdir objs/raytracer
-	@mkdir objs/hooks
-	@mkdir objs/utils/
 	@mkdir objs/parsing/
 	@mkdir objs/json_parser/
+#	@mkdir objs/raytracer
+	#@mkdir objs/hooks
+#	@mkdir objs/utils/
+	#mkdir -p objs/core
 
 clean:
 #	make -C ./libs/mlx clean

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/25 09:14:17 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/01 15:32:45 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int				quadratic(float a, float b, float c, float s[2])
 	return (2);
 }
 */
+
 t_ray			ray_to_cylinder(t_ray ray, t_obj *cyl)
 {
 	t_ray		new_ray;
@@ -123,6 +124,7 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 	float		len2;
 	t_vec		v1;
 	t_vec		v2;
+	float		lentest;
 
 	ray = ray_to_cylinder(ray, cylinder);
 	a = ray.direction.x * ray.direction.x + ray.direction.y * ray.direction.y;
