@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 00:36:25 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/28 19:45:54 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 18:31:47 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,38 @@ void	show_elem(t_elem *elem)
 		printf("closed : %d\n",  elem->closed);
 		printf("type : %d\n",  elem->type);
 		if (elem->type == INTEGER)
+		{
+			printf("type : %s\n", "INTEGER");
 			printf("value : %d\n",  elem->value.inty);
+		}
 		if (elem->type == FLOAT)
+		{
+		printf("type : %s\n", "FLOAT");
 			printf("value : %f\n",  elem->value.floaty);
+		}
 		if (elem->type == STRING)
+		{
+		printf("type : %s\n", "STRING");
 			printf("value : %s\n",  elem->value.stringy);
+		}
 		if (elem->type == BOOL)
+		{
+			printf("type : %s\n", "BOOL");
 			printf("value : %d\n",  elem->value.booly);
+		}
 		if (elem->type == NULL_ELEM)
+		{
+			printf("type : %s\n", "NULL");
 			printf("value : %d\n",  elem->value.nully);
+		}
+	if (elem->type == ARRAY)
+	{
+		printf("type : %s\n", "ARRAY");
+	}
+	if (elem->type == OBJECT)
+	{
+		printf("type : %s\n", "OBJECT");
+	}
 		printf("%c--------\n",  '-');
 	}
 }

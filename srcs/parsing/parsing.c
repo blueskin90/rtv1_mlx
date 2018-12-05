@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 18:25:28 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/05 17:52:48 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 18:37:05 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ t_elem		*find_elem_by_key(t_elem *elem, char *key)
 	t_elem		*curr;
 
 	curr = elem;
-	printf("qweeeeeeeeeeeeeeeeeeeeeeeeeeeee\n");
 	while (curr)
 	{
-		printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
-		show_one_elem(curr, 0);
-		if (curr->key != NULL && ft_strcmp(curr->key, key))
+		if (curr->key != NULL && !ft_strcmp(curr->key, key))
+		{
+			printf("KEY FOUND : \n");
+			show_elem(curr);
 			return (curr);
+		}
 		curr = curr->next;
 	}
 	return (NULL);

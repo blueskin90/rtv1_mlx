@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/05 17:39:30 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 18:47:44 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ int					isequalfloat(float a, float b);
 t_env				*rtv1_parsing(t_elem *elem, t_env *env);
 t_scene				*parse_scene(t_elem *elem, int nbr_scene);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
+t_obj				*parse_objects(t_elem *elem, bool required);
+t_sphere			*parse_sphere(t_elem *elem, bool required);
 /*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
 t_elem				*default_vector_values();
 t_elem				*default_vector_object(char *name);

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:06:35 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/05 17:53:03 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 18:46:10 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_scene		*new_scene()
 	return (scene);
 }
 
-static	char		*parse_scene_name(t_elem *elem)
+static	char		*parse_scene_name(t_elem *elem, bool required)
 {
 	if (elem != NULL)
 	{
@@ -33,6 +33,8 @@ static	char		*parse_scene_name(t_elem *elem)
 		else
 			ft_error(SCENE_NAME_BAD_FORMAT);
 	}
+	else if (required)
+		ft_error(SCENE_NAME_REQUIRED);
 	// rajouter le numero de scene
 	return (ft_strdup("NO NAME"));
 }
@@ -40,12 +42,17 @@ static	char		*parse_scene_name(t_elem *elem)
 t_scene				*parse_scene(t_elem *elem, int nbr_scene)
 {
 	t_scene		*scene;
+	t_elem		*child;
 
+	child = elem->value.objecty;
+	// .h avec les valeurs par defaut ?
 	scene = NULL;
 	if (elem->type == OBJECT)
 	{
 		scene = new_scene();
-		scene->name = parse_scene_name(find_elem_by_key(elem, "name"));
+		scene->name = 
+			parse_scene_name(find_elem_by_key(child, "name"), false);
+		scene->objs = parse_objects(find_elem_by_key(child, "objects"), true);
 		print_new_scene(scene);
 		//scene->objs = parse_objects(elem);
 	}
