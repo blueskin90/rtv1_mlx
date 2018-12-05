@@ -147,7 +147,7 @@
 				"intensity" : 0.0
 			}
 		],
-		"cameras" : {
+		"camera" : {
 				"position" : {
 					"x" : 0.0,
 					"y" : 0.0,
@@ -312,7 +312,7 @@
 				"intensity" : 0.0
 			}
 		],
-		"cameras" : [ 
+		"camera" : [ 
 			{
 				"position" : {
 					"x" : 0.0,

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/04 19:01:04 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 17:45:07 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int					main(int ac, char **av)
 
 	env = env_init();
 	env_set(env); // toujours init et set lenv avant tout;
-	parse_scene(env); // puis parsing bidon
+//	parse_2scene(env); // puis parsing bidon
 	json = json_parser(av[1]);
 	env = rtv1_parsing(json, env);
-	scene_set(env->scene); // set la scene actuelle a la premiere
-	camera_set(env->scene->cameras); // set la camera a la premiere;
+	//scene_set(env->scene); // set la scene actuelle a la premiere
+	//camera_set(env->scene->cameras); // set la camera a la premiere;
 	/*renderer_set(); // set le renderer a la camera actuelle;
 	printf("settings done\n");
 	raytracing();

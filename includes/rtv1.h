@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/04 18:52:29 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 17:39:30 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "keys.h"
 # include <limits.h>
 # include "mlx_errors.h"
+# include "rtv1_errors.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.01
@@ -129,6 +130,7 @@ typedef struct		s_obj
 
 typedef struct		s_scene
 {
+	char			*name;
 	t_obj			*objs;
 	t_obj			*lights;
 	t_obj			*cameras;
@@ -192,6 +194,8 @@ int					isequalfloat(float a, float b);
 ** PARSING
 */
 t_env				*rtv1_parsing(t_elem *elem, t_env *env);
+t_scene				*parse_scene(t_elem *elem, int nbr_scene);
+t_elem				*find_elem_by_key(t_elem *elem, char *key);
 /*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
 t_elem				*default_vector_values();
 t_elem				*default_vector_object(char *name);
@@ -349,7 +353,7 @@ void				rgb_updatevalue(t_RGB *rgb);
 ** TEMPORARY PARSING FUNCTIONS
 */
 
-int					parse_scene(t_env *env);
+int					parse_2scene(t_env *env);
 void				camera_add(t_scene *scene, t_obj *camera);
 void				light_add(t_scene *scene, t_obj *light);
 void				obj_add(t_scene *scene, t_obj *obj);
@@ -370,6 +374,7 @@ void				print_objects(t_scene *scene);
 void				print_lights(t_scene *scene);
 void				print_cameras(t_scene *scene);
 void				print_scene(t_scene *scene);
+void				print_new_scene(t_scene *scene);
 void				print_renderer(t_ray *ray);
 void				print_ray(t_ray *ray);
 void				print_lightray(t_ray *ray);

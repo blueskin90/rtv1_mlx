@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:03:05 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/27 21:09:12 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/05 17:54:37 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ t_elem	*json_parser(char *file)
 				ft_error(BAD_BEGIN_OF_FILE);
 		check_end_of_json_file(line, fd);
 		check_for_same_key_in_object(begin);
-		show_every_elem(begin, 0);
+//		show_every_elem(begin, 0);
 		return (begin);
 }

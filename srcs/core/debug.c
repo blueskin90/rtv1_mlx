@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:41:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 11:59:42 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/05 17:37:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,14 @@ void				print_cameras(t_scene *scene)
 	printf("\n");
 }
 
+void				print_new_scene(t_scene *scene)
+{
+	printf("===================== PRINTING SCENE ==========================\n");
+	printf("name : %s\n", scene->name);
+//	print_objects(scene);
+//	print_lights(scene);
+//	print_cameras(scene);
+}
 void				print_scene(t_scene *scene)
 {
 	print_objects(scene);

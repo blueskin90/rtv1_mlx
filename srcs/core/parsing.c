@@ -45,7 +45,7 @@ void				camera_add(t_scene *scene, t_obj *camera)
 		scene->cameras = camera;
 }
 
-int					parse_scene(t_env *env)
+int					parse_2scene(t_env *env)
 {
 	t_scene			*scene;
 	t_vec			pos;
