@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/04 19:15:28 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/06 09:25:15 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,36 +92,6 @@ t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c)
 	return (obj_malloc_dir(pos, vec_sub(lookat, pos), up, c));
 }
 
-t_vec			get_rightdir(t_vec dir)
-{
-	t_vec		right;
-
-	if (is_equal_vec(dir, vec_y()))
-		return (vec_x());
-	else if (is_opposite_vec(dir, vec_y()))
-		return (vec_x());
-	right = vec_opposite(vec_crossproduct(dir, vec_y()));
-	return (vec_norm(right));
-}
-
-t_vec			get_updir(t_vec dir, t_vec rightdir)
-{
-	t_vec		up;
-
-	up = vec_crossproduct(dir, rightdir);
-	return (vec_norm(up));
-}
-/*
-t_matrix		obj_to_world_matrix(t_obj *obj)
-{
-	return (identity_matrix_init());
-}
-
-t_matrix		world_to_obj_matrix(t_obj *obj)
-{
-	return (identity_matrix_init());
-}
-*/
 t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 {
 	t_obj		*obj;
@@ -129,15 +99,14 @@ t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 	obj = (t_obj*)ft_malloc(sizeof(t_obj));
 	obj->pos = pos;
 	obj->dir = vec_normalize(dir);
-	obj->right = get_rightdir(obj->dir);
-	obj->up = get_updir(obj->dir, obj->right);
+//	obj->right = get_rightdir(obj->dir);
+//	obj->up = get_updir(obj->dir, obj->right);
 	obj->color = c;
 	obj->world_to_obj = world_to_obj_matrix(obj);
 	obj->obj_to_world = obj_to_world_matrix(obj);
 	return (obj);
 }
 
-	 // accelerer ca, en ne calculant qu'une fois l'angle le vecteur et tout pour la matrice de rotation;
 void			obj_sphere_params(t_obj *obj, float radius)
 {
 	obj->params.sphere.radius = radius;

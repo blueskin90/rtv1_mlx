@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 04:27:57 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/03 11:40:24 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/06 06:34:15 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,7 @@ t_ray			reflect_ray(t_ray *ray)
 	reflected = matrix_mult_vec(rotmatrix, vec_opposite(ray->dir));
 	return (ray_init(ray->hit_pos, vec_norm(reflected)));
 }
-/*
-t_vec			reflect_vector(t_vec vec, t_vec axis)
-{
-	return (vec_normalize(vec_mul(vec_sub(axis, vec),2 * vec_dotproduct(vec, axis))));
-}
-*/
+
 t_vec			reflect_vector(t_vec vec, t_vec axis)
 {
 	t_matrix	rotmatrix;
