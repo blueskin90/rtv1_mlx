@@ -21,6 +21,7 @@
 # include <limits.h>
 # include "mlx_errors.h"
 # include "rtv1_errors.h"
+# include "rtv1_required_information.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.01
@@ -194,10 +195,12 @@ int					isequalfloat(float a, float b);
 ** PARSING
 */
 t_env				*rtv1_parsing(t_elem *elem, t_env *env);
-t_scene				*parse_scene(t_elem *elem, int nbr_scene);
+t_scene				*parse_scene(t_elem *elem);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
-t_obj				*parse_objects(t_elem *elem, bool required);
-t_sphere			*parse_sphere(t_elem *elem, bool required);
+t_obj				*parse_objects(t_elem *elem);
+t_obj				*parse_sphere(t_elem *elem);
+t_vec				parse_vector(t_elem *elem);
+bool				check_type_of_key(char *key, e_type type);
 /*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
 t_elem				*default_vector_values();
 t_elem				*default_vector_object(char *name);

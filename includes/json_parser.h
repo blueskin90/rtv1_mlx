@@ -39,7 +39,7 @@ typedef union		s_value
 	float			floaty; // ok
 	bool			booly; // ok
 	char			*stringy; // ok
-	void			*arrayi;
+	void			*arrayi; // ok;
 	void			*objecty;// ok
 	int				nully; // ok
 }					u_value;

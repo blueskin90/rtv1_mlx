@@ -1,10 +1,8 @@
 [
-	{
-	},
 	 {
 		"name" : "ma premiere scene",
 		"objects" : {
-			"sphere" : [
+			"spheres" : [
 				{
 					"specular" : 0.0,
 					"diffuse" : 0.0,
@@ -33,7 +31,7 @@
 					"radius" : 0.0
 				}
 			],
-			"cylinder" : [
+			"cylinders" : [
 				{
 					"position" : {
 						"x" : 0.0,
@@ -65,7 +63,7 @@
 					}
 				}
 			],
-			"plane" : [
+			"planes" : [
 				{
 					"position" : {
 						"x" : 0.0,
@@ -96,7 +94,7 @@
 					}
 				}
 			],
-			"cone" : [
+			"cones" : [
 				{
 					"position" : {
 						"x" : 0.0,

@@ -14,54 +14,43 @@
 
 static t_scene		*new_scene()
 {
-	t_scene	*scene;
+		t_scene	*scene;
 
-	scene = (t_scene*)ft_malloc(sizeof(t_scene));
-	ft_bzero((void *)scene, sizeof(t_scene));
-	return (scene);
+		scene = (t_scene*)ft_malloc(sizeof(t_scene));
+		ft_bzero((void *)scene, sizeof(t_scene));
+		return (scene);
 }
 
-static	char		*parse_scene_name(t_elem *elem, bool required)
+static	char		*parse_scene_name(t_elem *elem)
 {
-	if (elem != NULL)
-	{
-		// on accepte nom "" ? 
-		if (elem->type == STRING)
+		if (elem != NULL)
 		{
-			return (ft_strdup(elem->value.stringy));
+				if (!check_type_of_key(elem->key, elem->type))
+						ft_error(SCENE_NAME_BAD_FORMAT);
+				// on accepte nom "" ? 
+				return (ft_strdup(elem->value.stringy));
 		}
-		else
-			ft_error(SCENE_NAME_BAD_FORMAT);
-	}
-	else if (required)
-		ft_error(SCENE_NAME_REQUIRED);
-	// rajouter le numero de scene
-	return (ft_strdup("NO NAME"));
+		else if (NAME_REQUIRED)
+				ft_error(NAME_IS_REQUIRED);
+		// rajouter le numero de scene
+		return (ft_strdup("NO NAME"));
 }
 
-t_scene				*parse_scene(t_elem *elem, int nbr_scene)
+t_scene				*parse_scene(t_elem *elem)
 {
-	t_scene		*scene;
-	t_elem		*child;
+		t_scene		*scene;
+		t_elem		*child;
 
-	child = elem->value.objecty;
-	// .h avec les valeurs par defaut ?
-	scene = NULL;
-	if (elem->type == OBJECT)
-	{
+		// .h avec les valeurs par defaut ?
+		if (!check_type_of_key("scene",elem->type))
+				ft_error(SCENE_BAD_FORMAT);
+		child = elem->value.objecty;
 		scene = new_scene();
 		scene->name = 
-			parse_scene_name(find_elem_by_key(child, "name"), false);
-		scene->objs = parse_objects(find_elem_by_key(child, "objects"), true);
+				parse_scene_name(find_elem_by_key(child, "name"));
+		scene->objs = parse_objects(find_elem_by_key(child, "objects"));
 		print_new_scene(scene);
 		//scene->objs = parse_objects(elem);
-	}
-	else
-	{
-		printf("WRONG SCENE FORMAT, MUST BE OBJECT");
-		ft_error(SCENE_BAD_FORMAT);
-	}
-	// name, objects, lights, camera
-
-	return (scene);
+		// name, objects, lights, camera
+		return (scene);
 }

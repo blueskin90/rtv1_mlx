@@ -29,7 +29,7 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 	   $(addprefix raytracer/, raytracing intersections colorize) 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color ray normal float vector parsing) \
-	   $(addprefix parsing/, parsing parse_scene parse_object parse_light) \
+	   $(addprefix parsing/, parsing parse_scene parse_object parse_light key_utils key_types_utils parse_vectors) \
 	   $(addprefix json_parser/, json_parser recognize_key elem_struct_functions \
 	   recognize_number recognize_string print_elem_architecture \
 		json_utils recognize_bool recognize_null recognize_array \

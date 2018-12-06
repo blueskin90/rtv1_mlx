@@ -1,0 +1,12 @@
+#ifndef RTV1_REQUIRED_INFORMATION_H
+# define RTV1_REQUIRED_INFORMATION_H
+
+# define SCENE_REQUIRED true
+# define NAME_REQUIRED false
+# define OBJECTS_REQUIRED true
+# define VECTOR_REQUIRED true
+# define VECTOR_POINT_REQUIRED true
+# define ONE_SPHERE_REQUIRED true
+# define SPHERES_REQUIRED false
+
+#endif
