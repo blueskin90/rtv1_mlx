@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/04 07:24:35 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/07 19:03:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct		s_ray
 {
 	t_vec			pos;
 	t_vec			dir;
+	t_vec			lookat;
 	t_RGB			color;
 	t_vec			normal;
 	t_vec			hit_pos;
@@ -164,7 +165,9 @@ typedef struct		s_env
 ** IN TESTING
 */
 
-t_vec				get_updir(t_vec dir, t_vec rightdir);
+void				test(void);
+
+t_vec				get_updir(t_vec dir, t_vec right);
 t_vec				get_rightdir(t_vec dir);
 
 t_ray				ray_to_obj(t_ray ray, t_obj *obj);

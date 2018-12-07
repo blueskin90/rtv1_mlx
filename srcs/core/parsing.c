@@ -85,27 +85,29 @@ int					parse_scene(t_env *env)
 //	obj_sphere_params(objptr, 0.5);
 //	obj_add(scene, objptr);
 
-	color = rgb_init(0xaabbcc);
+	/*
+	color = rgb_init(0xaabb);
 	lookat = vec_init0(0, -9, 0);
 	pos = vec_init0(0, -10, 0);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_plane_params(objptr);
 	obj_add(scene, objptr);
-
+*/
+/*
 	lookat = vec_init0(6, 6, 6);
-	pos = vec_init0(10, -2, -3);
+	pos = vec_init0(-3, -3, -3);
 	color = rgb_init(0xaaff00);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_cylinder_params(objptr, 1);
 	obj_add(scene, objptr);
-	
+*/	
 	pos = vec_init0(6, 6, 6);
-	color = rgb_init(0x9010f0);
+	color = rgb_init(0x901000);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_sphere_params(objptr, 2);
 	obj_add(scene, objptr);
 
-	pos = vec_init0(10, -2, -3);
+	pos = vec_init0(-3, -3, -3);
 	color = rgb_init(0x9010f0);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_sphere_params(objptr, 2);
@@ -113,19 +115,19 @@ int					parse_scene(t_env *env)
 
 	pos = vec_init0(-11, 1, 21);
 	color = rgb_init(0x8080ff);
-//	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
-//	obj_sphere_params(objptr, 0.7);
-//	obj_add(scene, objptr);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_sphere_params(objptr, 0.7);
+	obj_add(scene, objptr);
 
-
-	pos = vec_init0(-10, 0, 20);
-	lookat = vec_init0(-11, 1, 21);
+/*
+	pos = vec_init0(-10, 10, 20);
+	lookat = vec_init0(-11, 11, 21);
 	color = rgb_init(0xaabbcc);
-//	color = rgb_init(0xff5050);
-//	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
-//	obj_cone_params(objptr, 22);
-//	obj_add(scene, objptr);
-	
+	color = rgb_init(0xff5050);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_cone_params(objptr, 22);
+	obj_add(scene, objptr);
+*/	
 	color = rgb_init(0xaabbcc);
 	lookat = vec_init0(0, 50, 0);
 	pos = vec_init0(0, 51, 0);
@@ -153,10 +155,22 @@ int					parse_scene(t_env *env)
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_plane_params(objptr);
 	obj_add(scene, objptr);
+/*
+	pos = vec_init0(15, 25, -15);
+	color = rgb_init(0xFFFFFF);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_sphere_params(objptr, 1);
+	obj_add(scene, objptr);
 
+	pos = vec_init0(-15, 25, -15);
+	color = rgb_init(0xFFFFFF);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_sphere_params(objptr, 1);
+	obj_add(scene, objptr);
+	*/
 // 2 lights
 
-	lookat = vec_init0(0, -3, 1);
+//	lookat = vec_init0(0, -3, 1);
 	pos = vec_init0(15, 25, -15);
 	color = rgb_init(0xffffff);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
@@ -168,13 +182,17 @@ int					parse_scene(t_env *env)
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_light_params(objptr, 0.9);
 	light_add(scene, objptr);
-
 // 1 camera
 
 	env->scene = scene;
-	pos = vec_init0(-30, 10, 20);
-	lookat = vec_init0(5, 0, 20);
+	pos = vec_init0(-20, 25, 0);
+	lookat = vec_init0(0, 0, 0);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+
+	print_vec(objptr->pos);
+	print_vec(objptr->dir);
+	print_vec(objptr->up);
+	print_vec(objptr->right);
 	obj_camera_params(objptr, 60.0);
 	camera_add(scene, objptr);
 	return (1);

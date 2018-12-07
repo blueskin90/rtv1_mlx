@@ -6,19 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/06 22:24:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/07 16:14:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-t_matrix			world_to_obj(t_vec dir, t_vec right, t_vec up, t_vec pos)
-{
-	t_matrix		matrix;
-
-	matrix = translation_matrix_init(vec_opposite(pos));
-	return (matrix);
-}
 
 t_matrix			xrot_matrix(t_vec dir, t_vec right, t_vec up)
 {
@@ -109,35 +101,12 @@ t_matrix			zrot_matrix(t_vec dir, t_vec right, t_vec up)
 	return (identity_matrix_init());
 }
 
-void				apply_matrix(t_matrix matrix, t_vec *dir, t_vec *right, t_vec *up)
-{
-	*dir = vec_norm(matrix_mult_vec(matrix, *dir));
-	*right = vec_norm(matrix_mult_vec(matrix, *right));
-	*up = vec_norm(matrix_mult_vec(matrix, *up));
-}
-
-t_vec			get_rightdir(t_vec dir, t_vec up)
-{
-	t_vec		right;
-
-	right = vec_x();
-	return (vec_norm(right));
-}
-
-t_vec			get_updir(t_vec dir)
-{
-	t_vec		up;
-
-	up = vec_y();
-	return (vec_norm(up));
-}
-
 int					main(int ac, char **av)
 {
 	t_env			*env;
 
-	test();
-	exit(1);
+//	test();
+//	exit(1);
 	env = env_init();
 	env_set(env); // toujours init et set lenv avant tout;
 	parse_scene(env); // puis parsing bidon

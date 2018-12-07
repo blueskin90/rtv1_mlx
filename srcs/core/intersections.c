@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/04 07:14:00 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/07 19:18:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,9 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 	t_vec		v2;
 	float		tansquare;
 	
-	t_ray		testray;
-	testray = ray;
 
-	ray = ray_to_obj(ray, cone);
+//	ray.pos = ray_to_obj(ray, cone).pos;
+//	ray.dir = ray_to_obj(ray, cone).dir;
 	tansquare = tanf(cone->params.cone.angle);
 	tansquare *= tansquare;
 	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y- ray.dir.z * ray.dir.z * tansquare;
@@ -146,8 +145,8 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 		return (INFINITY);
 	len1 = (-b + sqrtf(d)) / (2 * a);
 	len2 = (-b - sqrtf(d)) / (2 * a);
-	v1 = vec_mul(testray.dir, len1);
-	v2 = vec_mul(testray.dir, len2);
+	v1 = vec_mul(ray.dir, len1);
+	v2 = vec_mul(ray.dir, len2);
 	if (len1 <= 0 && len2 <= 0)
 			return (INFINITY);
 	if (len1 < len2)

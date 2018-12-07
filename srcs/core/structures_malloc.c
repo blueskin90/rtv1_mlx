@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/06 09:25:15 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/07 19:18:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,34 +62,60 @@ t_matrix	rotmatrix_axis_angle(t_vec axis, float angle)
 t_matrix		world_to_obj_matrix(t_obj *obj)
 {
 	t_matrix	matrix;
-	t_vec		axis;
-	float		angle;
 
-	axis = vec_normalize(vec_opposite(vec_crossproduct(obj->dir, vec_z())));
-	angle = acos(vec_dotproduct(obj->dir, vec_z()));
-	if (vec_magnitude(axis) == 0)
-		return (identity_matrix_init());
-	matrix = rotmatrix_axis_angle(axis, -angle);
+	matrix = identity_matrix_init();
+	matrix.matrix[0][0] = obj->right.x;
+	matrix.matrix[0][1] = obj->right.y;
+	matrix.matrix[0][2] = obj->right.z;
+	matrix.matrix[1][0] = obj->up.x;
+	matrix.matrix[1][1] = obj->up.y;
+	matrix.matrix[1][2] = obj->up.z;
+	matrix.matrix[2][0] = obj->dir.x;
+	matrix.matrix[2][1] = obj->dir.y;
+	matrix.matrix[2][2] = obj->dir.z;
+//	matrix.matrix[0][3] = obj->pos.x;
+//	matrix.matrix[1][3] = obj->pos.y;
+//	matrix.matrix[2][3] = obj->pos.z;
 	return (matrix);
 }
 
 t_matrix		obj_to_world_matrix(t_obj *obj)
 {
 	t_matrix	matrix;
-	t_vec		axis;
-	float		angle;
 
-	axis = vec_normalize(vec_opposite(vec_crossproduct(obj->dir, vec_z())));
-	angle = acos(vec_dotproduct(obj->dir, vec_z()));
-	if (vec_magnitude(axis) == 0)
-		return (identity_matrix_init());
-	matrix = rotmatrix_axis_angle(axis, angle);
+	matrix = obj->world_to_obj;
+	matrix.matrix[0][1] = obj->world_to_obj.matrix[1][0];
+	matrix.matrix[0][2] = obj->world_to_obj.matrix[2][0];
+	matrix.matrix[0][3] = obj->world_to_obj.matrix[3][0];
+	matrix.matrix[1][0] = obj->world_to_obj.matrix[0][1];
+	matrix.matrix[1][2] = obj->world_to_obj.matrix[2][1];
+	matrix.matrix[1][3] = obj->world_to_obj.matrix[3][1];
+	matrix.matrix[2][0] = obj->world_to_obj.matrix[0][2];
+	matrix.matrix[2][1] = obj->world_to_obj.matrix[1][2];
+	matrix.matrix[2][3] = obj->world_to_obj.matrix[3][2];
+//	matrix.matrix[3][0] = obj->world_to_obj.matrix[0][3];
+//	matrix.matrix[3][1] = obj->world_to_obj.matrix[1][3];
+//	matrix.matrix[3][2] = obj->world_to_obj.matrix[2][3];
 	return (matrix);
 }
 
 t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c)
 {
 	return (obj_malloc_dir(pos, vec_sub(lookat, pos), up, c));
+}
+
+t_vec			get_rightdir(t_vec dir)
+{
+	if (is_equal_vec(dir, vec_y()))
+		return (vec_x());
+	else if (is_equal_vec(dir, vec_opposite(vec_y())))
+		return (vec_x());
+	return (vec_normalize(vec_opposite(vec_crossproduct(dir, vec_y()))));
+}
+
+t_vec			get_updir(t_vec dir, t_vec right)
+{
+	return (vec_crossproduct(dir, right));
 }
 
 t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
@@ -99,8 +125,10 @@ t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 	obj = (t_obj*)ft_malloc(sizeof(t_obj));
 	obj->pos = pos;
 	obj->dir = vec_normalize(dir);
-//	obj->right = get_rightdir(obj->dir);
-//	obj->up = get_updir(obj->dir, obj->right);
+	obj->right = get_rightdir(obj->dir);
+	obj->up = get_updir(obj->dir, obj->right);
+//	obj->dir = vec_opposite(obj->dir);
+//	obj->right = vec_opposite(obj->right);
 	obj->color = c;
 	obj->world_to_obj = world_to_obj_matrix(obj);
 	obj->obj_to_world = obj_to_world_matrix(obj);
