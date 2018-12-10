@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/07 19:18:05 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/09 17:45:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,39 @@ t_matrix	rotmatrix_axis_angle(t_vec axis, float angle)
 t_matrix		world_to_obj_matrix(t_obj *obj)
 {
 	t_matrix	matrix;
+	t_vec		zaxis;
+	t_vec		yaxis;
+	t_vec		xaxis;
+
+	zaxis = obj->dir;
+	xaxis = obj->right;
+	yaxis = obj->up;
 
 	matrix = identity_matrix_init();
-	matrix.matrix[0][0] = obj->right.x;
-	matrix.matrix[0][1] = obj->right.y;
-	matrix.matrix[0][2] = obj->right.z;
-	matrix.matrix[1][0] = obj->up.x;
-	matrix.matrix[1][1] = obj->up.y;
-	matrix.matrix[1][2] = obj->up.z;
-	matrix.matrix[2][0] = obj->dir.x;
-	matrix.matrix[2][1] = obj->dir.y;
-	matrix.matrix[2][2] = obj->dir.z;
-//	matrix.matrix[0][3] = obj->pos.x;
-//	matrix.matrix[1][3] = obj->pos.y;
-//	matrix.matrix[2][3] = obj->pos.z;
+	
+	matrix.matrix[0][0] = xaxis.x;
+	matrix.matrix[0][1] = xaxis.y;
+	matrix.matrix[0][2] = xaxis.z;
+	matrix.matrix[1][0] = yaxis.x;
+	matrix.matrix[1][1] = yaxis.y;
+	matrix.matrix[1][2] = yaxis.z;
+	matrix.matrix[2][0] = zaxis.x;
+	matrix.matrix[2][1] = zaxis.y;
+	matrix.matrix[2][2] = zaxis.z;
+	/*
+	matrix.matrix[0][0] = xaxis.x;
+	matrix.matrix[1][0] = xaxis.y;
+	matrix.matrix[2][0] = xaxis.z;
+	matrix.matrix[0][1] = yaxis.x;
+	matrix.matrix[1][1] = yaxis.y;
+	matrix.matrix[2][1] = yaxis.z;
+	matrix.matrix[0][2] = zaxis.x;
+	matrix.matrix[1][2] = zaxis.y;
+	matrix.matrix[2][2] = zaxis.z;
+*/	
+//	matrix.matrix[3][0] = obj->pos.x;
+//	matrix.matrix[3][1] = obj->pos.y;
+//	matrix.matrix[3][2] = obj->pos.z;
 	return (matrix);
 }
 
@@ -101,7 +120,11 @@ t_matrix		obj_to_world_matrix(t_obj *obj)
 
 t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c)
 {
-	return (obj_malloc_dir(pos, vec_sub(lookat, pos), up, c));
+	t_obj		*obj;
+
+	obj = obj_malloc_dir(pos, vec_sub(lookat, pos), up, c);
+	obj->lookat = lookat;
+	return (obj);
 }
 
 t_vec			get_rightdir(t_vec dir)
@@ -127,8 +150,6 @@ t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 	obj->dir = vec_normalize(dir);
 	obj->right = get_rightdir(obj->dir);
 	obj->up = get_updir(obj->dir, obj->right);
-//	obj->dir = vec_opposite(obj->dir);
-//	obj->right = vec_opposite(obj->right);
 	obj->color = c;
 	obj->world_to_obj = world_to_obj_matrix(obj);
 	obj->obj_to_world = obj_to_world_matrix(obj);
@@ -216,6 +237,7 @@ void			renderer_malloc(t_obj *camera)
 	increment = vec_init0(0, 0, 0);
 	topleft = get_top_left_vec(camera, &increment);
 	ft_bzero(&ray, sizeof(t_ray));
+//	ray.pos = vec_init0(0, 0, 0);
 	ray.pos = camera->pos;
 	ray.length = INFINITY;
 	y = 0;
@@ -224,6 +246,7 @@ void			renderer_malloc(t_obj *camera)
 		x = 0;
 		while (x < win_getx())
 		{
+			// faire un get_ray_cam avec la camera l'increment, l'x y et le topleft;
 			ray.dir = vec_norm(get_actual_dir(topleft, increment, x, y));
 			ray.dir = vec_norm(matrix_mult_vec(camera->obj_to_world, ray.dir));
 			camera->params.camera.rays[x + y * win_getx()] = ray;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/07 19:03:23 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/09 10:27:03 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct		s_ray
 typedef struct		s_obj
 {
 	t_vec			pos;
+	t_vec			lookat;
 	t_vec			dir;
 	t_vec			up;
 	t_vec			right;

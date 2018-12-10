@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/04 06:52:01 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/09 10:16:09 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int		key_pressed(int key)
 		if (key == X_KEY_D_ARROW)
 			cursor_movey(1);
 	}
-
 	printing();	
 	return 0;
 }

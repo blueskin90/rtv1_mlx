@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 23:27:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/07 19:18:06 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/10 15:27:52 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,20 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 		if (l[1] <= TOLERANCE)
 			return (INFINITY);
 //		return (l[1]);
-		vec_magnitude(v2);
+		vec_magnitude(v2) - TOLERANCE;
 	}
 	if (l[1] <= TOLERANCE)
 //		return (l[0]);
-		vec_magnitude(v1);
+		vec_magnitude(v1) - TOLERANCE;
 	if (l[0] < l[1])
-		return (vec_magnitude(v1));
+		return (vec_magnitude(v1) - TOLERANCE);
 	//	return (l[0]);
-	return (vec_magnitude(v2));
+	return (vec_magnitude(v2) - TOLERANCE);
 //	return (l[1]);
 //		return (vec_magnitude(v1) - TOLERANCE);
 //	return (vec_magnitude(v2) - TOLERANCE);
 }
+
 float			cone_intersection(t_ray ray, t_obj *cone)
 {
 	float		a;
@@ -133,11 +134,11 @@ float			cone_intersection(t_ray ray, t_obj *cone)
 	float		tansquare;
 	
 
-//	ray.pos = ray_to_obj(ray, cone).pos;
-//	ray.dir = ray_to_obj(ray, cone).dir;
+	ray.pos = ray_to_obj(ray, cone).pos;
+	ray.dir = ray_to_obj(ray, cone).dir;
 	tansquare = tanf(cone->params.cone.angle);
 	tansquare *= tansquare;
-	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y- ray.dir.z * ray.dir.z * tansquare;
+	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y - ray.dir.z * ray.dir.z * tansquare;
 	b = 2 * ray.pos.x * ray.dir.x + 2 * ray.pos.y * ray.dir.y - 2 * ray.pos.z * ray.dir.z * tansquare;
 	c = ray.pos.x * ray.pos.x + ray.pos.y * ray.pos.y - ray.pos.z * ray.pos.z * tansquare;
 	d = b * b - 4 * a * c;

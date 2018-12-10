@@ -23,10 +23,25 @@ t_ray			ray_init(t_vec pos, t_vec dir)
 t_ray			ray_to_obj(t_ray ray, t_obj *cyl)
 {
 	t_ray		new_ray;
+	t_vec		new_pos;
+	t_vec		new_dir;
 
+	new_pos = matrix_mult_vec(cyl->world_to_obj, ray.pos);
+	new_pos = vec_sub(new_pos, cyl->pos);
+
+
+	new_dir = vec_add(ray.pos, ray.dir);
+	new_dir = matrix_mult_vec(cyl->world_to_obj, new_dir);
+	new_dir = vec_sub(new_dir, cyl->pos);
+	new_dir = vec_normalize(vec_init(new_pos, new_dir));
+	new_ray = ray_init(new_pos, new_dir);
+
+
+	return (new_ray);
 	new_ray = ray_init(ray.pos, ray.dir);
 	new_ray.pos = vec_sub(ray.pos, cyl->pos);
 	new_ray.pos = matrix_mult_vec(cyl->world_to_obj, ray.pos);
+
 //	new_ray.dir = vec_sub(new_ray.dir, cyl->pos);
 //	if (ray.lookat.x != INFINITY)
 //	{
