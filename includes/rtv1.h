@@ -6,12 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/10 16:59:06 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/10 17:44:21 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV1_H
 # define RTV1_H
+
 
 # include "mlx.h"
 # include "libft.h"
