@@ -8,5 +8,11 @@
 # define VECTOR_POINT_REQUIRED true
 # define ONE_SPHERE_REQUIRED true
 # define SPHERES_REQUIRED false
+# define CONES_REQUIRED false
+# define PLANES_REQUIRED false
+# define CYLINDERS_REQUIRED false
+# define LIGHTS_REQUIRED false
+# define CAMERAS_REQUIRED true
+# define COLOR_REQUIRED false
 
 #endif

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/05 17:26:16 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/10 20:12:57 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 	   #$(addprefix hooks/, event_listener) \
 	   $(addprefix raytracer/, raytracing intersections colorize) 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color ray normal float vector parsing) \
-	   $(addprefix parsing/, parsing parse_scene parse_object parse_light key_utils key_types_utils parse_vectors) \
+	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color ray normal float vector parsing errors) \
+	   $(addprefix parsing/, parsing parse_scene parse_objects parse_object parse_light parse_cameras key_utils key_types_utils parse_vectors color_parsing) \
 	   $(addprefix json_parser/, json_parser recognize_key elem_struct_functions \
 	   recognize_number recognize_string print_elem_architecture \
 		json_utils recognize_bool recognize_null recognize_array \

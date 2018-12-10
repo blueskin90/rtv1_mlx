@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:16:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/04 18:53:03 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/10 17:15:45 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,4 @@ float					clampf(float a, float inf_limit, float sup_limit)
 		return (sup_limit);
 	return (a);	
 }
+

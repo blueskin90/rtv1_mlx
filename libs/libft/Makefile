@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/11/23 02:42:44 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/10 21:20:52 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ FILES = atoi \
 	   isprint \
 	   ftoa \
 	   itoa \
+	   itoa_base \
 	   memalloc \
 	   memccpy \
 	   memchr \
@@ -77,6 +78,7 @@ FILES = atoi \
 	   get_next_line \
 	   strisvalidint \
 	   atoi_base_ll \
+	   atoi_base \
 	   malloc \
 	   error \
 

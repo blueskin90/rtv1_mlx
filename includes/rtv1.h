@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/05 18:47:44 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/10 21:21:35 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,25 @@ typedef struct		s_ray
 	struct s_obj	*obj_hit;
 }					t_ray;
 
+typedef struct		s_parse_obj
+{
+	t_vec			specular;	
+	t_vec			diffuse;
+	t_vec			position;
+	t_vec			direction;
+	t_vec			lookat;
+	t_vec			translation;
+	t_vec			rotation;
+	t_vec			up;
+	t_vec			right;
+	float			brillance;
+	float			ambiant;
+	float			roll;
+	t_RGB			color;
+	t_type			type;
+	t_params		params;
+}					t_parse_obj;
+
 typedef struct		s_obj
 {
 	t_vec			pos;
@@ -199,8 +218,15 @@ t_scene				*parse_scene(t_elem *elem);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
 t_obj				*parse_objects(t_elem *elem);
 t_obj				*parse_sphere(t_elem *elem);
+t_obj				*parse_lights(t_elem *elem);
+t_obj				*parse_cameras(t_elem *elem);
 t_vec				parse_vector(t_elem *elem);
 bool				check_type_of_key(char *key, e_type type);
+t_obj				*parse_one_sphere(t_elem *elem);
+t_obj				*parse_one_cone(t_elem *elem);
+t_obj				*parse_one_cylinder(t_elem *elem);
+t_obj				*parse_one_plane(t_elem *elem);
+t_obj				*new_obj();
 /*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
 t_elem				*default_vector_values();
 t_elem				*default_vector_object(char *name);
@@ -210,6 +236,26 @@ void				print_keys(t_key *key, int padding);
 void				show_one_key(t_key *elem, int padding);
 int					test(void);
 */
+
+/*
+** ERRORS
+*/
+void				wrong_format(char *form, e_type type);
+void				is_required(char *key, bool one);
+
+/*
+** STRUCTURES 
+*/
+
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
+void				obj_sphere_params(t_obj *obj, float radius);
+void				obj_cylinder_params(t_obj *obj, float radius);
+void				obj_cone_params(t_obj *obj, float angle);
+void				obj_plane_params(t_obj *obj);
+void				obj_camera_params(t_obj *obj, float fov);
+void				obj_light_params(t_obj *obj, float intensity);
+void				renderer_malloc(t_obj *camera);
 
 /*
 ** INIT FUNCTIONS
@@ -257,22 +303,6 @@ void				cursor_reset(void);
 int					cursor_mode_get(void);
 void				cursor_mode_toggle(void);
 void				cursor_mode_set(int value);
-/*
-** OBJET MALLOC
-*/
-/*
-** STRUCTURES 
-*/
-
-t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
-t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
-void				obj_sphere_params(t_obj *obj, float radius);
-void				obj_cylinder_params(t_obj *obj, float radius);
-void				obj_cone_params(t_obj *obj, float angle);
-void				obj_plane_params(t_obj *obj);
-void				obj_camera_params(t_obj *obj, float fov);
-void				obj_light_params(t_obj *obj, float intensity);
-void				renderer_malloc(t_obj *camera);
 
 /*
 ** RAYTRACING FUNCTIONS

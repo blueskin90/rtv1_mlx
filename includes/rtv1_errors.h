@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/05 18:43:32 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/10 21:13:11 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@
 # define VECTOR_BAD_FORMAT "Wrong format for VECTOR, must be OBJECT type\n"
 # define SPHERES_BAD_FORMAT "Wrong format for SPHERES, must be STRING type\n"
 # define SPHERE_BAD_FORMAT "Wrong format for elements of SPHERES, must be OBJECT\n"
+# define X_BAD_FORMAT "Wrong format for "
+# define X_SHOULD_NOT_BE " should not be "
+# define X_MUST_BE "must be \n"
+# define BAD_FORMAT_HEX "hex in color should be a valid hexadecimal\n"
 
 /*
 ** INFORMATION REQUIRED
 */
+# define IS_REQUIRED " is required\n"
+# define AT_LEAST_ONE_REQUIRED "at least one "
 # define SCENE_IS_REQUIRED "At least one SCENE is required\n" 
 # define NAME_IS_REQUIRED "Name is required\n"
 # define SPHERES_IS_REQUIRED "Spheres is required\n"
@@ -34,4 +40,5 @@
 # define OBJECTS_IS_REQUIRED "Their must be at least one object in your SCENE\n"
 # define VECTOR_IS_REQUIRED "Vector is required\n"
 # define VECTOR_POINT_IS_REQUIRED "Vector point is required \n"
+
 #endif

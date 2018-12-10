@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:09:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/23 02:52:52 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/10 21:19:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char				*ft_strstr(const char *big, const char*little);
 char				*ft_strnstr(const char *big, const char*little, size_t len);
 char				*ft_ftoa(float n, unsigned int decitoprint);
 char				*ft_itoa(int n);
+char				*ft_itoa_base(unsigned int value, unsigned int base);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strtrim(char const *s);
 char				*ft_strjoin(char const *s1, char const *s2);
@@ -86,6 +87,7 @@ int					ft_isalnum(int c);
 int					ft_isdigit(int c);
 int					ft_isalpha(int c);
 int					ft_atoi(const char *str);
+int					ft_atoi_base(const char *str, unsigned int from);
 float				ft_atof(char *str);
 double				ft_atod(char *str);
 int					ft_memcmp(const void *b1, const void *b2, size_t len);
