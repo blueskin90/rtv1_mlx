@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/09 17:45:44 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/10 17:26:13 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,7 @@ void			renderer_malloc(t_obj *camera)
 	increment = vec_init0(0, 0, 0);
 	topleft = get_top_left_vec(camera, &increment);
 	ft_bzero(&ray, sizeof(t_ray));
-//	ray.pos = vec_init0(0, 0, 0);
-	ray.pos = camera->pos;
+	ray.pos = vec_init0(0, 0, 0);
 	ray.length = INFINITY;
 	y = 0;
 	while (y < win_gety())
@@ -246,10 +245,9 @@ void			renderer_malloc(t_obj *camera)
 		x = 0;
 		while (x < win_getx())
 		{
-			// faire un get_ray_cam avec la camera l'increment, l'x y et le topleft;
 			ray.dir = vec_norm(get_actual_dir(topleft, increment, x, y));
-			ray.dir = vec_norm(matrix_mult_vec(camera->obj_to_world, ray.dir));
-			camera->params.camera.rays[x + y * win_getx()] = ray;
+			
+			camera->params.camera.rays[x + y * win_getx()] = ray_to_world(ray, camera);
 			x++;
 		}
 		y++;

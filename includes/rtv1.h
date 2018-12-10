@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/09 10:27:03 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/10 16:59:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ void				test(void);
 t_vec				get_updir(t_vec dir, t_vec right);
 t_vec				get_rightdir(t_vec dir);
 
+t_ray				ray_to_world(t_ray ray, t_obj *obj);
 t_ray				ray_to_obj(t_ray ray, t_obj *obj);
 t_ray				ray_init(t_vec pos, t_vec dir);
 t_ray				ray_init_lookat(t_vec pos, t_vec lookat);

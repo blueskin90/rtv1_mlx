@@ -108,15 +108,13 @@ int					parse_scene(t_env *env)
 	obj_cylinder_params(objptr, 1);
 	obj_add(scene, objptr);
 	// CONE
-	/*
-	pos = vec_init0(10, 10, 10);
-	lookat = vec_init0(10, 11, 10);
+	pos = vec_init0(-29, -40, 10);
+	lookat = vec_init0(-30, -38, 11);
 	color = rgb_init(0xaabbcc);
 	color = rgb_init(0xff5050);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_cone_params(objptr, 30);
 	obj_add(scene, objptr);
-	*/
 	// PLANE
 	
 
@@ -194,8 +192,8 @@ int					parse_scene(t_env *env)
 // 1 camera
 
 	env->scene = scene;
-	pos = vec_init0(0, 0, -200);
-	lookat = vec_init0(0, 0, 0);
+	pos = vec_init0(0, 25, -200);
+	lookat = vec_init0(0, -50, 50);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	
 	printf("pos : ");
