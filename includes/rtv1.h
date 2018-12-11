@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 17:07:09 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 18:13:09 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ t_obj				*parse_objects(t_elem *elem);
 t_obj				*parse_sphere(t_elem *elem);
 t_obj				*parse_lights(t_elem *elem);
 t_obj				*parse_cameras(t_elem *elem);
-t_color				parse_color(t_elem *elem);
+t_RGB				parse_color(t_elem *elem);
 float				parse_float(t_elem *elem);
 t_vec				parse_vector(t_elem *elem);
 bool				check_type_of_key(char *key, e_type type);
@@ -238,6 +238,7 @@ float				required_float(float number, bool required, char *error);
 t_vec				required_vec(t_vec vec, bool required, char *error);
 float				default_float(float number, float def);
 t_vec				default_vec(t_vec vec, t_vec def);
+t_RGB				default_rgb(t_RGB rgb, t_RGB def);
 /*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
 t_elem				*default_vector_values();
 t_elem				*default_vector_object(char *name);

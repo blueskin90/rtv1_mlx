@@ -13,7 +13,6 @@
 # define CYLINDERS_REQUIRED false
 # define LIGHTS_REQUIRED false
 # define CAMERAS_REQUIRED true
-# define COLOR_REQUIRED false
 # define SPHERE_RADIUS_REQUIRED true
 # define CYLINDER_RADIUS_REQUIRED true
 # define PLANE_ANGLE_REQUIRED true
@@ -26,5 +25,11 @@
 # define DIRECTION_REQUIRED false
 # define LOOKAT_OR_DIRECTION_REQUIRED true
 
-
+/*
+** COLORS
+*/
+# define COLOR_REQUIRED false
+# define COLOR_RGB_REQUIRED false
+# define COLOR_HEX_REQUIRED false
+# define COLOR_AT_LEAST_ONE_REQUIRED false
 #endif

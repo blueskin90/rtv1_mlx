@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 16:03:27 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 18:06:22 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@
 # define LOOKAT_DIRECTION_CONFLICT "Lookat and direction given and not equal\n"
 # define DIR_CANNOT_POINT_0 "Direction cannot point (0,0,0)\n"
 # define LOOKAT_CANNOT_POINT_0 "vec between Lookat & pos cannot point (0,0,0)\n"
+# define RGB_BAD_VAL "RGB values must be between 0 and 255\n" 
+# define RGB_HEX_CONFLICT "RGB and HEX given but value are different\n"
 #endif

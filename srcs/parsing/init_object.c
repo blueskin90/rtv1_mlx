@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:08:23 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 13:58:28 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 18:29:25 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 t_obj		*init_object(t_elem *elem, t_obj *obj)
 {
 
+	(void) elem;
+	(void) obj;
+	return (NULL);
 
 }
 
@@ -40,7 +43,7 @@ t_obj		*init_cone(t_elem *elem, t_obj *obj)
 t_obj		*init_plane(t_elem *elem, t_obj *obj)
 {
 	obj->type = PLANE;
-	obj->params.plane.angle = 
+	obj->params.plane.a = 
 		default_float(
 			required_float(
 				parse_degree_to_rad(
