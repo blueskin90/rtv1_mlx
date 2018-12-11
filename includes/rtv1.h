@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 17:18:00 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/11 17:47:30 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,6 @@ typedef struct		s_env
 /*
 ** IN TESTING
 */
-
-void				test(void);
 
 t_vec				get_updir(t_vec dir, t_vec right);
 t_vec				get_rightdir(t_vec dir);
