@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 16:27:59 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/11 17:18:00 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,6 @@ t_ray				ray_init(t_vec pos, t_vec dir);
 t_ray				ray_init_lookat(t_vec pos, t_vec lookat);
 
 void				shoot_ray(t_ray *ray);
-void				get_normal(t_ray *ray);
 int					is_equal_float(float a, float b);
 int					is_equal_vec(t_vec a, t_vec b);
 int					is_opposite_vec(t_vec a, t_vec b);
@@ -252,11 +251,7 @@ void				raytracing(void);
 void				raytracing_lights(void);
 void				shoot_ray(t_ray *ray);
 void				shoot_ray_lights(t_ray *ray);
-void				get_normal(t_ray *ray);
-void				get_planenormal(t_ray *ray);
-void				get_cylindernormal(t_ray *ray);
-void				get_conenormal(t_ray *ray);
-void				get_spherenormal(t_ray *ray);
+
 t_ray				reflect_ray(t_ray *ray);
 t_RGB				get_ambiant(t_ray *ray);
 t_RGB				get_specular(t_ray *ray, t_ray to_light, t_obj light);
@@ -272,6 +267,17 @@ float				plane_intersection(t_ray ray, t_obj *plane);
 float				cone_intersection(t_ray ray, t_obj *cone);
 float				cylinder_intersection(t_ray ray, t_obj *cylinder);
 float				sphere_intersection(t_ray ray, t_obj *sphere);
+
+/*
+** NORMAL FUNCTIONS
+*/
+
+void				get_normal(t_ray *ray);
+void				get_planenormal(t_ray *ray);
+void				get_cylindernormal(t_ray *ray);
+void				get_conenormal(t_ray *ray);
+void				get_spherenormal(t_ray *ray);
+void				get_normal(t_ray *ray);
 
 /*
 ** EVENT LISTENER

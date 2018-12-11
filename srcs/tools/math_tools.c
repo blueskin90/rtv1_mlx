@@ -6,11 +6,22 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:15:32 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 16:16:01 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/11 17:06:21 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h" 
+
+int				is_equal_float(float a, float b)
+{
+	float		c;
+
+	c = a - b;
+	c = (c < 0) ? -c : c;
+	if (c < TOLERANCE)
+		return (1);
+	return (0);
+}
 
 float				maxf(float a, float b)
 {

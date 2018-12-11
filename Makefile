@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/11 16:26:59 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/11 17:18:00 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main structures_malloc raytracing printing ray normal float vector parsing test) \
+	   $(addprefix core/, main structures_malloc raytracing printing ray vector parsing test) \
 	   $(addprefix color/, color) \
 	   $(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton) \
 	   $(addprefix tools/, math_tools general_tools) \
@@ -33,6 +33,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix initialization/, init) \
 	   $(addprefix events/, event_listener) \
 	   $(addprefix debug/, debug debug_menu print_obj) \
+	   $(addprefix normal/, normal cone cylinder plane sphere) \
 	   $(addprefix intersections/, cone cylinder plane sphere quadratic) \
 		))
 
@@ -61,6 +62,7 @@ objs:
 	mkdir objs/mlx_functions
 	mkdir objs/singleton
 	mkdir objs/tools
+	mkdir objs/normal
 
 clean:
 #	make -C ./libs/mlx clean
