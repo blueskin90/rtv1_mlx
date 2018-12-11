@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/11 13:38:13 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/11 16:21:29 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,15 +32,16 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix parsing/, \
 	   parsing \
 	   parse_scene \
+	   parse_utils \
 	   parse_objects \
 	   parse_object \
 	   parse_light \
-	   parse_aritmectif_values \
+	   parse_arithmetic_values \
 	   parse_cameras \
 	   key_utils \
 	   key_types_utils \
 	   parse_vectors \
-	   color_parsing \
+	   parse_colors \
 	   init_camera \
 	   init_light \
 	   init_object \

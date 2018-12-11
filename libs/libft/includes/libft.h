@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:09:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/10 21:19:13 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 17:19:24 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ float				ft_atof(char *str);
 double				ft_atod(char *str);
 int					ft_memcmp(const void *b1, const void *b2, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp_case_insensitive(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/12/10 21:20:52 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/11 17:19:49 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ FILES = atoi \
 	   strchr \
 	   strclr \
 	   strcmp \
+	   strcmp_case_insensitive \
 	   strcpy \
 	   strdel \
 	   strdup \

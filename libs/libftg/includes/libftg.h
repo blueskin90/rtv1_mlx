@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 18:09:32 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/11 15:56:08 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ float				vec_dotproduct(t_vec a, t_vec b);
 float				vec_dot(t_vec a, t_vec b);
 float				vec_magnitude(t_vec a);
 float				vec_cos(t_vec a, t_vec b);
-
 t_matrix			identity_matrix_init(void);
 t_matrix			scale_matrix_init(float scale);
 t_matrix			translation_matrix_init(t_vec tranvec);
@@ -115,8 +114,10 @@ t_matrix			rotx_matrix_init(float degrees);
 t_matrix			roty_matrix_init(float degrees);
 t_matrix			rotz_matrix_init(float degrees);
 t_matrix			matrix_mult(t_matrix a, t_matrix b);
-t_vec			matrix_mult_vec(t_matrix a, t_vec b);
+t_vec				matrix_mult_vec(t_matrix a, t_vec b);
 float				degtorad(float deg);
 float				radtodeg(float rad);
-
+float				min_of_vec(t_vec vec);
+float				max_of_vec(t_vec vec);
+int					vec_is_0(t_vec vec);
 #endif

@@ -6,39 +6,12 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:24 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 13:25:57 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:11:35 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj	*new_parse_obj()
-{
-	t_obj		*parse_obj;
-	t_vec		vec;
-	t_color		rgb;
-
-	vec = vec_init0(INFINITY, INFINITY, INFINITY);
-	rgb.r = INFINTIY;
-	rgb.g = INFINTIY;
-	rgb.b = INFINTIY;
-	rgb.value = -1;
-	obj = (t_parse_obj*)ft_malloc(sizeof(t_parse_obj));
-	parse_obj->specular	= vec;
-	parse_obj->diffuse 	= vec;
-	parse_obj->position	= vec;
-	parse_obj->direction = vec;
-	parse_obj->lookat = vec;
-	parse_obj->translation = vec;
-	parse_obj->rotation = vec;
-	parse_obj->up = vec;
-	parse_obj->right = vec;
-	parse_obj->brillance = INFINITY;
-	parse_obj->ambiant = INFINITY;
-	parse_obj->roll = INFINITY;
-	parse_obj->color = vec;
-	return (parse_obj);
-}
 
 t_obj	*new_obj()
 {
@@ -49,7 +22,7 @@ t_obj	*new_obj()
 }
 
 t_obj	*parse_object(t_elem *elem, bool obj_req,
-		t_obj *(*object_parser)(t_elem*), char *key)
+		t_obj *(*object_parser)(t_elem*, t_obj*), char *key)
 {
 	t_obj		*begin;
 	t_obj		*curr;

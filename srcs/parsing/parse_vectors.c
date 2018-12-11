@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:10:28 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 13:51:50 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:20:46 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "rtv1.h"
@@ -18,7 +18,7 @@ float		get_vec_float(t_elem *elem)
 	{
 		if (!check_type_of_key(elem->key, elem->type))
 			ft_error(VECTOR_BAD_FORMAT);
-		return elem->value->floaty;
+		return elem->value.floaty;
 	}
 	else if (VECTOR_POINT_REQUIRED)
 		ft_error(VECTOR_POINT_IS_REQUIRED);

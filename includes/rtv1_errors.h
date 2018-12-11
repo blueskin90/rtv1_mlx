@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 13:21:23 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:03:27 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,10 @@
 # define VECTOR_IS_REQUIRED "Vector is required\n"
 # define VECTOR_POINT_IS_REQUIRED "Vector point is required \n"
 
+/*
+** WRONG VALUES
+*/
+# define LOOKAT_DIRECTION_CONFLICT "Lookat and direction given and not equal\n"
+# define DIR_CANNOT_POINT_0 "Direction cannot point (0,0,0)\n"
+# define LOOKAT_CANNOT_POINT_0 "vec between Lookat & pos cannot point (0,0,0)\n"
 #endif
