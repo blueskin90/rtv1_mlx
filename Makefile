@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/10 17:43:57 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/11 16:26:59 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,15 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main init tools debug structures_malloc singleton event_listener mlx intersections raytracing printing color ray normal float vector parsing test) \
+	   $(addprefix core/, main structures_malloc raytracing printing ray normal float vector parsing test) \
+	   $(addprefix color/, color) \
+	   $(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton) \
+	   $(addprefix tools/, math_tools general_tools) \
+	   $(addprefix mlx_functions/, mlx) \
+	   $(addprefix initialization/, init) \
+	   $(addprefix events/, event_listener) \
+	   $(addprefix debug/, debug debug_menu print_obj) \
+	   $(addprefix intersections/, cone cylinder plane sphere quadratic) \
 		))
 
 HEADERS = includes/rtv1.h \
@@ -45,6 +53,14 @@ objs/%.o: srcs/%.c $(HEADERS)
 
 objs:
 	mkdir -p objs/core
+	mkdir objs/color
+	mkdir objs/debug
+	mkdir objs/intersections
+	mkdir objs/events
+	mkdir objs/initialization
+	mkdir objs/mlx_functions
+	mkdir objs/singleton
+	mkdir objs/tools
 
 clean:
 #	make -C ./libs/mlx clean

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/09 10:12:48 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/11 15:42:03 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int					main(int ac, char **av)
 {
 	t_env			*env;
 
-//	test();
-//	exit(1);
 	env = env_init();
 	env_set(env); // toujours init et set lenv avant tout;
 	parse_scene(env); // puis parsing bidon

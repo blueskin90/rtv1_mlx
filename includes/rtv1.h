@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/10 17:44:21 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/11 16:27:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,7 @@ t_RGB				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
 ** INTERSECTION FUNCTIONS
 */
 
+int					quadratic(float a, float b, float c, float l[2]);
 float				plane_intersection(t_ray ray, t_obj *plane);
 float				cone_intersection(t_ray ray, t_obj *cone);
 float				cylinder_intersection(t_ray ray, t_obj *cylinder);
