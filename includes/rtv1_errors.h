@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/10 21:13:11 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 13:21:23 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define X_SHOULD_NOT_BE " should not be "
 # define X_MUST_BE "must be \n"
 # define BAD_FORMAT_HEX "hex in color should be a valid hexadecimal\n"
+# define RADIUS_BAD_FORMAT "Radius of object should be higher than 0\n"
 
 /*
 ** INFORMATION REQUIRED

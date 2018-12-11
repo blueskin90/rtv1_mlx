@@ -14,5 +14,17 @@
 # define LIGHTS_REQUIRED false
 # define CAMERAS_REQUIRED true
 # define COLOR_REQUIRED false
+# define SPHERE_RADIUS_REQUIRED true
+# define CYLINDER_RADIUS_REQUIRED true
+# define PLANE_ANGLE_REQUIRED true
+# define CONE_ANGLE_REQUIRED true
+/*
+** OBJECTS
+*/
+# define POSITION_REQUIRED true
+# define LOOKAT_REQUIRED false
+# define DIRECTION_REQUIRED false
+# define LOOKAT_OR_DIRECTION_REQUIRED true
+
 
 #endif

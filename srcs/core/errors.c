@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:56:51 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/10 17:20:22 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 14:55:38 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,5 @@ void					is_required(char *key, bool one)
 	ft_putstr_fd(IS_REQUIRED, 2);
 	exit(0);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:24 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/10 20:12:26 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/11 13:25:57 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_obj	*new_obj()
 }
 
 t_obj	*parse_object(t_elem *elem, bool obj_req,
-		t_obj *(*parse_one_obj)(t_elem*), char *key)
+		t_obj *(*object_parser)(t_elem*), char *key)
 {
 	t_obj		*begin;
 	t_obj		*curr;
@@ -66,7 +66,7 @@ t_obj	*parse_object(t_elem *elem, bool obj_req,
 			is_required(key, true);
 		while (child_elem)
 		{
-			curr = parse_one_obj(child_elem);
+			curr = parse_one_object(child_elem, object_parser);
 			if (begin == NULL)
 				begin = curr;
 			else if (previous != NULL)
@@ -118,16 +118,16 @@ t_obj		*parse_objects(t_elem *elem)
 		child_elem = elem->value.objecty;
 		obj = add_objects_to_list(parse_object(
 				find_elem_by_key(child_elem, "spheres"), SPHERES_REQUIRED,
-				&parse_one_sphere, "spheres"), obj); 
+				&init_sphere, "spheres"), obj); 
 		obj = add_objects_to_list(parse_object(
 				find_elem_by_key(child_elem, "planes"), PLANES_REQUIRED,
-				&parse_one_plane, "planes"), obj); 
+				&init_plane, "planes"), obj); 
 		obj = add_objects_to_list(curr = parse_object(
 				find_elem_by_key(child_elem, "cones"), CONES_REQUIRED,
-				&parse_one_cone, "cones"), obj); 
+				&init_cone, "cones"), obj); 
 		obj = add_objects_to_list(parse_object(
 				find_elem_by_key(child_elem, "cylinders"), CYLINDERS_REQUIRED,
-				&parse_one_cylinder, "cylinders"), obj); 
+				&init_cylinder, "cylinders"), obj); 
 		if (OBJECTS_REQUIRED && obj == NULL)
 			is_required("object", true);
 	}
