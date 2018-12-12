@@ -46,6 +46,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   init_light \
 	   init_object \
 	   required \
+	   defaults \
 	   ) \
 	   $(addprefix json_parser/, json_parser recognize_key elem_struct_functions \
 	   recognize_number recognize_string print_elem_architecture \

@@ -16,11 +16,12 @@ float		required_float(float number, bool required, char *error)
 {
 	if (number == INFINITY && required)
 		is_required(error, false);
+	return (number);
 }
 
 t_vec		required_vec(t_vec vec, bool required, char *error)
 {
-	if (ft_min_of_3((int) vec.x, (int) vec.y, (int) vec.z) == INFINITY && required)
+	if (min_of_vec(vec) == INFINITY && required)
 		is_required(error, false);
 	return (vec);
 }

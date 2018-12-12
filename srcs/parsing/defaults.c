@@ -34,7 +34,7 @@ t_RGB		default_rgb(t_RGB rgb, t_RGB def)
 {
 	if (rgb.r == INFINITY)
 		rgb.r = def.r;
-	if (rgb.g == INFINIY)
+	if (rgb.g == INFINITY)
 		rgb.g = def.g;
 	if (rgb.b == INFINITY)
 		rgb.b = def.b;

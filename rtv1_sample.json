@@ -26,12 +26,12 @@
 					"direction" : { 
 						"x" :0.0, 
 						"y" : 0.0,
-						"z" : 0.0
+						"z" : 1.0
 					},
 					"lookat" : {
 						"x" : 0.0,
 						"y" : 0.0,
-						"z" : 0.0
+						"z" : 1.0
 					},
 					"up" : {
 						"x" : 0.0,
@@ -60,7 +60,7 @@
 						"hex" : "0xffffff"
 					},
 					"roll" : 0.0,
-					"radius" : 0.0
+					"radius" : 1.0
 				}
 			],
 			"cylinders" : [
@@ -242,7 +242,7 @@
 						"hex" : "0xffffff"
 					},
 					"roll" : 0.0,
-					"angle": : 0.0
+					"angle": 0.0
 				}
 			]
 		},
