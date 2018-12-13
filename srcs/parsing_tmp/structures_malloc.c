@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/10 17:26:13 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/13 15:21:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,6 @@ t_matrix		world_to_obj_matrix(t_obj *obj)
 	matrix.matrix[2][0] = zaxis.x;
 	matrix.matrix[2][1] = zaxis.y;
 	matrix.matrix[2][2] = zaxis.z;
-	/*
-	matrix.matrix[0][0] = xaxis.x;
-	matrix.matrix[1][0] = xaxis.y;
-	matrix.matrix[2][0] = xaxis.z;
-	matrix.matrix[0][1] = yaxis.x;
-	matrix.matrix[1][1] = yaxis.y;
-	matrix.matrix[2][1] = yaxis.z;
-	matrix.matrix[0][2] = zaxis.x;
-	matrix.matrix[1][2] = zaxis.y;
-	matrix.matrix[2][2] = zaxis.z;
-*/	
-//	matrix.matrix[3][0] = obj->pos.x;
-//	matrix.matrix[3][1] = obj->pos.y;
-//	matrix.matrix[3][2] = obj->pos.z;
 	return (matrix);
 }
 
@@ -187,7 +173,8 @@ void			obj_camera_params(t_obj *obj, float fov)
 {
 	obj->params.camera.fov = degtorad(fov);
 	obj->type = CAMERA;
-	renderer_malloc(obj);
+	obj->params.camera.rays = NULL;
+	obj->params.camera.raynumber = 0;
 }
 
 void			obj_light_params(t_obj *obj, float intensity)
@@ -251,5 +238,23 @@ void			renderer_malloc(t_obj *camera)
 			x++;
 		}
 		y++;
+	}
+}
+
+void			malloc_renderers(void)
+{
+	t_obj		*cam;
+	t_scene		*scene;
+
+	scene = env_get()->scene;
+	while (scene)
+	{
+		cam = scene->cameras;
+		while (cam)
+		{
+			renderer_malloc(cam);
+			cam = cam->next;
+		}
+		scene = scene->next;
 	}
 }

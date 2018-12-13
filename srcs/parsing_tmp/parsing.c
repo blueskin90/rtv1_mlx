@@ -45,7 +45,7 @@ void				camera_add(t_scene *scene, t_obj *camera)
 		scene->cameras = camera;
 }
 
-int					parse_scene(t_env *env)
+int					parse_scene(void)
 {
 	t_scene			*scene;
 	t_vec			pos;
@@ -54,6 +54,7 @@ int					parse_scene(t_env *env)
 	t_obj			*objptr;
 
 	scene = (t_scene*)ft_malloc(sizeof(t_scene));
+	scene->next = NULL;
 
 // SPHERES
 	
@@ -191,20 +192,13 @@ int					parse_scene(t_env *env)
 	light_add(scene, objptr);
 // 1 camera
 
-	env->scene = scene;
 	pos = vec_init0(0, 25, -200);
 	lookat = vec_init0(0, -50, 50);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	
-	printf("pos : ");
-	print_vec(objptr->pos);
-	printf("dir : ");
-	print_vec(objptr->dir);
-	printf("up : ");
-	print_vec(objptr->up);
-	printf("right : ");
-	print_vec(objptr->right);
 	obj_camera_params(objptr, 60.0);
 	camera_add(scene, objptr);
+	
+	env_get()->scene = scene;
 	return (1);
 }

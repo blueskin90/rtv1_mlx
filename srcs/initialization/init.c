@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:37:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/01 04:35:23 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/13 15:05:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,10 @@ t_env				*env_init(void)
 		ft_error(WINDOW_FAIL);
 	env->scene = NULL;
 	return (env);
+}
+
+int					init(void)
+{
+	env_set(env_init());
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/09 10:16:09 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/13 15:05:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ int		mouse_move(int x, int y)
 	return (1);
 }
 
-void		events_listener(t_env *env)
+void		events_listener(void)
 {
+	t_env	*env;
+
+	env = env_get();
 //	mlx_hook(env->win, 2, 0, key, env);
 	mlx_hook(env->win->winptr, X_MOTIONNOTIFY, 0, mouse_move, env); 
 	mlx_hook(env->win->winptr, X_KEYPRESS, X_KEYPRESS_MASK, key_pressed, env);

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 04:27:57 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/10 17:26:12 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/13 15:33:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void				raytracing(void)
 		i++;
 	}
 }
+
+
+
 
 t_ray			reflect_ray(t_ray *ray)
 {
@@ -147,4 +150,27 @@ void				raytracing_lights(void)
 		shoot_ray_lights(renderer_getray(i));
 		i++;
 	}
+}
+
+
+
+
+void				raytracing_malloc(void)
+{
+	int				i;
+
+	i = 0;
+	while (i < renderer_getraymax())
+	{
+		shoot_ray(renderer_getray(i));
+		i++;
+	}
+	printf("first pass done\n");
+	i = 0;
+	while (i < renderer_getraymax())
+	{
+		shoot_ray_lights(renderer_getray(i));
+		i++;
+	}
+	printf("light pass done\n");
 }

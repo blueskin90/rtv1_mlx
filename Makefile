@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/11 17:48:52 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/13 12:11:54 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix core/, main printing) \
+	   $(addprefix core/, main) \
+	   $(addprefix renderer/, printing) \
 	   $(addprefix color/, color) \
 	   $(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton) \
 	   $(addprefix tools/, math_tools general_tools vector) \
@@ -63,6 +64,7 @@ objs:
 	mkdir objs/mlx_functions
 	mkdir objs/singleton
 	mkdir objs/tools
+	mkdir objs/renderer
 	mkdir objs/parsing_tmp
 	mkdir objs/raytracing
 	mkdir objs/raytracing/normal

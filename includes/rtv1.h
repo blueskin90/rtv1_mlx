@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 17:47:30 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/13 15:33:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct		s_scene
 	t_obj			*objs;
 	t_obj			*lights;
 	t_obj			*cameras;
+	struct s_scene	*next;
 }					t_scene;
 
 typedef struct		s_img
@@ -185,6 +186,7 @@ float				sphere_radius(t_obj *sphere);
 ** INIT FUNCTIONS
 */
 
+int					init(void);
 t_env				*env_init(void);
 t_win				*win_init(int width, int height, char *name, void *mlx);
 t_img				*img_init(int width, int height, void *mlx);
@@ -240,10 +242,13 @@ void				obj_plane_params(t_obj *obj);
 void				obj_camera_params(t_obj *obj, float fov);
 void				obj_light_params(t_obj *obj, float intensity);
 void				renderer_malloc(t_obj *camera);
+void				malloc_renderers(void);
 
 /*
 ** RAYTRACING FUNCTIONS
 */
+
+void				raytracing_malloc(void);
 
 void				raytracing(void);
 void				raytracing_lights(void);
@@ -281,7 +286,7 @@ void				get_normal(t_ray *ray);
 ** EVENT LISTENER
 */
 
-void				events_listener(t_env *env);
+void				events_listener(void);
 int					key_pressed(int key);
 int					mouse_move(int x, int y);
 
@@ -332,7 +337,7 @@ void				rgb_updatevalue(t_RGB *rgb);
 ** TEMPORARY PARSING FUNCTIONS
 */
 
-int					parse_scene(t_env *env);
+int					parse_scene(void);
 void				camera_add(t_scene *scene, t_obj *camera);
 void				light_add(t_scene *scene, t_obj *light);
 void				obj_add(t_scene *scene, t_obj *obj);
