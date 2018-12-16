@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/11/09 18:50:18 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/11 15:17:48 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FILES = colorconversion \
 		colorconversionhsl \
 		colorconversion2\
 		definition\
+		vec\
 		matrix\
 		operations\
 		operations1\

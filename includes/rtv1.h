@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 16:28:42 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:07:51 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libftg.h"
-# include "fail_errors.h"
+# include "json_parser.h"
 # include "keys.h"
 # include <limits.h>
+# include "mlx_errors.h"
+# include "rtv1_errors.h"
+# include "rtv1_required_information.h"
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.01
@@ -113,6 +116,25 @@ typedef struct		s_ray
 	struct s_obj	*obj_hit;
 }					t_ray;
 
+typedef struct		s_parse_obj
+{
+	t_vec			specular;	
+	t_vec			diffuse;
+	t_vec			position;
+	t_vec			direction;
+	t_vec			lookat;
+	t_vec			translation;
+	t_vec			rotation;
+	t_vec			up;
+	t_vec			right;
+	float			brillance;
+	float			ambiant;
+	float			roll;
+	t_RGB			color;
+	t_type			type;
+	t_params		params;
+}					t_parse_obj;
+
 typedef struct		s_obj
 {
 	t_vec			pos;
@@ -121,6 +143,9 @@ typedef struct		s_obj
 	t_vec			up;
 	t_vec			right;
 	t_RGB			color;
+	t_RGB			specular;
+	t_RGB			diffuse;
+	float			ambiant;
 	t_matrix		world_to_obj;
 	t_matrix		obj_to_world;
 	
@@ -132,6 +157,7 @@ typedef struct		s_obj
 
 typedef struct		s_scene
 {
+	char			*name;
 	t_obj			*objs;
 	t_obj			*lights;
 	t_obj			*cameras;
@@ -164,6 +190,15 @@ typedef struct		s_env
 	t_scene			*scene;
 }					t_env;
 
+/*typedef struct		s_key
+{
+	char			*name;
+	e_type			type;
+	bool			required;
+	u_value			defaulty;
+	struct s_key	*child;
+	struct s_key	*next;
+}					t_key;*/
 /*
 ** IN TESTING
 */
@@ -181,6 +216,71 @@ int					is_equal_float(float a, float b);
 int					is_equal_vec(t_vec a, t_vec b);
 int					is_opposite_vec(t_vec a, t_vec b);
 float				sphere_radius(t_obj *sphere);
+int					is_equal_vector(t_vec a, t_vec b);
+int					is_opposite_vector(t_vec a, t_vec b);
+int					isequalfloat(float a, float b);
+
+int					parse_scene2(void);
+
+/*
+** PARSING
+*/
+t_env				*rtv1_parsing(t_elem *elem, t_env *env);
+t_scene				*parse_scene(t_elem *elem);
+t_elem				*find_elem_by_key(t_elem *elem, char *key);
+t_obj				*parse_objects(t_elem *elem);
+t_obj				*parse_sphere(t_elem *elem);
+t_obj				*parse_lights(t_elem *elem);
+t_obj				*parse_cameras(t_elem *elem);
+t_RGB				parse_color(t_elem *elem);
+float				parse_float(t_elem *elem);
+t_vec				parse_vector(t_elem *elem);
+bool				check_type_of_key(char *key, e_type type);
+t_obj				*parse_one_object(t_elem *elem,
+		t_obj *(*parse_obj)(t_elem *elem, t_obj *obj));
+t_obj				*new_obj();
+float				parse_radius(float radius);
+float				parse_degree_to_rad(float angle);
+t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
+t_obj				*init_object(t_elem *elem, t_obj *obj);
+t_obj				*init_cone(t_elem *elem, t_obj *obj);
+t_obj				*init_plane(t_elem *elem, t_obj *obj);
+t_obj				*init_cylinder(t_elem *elem, t_obj *obj);
+t_obj				*init_sphere(t_elem *elem, t_obj *obj);
+float				required_float(float number, bool required, char *error);
+t_vec				required_vec(t_vec vec, bool required, char *error);
+float				default_float(float number, float def);
+t_vec				default_vec(t_vec vec, t_vec def);
+t_RGB				default_rgb(t_RGB rgb, t_RGB def);
+/*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
+t_elem				*default_vector_values();
+t_elem				*default_vector_object(char *name);
+t_key				*basic_object_keys(char *name);
+t_key				*basic_vector_keys();
+void				print_keys(t_key *key, int padding);
+void				show_one_key(t_key *elem, int padding);
+int					test(void);
+*/
+
+/*
+** ERRORS
+*/
+void				wrong_format(char *form, e_type type);
+void				is_required(char *key, bool one);
+
+/*
+** STRUCTURES 
+*/
+
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
+void				obj_sphere_params(t_obj *obj, float radius);
+void				obj_cylinder_params(t_obj *obj, float radius);
+void				obj_cone_params(t_obj *obj, float angle);
+void				obj_plane_params(t_obj *obj);
+void				obj_camera_params(t_obj *obj, float fov);
+void				obj_light_params(t_obj *obj, float intensity);
+void				renderer_malloc(t_obj *camera);
 
 /*
 ** INIT FUNCTIONS
@@ -229,6 +329,7 @@ void				cursor_reset(void);
 int					cursor_mode_get(void);
 void				cursor_mode_toggle(void);
 void				cursor_mode_set(int value);
+
 /*
 ** OBJET MALLOC
 */
@@ -342,7 +443,7 @@ void				rgb_updatevalue(t_RGB *rgb);
 ** TEMPORARY PARSING FUNCTIONS
 */
 
-int					parse_scene(void);
+int					parse_2scene(void);
 void				camera_add(t_scene *scene, t_obj *camera);
 void				light_add(t_scene *scene, t_obj *light);
 void				obj_add(t_scene *scene, t_obj *obj);
@@ -363,6 +464,7 @@ void				print_objects(t_scene *scene);
 void				print_lights(t_scene *scene);
 void				print_cameras(t_scene *scene);
 void				print_scene(t_scene *scene);
+void				print_new_scene(t_scene *scene);
 void				print_renderer(t_ray *ray);
 void				print_ray(t_ray *ray);
 void				print_lightray(t_ray *ray);

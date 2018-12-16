@@ -6,15 +6,17 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:09:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/01/26 09:38:01 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 16:48:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "libft_errors.h"
 # include <unistd.h>
 # include <string.h>
+# include <float.h> // utilise pour limit des floats
 # include <stdlib.h>
 # include <sys/uio.h>
 # include <sys/types.h>
@@ -67,6 +69,8 @@ char				*ft_strstr(const char *big, const char*little);
 char				*ft_strnstr(const char *big, const char*little, size_t len);
 char				*ft_ftoa(float n, unsigned int decitoprint);
 char				*ft_itoa(int n);
+char				*ft_itoa_base(unsigned int value, unsigned int base);
+char				*ft_itoa_hex(unsigned int value, int maj);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strtrim(char const *s);
 char				*ft_strjoin(char const *s1, char const *s2);
@@ -84,8 +88,12 @@ int					ft_isalnum(int c);
 int					ft_isdigit(int c);
 int					ft_isalpha(int c);
 int					ft_atoi(const char *str);
+int					ft_atoi_base(const char *str, unsigned int from);
+float				ft_atof(char *str);
+double				ft_atod(char *str);
 int					ft_memcmp(const void *b1, const void *b2, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp_case_insensitive(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -95,4 +103,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+unsigned long		ft_atoi_base_ll(const char *val, unsigned int from);
+int					ft_strisvalidint(const char *str);
+void				ft_error(char *str);
 #endif

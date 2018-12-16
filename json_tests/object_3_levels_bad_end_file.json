@@ -1,0 +1,16 @@
+{
+	"key1" : {
+		"child_key_1" : 1,
+		"child_key_2" : {
+			"deep_key_2_string" : "hello",
+			"deep_key_2_int" : 10,
+			"deep_key_2_float" : 0.123,
+			"deep_key_2_object": {
+				"deep_array" : [1.1, 2.2, 0.0]
+			},
+			"deep_key_2_array" : ["je", "suis", "une", "liste"]
+		},
+		"child_key_3" : 3
+	}
+}
+

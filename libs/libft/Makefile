@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/11/05 17:51:32 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/16 16:55:39 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = libft.a
 FLAGS = -Wall -Wextra -Werror -Ofast
 
 FILES = atoi \
+	   atof \
 	   bzero \
 	   isalnum \
 	   isalpha \
@@ -23,6 +24,8 @@ FILES = atoi \
 	   isprint \
 	   ftoa \
 	   itoa \
+	   itoa_base \
+	   itoa_hex \
 	   memalloc \
 	   memccpy \
 	   memchr \
@@ -43,6 +46,7 @@ FILES = atoi \
 	   strchr \
 	   strclr \
 	   strcmp \
+	   strcmp_case_insensitive \
 	   strcpy \
 	   strdel \
 	   strdup \
@@ -74,6 +78,10 @@ FILES = atoi \
 	   lstiter \
 	   lstmap \
 	   get_next_line \
+	   strisvalidint \
+	   atoi_base_ll \
+	   atoi_base \
+	   error \
 
 INCLUDES = -I./includes
 
