@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 02:57:11 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/27 20:43:47 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:55:16 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_elem		*array_recursive(int fd, char **line, int *i)
 	t_elem	*current;
 	char	type_found;
 
-	printf("NEW ARRAY ELEMENT\n");
+	if (DEBUG_PRINT)
+		printf("NEW ARRAY ELEMENT\n");
 	type_found = 0;
 	current = create_elem();
 	if ((ignore_tab_and_spaces(line, i, fd) != 1))

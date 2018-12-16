@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:10:07 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:59:43 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
 	t_vec	rotation;
 
 	translation = default_vec(required_vec(
-		parse_vector(find_elem_by_key("translation")),
+		parse_vector(find_elem_by_key(elem, "translation")),
 		TRANSLATION_REQUIRED,"translation"),vec_init0(0.0, 0.0, 0.0));
 	rotation = default_vec(required_vec(
-		parse_vector(find_elem_by_key("rotation")),
+		parse_vector(find_elem_by_key(elem, "rotation")),
 		ROTATION_REQUIRED,"translation"), vec_init0(0.0, 0.0, 0.0));
 }
 
@@ -86,7 +86,7 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	obj->ambiant = default_float(parse_float(
 					find_elem_by_key(child_elem, "ambiant")), 0.0);
 	//obj = parse_roll_up_right(child_elem, obj);
-	obj = parse_rotation_traslation(child_elem, obj);
+	obj = parse_rotation_translation(child_elem, obj);
 
 	/*
 	obj->position = parse_vector(find_elem_by_key(child_elem, "specular"));

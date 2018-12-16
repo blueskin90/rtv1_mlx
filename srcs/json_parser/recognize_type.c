@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 02:59:29 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/23 02:59:43 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:49:26 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int			recognize_type(t_elem *current, char **line, int *i)
 
 	if ((type_found = json_recognize_number(current, *line, i)) != 0)
 	{
-		printf("position of string : %s\n", &(*line)[*i]);
+		if (DEBUG_PRINT)
+			printf("position of string : %s\n", &(*line)[*i]);
 		return (type_found);
 	}
 	else if ((type_found = json_recognize_string(current, *line, i)) != 0)

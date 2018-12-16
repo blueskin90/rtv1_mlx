@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 16:52:30 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:59:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include <fcntl.h>
 # include <stdio.h>
 typedef int bool;
-#define true 1
-#define false 0
+# define true 1
+# define false 0
+# define DEBUG_PRINT 0
 
 typedef enum		s_type
 {

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:34:19 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/22 00:29:23 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:52:36 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int				recognize_key(int *i, t_elem *current, char *line, int fd)
 	char	*str;
 	int		begin;
 
-	printf("ENTERRING RECOGNIZE KEY\n");
+	if (DEBUG_PRINT)
+		printf("ENTERRING RECOGNIZE KEY\n");
 	len = 0;
 	if (line[*i] != '"')
 		return (0);
@@ -50,7 +51,8 @@ int				recognize_key(int *i, t_elem *current, char *line, int fd)
 		//return (0);
 	*i = *i + 1;
 	str = create_key(line, begin, len);
-	printf("KEY HAS BEEN FOUND : %s\n", str);
+	if (DEBUG_PRINT)
+		printf("KEY HAS BEEN FOUND : %s\n", str);
 	current->key = str;
 	return (1);
 }
