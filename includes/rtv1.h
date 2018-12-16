@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 18:13:09 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:21:32 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,6 @@ int					is_opposite_vec(t_vec a, t_vec b);
 float				sphere_radius(t_obj *sphere);
 int					is_equal_vector(t_vec a, t_vec b);
 int					is_opposite_vector(t_vec a, t_vec b);
-t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
 int					isequalfloat(float a, float b);
 /*
 ** PARSING
@@ -232,6 +231,7 @@ t_obj				*parse_one_object(t_elem *elem,
 t_obj				*new_obj();
 float				parse_radius(float radius);
 float				parse_degree_to_rad(float angle);
+t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
 t_obj				*init_object(t_elem *elem, t_obj *obj);
 t_obj				*init_cone(t_elem *elem, t_obj *obj);
 t_obj				*init_plane(t_elem *elem, t_obj *obj);

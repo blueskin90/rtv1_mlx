@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:08:23 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 18:29:25 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:13:57 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_obj		*init_cone(t_elem *elem, t_obj *obj)
 
 t_obj		*init_plane(t_elem *elem, t_obj *obj)
 {
-	obj->type = PLANE;
+	(void) elem;
+	/*obj->type = PLANE;
 	obj->params.plane.a = 
 		default_float(
 			required_float(
@@ -55,7 +56,7 @@ t_obj		*init_plane(t_elem *elem, t_obj *obj)
 				"Angle of plane"
 			),
 			0.0
-		);
+		);*/
 	return (obj);
 }
 

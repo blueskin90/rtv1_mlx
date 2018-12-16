@@ -24,6 +24,7 @@
 # define LOOKAT_REQUIRED false
 # define DIRECTION_REQUIRED false
 # define LOOKAT_OR_DIRECTION_REQUIRED true
+# define ROLL_OR_UP_OR_RIGHT_REQUIRED true
 
 /*
 ** COLORS

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 16:58:21 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:24:38 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	obj = parse_obj(child_elem, obj);
 	obj->color = parse_color(find_elem_by_key(child_elem, "color"));
 	obj->specular = parse_color(find_elem_by_key(child_elem, "specular"));
+	printf("RGB : [%f, %f, %f]\n", obj->specular.r, obj->specular.g, obj->specular.b);
+	printf("HEX : %X\n", obj->specular.value);
 	obj->diffuse = parse_color(find_elem_by_key(child_elem, "diffuse"));
 	obj->ambiant = default_float(parse_float(
-					find_elem_by_key(child_elem, "diffuse")), 0.0);
-	
+					find_elem_by_key(child_elem, "ambiant")), 0.0);
+	obj = parse_roll_up_right(child_elem, obj);
 
 	/*
 	obj->position = parse_vector(find_elem_by_key(child_elem, "specular"));
