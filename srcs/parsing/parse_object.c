@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 16:24:38 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:10:07 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ t_obj	*parse_dir_lookat_pos(t_elem *elem, t_obj *obj)
 	return (obj);
 }
 
+t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
+{
+	t_vec	translation;
+	t_vec	rotation;
+
+	translation = default_vec(required_vec(
+		parse_vector(find_elem_by_key("translation")),
+		TRANSLATION_REQUIRED,"translation"),vec_init0(0.0, 0.0, 0.0));
+	rotation = default_vec(required_vec(
+		parse_vector(find_elem_by_key("rotation")),
+		ROTATION_REQUIRED,"translation"), vec_init0(0.0, 0.0, 0.0));
+}
+
 t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 {
 	t_obj			*obj;
@@ -72,7 +85,8 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	obj->diffuse = parse_color(find_elem_by_key(child_elem, "diffuse"));
 	obj->ambiant = default_float(parse_float(
 					find_elem_by_key(child_elem, "ambiant")), 0.0);
-	obj = parse_roll_up_right(child_elem, obj);
+	//obj = parse_roll_up_right(child_elem, obj);
+	obj = parse_rotation_traslation(child_elem, obj);
 
 	/*
 	obj->position = parse_vector(find_elem_by_key(child_elem, "specular"));
