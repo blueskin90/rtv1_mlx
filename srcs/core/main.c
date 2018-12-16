@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:09:56 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:53:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int					malloc_rt(void)
 //	printf("printing done\n");
 
 //	events_listener();
-	mlx_loop(mlx_get());
+//	mlx_loop(mlx_get());
 	return (1);
 }
 
@@ -53,7 +53,7 @@ int					stack_rt(void)
 	parse_scene2();
 	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
 	raytracing_stack();
-	mlx_loop(mlx_get());
+//	mlx_loop(mlx_get());
 	return (1);
 }
 

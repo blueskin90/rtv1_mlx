@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:01:29 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 16:02:10 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:57:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ float			cylinder_intersection(t_ray ray, t_obj *cylinder)
 	float		a;
 	float		b;
 	float		c;
-	float		d;
 
 	float		l[2];
 	t_vec		v1;

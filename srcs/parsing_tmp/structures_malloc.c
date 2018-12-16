@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 16:25:59 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:58:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
 {
 	t_obj		*obj;
 
+	(void)up;
 	obj = (t_obj*)ft_malloc(sizeof(t_obj));
 	obj->pos = pos;
 	obj->dir = vec_normalize(dir);
