@@ -66,6 +66,12 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	obj = parse_dir_lookat_pos(child_elem, obj);
 	obj = parse_obj(child_elem, obj);
 	obj->color = parse_color(find_elem_by_key(child_elem, "color"));
+	obj->specular = parse_color(find_elem_by_key(child_elem, "specular"));
+	obj->diffuse = parse_color(find_elem_by_key(child_elem, "diffuse"));
+	obj->ambiant = default_float(parse_float(
+					find_elem_by_key(child_elem, "diffuse")), 0.0);
+	
+
 	/*
 	obj->position = parse_vector(find_elem_by_key(child_elem, "specular"));
 	obj->direction = parse_vector(find_elem_by_key(child_elem, "diffuse"));

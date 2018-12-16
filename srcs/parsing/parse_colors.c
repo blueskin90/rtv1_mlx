@@ -22,9 +22,9 @@ int			hex_color_to_int(t_elem *elem)
 
 	check_type_of_key(elem->key, elem->type);
 	str = elem->value.stringy;
+	printf("val found : %s\n", str);
 	len = ft_strlen(str);
-	value = INFINITY;
-	// TODO verifier HEX
+	value = -1;
 	if (len > 0 && str[0] == '#')
 	{
 		str = &str[1];
@@ -44,6 +44,8 @@ int			hex_color_to_int(t_elem *elem)
 	if (ft_strcmp_case_insensitive(compare_str, str) != 0)
 		ft_error(BAD_FORMAT_HEX);
 	free(compare_str);
+	if (value > 0xFFFFFF || value < 0)
+		ft_error(HEX_NOT_IN_LIMIT);
 	return (value);
 }
 
@@ -51,14 +53,14 @@ int			parse_hex(t_elem *elem)
 {
 	int		hex;
 
-	hex = 0;
+	hex = -1;
 	if (elem != NULL)
 	{
 		check_type_of_key(elem->key, elem->type);
 		hex = hex_color_to_int(elem);
 		return hex;
 	}
-	return (INFINITY);
+	return (hex);
 }
 
 t_RGB		parse_rgb(t_elem *elem, t_RGB color)
@@ -91,23 +93,29 @@ t_RGB		parse_color(t_elem *elem)
 
 	if (elem != NULL)
 	{
+		printf("parse color %s\n", elem->key);
 		check_type_of_key(elem->key, elem->type);
 		child_elem = elem->value.objecty;
 		color.value = parse_hex(find_elem_by_key(child_elem, "hex"));
-		color = parse_rgb(elem, color);
+		color = parse_rgb(child_elem, color);
+		printf("RGB : [%f, %f, %f]\n", color.r, color.g, color.b);
+		printf("HEX : %d\n", color.value);
 		if (ft_min(color.r, color.g, color.b) != INFINITY 
-				&& color.value != INFINITY)
+				&& color.value != -1)
 		{
 			color = default_rgb(color, 
 					(t_RGB){.r = 0, .g = 0, .b = 0, .value = 0});
 			if ( color.value != get_rgb((unsigned char) color.r, (unsigned char) color.g, (unsigned char) color.b))
 				ft_error(RGB_HEX_CONFLICT);
 		}
-		else if (color.value != INFINITY)
+		else if (color.value != -1)
 		{
+			printf("HEX ONLY\n");
 			color.r = color.value >> 16;
 			color.g = (color.value >> 8) & 0xFF;
-			color .b = (color.value) & 0xFF;
+			color.b = (color.value) & 0xFF;
+			printf("RGB : [%f, %f, %f]\n", color.r, color.g, color.b);
+			printf("HEX : %X\n", color.value);
 		}
 		else if (ft_min(color.r, color.g, color.b) != INFINITY)
 		{
@@ -117,11 +125,12 @@ t_RGB		parse_color(t_elem *elem)
 		}
 		else 
 			color = default_rgb(color, 
-					(t_RGB){.r = 0, .g = 0, .b = 0, .value = 0});	
+					(t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});	
+		return (color);
 	}
 	else if (COLOR_REQUIRED)
 		is_required("colors", false);
 	else 
-		color = (t_RGB){.r = 0, .g = 0, .b = 0, .value = 0};
+		color = (t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
 	return (color);
 }

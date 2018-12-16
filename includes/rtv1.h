@@ -139,6 +139,9 @@ typedef struct		s_obj
 	t_vec			dir;
 	t_vec			up;
 	t_RGB			color;
+	t_RGB			specular;
+	t_RGB			diffuse;
+	float			ambiant;
 	t_matrix		world_to_obj;
 	t_matrix		obj_to_world;
 	

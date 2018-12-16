@@ -32,10 +32,11 @@ static bool		check_float_keys(char *key)
 	int		(*compare)(const char *, const char *);	
 
 	compare = &ft_strcmp;
-	if (!compare(key, "specular") || 
-		!compare(key, "diffuse") ||
-		!compare(key, "ambiant") ||
+	if (!compare(key, "ambiant") ||
 		!compare(key, "radius") ||
+		!compare(key, "r") ||
+		!compare(key, "g") ||
+		!compare(key, "b") ||
 		!compare(key, "x") ||
 		!compare(key, "y") ||
 		!compare(key, "z"))
@@ -66,7 +67,9 @@ static bool		check_object_keys(char *key)
 	int		(*compare)(const char *, const char *);	
 
 	compare = &ft_strcmp;
-	if (!compare(key, "scene") || 
+	if (!compare(key, "specular") || 
+		!compare(key, "diffuse") ||
+		!compare(key, "scene") || 
 		!compare(key, "objects") ||
 		!compare(key, "object") ||
 		!compare(key, "light") ||

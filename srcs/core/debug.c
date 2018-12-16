@@ -47,6 +47,21 @@ void			print_matrix(t_matrix m)
 	printf("| %5f %5f %5f %5f |\n", m.matrix[3][0],m.matrix[3][1],m.matrix[3][2],m.matrix[3][3]);
 	printf("\n");
 }
+void					print_color(t_obj *obj, char * name)
+{
+		t_RGB	*color;
+
+		color = &obj->color;
+		if (color != NULL)
+		{
+			printf("%s : RGB[%f, %f, %f] HEX : #%X\n", name,
+							color->r, color->g, color->b, color->value);
+		}
+		else {
+			printf("NO COLOR\n");
+		}
+
+}
 
 void					print_objects(t_scene *scene)
 {
@@ -67,6 +82,9 @@ void					print_objects(t_scene *scene)
 		else
 			printf("UNKNOWN TYPE !!!!!!!!: ");
 		printf("pos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n", ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->dir.x, ptr->dir.y, ptr->dir.z);
+		print_color(ptr, "color");
+		print_color(ptr, "specular");
+		print_color(ptr, "diffuse");
 		ptr = ptr->next;
 	}
 	printf("================== END OF PRINTING OBJETS =======================\n");
