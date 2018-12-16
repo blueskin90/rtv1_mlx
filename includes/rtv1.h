@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/13 15:33:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 15:25:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,10 @@ void				malloc_renderers(void);
 /*
 ** RAYTRACING FUNCTIONS
 */
+
+t_vec				get_top_left_vec(t_obj *cam, t_vec *increment);
+t_vec				get_actual_dir(t_vec topleft, t_vec inc, int x, int y);
+t_ray				get_actual_ray(t_vec topleft, t_vec inc, int x, int y);
 
 void				raytracing_malloc(void);
 

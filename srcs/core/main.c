@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/13 15:33:36 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 15:33:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ void				raytracing_setting(void)
 
 int					malloc_rt(void)
 {
-	printf("Malloc'd version of RT\n");
+//	printf("Malloc'd version of RT\n");
 	init();
-	printf("initialization done\n");
+//	printf("initialization done\n");
 	parse_scene(); // puis parsing bidon
-	printf("parsing done\n");
+//	printf("parsing done\n");
 	raytracing_malloc_setting();
-	printf("settings done\n");
+//	printf("settings done\n");
 
 	raytracing_malloc();
-	printf("raytracing done\n");
+//	printf("raytracing done\n");
 
 	printing();
-	printf("printing done\n");
+//	printf("printing done\n");
 
-	events_listener();
-	mlx_loop(mlx_get());
+//	events_listener();
+//	mlx_loop(mlx_get());
 	return (1);
 }
 
@@ -52,46 +52,23 @@ int					stack_rt(void)
 	init();
 	parse_scene();
 	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
-
-	/*
-	t_env			*env;
-
-	env = env_init();
-	env_set(env); // toujours init et set lenv avant tout;
-
-	parse_scene(); // puis parsing bidon
-	scene_set(env->scene); // set la scene actuelle a la premiere
-	camera_set(env->scene->cameras); // set la camera a la premiere;
-	renderer_set(); // set le renderer a la camera actuelle;
-	printf("settings done\n");
-
-	raytracing();
-	printf("raytracing first pass done\n");
-
-	raytracing_lights();
-	printf("raytracing lights pass done\n");
-
-	printing();
-	printf("printing done\n");
-
-	events_listener(env);
-	mlx_loop(mlx_get());
-	*/
+	raytracing_stack();
+//	mlx_loop(mlx_get());
 	return (1);
 }
 
 int					main(int ac, char **av)
 {
 	(void)av;
-//	if (ac == 1)
-//	{
-//		printf("stack\n");
-//		stack_rt();
-//	}
-//	else
-//	{
-//		printf("malloc\n");
+	if (ac == 1)
+	{
+		printf("stack\n");
+		stack_rt();
+	}
+	else
+	{
+		printf("malloc\n");
 		malloc_rt();
-//	}
+	}
 	return (1);
 }

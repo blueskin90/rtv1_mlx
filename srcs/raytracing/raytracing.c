@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 04:27:57 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/13 15:33:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 15:30:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ void				raytracing_lights(void)
 
 
 
-
 void				raytracing_malloc(void)
 {
 	int				i;
@@ -173,4 +172,42 @@ void				raytracing_malloc(void)
 		i++;
 	}
 	printf("light pass done\n");
+}
+
+t_ray				get_actual_ray(t_vec topleft, t_vec inc, int x, int y)
+{
+	t_ray			ray;
+	t_vec			dir;
+
+	dir = vec_init0(topleft.x + x * inc.x, topleft.y + y * inc.y, topleft.z);
+	dir = vec_norm(dir);
+	ray = ray_init(vec_init0(0, 0, 0), dir);
+	return (ray_to_world(ray, camera_get()));	
+}
+
+void				raytracing_stack(void)
+{
+	int				x;
+	int				y;
+	t_ray			ray;
+	t_vec			increment;
+	t_vec			topleft;
+
+	y = 0;
+	topleft = get_top_left_vec(camera_get(), &increment);
+	while (y < win_gety())
+	{
+		x = 0;
+		while (x < win_getx())
+		{
+			ray = get_actual_ray(topleft, increment, x, y);
+			shoot_ray(&ray);
+			shoot_ray_lights(&ray);
+			mlx_px_to_img(env_get()->win->img, x, y, ray.color.value);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(mlx_get(), win_get()->winptr, win_get()->img->imgptr, 0, 0);
+	return;
 }

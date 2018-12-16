@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/13 15:21:59 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 16:25:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ t_vec			get_rightdir(t_vec dir)
 
 t_vec			get_updir(t_vec dir, t_vec right)
 {
-	return (vec_crossproduct(dir, right));
+	return (vec_norm(vec_crossproduct(dir, right)));
 }
 
 t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
@@ -202,7 +202,7 @@ t_vec			get_actual_dir(t_vec topleft, t_vec inc, int x, int y)
 {
 	t_vec		final;
 
-	final = vec_init0(topleft.x + x * inc.x, topleft.y + y * inc.y, 1);
+	final = vec_init0(topleft.x + x * inc.x, topleft.y + y * inc.y, topleft.z);
 	final = vec_normalize(final);
 	return (final);
 }

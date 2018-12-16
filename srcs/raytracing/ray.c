@@ -51,5 +51,3 @@ t_ray			ray_to_world(t_ray ray, t_obj *obj)
 	ray.dir = vec_norm(vec_init(new_pos, new_dir));
 	return (ray);
 }
-
-

@@ -108,6 +108,14 @@ int					parse_scene(void)
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_cylinder_params(objptr, 1);
 	obj_add(scene, objptr);
+
+	lookat = vec_init0(-20, 19, -19);
+	pos = vec_init0(-20, 20, -20);
+	color = rgb_init(0xAA50FF);
+	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
+	obj_cylinder_params(objptr, 5);
+	obj_add(scene, objptr);
+
 	// CONE
 	pos = vec_init0(-29, -40, 10);
 	lookat = vec_init0(-30, -38, 11);
