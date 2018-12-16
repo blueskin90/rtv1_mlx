@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 15:25:23 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/16 16:28:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ t_vec				get_actual_dir(t_vec topleft, t_vec inc, int x, int y);
 t_ray				get_actual_ray(t_vec topleft, t_vec inc, int x, int y);
 
 void				raytracing_malloc(void);
+void				raytracing_stack(void);
 
 void				raytracing(void);
 void				raytracing_lights(void);
