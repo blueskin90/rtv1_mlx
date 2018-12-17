@@ -97,6 +97,7 @@ static bool		check_int_keys(char *key)
 	compare = &ft_strcmp;
 	if (!compare(key, "r") || 
 		!compare(key, "g") ||
+		!compare(key, "roll") ||
 		!compare(key, "b"))
 			return (true);
 	wrong_format(key, INTEGER);

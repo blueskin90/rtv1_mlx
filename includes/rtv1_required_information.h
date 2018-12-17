@@ -27,6 +27,10 @@
 # define ROLL_OR_UP_OR_RIGHT_REQUIRED true
 # define TRANSLATION_REQUIRED false
 # define ROTATION_REQUIRED false
+# define DIR_REQUIRED false
+# define ROLL_REQUIRED false
+# define UP_REQUIRED false
+# define RIGHT_REQUIRED false
 
 /*
 ** COLORS

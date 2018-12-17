@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/10 19:00:14 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/17 21:10:35 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_elem		*find_elem_by_key(t_elem *elem, char *key)
 	while (curr)
 	{
 		if (curr->key != NULL && !ft_strcmp(curr->key, key))
+		{
+			check_type_of_key(key, curr->type);
 			return (curr);
+		}
 		curr = curr->next;
 	}
 	return (NULL);

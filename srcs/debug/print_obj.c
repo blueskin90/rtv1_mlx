@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:50:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:03:12 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/17 23:42:08 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void				print_new_scene(t_scene *scene)
 
 void				print_scene(t_scene *scene)
 {
+	printf("===================== PRINTING OLD SCENE ==========================\n");
 	print_objects(scene);
 	print_lights(scene);
 	print_cameras(scene);

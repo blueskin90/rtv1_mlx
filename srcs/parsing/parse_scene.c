@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:06:35 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/10 18:36:18 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/17 21:08:45 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static	char		*parse_scene_name(t_elem *elem)
 {
 	if (elem != NULL)
 	{
-		if (!check_type_of_key(elem->key, elem->type))
-			ft_error(SCENE_NAME_BAD_FORMAT);
+		check_type_of_key(elem->key, elem->type);
 		// on accepte nom "" ? 
 		return (ft_strdup(elem->value.stringy));
 	}
@@ -42,13 +41,14 @@ t_scene				*parse_scene(t_elem *elem)
 	t_elem		*child;
 
 	// .h avec les valeurs par defaut ?
-	if (!check_type_of_key("scene",elem->type))
-		ft_error(SCENE_BAD_FORMAT);
+	check_type_of_key("scene",elem->type);
 	child = elem->value.objecty;
 	scene = new_scene();
 	scene->name = 
 		parse_scene_name(find_elem_by_key(child, "name"));
+	printf("avant\n");
 	scene->objs = parse_objects(find_elem_by_key(child, "objects"));
+	printf("apres\n");
 	scene->lights = parse_lights(find_elem_by_key(child, "lights"));
 	scene->cameras = parse_cameras(find_elem_by_key(child, "cameras"));
 	print_new_scene(scene);

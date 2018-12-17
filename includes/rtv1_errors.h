@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 18:06:22 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/17 20:55:06 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define OBJECTS_IS_REQUIRED "Their must be at least one object in your SCENE\n"
 # define VECTOR_IS_REQUIRED "Vector is required\n"
 # define VECTOR_POINT_IS_REQUIRED "Vector point is required \n"
+# define CANNOT_POSITION "Cannot determine vectors of obj whitout pos\n"
+# define DIR_UP_RIGHT_ROLL_IS_REQUIRED "At least dir or up or right or roll required\n"
 
 /*
 ** WRONG VALUES
@@ -57,5 +59,6 @@
 # define UP_ROLL_CONFLICT "UP and Roll where given but dont match\n"
 # define UP_DIR_CONFLICT "Up is given but bad angle with dir\n"
 # define RIGHT_DIR_CONFLICT "Right is given but bad angle with dir\n"
+# define DIRECTION_CONFLICT "Direction CONFLICT on UP RIGHT DIR\n"
 
 #endif

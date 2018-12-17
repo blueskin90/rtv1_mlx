@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:59:43 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/17 23:54:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_obj	*parse_dir_lookat_pos(t_elem *elem, t_obj *obj)
 		obj->dir = vec_normalize(lookat);
 	}
 	else if (min_of_vec(dir) == INFINITY && min_of_vec(lookat) == INFINITY)
-		obj->dir = vec_init0(0.0, 0.0, 1);
+		obj->dir = vec_init0(0.0, 0.0, 1.0);
 	return (obj);
 }
 
@@ -75,35 +75,24 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	t_elem			*child_elem;
 
 	// TODO check type of key
-	check_type_of_key("object", elem->type);
+	//check_type_of_key("object", elem->type);
+	// TODO key peut pas etre trop long
 	obj = new_obj();
 	child_elem = elem->value.objecty;
-	obj = parse_dir_lookat_pos(child_elem, obj);
+	//obj = parse_dir_lookat_pos(child_elem, obj);
+	obj = parse_object_direction(child_elem, obj);
 	obj = parse_obj(child_elem, obj);
 	obj->color = parse_color(find_elem_by_key(child_elem, "color"));
 	obj->specular = parse_color(find_elem_by_key(child_elem, "specular"));
 	printf("RGB : [%f, %f, %f]\n", obj->specular.r, obj->specular.g, obj->specular.b);
 	printf("HEX : %X\n", obj->specular.value);
 	obj->diffuse = parse_color(find_elem_by_key(child_elem, "diffuse"));
+	// TODO : ambiantis required ?
 	obj->ambiant = default_float(parse_float(
 					find_elem_by_key(child_elem, "ambiant")), 0.0);
-	obj = parse_roll_up_right(child_elem, obj);
+	//obj = parse_roll_up_right(child_elem, obj);
 	obj = parse_rotation_translation(child_elem, obj);
-
-	/*
-	obj->position = parse_vector(find_elem_by_key(child_elem, "specular"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "diffuse"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "position"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "direction"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "lookat"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "translation"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "rotation"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "up"));
-	obj->direction = parse_vector(find_elem_by_key(child_elem, "right"));
-	obj->brillance = get_vec_float(find_elem_by_key(child_elem, "brillance"));
-	obj->ambiant = get_vec_float(find_elem_by_key(child_elem, "ambiant"));
-	obj->roll = get_vec_float(find_elem_by_key(child_elem, "roll"));
-	*/
+// TODO : creer renderer camera > scene > projet
 	return (obj);
 	// si l objet est vide
 }

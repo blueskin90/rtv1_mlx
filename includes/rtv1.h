@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:07:51 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/17 19:57:49 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,25 +116,6 @@ typedef struct		s_ray
 	struct s_obj	*obj_hit;
 }					t_ray;
 
-typedef struct		s_parse_obj
-{
-	t_vec			specular;	
-	t_vec			diffuse;
-	t_vec			position;
-	t_vec			direction;
-	t_vec			lookat;
-	t_vec			translation;
-	t_vec			rotation;
-	t_vec			up;
-	t_vec			right;
-	float			brillance;
-	float			ambiant;
-	float			roll;
-	t_RGB			color;
-	t_type			type;
-	t_params		params;
-}					t_parse_obj;
-
 typedef struct		s_obj
 {
 	t_vec			pos;
@@ -142,6 +123,7 @@ typedef struct		s_obj
 	t_vec			dir;
 	t_vec			up;
 	t_vec			right;
+	float			roll;
 	t_RGB			color;
 	t_RGB			specular;
 	t_RGB			diffuse;
@@ -241,6 +223,7 @@ t_obj				*parse_one_object(t_elem *elem,
 t_obj				*new_obj();
 float				parse_radius(float radius);
 float				parse_degree_to_rad(float angle);
+t_obj				*parse_object_direction(t_elem *elem, t_obj *obj);
 t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
 t_obj				*init_object(t_elem *elem, t_obj *obj);
 t_obj				*init_cone(t_elem *elem, t_obj *obj);
