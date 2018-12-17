@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:36:18 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/13 15:05:47 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/17 16:39:30 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		key_pressed(int key)
 		if (key == X_KEY_SPACE)
 			switch_printmode();
 	}
-	if (key == X_KEY_L_SHIFT)
-		cursor_mode_toggle();
+//	if (key == X_KEY_L_SHIFT)
+//		cursor_mode_toggle();
 	if (cursor_mode_get() == 1)
 	{
 		if (key == X_KEY_R)

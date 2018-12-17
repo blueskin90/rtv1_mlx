@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:53:25 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/17 18:11:53 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ int					malloc_rt(void)
 	raytracing_malloc();
 //	printf("raytracing done\n");
 
+	print_mode_set(RAY_COLOR_MODE);
 	printing();
 //	printf("printing done\n");
 
-//	events_listener();
-//	mlx_loop(mlx_get());
+	events_listener();
+	mlx_loop(mlx_get());
 	return (1);
 }
 
@@ -57,7 +58,8 @@ int					stack_rt(char *file)
 	json = json_parser(file);
 	rtv1_parsing(json);
 	//parse_scene2();
-//	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
+	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
+	print_scene(scene_get());
 //	raytracing_stack();
 //	mlx_loop(mlx_get());
 	return (1);

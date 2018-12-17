@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 04:27:57 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 15:30:36 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/17 17:46:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_RGB			get_specular(t_ray *ray, t_ray to_light, t_obj light)
 	reflect = reflect_vector(vec_normalize(vec_init(ray->hit_pos, light.pos)), ray->normal);
 	to_view = vec_normalize(vec_init(ray->hit_pos, camera_get()->pos));
 	mult_value = maxf(0, vec_dotproduct(reflect, to_view));
-	mult_value = powf(mult_value, 100); // remplacer 100 par la value de shininess de l;objet
+	mult_value = powf(mult_value, 10); // remplacer 100 par la value de shininess de l;objet
 	mult_value *= light.params.light.intensity;
 	rgb = rgb_mul(light.color, mult_value);
 	rgb = rgb_mul_rgb(rgb, ray->obj_hit->color);

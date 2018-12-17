@@ -109,8 +109,8 @@ int					parse_scene2(void)
 	obj_cylinder_params(objptr, 1);
 	obj_add(scene, objptr);
 
-	lookat = vec_init0(-20, 19, -19);
-	pos = vec_init0(-20, 20, -20);
+	lookat = vec_init0(-8, 19, 10);
+	pos = vec_init0(-10, 20, 10);
 	color = rgb_init(0xAA50FF);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_cylinder_params(objptr, 5);
@@ -120,7 +120,7 @@ int					parse_scene2(void)
 	pos = vec_init0(-29, -40, 10);
 	lookat = vec_init0(-30, -38, 11);
 	color = rgb_init(0xaabbcc);
-	color = rgb_init(0xff5050);
+	color = rgb_init(0xff50aa);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_cone_params(objptr, 30);
 	obj_add(scene, objptr);
