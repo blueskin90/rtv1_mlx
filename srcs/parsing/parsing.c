@@ -12,13 +12,16 @@
 
 #include "rtv1.h"
 
-t_env		*rtv1_parsing(t_elem *begin, t_env *env)
+void	rtv1_parsing(t_elem *begin)
 {
 		t_scene		*scene;
+		t_env		*env;
 		t_scene		*prev_scene;
 		t_elem		*curr;
 		int			nbr_scene;
 
+
+		env = env_get();
 		scene = NULL;
 		prev_scene = NULL;
 		nbr_scene = 0;
@@ -39,5 +42,4 @@ t_env		*rtv1_parsing(t_elem *begin, t_env *env)
 		}
 		// Est-ce qu'on peut donner un fichier json vide et esperer une  valeur par defayt ? 
 		//
-		return (env);
 }

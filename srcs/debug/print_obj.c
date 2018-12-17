@@ -47,6 +47,14 @@ void					print_objects(t_scene *scene)
 		}
 		else
 			printf("UNKNOWN TYPE !!!!!!!!: ");
+		printf("pos : ");
+		print_vec(ptr->pos);
+		printf("right : ");
+		print_vec(ptr->right);
+		printf("up : ");
+		print_vec(ptr->up);
+		printf("dir : ");
+		print_vec(ptr->dir);
 		printf("pos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n", ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->dir.x, ptr->dir.y, ptr->dir.z);
 		print_color(ptr->color, "color");
 		print_color(ptr->specular, "specular");

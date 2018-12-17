@@ -66,6 +66,7 @@ t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
 	rotation = default_vec(required_vec(
 		parse_vector(find_elem_by_key(elem, "rotation")),
 		ROTATION_REQUIRED,"translation"), vec_init0(0.0, 0.0, 0.0));
+	return (obj);
 }
 
 t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
@@ -73,6 +74,7 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	t_obj			*obj;
 	t_elem			*child_elem;
 
+	// TODO check type of key
 	check_type_of_key("object", elem->type);
 	obj = new_obj();
 	child_elem = elem->value.objecty;
@@ -85,7 +87,7 @@ t_obj	*parse_one_object(t_elem *elem, t_obj *(*parse_obj)(t_elem *, t_obj *))
 	obj->diffuse = parse_color(find_elem_by_key(child_elem, "diffuse"));
 	obj->ambiant = default_float(parse_float(
 					find_elem_by_key(child_elem, "ambiant")), 0.0);
-	//obj = parse_roll_up_right(child_elem, obj);
+	obj = parse_roll_up_right(child_elem, obj);
 	obj = parse_rotation_translation(child_elem, obj);
 
 	/*

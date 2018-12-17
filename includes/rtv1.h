@@ -225,7 +225,7 @@ int					parse_scene2(void);
 /*
 ** PARSING
 */
-t_env				*rtv1_parsing(t_elem *elem, t_env *env);
+void				rtv1_parsing(t_elem *elem);
 t_scene				*parse_scene(t_elem *elem);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
 t_obj				*parse_objects(t_elem *elem);

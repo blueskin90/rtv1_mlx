@@ -51,4 +51,11 @@
 # define LOOKAT_CANNOT_POINT_0 "vec between Lookat & pos cannot point (0,0,0)\n"
 # define RGB_BAD_VAL "RGB values must be between 0 and 255\n" 
 # define RGB_HEX_CONFLICT "RGB and HEX given but value are different\n"
+# define ROLL_RIGHT_UP_CONFLICT "Right Roll & UP where given but dont match\n"
+# define RIGHT_UP_CONFLICT "Right And UP where given but angle is not 90deg\n"
+# define RIGHT_ROLL_CONFLICT "Right and Roll where given but dont match\n"
+# define UP_ROLL_CONFLICT "UP and Roll where given but dont match\n"
+# define UP_DIR_CONFLICT "Up is given but bad angle with dir\n"
+# define RIGHT_DIR_CONFLICT "Right is given but bad angle with dir\n"
+
 #endif

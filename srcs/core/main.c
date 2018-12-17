@@ -33,6 +33,8 @@ int					malloc_rt(void)
 //	printf("initialization done\n");
 	parse_scene2(); // puis parsing bidon
 //	printf("parsing done\n");
+
+	//
 	raytracing_malloc_setting();
 //	printf("settings done\n");
 
@@ -47,12 +49,16 @@ int					malloc_rt(void)
 	return (1);
 }
 
-int					stack_rt(void)
+int					stack_rt(char *file)
 {
+		t_elem	*json;
+		
 	init();
-	parse_scene2();
-	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
-	raytracing_stack();
+	json = json_parser(file);
+	rtv1_parsing(json);
+	//parse_scene2();
+//	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
+//	raytracing_stack();
 //	mlx_loop(mlx_get());
 	return (1);
 }
@@ -82,10 +88,10 @@ int					main(int ac, char **av)
 	mlx_loop(mlx_get());*/
 	(void)ac;
 	(void)av;
-	if (ac == 1)
+	if (ac != 1)
 	{
 		printf("stack\n");
-		stack_rt();
+		stack_rt(av[1]);
 	}
 	else
 	{
