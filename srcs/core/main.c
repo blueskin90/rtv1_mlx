@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/17 18:11:53 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:30:20 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int					stack_rt(char *file)
 	rtv1_parsing(json);
 	//parse_scene2();
 	raytracing_setting(); // tout refaire pour que ca fonctionne sur la stack
-	print_scene(scene_get());
+	//print_scene(scene_get());
 //	raytracing_stack();
 //	mlx_loop(mlx_get());
 	return (1);

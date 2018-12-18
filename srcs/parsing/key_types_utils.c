@@ -35,6 +35,9 @@ static bool		check_float_keys(char *key)
 	if (!compare(key, "ambiant") ||
 		!compare(key, "radius") ||
 		!compare(key, "roll") ||
+		!compare(key, "intensity") ||
+		!compare(key, "brillance") ||
+		!compare(key, "fov") ||
 		!compare(key, "r") ||
 		!compare(key, "g") ||
 		!compare(key, "b") ||
@@ -71,8 +74,8 @@ static bool		check_object_keys(char *key)
 	if (!compare(key, "specular") || 
 		!compare(key, "diffuse") ||
 		!compare(key, "translation") ||
-		!compare(key, "up") ||
-		!compare(key, "right") ||
+	//	!compare(key, "up") ||
+	//	!compare(key, "right") ||
 		!compare(key, "diffuse") ||
 		!compare(key, "scene") || 
 		!compare(key, "objects") ||
@@ -97,6 +100,9 @@ static bool		check_int_keys(char *key)
 	compare = &ft_strcmp;
 	if (!compare(key, "r") || 
 		!compare(key, "g") ||
+		!compare(key, "fov") ||
+		!compare(key, "intensity") ||
+		!compare(key, "brillance") ||
 		!compare(key, "roll") ||
 		!compare(key, "b"))
 			return (true);

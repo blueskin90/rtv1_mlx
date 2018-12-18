@@ -6,26 +6,28 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:56:25 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/10 18:36:03 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:54:48 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static t_obj		*parse_light(t_elem *elem)
-{
-	t_obj	*obj;
-	t_elem	*child_elem;
 
-	check_type_of_key("light", elem->type);
-	// verifier que le type soit bien un objet
-	obj = new_obj();
-	child_elem = elem->value.arrayi;
-	obj->pos = parse_vector(
-			find_elem_by_key(child_elem, "position"));
-	obj->dir = parse_vector(
-			find_elem_by_key(child_elem, "orientation"));
-	return (obj);
+void				init_light(t_elem *elem, t_obj *obj)
+{
+	obj->type = LIGHT;
+	obj->params.light.intensity = 
+		default_float(
+				required_float(
+						parse_float(
+								find_elem_by_key(elem, "intensity")
+						),
+					INTENSITY_REQUIRED,
+					"intensity"
+					),
+				1.0
+				);	
+	// verifier que ca se situe entre 0 et 1 ! 
 }
 
 t_obj				*parse_lights(t_elem *elem)
@@ -39,13 +41,14 @@ t_obj				*parse_lights(t_elem *elem)
 	previous = NULL;
 	if (elem != NULL) 
 	{
-		check_type_of_key(elem->key, elem->type);
+		printf("PARSE LIGHHHHHT\n");
+//		check_type_of_key(elem->key, elem->type);
 		child_elem = elem->value.arrayi;
 		if (child_elem == NULL && LIGHTS_REQUIRED)
 			is_required(elem->key, true);
 		while (child_elem)
 		{
-			curr = parse_light(child_elem);
+			curr = parse_one_object(child_elem, &init_light);
 			if (begin == NULL)
 				begin = curr;
 			else if (previous != NULL)

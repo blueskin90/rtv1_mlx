@@ -17,10 +17,69 @@
 						"y" : 0.0,
 						"z" : 0.0
 					},
-					"dir" : { 
-						"x" :-2.0, 
-						"y" : 4.0,
-						"z" : -2.0
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"translation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 255,
+						"g" : 255,
+						"b" : 255,
+						"hex" : "0xffffff"
+					},
+					"radius" : 1.0
+				},
+				{
+					"specular" : {
+						"hex" : "0x0000ff"
+					},
+					"diffuse" : {
+						"hex" : "0xff0000"
+					},
+					"ambiant" : 0.0, 
+					"brillance" : 0.0, 
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"rotation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"translation" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"r" : 255,
+						"g" : 255,
+						"b" : 255,
+						"hex" : "0xffffff"
+					},
+					"radius" : 1.0
+				},
+				{
+					"specular" : {
+						"hex" : "0x0000ff"
+					},
+					"diffuse" : {
+						"hex" : "0xff0000"
+					},
+					"ambiant" : 0.0, 
+					"brillance" : 0.0, 
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
 					},
 					"rotation" : {
 						"x" : 0.0,

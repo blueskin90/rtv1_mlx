@@ -6,22 +6,20 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:08:23 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 15:13:57 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:57:06 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj		*init_object(t_elem *elem, t_obj *obj)
+void		init_object(t_elem *elem, t_obj *obj)
 {
 
 	(void) elem;
 	(void) obj;
-	return (NULL);
-
 }
 
-t_obj		*init_cone(t_elem *elem, t_obj *obj)
+void		init_cone(t_elem *elem, t_obj *obj)
 {
 	obj->type = CONE;
 	obj->params.cone.angle = 
@@ -37,12 +35,12 @@ t_obj		*init_cone(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);
-	return (obj);
 }
 
-t_obj		*init_plane(t_elem *elem, t_obj *obj)
+void		init_plane(t_elem *elem, t_obj *obj)
 {
 	(void) elem;
+	(void) obj;
 	/*obj->type = PLANE;
 	obj->params.plane.a = 
 		default_float(
@@ -57,11 +55,10 @@ t_obj		*init_plane(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);*/
-	return (obj);
 }
 
 
-t_obj		*init_cylinder(t_elem *elem, t_obj *obj)
+void		init_cylinder(t_elem *elem, t_obj *obj)
 {
 	obj->type = CYLINDER;
 	obj->params.cylinder.radius = 
@@ -77,10 +74,9 @@ t_obj		*init_cylinder(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);
-	return (obj);
 }
 
-t_obj		*init_sphere(t_elem *elem, t_obj *obj)
+void		init_sphere(t_elem *elem, t_obj *obj)
 {
 	obj->type = SPHERE;
 	obj->params.sphere.radius = 
@@ -96,5 +92,4 @@ t_obj		*init_sphere(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);
-	return (obj);
 }
