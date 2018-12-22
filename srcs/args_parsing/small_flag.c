@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_singleton.c                                    :+:      :+:    :+:   */
+/*   small_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 16:18:00 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/22 17:17:04 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/23 00:06:58 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/23 00:07:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "args_parsing.h"
 
-static t_env		**env_getptr(void)
+void			parse_smallflag(char *flagvalue, t_args *args)
 {
-	static t_env	*ptr = NULL;
-	return (&ptr);
-}
+	int			i;
 
-t_env				*env_get(void)
-{
-	return (*(env_getptr()));
-}
-
-void				env_set(t_env *env)
-{
-	t_env			**ptr;
-
-	ptr = env_getptr();
-	if (ptr == NULL)
-	printf("env_set has a env_getptr == null\n");
-	*ptr = env;
+	i = 0;
+	while (flagvalue[i])
+	{
+		if (ft_strchr(SHORT_FLAGS, flagvalue[i]) == NULL)
+			print_usage();
+		else
+		{
+			if (flagvalue[i] == 'd')
+				args->debug_mode = 1;
+			else if (flagvalue[i] == 'p')
+				args->parse_mode = 1;
+		}
+		i++;
+	}
 }

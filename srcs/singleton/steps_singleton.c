@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_singleton.c                                    :+:      :+:    :+:   */
+/*   steps_singleton.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 16:18:00 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/22 17:17:04 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/23 00:17:37 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/23 00:26:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static t_env		**env_getptr(void)
+static int			*step_getptr(void)
 {
-	static t_env	*ptr = NULL;
-	return (&ptr);
+	static	int		step = 0;
+
+	return (&step);
 }
 
-t_env				*env_get(void)
+int					step_get(void)
 {
-	return (*(env_getptr()));
+	return (*(step_getptr()));
 }
 
-void				env_set(t_env *env)
+void				step_set(int value)
 {
-	t_env			**ptr;
+	int				*ptr;
 
-	ptr = env_getptr();
+	ptr = step_getptr();
 	if (ptr == NULL)
-	printf("env_set has a env_getptr == null\n");
-	*ptr = env;
-}
+		printf("step_set has an int ptr == NULL\n");
+	*ptr = value;
+} // voir pour mettre un next ou autre

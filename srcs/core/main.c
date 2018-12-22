@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/17 18:11:53 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 00:41:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int					stack_rt(char *file)
 	return (1);
 }
 
+/*
 int					main(int ac, char **av)
 {
 
@@ -78,7 +79,7 @@ int					main(int ac, char **av)
 //	env = rtv1_parsing(json, env);
 	//scene_set(env->scene); // set la scene actuelle a la premiere
 	//camera_set(env->scene->cameras); // set la camera a la premiere;
-	/*renderer_set(); // set le renderer a la camera actuelle;
+	renderer_set(); // set le renderer a la camera actuelle;
 	printf("settings done\n");
 	raytracing();
 	printf("raytracing first pass done\n");
@@ -87,7 +88,7 @@ int					main(int ac, char **av)
 	printing();
 	printf("printing done\n");
 	events_listener(env);
-	mlx_loop(mlx_get());*/
+	mlx_loop(mlx_get());
 	(void)ac;
 	(void)av;
 	if (ac != 1)
@@ -100,5 +101,30 @@ int					main(int ac, char **av)
 		printf("malloc\n");
 		malloc_rt();
 	}
+	return (1);
+}
+*/
+void			settings(void)
+{
+	return;
+}
+
+void			running(void)
+{
+	return;
+}
+
+void			parsing(void)
+{
+	parse_scene2();
+}
+
+int				main(int ac, char **av)
+{
+	args_parsing(ac, av);
+	init();
+	parsing();
+	settings();
+	running();
 	return (1);
 }

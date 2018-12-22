@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:37:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/13 15:05:05 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 00:41:31 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_env				*env_init(void)
 
 int					init(void)
 {
+	step_set(INIT);
 	env_set(env_init());
+	verbose();
 	return (1);
 }

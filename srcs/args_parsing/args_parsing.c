@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_singleton.c                                    :+:      :+:    :+:   */
+/*   args_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 16:18:00 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/22 17:17:04 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/22 18:50:27 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/23 00:41:34 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "args_parsing.h"
 
-static t_env		**env_getptr(void)
+t_args			*args_init(void)
 {
-	static t_env	*ptr = NULL;
-	return (&ptr);
+	t_args		*args;
+
+	args = (t_args*)ft_malloc(sizeof(t_args));
+	args->parse_mode = 0;
+	args->verbose_mode = 0;
+	args->render_mode = 0;
+	args->debug_mode = 0;
+	args->files = NULL;
+	return (args);
 }
 
-t_env				*env_get(void)
+void			args_parsing(int ac, char **av)
 {
-	return (*(env_getptr()));
-}
+	t_args		*args;
 
-void				env_set(t_env *env)
-{
-	t_env			**ptr;
-
-	ptr = env_getptr();
-	if (ptr == NULL)
-	printf("env_set has a env_getptr == null\n");
-	*ptr = env;
+	args = args_init();
+	parse_arguments(ac, av, args);
+	step_set(ARGS_PARSING);
+	args_set(args);
+	verbose();
 }

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:07:51 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 00:41:30 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "mlx_errors.h"
 # include "rtv1_errors.h"
 # include "rtv1_required_information.h"
+# include "rtv1_struct.h"
+
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TOLERANCE 0.01
@@ -42,166 +44,11 @@
 */
 
 // STRUCTURE EN TEST !!
-typedef struct		s_RGB
-{
-	float			r;
-	float			g;
-	float			b;
-	int				value;
-}					t_RGB;
-
-
-
-typedef enum		e_type
-{
-	SPHERE,
-	PLANE,
-	CONE,
-	CYLINDER,
-	LIGHT,
-	CAMERA,
-}					t_type;
-
-typedef struct		s_sphere
-{
-	float			radius;
-}					t_sphere;
-
-typedef struct		s_plane
-{
-	int				a;
-}					t_plane;
-
-typedef struct		s_cone
-{
-	float			angle;
-}					t_cone;
-
-typedef struct		s_cylinder
-{
-	float			radius;
-}					t_cylinder;
-
-typedef struct		s_camera
-{
-	float			fov;
-	struct s_ray	*rays;
-	int				raynumber;
-}					t_camera;
-
-typedef struct		s_light
-{
-	float			intensity;
-}					t_light;
-
-typedef union		u_params
-{
-	t_sphere		sphere;
-	t_plane			plane;
-	t_cone			cone;
-	t_cylinder		cylinder;
-	t_camera		camera;
-	t_light			light;
-}					t_params;
-
-typedef struct		s_ray
-{
-	t_vec			pos;
-	t_vec			dir;
-	t_vec			lookat;
-	t_RGB			color;
-	t_vec			normal;
-	t_vec			hit_pos;
-	float			length;
-	struct s_obj	*obj_hit;
-}					t_ray;
-
-typedef struct		s_parse_obj
-{
-	t_vec			specular;	
-	t_vec			diffuse;
-	t_vec			position;
-	t_vec			direction;
-	t_vec			lookat;
-	t_vec			translation;
-	t_vec			rotation;
-	t_vec			up;
-	t_vec			right;
-	float			brillance;
-	float			ambiant;
-	float			roll;
-	t_RGB			color;
-	t_type			type;
-	t_params		params;
-}					t_parse_obj;
-
-typedef struct		s_obj
-{
-	t_vec			pos;
-	t_vec			lookat;
-	t_vec			dir;
-	t_vec			up;
-	t_vec			right;
-	t_RGB			color;
-	t_RGB			specular;
-	t_RGB			diffuse;
-	float			ambiant;
-	t_matrix		world_to_obj;
-	t_matrix		obj_to_world;
-	
-	float			(*intersect)(t_ray, struct s_obj*);
-	t_type			type;
-	t_params		params;
-	struct s_obj	*next;
-}					t_obj;
-
-typedef struct		s_scene
-{
-	char			*name;
-	t_obj			*objs;
-	t_obj			*lights;
-	t_obj			*cameras;
-	struct s_scene	*next;
-}					t_scene;
-
-typedef struct		s_img
-{
-	int				width;
-	int				height;
-	void			*imgptr;
-	char			*img_str;
-	int				bpp;
-	int				sl;
-	int				endian;
-}					t_img;
-
-typedef struct		s_win
-{
-	int				winx;
-	int				winy;
-	void			*winptr;
-	t_img			*img;
-}					t_win;
-
-typedef struct		s_env
-{
-	void			*mlx;
-	t_win			*win;
-	t_scene			*scene;
-}					t_env;
-
-/*typedef struct		s_key
-{
-	char			*name;
-	e_type			type;
-	bool			required;
-	u_value			defaulty;
-	struct s_key	*child;
-	struct s_key	*next;
-}					t_key;*/
 /*
 ** IN TESTING
 */
+
+void				verbose();
 
 t_vec				get_updir(t_vec dir, t_vec right);
 t_vec				get_rightdir(t_vec dir);
@@ -221,6 +68,13 @@ int					is_opposite_vector(t_vec a, t_vec b);
 int					isequalfloat(float a, float b);
 
 int					parse_scene2(void);
+
+
+/*
+** ARGS PARSING
+*/
+void				args_parsing(int ac, char **av);
+t_args				*args_init(void);
 
 /*
 ** PARSING
@@ -330,6 +184,18 @@ int					cursor_mode_get(void);
 void				cursor_mode_toggle(void);
 void				cursor_mode_set(int value);
 
+
+
+t_args				*args_get(void);
+void				args_set(t_args *arg);
+
+int					step_get(void);
+void				step_set(int value);
+int					verbose_get();
+int					render_get();
+int					parse_get();
+int					debug_get();
+char				**files_get();
 /*
 ** OBJET MALLOC
 */
