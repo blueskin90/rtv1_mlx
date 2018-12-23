@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 18:50:27 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 00:41:34 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 02:40:49 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,15 @@ t_args			*args_init(void)
 	args->verbose_mode = 0;
 	args->render_mode = 0;
 	args->debug_mode = 0;
+	args->renderer_mode = 0;
 	args->files = NULL;
 	return (args);
 }
 
 void			args_parsing(int ac, char **av)
 {
-	t_args		*args;
-
-	args = args_init();
-	parse_arguments(ac, av, args);
 	step_set(ARGS_PARSING);
-	args_set(args);
+	args_set(args_init());
+	parse_arguments(ac, av, args_get());
 	verbose();
 }

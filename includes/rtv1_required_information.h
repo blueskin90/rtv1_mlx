@@ -27,12 +27,23 @@
 # define ROLL_OR_UP_OR_RIGHT_REQUIRED true
 # define TRANSLATION_REQUIRED false
 # define ROTATION_REQUIRED false
+# define DIR_REQUIRED false
+# define ROLL_REQUIRED false
+# define INTENSITY_REQUIRED true
+# define FOV_REQUIRED true
+//# define UP_REQUIRED false
+//# define RIGHT_REQUIRED false
 
 /*
 ** COLORS
 */
-# define COLOR_REQUIRED false
+# define COLOR_REQ false
+# define DIFFUSE_REQ false
+# define SPECULAR_REQ false
+# define BRILLANCE_REQ false
+# define AMBIANT_REQ false
 # define COLOR_RGB_REQUIRED false
 # define COLOR_HEX_REQUIRED false
 # define COLOR_AT_LEAST_ONE_REQUIRED false
+# define AMBIANT_REQUIRED false
 #endif

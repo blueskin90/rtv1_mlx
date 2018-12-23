@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 18:25:28 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/05 18:37:05 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:25:24 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	rtv1_parsing(t_elem *begin)
 		scene = NULL;
 		prev_scene = NULL;
 		nbr_scene = 0;
-		if (!check_type_of_key("parent_element", begin->type))
-				ft_error(FIRST_ELEM_BAD_FORMAT);
+		// TODO array pas obligatoire pour premier element
+		check_type_of_key("parent_element", begin->type);
 		curr = begin->value.arrayi;
 		if (curr == NULL && SCENE_REQUIRED)
 				ft_error(SCENE_IS_REQUIRED);

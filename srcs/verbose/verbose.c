@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 00:26:39 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 00:55:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 02:39:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			verbose_args(void)
 {
-//	print_args();
+	print_args();
 	return;
 }
 
@@ -70,7 +70,7 @@ void			print_verbose(int step)
 
 void			verbose()
 {
-	if (verbose_get() == ALL_VERBOSE || verbose_get() == step_get())
+	if (verbose_mode_get() == ALL_VERBOSE || verbose_mode_get() == step_get())
 		print_verbose(step_get());
 	return;
 }

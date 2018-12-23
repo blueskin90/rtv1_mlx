@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 00:55:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 03:06:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,15 @@ typedef struct		s_obj
 	t_vec			dir;
 	t_vec			up;
 	t_vec			right;
+	float			roll;
 	t_RGB			color;
 	t_RGB			specular;
 	t_RGB			diffuse;
 	float			ambiant;
+	float			brillance;
 	t_matrix		world_to_obj;
 	t_matrix		obj_to_world;
-	
+
 	float			(*intersect)(t_ray, struct s_obj*);
 	t_type			type;
 	t_params		params;
@@ -165,10 +167,21 @@ typedef struct		s_args
 {
 	char			parse_mode; // standard or json
 	char			verbose_mode; // text debug or not
+	char			renderer_mode; // 0 = stack, 1 = malloc, 2 = multithread, 3 = graphique, 4 = clustering
 	char			render_mode; // 0 = NO_RENDER, 1 = Hit_color_mode, 2 = depth_color_mode, 3 = total_color_mode, 4 = test_color_mode, 5 = editor mode, DISP A PARTIR DE 5
 	char			debug_mode;
 	char			**files; // pas possible de free, car on recup celles du main !
 }					t_args;
+
+typedef enum		e_renderer_mode
+{
+	STACK,
+	MALLOC,
+	MULTITHREAD,
+	GRAPHIQUE,
+	CLUSTERING,
+	MAX_RENDERER_MODE = 2,
+}					t_renderer_mode;
 
 typedef enum		e_parse_mode
 {
@@ -196,7 +209,7 @@ typedef enum		e_render_mode
 	TOTAL_COLOR,
 	TEST_COLOR,
 	EDITOR,
-	MAX_RENDER_MODE,
+	MAX_RENDER_MODE = 5, // no editor
 }					t_render_mode;
 
 #endif

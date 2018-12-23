@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:51:44 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 15:02:20 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:29:38 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,18 @@ t_RGB		parse_rgb(t_elem *elem, t_RGB color)
 	return (color);
 }
 
-t_RGB		parse_color(t_elem *elem)
+t_RGB		parse_color(t_elem *elem, bool required)
 {
 	t_elem		*child_elem;
 	t_RGB		color;
 
+	color = (t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
 	if (elem != NULL)
 	{
-		printf("parse color %s\n", elem->key);
 		check_type_of_key(elem->key, elem->type);
 		child_elem = elem->value.objecty;
 		color.value = parse_hex(find_elem_by_key(child_elem, "hex"));
 		color = parse_rgb(child_elem, color);
-		printf("RGB : [%f, %f, %f]\n", color.r, color.g, color.b);
-		printf("HEX : %#X\n", color.value);
 		if (ft_min(color.r, color.g, color.b) != INFINITY 
 				&& color.value != -1)
 		{
@@ -121,12 +119,9 @@ t_RGB		parse_color(t_elem *elem)
 		}
 		else if (color.value != -1)
 		{
-			printf("HEX ONLY\n");
 			color.r = color.value >> 16;
 			color.g = (color.value >> 8) & 0xFF;
 			color.b = (color.value) & 0xFF;
-			printf("RGB : [%f, %f, %f]\n", color.r, color.g, color.b);
-			printf("HEX : %X\n", color.value);
 		}
 		else if (ft_min(color.r, color.g, color.b) != INFINITY)
 		{
@@ -136,18 +131,14 @@ t_RGB		parse_color(t_elem *elem)
 		}
 		else 
 		{
-			printf("FIRST DEFAULT VALUE\n");
 			color = default_rgb(color, 
-					(t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});	
+					(t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});
 		}
 		return (color);
 	}
-	else if (COLOR_REQUIRED)
-		is_required("colors", false);
+	else if (required)
+		is_required(elem->key, false);
 	else 
-	{
-		printf("second DEFAULT VALUE\n");
 		color = (t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
-	}
 	return (color);
 }

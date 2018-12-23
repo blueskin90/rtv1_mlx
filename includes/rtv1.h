@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 00:41:30 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 02:39:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,31 +81,36 @@ t_args				*args_init(void);
 */
 void				rtv1_parsing(t_elem *elem);
 t_scene				*parse_scene(t_elem *elem);
-t_elem				*find_elem_by_key(t_elem *elem, char *key);
 t_obj				*parse_objects(t_elem *elem);
-t_obj				*parse_sphere(t_elem *elem);
 t_obj				*parse_lights(t_elem *elem);
 t_obj				*parse_cameras(t_elem *elem);
-t_RGB				parse_color(t_elem *elem);
+t_RGB				parse_color(t_elem *elem, bool required);
+void				parse_dir_lookat_pos(t_elem *elem, t_obj *obj);
+void				parse_up_right_vec(t_elem *elem, t_obj *obj);
 float				parse_float(t_elem *elem);
 t_vec				parse_vector(t_elem *elem);
-bool				check_type_of_key(char *key, e_type type);
 t_obj				*parse_one_object(t_elem *elem,
-		t_obj *(*parse_obj)(t_elem *elem, t_obj *obj));
+		void (*parse_obj)(t_elem *elem, t_obj *obj));
 t_obj				*new_obj();
 float				parse_radius(float radius);
 float				parse_degree_to_rad(float angle);
-t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
-t_obj				*init_object(t_elem *elem, t_obj *obj);
-t_obj				*init_cone(t_elem *elem, t_obj *obj);
-t_obj				*init_plane(t_elem *elem, t_obj *obj);
-t_obj				*init_cylinder(t_elem *elem, t_obj *obj);
-t_obj				*init_sphere(t_elem *elem, t_obj *obj);
+void				init_object(t_elem *elem, t_obj *obj);
+void				init_cone(t_elem *elem, t_obj *obj);
+void				init_plane(t_elem *elem, t_obj *obj);
+void				init_cylinder(t_elem *elem, t_obj *obj);
+void				init_sphere(t_elem *elem, t_obj *obj);
+void				init_light(t_elem *elem, t_obj *obj);
+void				init_camera(t_elem *elem, t_obj *obj);
 float				required_float(float number, bool required, char *error);
 t_vec				required_vec(t_vec vec, bool required, char *error);
 float				default_float(float number, float def);
 t_vec				default_vec(t_vec vec, t_vec def);
 t_RGB				default_rgb(t_RGB rgb, t_RGB def);
+t_elem				*find_elem_by_key(t_elem *elem, char *key);
+bool				check_type_of_key(char *key, e_type type);
+//t_obj				*parse_sphere(t_elem *elem);
+//t_obj				*parse_object_direction(t_elem *elem, t_obj *obj);
+//t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
 /*t_key				*new_key(char *name, e_type type, bool required, void *defaulty);
 t_elem				*default_vector_values();
 t_elem				*default_vector_object(char *name);
@@ -191,10 +196,11 @@ void				args_set(t_args *arg);
 
 int					step_get(void);
 void				step_set(int value);
-int					verbose_get();
-int					render_get();
-int					parse_get();
-int					debug_get();
+int					verbose_mode_get();
+int					render_mode_get();
+int					parse_mode_get();
+int					debug_mode_get();
+int					renderer_mode_get();
 char				**files_get();
 /*
 ** OBJET MALLOC
@@ -326,7 +332,7 @@ void				display_cursor_lightinfos(t_ray *ray);
 void				print_angles(void);
 void				print_matrix(t_matrix matrix);
 void				print_vec(t_vec v);
-void				print_objects(t_scene *scene);
+void				print_objects(t_obj *obj, char *type);
 void				print_lights(t_scene *scene);
 void				print_cameras(t_scene *scene);
 void				print_scene(t_scene *scene);
@@ -334,4 +340,6 @@ void				print_new_scene(t_scene *scene);
 void				print_renderer(t_ray *ray);
 void				print_ray(t_ray *ray);
 void				print_lightray(t_ray *ray);
+
+void				print_args(void);
 #endif

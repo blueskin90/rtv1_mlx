@@ -6,12 +6,12 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:35:23 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 14:17:20 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:55:17 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
+// TODO verifier que je n'utilise pas elem->key quand je fais appel a cette fonction
 float		required_float(float number, bool required, char *error)
 {
 	if (number == INFINITY && required)

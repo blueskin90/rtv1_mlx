@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/23 00:28:49 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/23 01:47:18 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	$(addprefix core/, main errors) \
-	$(addprefix args_parsing/, args_parsing parse_args usage big_flag small_flag) \
+	$(addprefix args_parsing/, args_parsing parse_args usage big_flag small_flag print) \
 	$(addprefix renderer/, printing) \
 	$(addprefix color/, color) \
 	$(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton args_singleton steps_singleton) \
@@ -46,8 +46,8 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	parse_objects \
 	parse_object \
 	parse_light \
-	parse_roll_up_right \
 	parse_arithmetic_values \
+	parse_object_direction \
 	parse_cameras \
 	key_utils \
 	key_types_utils \

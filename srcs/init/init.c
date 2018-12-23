@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:37:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 00:41:31 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 03:13:20 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_img				*img_init(int width, int height, void *mlx)
 	img->width = width;
 	img->height = height;
 	img->imgptr = mlx_new_image(mlx, width, height);
-	if (!(img->img_str = mlx_get_data_addr(img->imgptr, &img->bpp, &img->sl, &img->endian)))
+	if (!(img->img_str = mlx_get_data_addr(img->imgptr, &img->bpp, &img->sl
+					, &img->endian)))
 		ft_error(MLX_IMG_FAIL);
 	return (img);
 }
@@ -46,7 +47,7 @@ t_env				*env_init(void)
 	env = (t_env*)ft_malloc(sizeof(t_env));
 	if (!(env->mlx = mlx_init()))
 		ft_error(MLX_FAIL);
-	if (!(env->win = win_init(WIN_WIDTH, WIN_HEIGHT, "RTv1",env->mlx)))
+	if (!(env->win = win_init(WIN_WIDTH, WIN_HEIGHT, "RTv1", env->mlx)))
 		ft_error(WINDOW_FAIL);
 	env->scene = NULL;
 	return (env);

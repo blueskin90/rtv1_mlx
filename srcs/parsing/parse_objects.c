@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:24 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 16:11:35 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:15:53 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_obj	*new_obj()
 }
 
 t_obj	*parse_object(t_elem *elem, bool obj_req,
-		t_obj *(*object_parser)(t_elem*, t_obj*), char *key)
+		void (*object_parser)(t_elem*, t_obj*), char *key)
 {
 	t_obj		*begin;
 	t_obj		*curr;

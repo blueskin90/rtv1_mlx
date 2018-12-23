@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 16:50:14 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 00:34:35 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 02:36:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,27 @@ void			args_set(t_args *args)
 	*ptr = args;
 }
 
-int				verbose_get()
+int				verbose_mode_get()
 {
 	return ((int)(args_get()->verbose_mode));
 }
 
-int				render_get()
+int				render_mode_get()
 {
 	return ((int)(args_get()->render_mode));
 }
 
-int				parse_get()
+int				renderer_mode_get()
+{
+	return ((int)(args_get()->renderer_mode));
+}
+
+int				parse_mode_get()
 {
 	return ((int)(args_get()->parse_mode));
 }
 
-int				debug_get()
+int				debug_mode_get()
 {
 	return ((int)(args_get()->debug_mode));
 }
