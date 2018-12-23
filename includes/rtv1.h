@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 02:39:41 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 05:11:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int					is_equal_vector(t_vec a, t_vec b);
 int					is_opposite_vector(t_vec a, t_vec b);
 int					isequalfloat(float a, float b);
 
-int					parse_scene2(void);
+void				tmp_parsing(void);
+void				json_parsing(void);
 
 
 /*
@@ -342,4 +343,8 @@ void				print_ray(t_ray *ray);
 void				print_lightray(t_ray *ray);
 
 void				print_args(void);
+void				print_env(void);
+void				print_scenes(t_scene *scene);
+void				print_settings(void);
+void				print_running(void);
 #endif

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/23 01:47:18 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/23 03:20:05 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,13 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	$(addprefix core/, main errors) \
 	$(addprefix args_parsing/, args_parsing parse_args usage big_flag small_flag print) \
+	$(addprefix init/, init print) \
+	\
 	$(addprefix renderer/, printing) \
 	$(addprefix color/, color) \
 	$(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton args_singleton steps_singleton) \
 	$(addprefix tools/, math_tools general_tools vector) \
 	$(addprefix mlx_functions/, mlx) \
-	$(addprefix init/, init) \
 	$(addprefix parsing_tmp/, parsing structures_malloc) \
 	$(addprefix raytracing/, raytracing ray) \
 	$(addprefix raytracing/intersections/, cone cylinder plane sphere quadratic) \
@@ -114,22 +115,22 @@ objs:
 	@mkdir objs/json_parser/
 
 clean:
-	#	make -C ./libs/mlx clean
-	#	make -C ./libs/libft clean
-	#	make -C ./libs/libftg clean
+	@#	make -C ./libs/mlx clean
+	@#	make -C ./libs/libft clean
+	@#	make -C ./libs/libftg clean
 	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
 	@rm -rf objs
 
 fclean: clean
 	@printf  "\033[1:32mCleaning binary -------> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
-	rm -f $(NAME)
-	#	rm -f $(MLX)
-	#	make -C ./libs/libft fclean
-	#	make -C ./libs/libftg fclean
+	@rm -f $(NAME)
+	@#	rm -f $(MLX)
+	@#	make -C ./libs/libft fclean
+	@#	make -C ./libs/libftg fclean
 
 re:
-	$(MAKE) fclean
-	$(MAKE)
-	#	make -C ./libs/libft re
-	#	make -C ./libs/libftg re
-	#	make -C ./libs/mlx re
+	@$(MAKE) fclean
+	@$(MAKE)
+	@#	make -C ./libs/libft re
+	@#	make -C ./libs/libftg re
+	@#	make -C ./libs/mlx re

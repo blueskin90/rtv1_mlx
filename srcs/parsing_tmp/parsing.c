@@ -45,7 +45,7 @@ void				camera_add(t_scene *scene, t_obj *camera)
 		scene->cameras = camera;
 }
 
-int					parse_scene2(void)
+void				tmp_parsing(void)
 {
 	t_scene			*scene;
 	t_vec			pos;
@@ -206,7 +206,15 @@ int					parse_scene2(void)
 	
 	obj_camera_params(objptr, 60.0);
 	camera_add(scene, objptr);
-	
+
+	scene->name = "test_de_base";	
 	env_get()->scene = scene;
-	return (1);
+}
+
+void			json_parsing(void)
+{
+	t_elem			*json;
+
+	json = json_parser(*files_get());
+	rtv1_parsing(json);
 }

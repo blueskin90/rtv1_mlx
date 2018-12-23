@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 00:26:39 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 02:39:33 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 05:03:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,32 @@ void			verbose_args(void)
 
 void			verbose_init(void)
 {
-//	print_env();
+	
+	print_env();
 	return;
 }
 
 void			verbose_parsing(void)
 {
-//	print_parsing();
+	printf("/!\\ == Verbose for parsing == /!\\\n\n");
+	print_scenes(env_get()->scene);
+	printf("\n==== end of parsing verbose ====\n\n");
 	return;
 }
 
 void			verbose_settings(void)
 {
-//	print_settings();
+	printf("/!\\ == Verbose for settings == /!\\\n\n");
+	print_settings();
+	printf("\n==== end of settings verbose ====\n\n");
 	return;
 }
 
 void			verbose_running(void)
 {
-//	print_running();
+	printf("/!\\ == Verbose for running == /!\\\n\n");
+	print_running();
+	printf("\n==== end of running verbose ====\n\n");
 	return;
 }
 

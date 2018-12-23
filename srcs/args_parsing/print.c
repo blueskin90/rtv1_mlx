@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 01:49:05 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 03:11:38 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 03:56:57 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,8 @@ static void		print_args_modes(void)
 
 void			print_args(void)
 {
-	printf("/!\\ == Verbose for args == /!\\\n\n");
+	printf("\n/!\\ == Verbose for args == /!\\\n\n");
 	print_args_modes();
 	print_args_files();
-	printf("===== end of args verbose =====\n");
+	printf("===== end of args verbose =====\n\n");
 }

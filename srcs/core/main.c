@@ -6,12 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 02:03:01 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 05:11:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
+/*
 void				raytracing_malloc_setting(void)
 {
 	malloc_renderers();
@@ -25,7 +26,8 @@ void				raytracing_setting(void)
 	scene_set(env_get()->scene); // set la scene actuelle a la premiere
 	camera_set(scene_get()->cameras); // set la camera a la premiere;
 }
-
+*/
+/*
 int					malloc_rt(void)
 {
 //	printf("Malloc'd version of RT\n");
@@ -64,6 +66,7 @@ int					stack_rt(char *file)
 //	mlx_loop(mlx_get());
 	return (1);
 }
+*/
 
 /*
 int					main(int ac, char **av)
@@ -104,19 +107,86 @@ int					main(int ac, char **av)
 	return (1);
 }
 */
+
+void			print_renderers(void)
+{
+	printf("faire la fonction qui print les renderers, feignasse !\n");
+}
+
+void			print_settings(void)
+{
+	t_scene		*scene;
+	t_obj		*camera;
+
+	scene = scene_get();
+	camera = camera_get();
+	if (!scene)
+		printf("	scene is still not set !\n");
+	else
+		printf("	scene name is : %s\n", scene->name);
+	if (!camera)
+		printf("	rendering camera is still not set !\n");
+	else
+		printf("	rendering camera is set\n");
+	if (renderer_mode_get() != STACK)
+		print_renderers();
+}
+
+void			renderers_init(void)
+{
+	if (renderer_mode_get() == MALLOC)
+		malloc_renderers();
+	else
+		printf("QUE FAIRE ? POUR LES AUTRES INITIALISATIONS DE RENDERERS\n");
+}
+
 void			settings(void)
 {
+	step_set(SETTINGS);
+
+	scene_set(env_get()->scene); // set la scene actuelle a la premiere
+	camera_set(scene_get()->cameras); // set la camera a la premiere;
+	if (renderer_mode_get() != 0)
+	{
+		renderers_init();
+		renderer_set(); // set le renderer a la camera actuelle;
+	}
+	verbose();
 	return;
+}
+
+void			print_running(void)
+{
+	printf("faire la fonction qui print le running verbose feignasse !\n");
 }
 
 void			running(void)
 {
+	step_set(RUNNING);
+	if (renderer_mode_get() == STACK)
+	{
+		raytracing_stack();
+		mlx_loop(mlx_get());
+	}
+	else if (renderer_mode_get() == MALLOC)
+	{
+		raytracing_malloc();
+		print_mode_set(RAY_COLOR_MODE);
+		printing();
+		mlx_loop(mlx_get());
+	}
+	verbose();
 	return;
 }
 
 void			parsing(void)
 {
-	parse_scene2();
+	step_set(PARSING);
+	if (!parse_mode_get())
+		tmp_parsing();
+	else
+		json_parsing();
+	verbose();
 }
 
 int				main(int ac, char **av)
