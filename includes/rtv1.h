@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 06:01:02 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 07:12:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,14 @@ int					test(void);
 */
 void				wrong_format(char *form, e_type type);
 void				is_required(char *key, bool one);
+
+/*
+** SETTINGS FUNCTIONS
+*/
+
+void				settings(t_args *args, t_env *env);
+void				verbose_settings(t_env *env);
+
 /*
 ** BASIC UTILS FUNCTIONS
 */

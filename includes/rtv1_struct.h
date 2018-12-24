@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 03:14:51 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 07:12:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,5 +211,18 @@ typedef enum		e_print_mode
 	TEST_COLOR,
 	MAX_PRINT_MODE,
 }					t_print_mode;
+
+typedef struct		s_renderer
+{
+	int				width;
+	int				height;
+	int				anti_aliasing;
+	int				render_mode;
+	int				print_mode;
+	t_vec			top_left_vec;
+	t_vec			increment;
+	t_matrix		cam_to_world;	
+	t_ray			***renderer; // renderer[x][y] = screen, renderer[x][y][value] = xieme rayon du pixel tant
+}					t_renderer;
 
 #endif

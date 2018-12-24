@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 03:51:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 04:17:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 06:07:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void			verbose_env(t_env *env)
 	printf("/!\\ == Verbose for env === /!\\\n\n");
 	print_mlx(env->mlx);
 	print_window(env->win);
-//	print_scenes(env->scene);
+	print_scenes(env->scene);
 	printf("\n===== end of env verbose ======\n\n");
 }

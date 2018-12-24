@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/24 06:04:14 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/24 07:12:38 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,8 +94,15 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			recognize_type \
 		) \
 	) \
-	$(addprefix renderer/, printing) \
+	$(addprefix settings/, \
+		settings \
+		$(addprefix verbose/, \
+			verbose_settings \
+		) \
+	) \
+	\
 	$(addprefix color/, color) \
+	$(addprefix renderer/, printing) \
 	$(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton args_singleton steps_singleton) \
 	$(addprefix tools/, math_tools general_tools vector) \
 	$(addprefix mlx_functions/, mlx) \
@@ -135,6 +142,7 @@ objs:
 	@mkdir -p objs/args_parsing/verbose
 	@mkdir -p objs/init/verbose
 	@mkdir -p objs/parsing/verbose
+	@mkdir -p objs/settings/verbose
 	@mkdir objs/parsing/parsing_tmp
 	@mkdir objs/parsing/parsing_jsonrtv1
 	@mkdir objs/parsing/json_parser

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:56:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 05:58:40 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 06:11:30 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,19 @@ void				print_scenes(t_scene *scene)
 		ptr = ptr->next;
 	}
 	i = 0;
-	ptr = scene;
+	if (!(ptr = scene))
+	{
+		printf("\tNo scenes availlable\n");
+		return ;
+	}
 	while (ptr)
 	{
 		i++;
 		ft_printf(" ===== printing scene [%d] of [%d] =====\n\n", i, scene_nbr);
 		print_scene(ptr);
 		ptr = ptr->next;
-		ft_printf("\n == end of printing scene [%d] of [%d] ==\n\n", i, scene_nbr);
+		ft_printf("\n == end of printing scene [%d] of [%d] ==\n\n",
+				i, scene_nbr);
 	}
 }
 
@@ -79,7 +84,6 @@ void					print_cameras(t_obj *cameras)
 		ptr = ptr->next;
 	}
 	printf("\t&& end of printing cameras &&\n");
-
 }
 
 void					print_lights(t_obj *lights)

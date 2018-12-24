@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 18:50:27 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 04:08:40 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 06:19:48 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_args			*args_parsing(int ac, char **av)
 {
 	t_args		*args;
 
-	step_set(ARGS_PARSING);
+//	step_set(ARGS_PARSING);
 	args = args_init();
 //	args_set(args);
 	parse_arguments(ac, av, args);
