@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 06:28:48 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 06:45:30 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 22:26:27 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void				verbose_settings(t_env *env)
 {
+	printf("go faire le verbose settings\n");
 	(void)env;
 }

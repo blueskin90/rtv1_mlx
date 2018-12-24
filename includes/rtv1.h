@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 07:12:38 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 22:26:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,17 @@ void				is_required(char *key, bool one);
 /*
 ** SETTINGS FUNCTIONS
 */
+t_ray				ray_init_lookat(t_vec pos, t_vec lookat);
+t_ray				ray_init(t_vec pos, t_vec dir);
+t_ray				ray_to_obj(t_ray ray, t_obj *obj);
+t_ray				ray_to_world(t_ray ray, t_obj *obj);
 
+t_ray				*renderer_malloc(t_renderer *renderer, t_obj *cam);
+t_renderer			*renderer_init(t_obj *cam, t_args *arg, t_env *env);
+void				renderers_settings(t_args *args, t_env *env);
 void				settings(t_args *args, t_env *env);
 void				verbose_settings(t_env *env);
+
 
 /*
 ** BASIC UTILS FUNCTIONS

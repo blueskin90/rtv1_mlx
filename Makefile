@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/24 21:29:46 by cvermand         ###   ########.fr        #
+#    Updated: 2018/12/24 22:26:43 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	) \
 	$(addprefix settings/, \
 		settings \
+		ray \
 		$(addprefix verbose/, \
 			verbose_settings \
 		) \
