@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 02:00:09 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:50:37 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/24 21:36:36 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			json_recognize_object(t_elem *current, char **line, int *i, int fd)
 	*i = *i + 1;
 	current->type = OBJECT;
 	if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			ft_error(UNEXPECTED_END_OF_FILE);
+			json_error(UNEXPECTED_END_OF_FILE);
 	if (DEBUG_PRINT)
 		printf("pos of string : %s\n", &(*line)[*i]);
 	while ((*line)[*i] == ',' || (first_elem && ((*line)[*i] != '}')))
@@ -41,14 +41,14 @@ int			json_recognize_object(t_elem *current, char **line, int *i, int fd)
 		if ((*line)[*i] == ',') 
 			*i = *i + 1;
 		if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			ft_error(UNEXPECTED_END_OF_FILE);
+			json_error(UNEXPECTED_END_OF_FILE);
 		if (DEBUG_PRINT)
 			printf("Child element : \n");
 		child = json_recursive(fd, line, i);
 		if (DEBUG_PRINT)
 			printf("Back from child element\n");
 		if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			ft_error(UNEXPECTED_END_OF_FILE);
+			json_error(UNEXPECTED_END_OF_FILE);
 		if (!current->value.objecty)
 			current->value.arrayi = (void *)child;
 		if (previous)
@@ -58,7 +58,7 @@ int			json_recognize_object(t_elem *current, char **line, int *i, int fd)
 	if (DEBUG_PRINT)
 		printf("ploufs\n");
 	if ((*line)[*i] != '}')
-		ft_error(OBJECT_BAD_FORMAT);
+		json_error(OBJECT_BAD_FORMAT);
 	current->closed = 1;
 	*i = *i + 1;
 	if (DEBUG_PRINT)

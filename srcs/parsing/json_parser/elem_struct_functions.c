@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   elem_struct_functions->c                            :+:      :+:    :+:   */
+/*   elem_struct_functions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvermand <marvin@42->fr>                    +#+  +:+       +#+        */
+/*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 20:00:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 16:50:22 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/24 21:37:39 by cvermand          #+#    #+#             */
+/*   Updated: 2018/12/24 21:39:07 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ u_value		set_value_of_type(e_type type, void *value)
 		val.arrayi = value;
 	if (type == OBJECT)
 		val.objecty = value;
-	return val;
+	return (val);
 }
 
 t_elem		*create_init_elem(char *key, e_type type, void *value)
 {
 	t_elem		*new;
- 
+
 	new = json_malloc(sizeof(t_elem));
 	new->main = 0;
 	new->closed = 0;
@@ -44,20 +44,19 @@ t_elem		*create_init_elem(char *key, e_type type, void *value)
 	new->value = set_value_of_type(type, value);
 	new->next = NULL;
 	new->type = type;
-	return new;
+	return (new);
 }
 
-t_elem		*create_elem()
+t_elem		*create_elem(void)
 {
 	t_elem		*new;
- 
+
 	new = json_malloc(sizeof(t_elem));
 	new->main = 0;
 	new->closed = 0;
 	new->key = NULL;
-	//ft_bzero((void *)new->value);
 	new->value.inty = 0;
 	new->next = NULL;
 	new->type = NOTYPE;
-	return new;
+	return (new);
 }

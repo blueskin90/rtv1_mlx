@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:29:19 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/24 21:52:54 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef int bool;
 # define true 1
 # define false 0
 # define DEBUG_PRINT 0
+# define PRINT_TREE 0
 
 typedef enum		s_type
 {
@@ -77,6 +78,7 @@ int			update_line(int fd, char **line);
 void		error_free_line(char *line, char *error);
 int			ignore_tab_and_spaces(char **line, int *i, int fd);
 char		end_of_value(char c);
+void		json_error(char *error);
 
 /*
 ** Elem structures

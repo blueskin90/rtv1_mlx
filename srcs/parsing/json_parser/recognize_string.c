@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 22:53:30 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:49:50 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/24 21:36:36 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int			json_recognize_string(t_elem *current, char *line, int *i)
 			*i = *i + 1;
 	}
 	if (line[*i] != '"')
-		ft_error(JSON_PARSING_ERROR);
+		json_error(JSON_PARSING_ERROR);
 	*i = *i + 1;
 	if ((str = ft_strsub(line, begin, (size_t)len)) == NULL)
-		ft_error(MALLOC_FAIL);
+		json_error(MALLOC_FAIL);
 	if (DEBUG_PRINT)
 		printf("string : %s\n", str);
 	current->type = STRING;

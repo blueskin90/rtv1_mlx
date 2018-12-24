@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 17:00:31 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:51:28 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/24 21:36:05 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		json_recognize_number(t_elem *current, char *line, int *i)
 		return (0);	
 	}
 	if ((tmp = ft_strsub(line, *i, (size_t)len)) == NULL)
-		ft_error(MALLOC_FAIL);
+		json_error(MALLOC_FAIL);
 	if (type == 1)
 	{
 		x = ft_atoi(tmp);
