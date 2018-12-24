@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 03:51:56 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 06:07:47 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 21:15:12 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			print_window(t_win *win)
 		printf("	Window size is %d x %d\n", win->winx, win->winy);
 		printf("	winptr = %p\n", win->winptr);
 		print_mlximg(win->img);
-	}	
+	}
 }
 
 void			verbose_env(t_env *env)

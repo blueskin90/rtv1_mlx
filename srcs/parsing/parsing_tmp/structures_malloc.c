@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 21:44:34 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 21:59:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,29 +181,6 @@ void			obj_light_params(t_obj *obj, float intensity)
 {
 	obj->params.light.intensity = intensity;
 	obj->type = LIGHT;
-}
-
-t_vec		get_top_left_vec(t_obj *cam, t_vec *increment)
-{
-	float		x;
-	float		y;
-	float		half_fovrad;
-
-	half_fovrad = cam->params.camera.fov * 0.5;
-	y = tanf(half_fovrad);
-	x = -y * ((float)win_getx() / (float)win_gety());
-	increment->x = -x / ((float)win_getx() / 2.0);
-	increment->y = -y / ((float)win_gety() / 2.0);
-	return (vec_init0(x + (increment->x / 2.0), y + (increment->y / 2.0), 1));
-}
-
-t_vec			get_actual_dir(t_vec topleft, t_vec inc, int x, int y)
-{
-	t_vec		final;
-
-	final = vec_init0(topleft.x + x * inc.x, topleft.y + y * inc.y, topleft.z);
-	final = vec_normalize(final);
-	return (final);
 }
 
 void			renderer_malloc(t_obj *camera)

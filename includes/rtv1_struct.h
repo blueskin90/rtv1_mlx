@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 21:01:45 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 21:59:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,22 @@ typedef struct		s_cylinder
 	float			radius;
 }					t_cylinder;
 
+typedef struct		s_renderer
+{
+	int				width;
+	int				height;
+	int				depth;
+	int				renderer_mode;
+	int				print_mode;
+	t_vec			top_left_vec;
+	t_vec			increment;
+	struct s_ray	*renderer; // renderer[x][y] = screen, renderer[x][y][value] = xieme rayon du pixel tant
+}					t_renderer;
+
 typedef struct		s_camera
 {
 	float			fov;
-	struct s_ray	*rays;
-	int				raynumber;
+	t_renderer		*renderer;
 }					t_camera;
 
 typedef struct		s_light
@@ -211,18 +222,4 @@ typedef enum		e_print_mode
 	TEST_COLOR,
 	MAX_PRINT_MODE,
 }					t_print_mode;
-
-typedef struct		s_renderer
-{
-	int				width;
-	int				height;
-	int				anti_aliasing;
-	int				renderer_mode;
-	int				print_mode;
-	t_vec			top_left_vec;
-	t_vec			increment;
-	t_matrix		cam_to_world;	
-	t_ray			***renderer; // renderer[x][y] = screen, renderer[x][y][value] = xieme rayon du pixel tant
-}					t_renderer;
-
 #endif
