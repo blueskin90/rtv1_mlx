@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 07:12:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 21:01:45 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ typedef struct		s_renderer
 	int				width;
 	int				height;
 	int				anti_aliasing;
-	int				render_mode;
+	int				renderer_mode;
 	int				print_mode;
 	t_vec			top_left_vec;
 	t_vec			increment;

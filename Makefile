@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/24 07:12:38 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/24 21:08:27 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			verbose_parsing_loops \
 			verbose_parsing_printing \
 		) \
-		$(addprefix parsing_jsonrtv1/, \
+		$(addprefix rtv1_parsing/, \
 			parsing \
 			parse_scene \
 			parse_utils \
@@ -144,7 +144,7 @@ objs:
 	@mkdir -p objs/parsing/verbose
 	@mkdir -p objs/settings/verbose
 	@mkdir objs/parsing/parsing_tmp
-	@mkdir objs/parsing/parsing_jsonrtv1
+	@mkdir objs/parsing/rtv1_parsing
 	@mkdir objs/parsing/json_parser
 	@mkdir objs/color
 	@mkdir objs/events
