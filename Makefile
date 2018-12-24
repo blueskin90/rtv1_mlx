@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/24 21:08:27 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/24 21:29:46 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,12 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			verbose_parsing_printing \
 		) \
 		$(addprefix rtv1_parsing/, \
+			defaults \
+			init_camera \
+			init_light \
+			init_object \
+			key_utils \
+			key_types_utils \
 			parsing \
 			parse_scene \
 			parse_utils \
@@ -67,15 +73,9 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			parse_arithmetic_values \
 			parse_object_direction \
 			parse_cameras \
-			key_utils \
-			key_types_utils \
 			parse_vectors \
 			parse_colors \
-			init_camera \
-			init_light \
-			init_object \
 			required \
-			defaults \
 		) \
 		$(addprefix json_parser/, \
 			json_parser \
@@ -84,6 +84,8 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			recognize_number \
 			recognize_string \
 			print_elem_architecture \
+			json_errors \
+			singleton \
 			json_utils \
 			recognize_bool \
 			recognize_null \

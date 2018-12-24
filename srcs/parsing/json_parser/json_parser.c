@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:03:05 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/17 21:09:17 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/24 21:20:09 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_elem	*json_parser(char *file)
 		t_elem	*begin;
 		int		x;
 
+		// TODO crash on fake file
 		begin = create_elem();
 		line = NULL;
 		x = 0;

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:59:13 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/24 21:29:19 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "json_parser_errors.h"
 # include "libft.h"
+# include "libftprintf.h"
 # include <fcntl.h>
 # include <stdio.h>
 typedef int bool;
@@ -36,13 +37,13 @@ typedef enum		s_type
 
 typedef union		s_value
 {
-	int				inty; // ok 
-	float			floaty; // ok
-	bool			booly; // ok
-	char			*stringy; // ok
-	void			*arrayi; // ok;
-	void			*objecty;// ok
-	int				nully; // ok
+	int				inty;
+	float			floaty;
+	bool			booly;
+	char			*stringy;
+	void			*arrayi;
+	void			*objecty;
+	int				nully;
 }					u_value;
 
 typedef struct		s_elem
@@ -97,6 +98,12 @@ int			json_recognize_null(t_elem *current, char *line, int *i);
 int			json_recognize_array(t_elem *current, char **line, int *i, int fd);
 int			json_recognize_object(t_elem *current, char **line, int *i, int fd);
 
+/*
+**	SINGLETONS
+*/
+int			get_line_number();
+void		set_line_number(int nbr);
+void		add_line_number(int nbr);
 /*
 ** Generic functions
 */
