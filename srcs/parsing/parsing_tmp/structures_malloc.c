@@ -6,11 +6,12 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:58:22 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 21:44:34 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
 t_vec			vec_x(void)
 {
 	return (vec_init0(1, 0, 0));
@@ -26,13 +27,13 @@ t_vec			vec_z(void)
 	return (vec_init0(0, 0, 1));
 }
 
-t_matrix	rotmatrix_axis_angle(t_vec axis, float angle)
+t_matrix		rotmatrix_axis_angle(t_vec axis, float angle)
 {
-	float	cos;
-	float	sin;
-	float	t;
-	float	tmp1;
-	float	tmp2;
+	float		cos;
+	float		sin;
+	float		t;
+	float		tmp1;
+	float		tmp2;
 	t_matrix	matrix;
 
 	matrix = identity_matrix_init();
@@ -69,9 +70,7 @@ t_matrix		world_to_obj_matrix(t_obj *obj)
 	zaxis = obj->dir;
 	xaxis = obj->right;
 	yaxis = obj->up;
-
 	matrix = identity_matrix_init();
-	
 	matrix.matrix[0][0] = xaxis.x;
 	matrix.matrix[0][1] = xaxis.y;
 	matrix.matrix[0][2] = xaxis.z;
@@ -98,9 +97,9 @@ t_matrix		obj_to_world_matrix(t_obj *obj)
 	matrix.matrix[2][0] = obj->world_to_obj.matrix[0][2];
 	matrix.matrix[2][1] = obj->world_to_obj.matrix[1][2];
 	matrix.matrix[2][3] = obj->world_to_obj.matrix[3][2];
-//	matrix.matrix[3][0] = obj->world_to_obj.matrix[0][3];
-//	matrix.matrix[3][1] = obj->world_to_obj.matrix[1][3];
-//	matrix.matrix[3][2] = obj->world_to_obj.matrix[2][3];
+	matrix.matrix[3][0] = obj->world_to_obj.matrix[0][3];
+	matrix.matrix[3][1] = obj->world_to_obj.matrix[1][3];
+	matrix.matrix[3][2] = obj->world_to_obj.matrix[2][3];
 	return (matrix);
 }
 
@@ -195,7 +194,6 @@ t_vec		get_top_left_vec(t_obj *cam, t_vec *increment)
 	x = -y * ((float)win_getx() / (float)win_gety());
 	increment->x = -x / ((float)win_getx() / 2.0);
 	increment->y = -y / ((float)win_gety() / 2.0);
-
 	return (vec_init0(x + (increment->x / 2.0), y + (increment->y / 2.0), 1));
 }
 
@@ -208,10 +206,6 @@ t_vec			get_actual_dir(t_vec topleft, t_vec inc, int x, int y)
 	return (final);
 }
 
-// on se deplace, puis on rotate sur NOUS MEMES
-
-
-// prendre en compte l'antialiasing
 void			renderer_malloc(t_obj *camera)
 {
 	t_vec		increment;
@@ -220,25 +214,24 @@ void			renderer_malloc(t_obj *camera)
 	int			y;
 	t_ray		ray;
 
-	camera->params.camera.rays = (t_ray*)ft_malloc(sizeof(t_ray) * win_getx() * win_gety());
+	camera->params.camera.rays = (t_ray*)ft_malloc(sizeof(t_ray) * win_getx()
+			* win_gety());
 	camera->params.camera.raynumber = win_getx() * win_gety();
 	increment = vec_init0(0, 0, 0);
 	topleft = get_top_left_vec(camera, &increment);
 	ft_bzero(&ray, sizeof(t_ray));
 	ray.pos = vec_init0(0, 0, 0);
 	ray.length = INFINITY;
-	y = 0;
-	while (y < win_gety())
+	y = -1;
+	while (++y < win_gety())
 	{
-		x = 0;
-		while (x < win_getx())
+		x = -1;
+		while (++x < win_getx())
 		{
 			ray.dir = vec_norm(get_actual_dir(topleft, increment, x, y));
-			
-			camera->params.camera.rays[x + y * win_getx()] = ray_to_world(ray, camera);
-			x++;
+			camera->params.camera.rays[x + y * win_getx()] =
+				ray_to_world(ray, camera);
 		}
-		y++;
 	}
 }
 

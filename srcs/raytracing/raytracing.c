@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 04:27:57 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/17 17:46:54 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 21:39:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				shoot_ray(t_ray *ray)
 	while (objptr)
 	{
 		if ((current_hit = objptr->intersect(*ray, objptr)) != INFINITY
-			&& current_hit < ray->length)
+				&& current_hit < ray->length)
 		{
 			ray->obj_hit = objptr;
 			ray->length = current_hit;
@@ -36,7 +36,7 @@ void				shoot_ray(t_ray *ray)
 		ray->color = ray->obj_hit->color;
 	}
 	else
-		ray->color = rgb_init(0x000000); 
+		ray->color = rgb_init(0x000000);
 }
 
 void				raytracing(void)
@@ -46,13 +46,10 @@ void				raytracing(void)
 	i = 0;
 	while (i < renderer_getraymax())
 	{
-		shoot_ray(renderer_getray(i)); 
+		shoot_ray(renderer_getray(i));
 		i++;
 	}
 }
-
-
-
 
 t_ray			reflect_ray(t_ray *ray)
 {
@@ -80,13 +77,15 @@ t_RGB			get_specular(t_ray *ray, t_ray to_light, t_obj light)
 	float		mult_value;
 	float		dotproduct;
 
-	dotproduct = vec_dotproduct(vec_normalize(vec_init(ray->hit_pos, light.pos)), ray->normal);
+	dotproduct = vec_dotproduct(vec_normalize(
+				vec_init(ray->hit_pos, light.pos)), ray->normal);
 	if (dotproduct <= 0)
 		return (rgb_init(0));
-	reflect = reflect_vector(vec_normalize(vec_init(ray->hit_pos, light.pos)), ray->normal);
+	reflect = reflect_vector(vec_normalize(vec_init(ray->hit_pos, light.pos)),
+			ray->normal);
 	to_view = vec_normalize(vec_init(ray->hit_pos, camera_get()->pos));
 	mult_value = maxf(0, vec_dotproduct(reflect, to_view));
-	mult_value = powf(mult_value, 10); // remplacer 100 par la value de shininess de l;objet
+	mult_value = powf(mult_value, 100); // remplacer 100 par la value de shininess de l;objet
 	mult_value *= light.params.light.intensity;
 	rgb = rgb_mul(light.color, mult_value);
 	rgb = rgb_mul_rgb(rgb, ray->obj_hit->color);
@@ -99,7 +98,8 @@ t_RGB			get_diffuse(t_ray *ray, t_ray to_light, t_obj light)
 	t_RGB		rgb;
 	float		dotproduct;
 
-	dotproduct = vec_dotproduct(ray->normal, vec_normalize(vec_init(ray->hit_pos, light.pos)));
+	dotproduct = vec_dotproduct(ray->normal,
+			vec_normalize(vec_init(ray->hit_pos, light.pos)));
 	if (dotproduct <= 0)
 		return (rgb_init(0));
 	dotproduct *= light.params.light.intensity;
@@ -107,12 +107,12 @@ t_RGB			get_diffuse(t_ray *ray, t_ray to_light, t_obj light)
 	rgb = rgb_mul_rgb(rgb, ray->obj_hit->color);
 	(void)to_light;
 	return (rgb);
-} // si ca donne mal, tenter le fabs du dotproduct
+}
 
 t_RGB			get_ambiant(t_ray *ray)
 {
 	(void)ray;
-	return (rgb_mul_rgb(ray->obj_hit->color, rgb_mul(rgb_init(0xffffff), 0.2))); // maybe take into account some variable of the obj_hit and a varient ambiant_light;
+	return (rgb_mul_rgb(ray->obj_hit->color, rgb_mul(rgb_init(0xffffff), 0.2)));
 }
 
 void			shoot_ray_lights(t_ray *ray)
@@ -122,16 +122,16 @@ void			shoot_ray_lights(t_ray *ray)
 	t_ray		to_light;
 
 	if (ray->length == INFINITY)
-		return;
-	finalcolor = get_ambiant(ray); // pas sur que ce soit logique de ne pas prendre en compte les lumieres actuelles
+		return ;
+	finalcolor = get_ambiant(ray);
+	// pas sur que ce soit logique de ne pas prendre en compte les lum actuelle
 	ptr = scene_get()->lights;
 	while (ptr)
 	{
 		to_light = ray_init_lookat(ray->hit_pos, ptr->pos);
 		shoot_ray(&to_light);
 		if (to_light.length > vec_magnitude(vec_init(ray->hit_pos, ptr->pos)))
-		{ 
-			// si on fait pas le cheat de mort, supprimer la tolerance
+		{
 			finalcolor = rgb_add(finalcolor, get_diffuse(ray, to_light, *ptr));
 			finalcolor = rgb_add(finalcolor, get_specular(ray, to_light, *ptr));
 		}
@@ -152,15 +152,15 @@ void				raytracing_lights(void)
 	}
 }
 
-
-
 void				raytracing_malloc(void)
 {
 	int				i;
 
 	i = 0;
+	printf("ici\n");
 	while (i < renderer_getraymax())
 	{
+		printf("%d\n", i);
 		shoot_ray(renderer_getray(i));
 		i++;
 	}
@@ -182,7 +182,7 @@ t_ray				get_actual_ray(t_vec topleft, t_vec inc, int x, int y)
 	dir = vec_init0(topleft.x + x * inc.x, topleft.y + y * inc.y, topleft.z);
 	dir = vec_norm(dir);
 	ray = ray_init(vec_init0(0, 0, 0), dir);
-	return (ray_to_world(ray, camera_get()));	
+	return (ray_to_world(ray, camera_get()));
 }
 
 void				raytracing_stack(void)
@@ -208,6 +208,7 @@ void				raytracing_stack(void)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(mlx_get(), win_get()->winptr, win_get()->img->imgptr, 0, 0);
-	return;
+	mlx_put_image_to_window(mlx_get(), win_get()->winptr,
+			win_get()->img->imgptr, 0, 0);
+	return ;
 }

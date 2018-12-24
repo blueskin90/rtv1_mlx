@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   verbose_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/23 03:47:05 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 05:11:27 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/24 03:51:56 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/24 04:17:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			print_mlx(void *mlx)
 		printf("	MLX ptr = %p\n", mlx);
 }
 
-void			print_img(t_img *img)
+void			print_mlximg(t_img *img)
 {
 	if (!img)
 	{
@@ -43,36 +43,15 @@ void			print_window(t_win *win)
 	{
 		printf("	Window size is %d x %d\n", win->winx, win->winy);
 		printf("	winptr = %p\n", win->winptr);
-		print_img(win->img);
+		print_mlximg(win->img);
 	}	
 }
 
-void				print_scenes(t_scene *scene)
+void			verbose_env(t_env *env)
 {
-	if (scene == NULL)
-	{
-		printf("	No scene at the moment\n");
-		return ;
-	}
-	printf("	== /!\\ PRINTING SCENES /!\\ ==\n");
-	while (scene)
-	{
-		printf("		name : %s\n", scene->name);
-	//	print_objects(scene->objs);
-	//	print_lights(scene->lights);
-	//	print_cameras(scene->cameras);
-		scene = scene->next;
-	}
-}
-
-void			print_env()
-{
-	t_env		*env;
-
-	env = env_get();
 	printf("/!\\ == Verbose for env === /!\\\n\n");
 	print_mlx(env->mlx);
 	print_window(env->win);
-	print_scenes(env->scene);
+//	print_scenes(env->scene);
 	printf("\n===== end of env verbose ======\n\n");
 }

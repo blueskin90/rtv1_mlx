@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/23 20:21:07 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/24 04:54:00 by toliver          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv1.h"
 
 void				obj_add(t_scene *scene, t_obj *obj)
@@ -45,7 +57,7 @@ void				camera_add(t_scene *scene, t_obj *camera)
 		scene->cameras = camera;
 }
 
-void				tmp_parsing(void)
+t_scene				*tmp_parsing(void)
 {
 	t_scene			*scene;
 	t_vec			pos;
@@ -57,14 +69,14 @@ void				tmp_parsing(void)
 	scene->next = NULL;
 
 // SPHERES
-	
+
 	pos = vec_init0(-35, 30, -30);
 	lookat = vec_init0(0, 0, 6);
 	color = rgb_init(0xa610ff);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_sphere_params(objptr, 4);
 	obj_add(scene, objptr);
-	
+
 	pos = vec_init0(5, 0, 20);
 	lookat = vec_init0(0, 0, 6);
 	color = rgb_init(0xffaaaa);
@@ -72,14 +84,12 @@ void				tmp_parsing(void)
 	obj_sphere_params(objptr, 4);
 	obj_add(scene, objptr);
 
-
 	pos = vec_init0(25, 12, -12);
 	lookat = vec_init0(0, 0, 6);
 	color = rgb_init(0x10ff10);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_sphere_params(objptr, 4);
 	obj_add(scene, objptr);
-
 
 	pos = vec_init0(6, 6, 3);
 	color = rgb_init(0x901044);
@@ -126,7 +136,6 @@ void				tmp_parsing(void)
 	obj_add(scene, objptr);
 	// PLANE
 	
-
 	color = rgb_init(0xaabbcc);
 	pos = vec_init0(0, -50, 0);
 	lookat = vec_init0(0, -49, 0);
@@ -207,14 +216,16 @@ void				tmp_parsing(void)
 	obj_camera_params(objptr, 60.0);
 	camera_add(scene, objptr);
 
-	scene->name = "test_de_base";	
-	env_get()->scene = scene;
+	scene->name = "test_de_base";
+	return (scene);
 }
 
-void			json_parsing(void)
+t_scene				*json_parsing(char **files)
 {
 	t_elem			*json;
+	t_scene			*scene;
 
-	json = json_parser(*files_get());
-	rtv1_parsing(json);
+	json = json_parser(*files); // penser a faire la loop qui fait malloc les scenes
+	scene = rtv1_parsing(json);
+	return (scene);
 }

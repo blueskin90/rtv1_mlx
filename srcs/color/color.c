@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 07:40:38 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/11 15:42:17 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 19:47:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ t_RGB			rgb_add(t_RGB a, t_RGB b)
 	c.g = clampf(a.g + b.g, 0, 1);
 	c.b = clampf(a.b + b.b, 0, 1);
 	rgb_updatevalue(&c);
-	return (c);	
+	return (c);
 }
 
 t_RGB			rgb_init(int value)
 {
 	t_RGB		rgb;
-	int r;
-	int g;
-	int b;
+	int			r;
+	int			g;
+	int			b;
 
 	r = (value & 0xff0000) >> 16;
 	g = (value & 0xff00) >> 8;
 	b = value & 0xff;
-	rgb.r = r / 255.0;
-	rgb.g = g / 255.0;
-	rgb.b = b / 255.0;
+	rgb.r = (float)r / 255.0;
+	rgb.g = (float)g / 255.0;
+	rgb.b = (float)b / 255.0;
 	rgb.value = value;
 	return (rgb);
 }

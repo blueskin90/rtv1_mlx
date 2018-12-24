@@ -6,13 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:50:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 04:20:26 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 04:19:48 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void					print_color(t_RGB color, char * name)
+void					print_color(t_RGB color, char *name)
 {
 	printf("%-10s : RGB[%f, %f, %f] HEX : #%X\n", name,
 			color.r, color.g, color.b, color.value);
@@ -23,10 +23,9 @@ void					print_objects(t_obj *obj, char *type)
 	t_obj			*ptr;
 	int				nbr;
 
-
 	nbr = 1;
 	ptr = obj;
-	printf("===================== PRINTING %s ===========================\n", type);
+	printf("===================== PRINTING %s =======================\n", type);
 	while (ptr)
 	{
 		printf("=== OBJECT %d === \n", nbr);
@@ -37,7 +36,7 @@ void					print_objects(t_obj *obj, char *type)
 		else if (ptr->type == CONE)
 		{
 			printf("CONE : \n");
-			printf("%-10s : %f\n","angle", ptr->params.cone.angle);
+			printf("%-10s : %f\n", "angle", ptr->params.cone.angle);
 		}
 		else if (ptr->type == CYLINDER)
 		{
@@ -47,17 +46,17 @@ void					print_objects(t_obj *obj, char *type)
 		else if (ptr->type == SPHERE)
 		{
 			printf("SPHERE : \n");
-			printf("%-10s : %f\n","radius", ptr->params.sphere.radius);
+			printf("%-10s : %f\n", "radius", ptr->params.sphere.radius);
 		}
 		else if (ptr->type == LIGHT)
 		{
 			printf("LIGHT : \n");
-			printf("%-10s : %f\n","intensity", ptr->params.light.intensity);
+			printf("%-10s : %f\n", "intensity", ptr->params.light.intensity);
 		}
 		else if (ptr->type == CAMERA)
 		{
 			printf("CAMERA : \n");
-			printf("%-10s : %f\n","fov", ptr->params.camera.fov);
+			printf("%-10s : %f\n", "fov", ptr->params.camera.fov);
 		}
 		else
 			printf("UNKNOWN TYPE !!!!!!!!: ");
@@ -79,7 +78,7 @@ void					print_objects(t_obj *obj, char *type)
 		ptr = ptr->next;
 		nbr++;
 	}
-	printf("================== END OF PRINTING %s =======================\n", type);
+	printf("================= END OF PRINTING %s ====================\n", type);
 	printf("\n");
 }
 
@@ -88,13 +87,15 @@ void				print_lights(t_scene *scene)
 	t_obj			*ptr;
 
 	ptr = scene->lights;
-	printf("===================== PRINTING LIGHTS ===========================\n");
+	printf("==================== PRINTING LIGHTS ==========================\n");
 	while (ptr)
 	{
-		printf("pos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n", ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->dir.x, ptr->dir.y, ptr->dir.z);
+		printf("pos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n",
+				ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->dir.x, ptr->dir.y,
+				ptr->dir.z);
 		ptr = ptr->next;
 	}
-	printf("================== END OF PRINTING LIGHTS =======================\n");
+	printf("================= END OF PRINTING LIGHT =======================\n");
 	printf("\n");
 }
 
@@ -103,13 +104,15 @@ void				print_cameras(t_scene *scene)
 	t_obj			*ptr;
 
 	ptr = scene->cameras;
-	printf("===================== PRINTING CAMERAS ==========================\n");
+	printf("==================== PRINTING CAMERAS =========================\n");
 	while (ptr)
 	{
-		printf("pos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n", ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->dir.x, ptr->dir.y, ptr->dir.z);
+		printf("pos = [%.2f][%.2f][%.2f]\norientation = [%.2f][%.2f][%.2f]\n\n",
+				ptr->pos.x, ptr->pos.y, ptr->pos.z, ptr->dir.x, ptr->dir.y,
+				ptr->dir.z);
 		ptr = ptr->next;
 	}
-	printf("================== END OF PRINTING CAMERAS ======================\n");
+	printf("================= END OF PRINTING CAMERAS =====================\n");
 	printf("\n");
 }
 

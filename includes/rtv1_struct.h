@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 05:11:29 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 03:14:51 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,22 +165,23 @@ typedef struct		s_env
 
 typedef struct		s_args
 {
-	char			parse_mode; // standard or json
-	char			verbose_mode; // text debug or not
-	char			renderer_mode; // 0 = stack, 1 = malloc, 2 = multithread, 3 = graphique, 4 = clustering
-	char			render_mode; // 0 = NO_RENDER, 1 = Hit_color_mode, 2 = depth_color_mode, 3 = total_color_mode, 4 = test_color_mode, 5 = editor mode, DISP A PARTIR DE 5
-	char			debug_mode;
-	char			**files; // pas possible de free, car on recup celles du main !
+	int				parse_mode;
+	int				verbose_mode;
+	int				renderer_mode;
+	int				print_mode;
+	int				debug_mode;
+	char			**files;
 }					t_args;
 
 typedef enum		e_renderer_mode
 {
+	NO_RENDERER,
 	STACK,
 	MALLOC,
 	MULTITHREAD,
 	GRAPHIQUE,
 	CLUSTERING,
-	MAX_RENDERER_MODE = 2,
+	MAX_RENDERER_MODE = 3,
 }					t_renderer_mode;
 
 typedef enum		e_parse_mode
@@ -201,15 +202,14 @@ typedef enum		e_verbose_mode
 	MAX_VERBOSE_MODE,
 }					t_verbose_mode;
 
-typedef enum		e_render_mode
+typedef enum		e_print_mode
 {
-	NO_RENDER,
+	NO_PRINT,
 	HIT_COLOR,
 	DEPTH_COLOR,
 	TOTAL_COLOR,
 	TEST_COLOR,
-	EDITOR,
-	MAX_RENDER_MODE = 5, // no editor
-}					t_render_mode;
+	MAX_PRINT_MODE,
+}					t_print_mode;
 
 #endif

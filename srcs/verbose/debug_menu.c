@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:41:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 17:03:13 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/23 19:56:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void				print_lightray(t_ray *ray)
 	print_vec(ray->dir);
 	printf("	ray color : %x\n", ray->color.value);
 	if (ray->obj_hit)
-	{	
+	{
 		print_lightobj_hit_infos(ray);
 		printf("	normal : ");
 		print_vec(ray->normal);
@@ -98,7 +98,7 @@ void				display_cursor_lightinfos(t_ray *ray)
 	t_obj		*ptr;
 	t_ray		to_light;
 
-	finalcolor = get_ambiant(ray); // pas sur que ce soit logique de ne pas prendre en compte les lumieres actuelles
+	finalcolor = get_ambiant(ray);
 	ptr = scene_get()->lights;
 	while (ptr)
 	{
@@ -107,9 +107,9 @@ void				display_cursor_lightinfos(t_ray *ray)
 		printf("	\\\\\\\\\\ LIGHT RAY INFORMATIONS :\n");
 		printf("	ray shot from : ");
 		print_vec(ray->hit_pos);
-		printf(" length to light : %f\n", vec_magnitude(vec_init(ray->hit_pos, ptr->pos)));
+		printf(" length to light : %f\n",
+				vec_magnitude(vec_init(ray->hit_pos, ptr->pos)));
 		print_lightray(&to_light);
-
 		printf("	\\\\\\\\\\ END OF LIGHTRAY INFORMATIONS\n");
 		ptr = ptr->next;
 	}

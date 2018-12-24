@@ -6,11 +6,17 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:42:09 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 03:11:23 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 03:43:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "args_parsing.h"
+
+void			parse_flags_check(t_args *args)
+{
+	if (args->renderer_mode == NO_RENDERER)
+		args->print_mode = NO_PRINT;
+}
 
 void			parse_arguments(int ac, char **av, t_args *args)
 {
@@ -36,4 +42,5 @@ void			parse_arguments(int ac, char **av, t_args *args)
 	}
 	if (i < ac)
 		args->files = av + i;
+	parse_flags_check(args);
 }

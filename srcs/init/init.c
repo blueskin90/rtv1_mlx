@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:37:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 03:46:45 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 04:42:11 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ t_win				*win_init(int width, int height, char *name, void *mlx)
 	return (win);
 }
 
-t_env				*env_init(void)
+t_env				*env_init(t_args *args)
 {
 	t_env			*env;
 
 	env = (t_env*)ft_malloc(sizeof(t_env));
 	env->scene = NULL;
-	if (render_mode_get() == 0)
+	if (args->renderer_mode == NO_RENDERER)
 	{
 		env->mlx = NULL;
 		env->win = NULL;
@@ -58,10 +58,15 @@ t_env				*env_init(void)
 		ft_error(WINDOW_FAIL);
 	return (env);
 }
-int					init(void)
+
+t_env				*init(t_args *args)
 {
+	t_env			*env;
+
 	step_set(INIT);
-	env_set(env_init());
-	verbose();
-	return (1);
+	env = env_init(args);
+//	env_set(env);
+	if (args->verbose_mode == INIT || args->verbose_mode == ALL_VERBOSE)
+		verbose_env(env);
+	return (env);
 }

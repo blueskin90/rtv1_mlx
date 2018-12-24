@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   verbose_args_files.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/24 03:59:33 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 06:01:29 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/24 03:27:46 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/24 03:27:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_scene			*parsing(t_args *args)
+void			print_args_files(char **files)
 {
-	t_scene		*scene;
+	int			i;
 
-	step_set(PARSING);
-	if (args->parse_mode == STANDARD)
-		scene = tmp_parsing();
+	i = 0;
+	if (files == NULL || files[0] == NULL)
+		ft_printf("	There are no files\n");
 	else
-		scene = json_parsing(args->files);
-	verbose_parsing(scene);
-	return (scene);
+	{
+		ft_printf("	Files in argument are :\n");
+		while (files[i])
+		{
+			ft_printf("		- %s\n", files[i]);
+			i++;
+		}
+	}
+	ft_printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 18:50:27 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 02:40:49 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/24 04:08:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,24 @@ t_args			*args_init(void)
 	t_args		*args;
 
 	args = (t_args*)ft_malloc(sizeof(t_args));
-	args->parse_mode = 0;
-	args->verbose_mode = 0;
-	args->render_mode = 0;
+	args->parse_mode = STANDARD;
+	args->verbose_mode = NO_VERBOSE;
+	args->print_mode = TOTAL_COLOR;
 	args->debug_mode = 0;
-	args->renderer_mode = 0;
+	args->renderer_mode = MALLOC;
 	args->files = NULL;
 	return (args);
 }
 
-void			args_parsing(int ac, char **av)
+t_args			*args_parsing(int ac, char **av)
 {
+	t_args		*args;
+
 	step_set(ARGS_PARSING);
-	args_set(args_init());
-	parse_arguments(ac, av, args_get());
-	verbose();
+	args = args_init();
+//	args_set(args);
+	parse_arguments(ac, av, args);
+	if (args->verbose_mode == ARGS_PARSING || args->verbose_mode == ALL_VERBOSE)
+		verbose_args(args);
+	return (args);
 }

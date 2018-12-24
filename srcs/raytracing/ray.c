@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/23 20:33:21 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/23 20:33:24 by toliver          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv1.h"
 
 t_ray			ray_init_lookat(t_vec pos, t_vec lookat)
@@ -28,11 +40,9 @@ t_ray			ray_to_obj(t_ray ray, t_obj *obj)
 
 	new_pos = vec_sub(ray.pos, obj->pos);
 	new_pos = matrix_mult_vec(obj->world_to_obj, new_pos);
-
 	new_dir = vec_norm(matrix_mult_vec(obj->world_to_obj, ray.dir));
 	ray.pos = new_pos;
 	ray.dir = new_dir;
-
 	return (ray);
 }
 
@@ -43,7 +53,6 @@ t_ray			ray_to_world(t_ray ray, t_obj *obj)
 
 	new_pos = matrix_mult_vec(obj->obj_to_world, ray.pos);
 	new_pos = vec_add(ray.pos, obj->pos);
-
 	new_dir = vec_add(ray.pos, ray.dir);
 	new_dir = matrix_mult_vec(obj->obj_to_world, new_dir);
 	new_dir = vec_add(new_dir, obj->pos);
