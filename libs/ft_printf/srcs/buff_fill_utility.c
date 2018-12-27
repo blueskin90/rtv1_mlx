@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 16:08:29 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 19:42:03 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:01:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t		ft_wstrlen(wint_t *str)
 	int		i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 		i++;
 	return (i);
 }
@@ -27,7 +27,7 @@ size_t		ft_pstrlen(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 		i++;
 	return (i);
 }

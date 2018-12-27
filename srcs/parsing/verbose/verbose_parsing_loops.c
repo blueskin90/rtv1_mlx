@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:56:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 03:06:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:09:12 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void				print_scenes(t_scene *scene)
 	i = 0;
 	if (!(ptr = scene))
 	{
-		printf("\tNo scenes availlable\n");
+		ft_printf("\tNo scenes availlable\n");
 		return ;
 	}
 	while (ptr)
@@ -74,16 +74,16 @@ void					print_cameras(t_obj *cameras)
 	}
 	i = 0;
 	ptr = cameras;
-	printf("\t&& printing cameras &&\n");
+	ft_printf("\t&& printing cameras &&\n");
 	while (ptr)
 	{
 		i++;
 		ft_printf("\t- camera [%d] of [%d]\n", i, cameras_nbr);
 		print_object(ptr);
-		printf("\n");
+		ft_printf("\n");
 		ptr = ptr->next;
 	}
-	printf("\t&& end of printing cameras &&\n");
+	ft_printf("\t&& end of printing cameras &&\n");
 }
 
 void					print_lights(t_obj *lights)
@@ -101,16 +101,16 @@ void					print_lights(t_obj *lights)
 	}
 	i = 0;
 	ptr = lights;
-	printf("\t!! printing lights !!\n");
+	ft_printf("\t!! printing lights !!\n");
 	while (ptr)
 	{
 		i++;
 		ft_printf("\t- light [%d] of [%d]\n", i, light_nbr);
 		print_object(ptr);
-		printf("\n");
+		ft_printf("\n");
 		ptr = ptr->next;
 	}
-	printf("\t!! end of printing lights !!\n");
+	ft_printf("\t!! end of printing lights !!\n");
 }
 
 void				print_objects(t_obj *obj)
@@ -128,15 +128,15 @@ void				print_objects(t_obj *obj)
 	}
 	i = 0;
 	ptr = obj;
-	printf("\t## printing objects ##\n");
+	ft_printf("\t## printing objects ##\n");
 	while (ptr)
 	{
 		i++;
 		ft_printf("\t- obj [%d] of [%d]\n", i, obj_nbr);
 		ft_printf("\t\tIs a %s\n", object_type_string(obj));
 		print_object(ptr);
-		printf("\n");
+		ft_printf("\n");
 		ptr = ptr->next;
 	}
-	printf("\t## end of printing objects ##\n");
+	ft_printf("\t## end of printing objects ##\n");
 }

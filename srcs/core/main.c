@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 04:54:07 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:38:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ int				main(int ac, char **av)
 	env->scene = parsing(args);
 	settings(args, env);
 	running(args, env->scene);
-//	printing(args, env->scene, env->win, env->mlx);
+	printing(args, env->scene, env->win, env->mlx);
 	return (1);
 }

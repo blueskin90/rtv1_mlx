@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 22:21:06 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 05:15:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:38:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_vec		get_top_left_vec(t_obj *cam, t_vec *increment, t_win *win)
 	y = tanf(half_fovrad);
 	x = -y * ((float)win->winx / (float)win->winy);
 	increment->x = -x / ((float)win->winx / 2.0);
-	increment->y = -y / ((float)win->winx / 2.0);
+	increment->y = -y / ((float)win->winy / 2.0);
 	return (vec_init0(x + (increment->x / 2.0), y + (increment->y / 2.0), 1));
 }
 

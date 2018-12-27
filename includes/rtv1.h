@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 05:19:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:19:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include "rtv1_required_information.h"
 # include "rtv1_struct.h"
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 768
 # define TOLERANCE 0.01
 
 # define OBJ_HIT_MODE 0
@@ -247,6 +247,14 @@ void				raytracing(t_scene *scene, t_obj *camera);
 void				running(t_args *args, t_scene *scenes);
 
 void				verbose_running(t_args *args, t_scene *scenes);
+
+/*
+** PRINTING FUNCTIONS
+*/
+
+void				printing(t_args *args, t_scene *scenes, t_win *win, void *mlx);
+
+void				verbose_printing(t_args *args, t_scene *scenes);
 
 /*
 ** BASIC UTILS FUNCTIONS

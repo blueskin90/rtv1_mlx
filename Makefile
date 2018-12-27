@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/27 05:52:30 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/27 09:50:06 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,12 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			verbose_running \
 		) \
 	) \
+	$(addprefix printing/, \
+		printing \
+		$(addprefix verbose/, \
+			verbose_printing \
+		) \
+	) \
 	\
 	$(addprefix tools/, math_tools general_tools vector) \
 	)) 
@@ -163,6 +169,7 @@ objs:
 	@mkdir -p objs/running/verbose
 	@mkdir -p objs/running/raytracing/malloc
 	@mkdir objs/running/raytracing/stack
+	@mkdir -p objs/printing/verbose
 	@mkdir objs/color
 	@mkdir objs/events
 	@mkdir objs/mlx_functions

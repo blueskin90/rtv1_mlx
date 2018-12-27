@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 03:28:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 03:33:44 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:04:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			print_print_mode(int mode)
 	else
 	{
 		value = print_mode_string(mode);
-		ft_printf("	PRINT mode is : %s\n", mode);
+		ft_printf("	PRINT mode is : %s\n", print_mode_string(mode));
 	}
 }
 

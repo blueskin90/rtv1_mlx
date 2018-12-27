@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_raytracing.c                                :+:      :+:    :+:   */
+/*   verbose_printing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/27 03:45:34 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:21:35 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/27 09:51:58 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/27 10:05:11 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void			malloc_raytracing(t_scene *scene, t_renderer *renderer, t_obj *cam)
+void					verbose_printing(t_args *args, t_scene *scenes)
 {
-	int				i;
-	int				raymax;
-
-	i = 0;
-	raymax = renderer->height * renderer->width * renderer->depth;
-	while (i < raymax)
-	{
-		shoot_ray(scene, &renderer->renderer[i]);
-		i++;
-	}
-	i = 0;
-	while (i < raymax)
-	{
-		shoot_ray_lights(scene, &renderer->renderer[i], cam);
-		i++;
-	}
+	(void)args;
+	(void)scenes;
+	ft_printf("verbose_printing not done yet !\n");
 }

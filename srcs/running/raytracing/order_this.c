@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 04:27:28 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 05:52:28 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:09:11 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void					print_color(t_RGB color, char *name)
 {
-	printf("%-10s : RGB[%f, %f, %f] HEX : #%X\n", name,
+	ft_printf("%-10s : RGB[%f, %f, %f] HEX : #%X\n", name,
 			color.r, color.g, color.b, color.value);
 }
 

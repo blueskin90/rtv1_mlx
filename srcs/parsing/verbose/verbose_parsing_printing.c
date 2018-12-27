@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:58:45 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 06:01:16 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:12:31 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void				print_object_common(t_obj *obj)
 {
-	printf("\t\t%-10s : ", "pos");
+	ft_printf("\t\t%-10s : ", "pos");
 	print_vec(obj->pos);
-	printf("\t\t%-10s : ", "right");
+	ft_printf("\t\t%-10s : ", "right");
 	print_vec(obj->right);
-	printf("\t\t%-10s : ", "up");
+	ft_printf("\t\t%-10s : ", "up");
 	print_vec(obj->up);
-	printf("\t\t%-10s : ", "dir");
+	ft_printf("\t\t%-10s : ", "dir");
 	print_vec(obj->dir);
 	print_color(obj->color, "color");
 	print_color(obj->specular, "specular");
 	print_color(obj->diffuse, "diffuse");
-	printf("\t\t%-10s : \n", "world to obj");
+	ft_printf("\t\t%-10s : \n", "world to obj");
 	print_matrix(obj->world_to_obj);
-	printf("\t\t%-10s : \n", "obj to world ");
+	ft_printf("\t\t%-10s : \n", "obj to world ");
 	print_matrix(obj->obj_to_world);
 }
 

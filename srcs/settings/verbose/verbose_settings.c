@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 06:28:48 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 03:06:41 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 10:12:27 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void				print_renderer(t_renderer *renderer)
 			renderer->width, renderer->height);
 	ft_printf("\t\trenderer depth = %d (not used at the moment, for AA later\n",
 			renderer->depth);
+	ft_printf("\t");
 	print_renderer_mode(renderer->renderer_mode);
+	ft_printf("\t");
 	print_print_mode(renderer->print_mode);
-	printf("\t\ttop left vec for the renderer is :\n\t\t\t");
+	ft_printf("\t\ttop left vec for the renderer is : ");
 	print_vec(renderer->top_left_vec);
-	printf("\t\tincrement vec for the renderer is :\n\t\t\t");
+	ft_printf("\t\tincrement vec for the renderer is : ");
 	print_vec(renderer->increment);
-	ft_printf("\t\tFirst ray address is %p\n", renderer->renderer);
+	ft_printf("\t\tFirst ray address is %p\n\n", renderer->renderer);
 }
 
 void				print_renderers(t_scene *scene)
@@ -44,12 +46,12 @@ void				print_renderers(t_scene *scene)
 		}
 		scenes = scenes->next;
 	}
-	ft_printf("\t^^ end lf printing renderers ^^\n");
+	ft_printf("\t^^ end of printing renderers ^^\n");
 }
 
 void				verbose_settings(t_args *args, t_env *env)
 {
-	printf("/!\\ == Verbose for settings === /!\\\n\n");
+	ft_printf("/!\\ == Verbose for settings === /!\\\n\n");
 	if (args->renderer_mode == NO_RENDERER)
 		ft_printf("\tNO_RENDERER mode set, nothing done\n");
 	else if (!env->scene)
@@ -57,5 +59,5 @@ void				verbose_settings(t_args *args, t_env *env)
 	else
 		print_renderers(env->scene);
 	// ptet penser a faire un numerotage et autre des scenes 
-	printf("\n===== end of settings verbose ======\n\n");
+	ft_printf("\n===== end of settings verbose ======\n\n");
 }
