@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 22:21:06 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 22:22:42 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 05:15:46 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_vec			get_actual_dir(t_vec topleft, t_vec inc, int x, int y)
 	return (final);
 }
 
-static t_ray			get_actual_ray(t_renderer *renderer, t_obj *cam, int x, int y)
+t_ray			get_actual_ray(t_renderer *renderer, t_obj *cam, int x, int y)
 {
 	t_ray		ray;
 	t_vec		dir;
@@ -85,6 +85,7 @@ t_renderer		*renderer_init(t_obj *cam, t_args *args, t_env *env)
 	renderer->print_mode = args->print_mode;
 	renderer->top_left_vec =
 		get_top_left_vec(cam, &(renderer->increment), env->win);
+	renderer->img = img_init(env->win->winx, env->win->winy, env->mlx);
 	if (renderer->renderer_mode == STACK)
 		return (renderer);
 	renderer->renderer = renderer_malloc(renderer, cam);

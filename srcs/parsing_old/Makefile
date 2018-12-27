@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/27 05:52:30 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/27 04:29:10 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,10 +52,6 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		) \
 	$(addprefix parsing/, \
 		parsing \
-		$(addprefix parsing_tmp/, \
-			parsing \
-			structures_malloc \
-		) \
 		$(addprefix verbose/, \
 			verbose_parsing \
 			verbose_parsing_loops \
@@ -103,7 +99,6 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	$(addprefix settings/, \
 		settings \
 		ray \
-		renderer_init \
 		$(addprefix verbose/, \
 			verbose_settings \
 		) \
@@ -125,7 +120,17 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		) \
 	) \
 	\
+	$(addprefix color/, color) \
+	$(addprefix singleton/, env_singleton scene_singleton camera_singleton renderer_singleton print_mode_singleton cursor_mode_singleton cursor_move_singleton win_singleton mlx_singleton args_singleton steps_singleton) \
 	$(addprefix tools/, math_tools general_tools vector) \
+	$(addprefix mlx_functions/, mlx) \
+	$(addprefix parsing_tmp/, parsing structures_malloc) \
+	$(addprefix raytracing/, raytracing ray) \
+	$(addprefix raytracing/intersections/, cone cylinder plane sphere quadratic) \
+	$(addprefix raytracing/normal/, normal cone cylinder plane sphere) \
+	$(addprefix events/, event_listener) \
+	$(addprefix z_oldrenderer/, printing) \
+	$(addprefix verbose/, verbose debug_menu print_args print_obj debug print_env) \
 	)) 
 
 

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 22:26:42 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 05:19:46 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,12 +163,90 @@ t_ray				ray_init(t_vec pos, t_vec dir);
 t_ray				ray_to_obj(t_ray ray, t_obj *obj);
 t_ray				ray_to_world(t_ray ray, t_obj *obj);
 
+t_ray				get_actual_ray(t_renderer *renderer, t_obj *cam, int x, int y);
 t_ray				*renderer_malloc(t_renderer *renderer, t_obj *cam);
 t_renderer			*renderer_init(t_obj *cam, t_args *arg, t_env *env);
 void				renderers_settings(t_args *args, t_env *env);
 void				settings(t_args *args, t_env *env);
-void				verbose_settings(t_env *env);
 
+void				verbose_settings(t_args *args, t_env *env);
+void				print_renderers(t_scene *scene);
+void				print_renderer(t_renderer *renderer);
+
+/*
+** RUNNING FUNCTIONS
+*/
+
+
+/*
+** TO ORDER INSIDE RUNNING
+*/
+
+void				print_color(t_RGB color, char *name);
+void				print_matrix(t_matrix m);
+void				print_vec(t_vec v);
+
+void				get_conenormal(t_ray *ray);
+void				get_cylindernormal(t_ray *ray);
+void				get_planenormal(t_ray *ray);
+void				get_spherenormal(t_ray *ray);
+void				get_normal(t_ray *ray);
+
+void				mlx_px_to_img(t_img *img, int x, int y, int color);
+
+void				rgb_updatevalue(t_RGB *rgb);
+t_RGB				rgb_mul_rgb(t_RGB a, t_RGB b);
+t_RGB				rgb_mul(t_RGB a, float scalar);
+t_RGB				rgb_add(t_RGB a, t_RGB b);
+t_RGB				rgb_init(int value);
+
+t_ray				reflect_ray(t_ray *ray);
+t_vec				reflect_vector(t_vec vec, t_vec axis);
+t_RGB				get_specular(t_ray *ray, t_ray to_light, t_obj light, t_obj *cam);
+t_RGB				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
+t_RGB				get_ambiant(t_ray *ray);
+void				shoot_ray_lights(t_scene *scene, t_ray *ray, t_obj *cam);
+void				shoot_ray(t_scene *scene, t_ray *ray);
+
+/*
+** END TO ORDER
+*/
+
+
+// to order but in structures malloc
+
+int					quadratic(float a, float b, float c, float l[2]);
+float				sphere_radius(t_obj *sphere);
+float				sphere_intersection(t_ray ray, t_obj *sphere);
+float				plane_intersection(t_ray ray, t_obj *plane);
+float				cylinder_intersection(t_ray ray, t_obj *plane);
+float				cone_intersection(t_ray ray, t_obj *cone);
+
+t_vec				vec_x(void);
+t_vec				vec_y(void);
+t_vec				vec_z(void);
+t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
+t_matrix			world_to_obj_matrix(t_obj *obj);
+t_matrix			obj_to_world_matrix(t_obj *obj);
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
+void				obj_sphere_params(t_obj *obj, float radius);
+void				obj_cylinder_params(t_obj *obj, float radius);
+void				obj_cone_params(t_obj *obj, float angle);
+void				obj_plane_params(t_obj *obj);
+void				obj_camera_params(t_obj *obj, float fov);
+void				obj_light_params(t_obj *obj, float intensity);
+
+// end to order
+
+void				malloc_raytracing(t_scene *scene, t_renderer *renderer, t_obj *camera);
+
+void				stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *camera);
+
+void				raytracing(t_scene *scene, t_obj *camera);
+void				running(t_args *args, t_scene *scenes);
+
+void				verbose_running(t_args *args, t_scene *scenes);
 
 /*
 ** BASIC UTILS FUNCTIONS
@@ -185,16 +263,9 @@ float				maxf(float a, float b);
 float				minf(float a, float b);
 int					clampi(int a, int inf_limit, int sup_limit);
 float				clampf(float a, float inf_limit, float sup_limit);
-t_vec				vec_x(void);
-t_vec				vec_y(void);
-t_vec				vec_z(void);
 int					is_equal_float(float a, float b);
 int					is_equal_vec(t_vec a, t_vec b);
 int					is_opposite_vec(t_vec a, t_vec b);
-t_matrix			rotmatrix_axis_angle(t_vec v, float angle);
-t_matrix			world_to_obj_matrix(t_obj *obj);
-t_matrix			obj_to_world_matrix(t_obj *obj);
-
 /*
 ** SINGLETON FUNCTIONS
 */

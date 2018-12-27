@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 22:12:49 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/27 05:52:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define RTV1_STRUCT_H
 
 # include "libftg.h"
+
+typedef struct		s_img
+{
+	int				width;
+	int				height;
+	void			*imgptr;
+	char			*img_str;
+	int				bpp;
+	int				sl;
+	int				endian;
+}					t_img;
 
 typedef struct		s_RGB
 {
@@ -62,6 +73,7 @@ typedef struct		s_renderer
 	int				print_mode;
 	t_vec			top_left_vec;
 	t_vec			increment;
+	t_img			*img;
 	struct s_ray	*renderer; // renderer[x][y] = screen, renderer[x][y][value] = xieme rayon du pixel tant
 }					t_renderer;
 
@@ -147,17 +159,6 @@ typedef struct		s_scene
 	t_obj			*cameras;
 	struct s_scene	*next;
 }					t_scene;
-
-typedef struct		s_img
-{
-	int				width;
-	int				height;
-	void			*imgptr;
-	char			*img_str;
-	int				bpp;
-	int				sl;
-	int				endian;
-}					t_img;
 
 typedef struct		s_win
 {
