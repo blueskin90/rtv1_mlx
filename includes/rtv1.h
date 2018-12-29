@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:19:39 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/29 10:42:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,32 @@ void				print_renderer(t_renderer *renderer);
 ** RUNNING FUNCTIONS
 */
 
+	/*
+	** PRIMITIVES FUNCTIONS
+	*/
+	
+	void				get_conenormal(t_ray *ray);
+	void				get_cylindernormal(t_ray *ray);
+	void				get_planenormal(t_ray *ray);
+	void				get_spherenormal(t_ray *ray);
+	
+	float				sphere_radius(t_obj *sphere);
+	void				sphere_intersection(t_ray *ray, t_obj *sphere);
+	void				plane_intersection(t_ray *ray, t_obj *plane);
+	void				cylinder_intersection(t_ray *ray, t_obj *plane);
+	void				cone_intersection(t_ray *ray, t_obj *cone);
 
+	int					quadratic(float a, float b, float c, float l[2]);
+	void				check_for_closest(float length, t_ray *ray, t_obj *obj);
+	void				get_normal(t_ray *ray);
+	/*
+	**	RAYTRACING FUNCTIONS
+	*/
+
+	void				malloc_raytracing(t_scene *scene, t_renderer *renderer, t_obj *camera);
+	void				stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *camera);
+	void				raytracing(t_scene *scene, t_obj *camera);
+	
 /*
 ** TO ORDER INSIDE RUNNING
 */
@@ -185,18 +210,12 @@ void				print_renderer(t_renderer *renderer);
 void				print_color(t_RGB color, char *name);
 void				print_matrix(t_matrix m);
 void				print_vec(t_vec v);
-
-void				get_conenormal(t_ray *ray);
-void				get_cylindernormal(t_ray *ray);
-void				get_planenormal(t_ray *ray);
-void				get_spherenormal(t_ray *ray);
-void				get_normal(t_ray *ray);
-
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
 
 void				rgb_updatevalue(t_RGB *rgb);
 t_RGB				rgb_mul_rgb(t_RGB a, t_RGB b);
 t_RGB				rgb_mul(t_RGB a, float scalar);
+t_RGB				rgb_div(t_RGB a, float scalar);
 t_RGB				rgb_add(t_RGB a, t_RGB b);
 t_RGB				rgb_init(int value);
 
@@ -215,13 +234,6 @@ void				shoot_ray(t_scene *scene, t_ray *ray);
 
 // to order but in structures malloc
 
-int					quadratic(float a, float b, float c, float l[2]);
-float				sphere_radius(t_obj *sphere);
-float				sphere_intersection(t_ray ray, t_obj *sphere);
-float				plane_intersection(t_ray ray, t_obj *plane);
-float				cylinder_intersection(t_ray ray, t_obj *plane);
-float				cone_intersection(t_ray ray, t_obj *cone);
-
 t_vec				vec_x(void);
 t_vec				vec_y(void);
 t_vec				vec_z(void);
@@ -239,11 +251,6 @@ void				obj_light_params(t_obj *obj, float intensity);
 
 // end to order
 
-void				malloc_raytracing(t_scene *scene, t_renderer *renderer, t_obj *camera);
-
-void				stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *camera);
-
-void				raytracing(t_scene *scene, t_obj *camera);
 void				running(t_args *args, t_scene *scenes);
 
 void				verbose_running(t_args *args, t_scene *scenes);

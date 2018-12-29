@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   running.c                                          :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/27 03:11:04 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:22:07 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/29 02:48:59 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/29 03:40:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void			running(t_args *args, t_scene *scenes)
+void				get_spherenormal(t_ray *ray)
 {
-	t_scene		*scene;
-	t_obj		*camera;
-
-	scene = scenes;
-	while (scene)
-	{
-		camera = scene->cameras;
-		while (camera)
-		{
-			raytracing(scene, camera);
-			camera = camera->next;
-		}
-		scene = scene->next;
-	}
-	if (args->verbose_mode == RUNNING || args->verbose_mode == ALL_VERBOSE)
-		verbose_running(args, scenes);
+	ray->normal = vec_norm(vec_init(ray->obj_hit->pos, ray->hit_pos));
 }

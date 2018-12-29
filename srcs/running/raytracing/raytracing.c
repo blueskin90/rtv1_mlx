@@ -6,18 +6,22 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:44:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 04:36:43 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/29 03:42:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+
 
 void			raytracing(t_scene *scene, t_obj *camera)
 {
 	t_renderer	*renderer;
 
 	renderer = camera->params.camera.renderer;
-	if (renderer->renderer_mode == STACK)
+	if (renderer->renderer_mode == NO_RENDERER)
+		return ;
+	else if (renderer->renderer_mode == STACK)
 		stack_raytracing(scene, renderer, camera);
 	else if (renderer->renderer_mode == MALLOC)
 		malloc_raytracing(scene, renderer, camera);

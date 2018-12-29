@@ -43,7 +43,8 @@ static bool		check_float_keys(char *key)
 		!compare(key, "b") ||
 		!compare(key, "x") ||
 		!compare(key, "y") ||
-		!compare(key, "z"))
+		!compare(key, "z") ||
+		!compare(key, "angle"))
 			return (true);
 	wrong_format(key, FLOAT);
 	return (false);

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/27 09:50:06 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/29 08:52:41 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,11 +113,34 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		$(addprefix raytracing/, \
 			raytracing \
 			order_this \
+			$(addprefix primitives/, \
+				$(addprefix cone/, \
+					intersect \
+					normal \
+				) \
+				$(addprefix cylinder/, \
+					intersect \
+					normal \
+				) \
+				$(addprefix plane/, \
+					intersect \
+					normal \
+				) \
+				$(addprefix sphere/, \
+					intersect \
+					normal \
+				) \
+				common \
+			) \
 			$(addprefix stack/, \
 				stack_raytracing \
 			) \
 			$(addprefix malloc/, \
 				malloc_raytracing \
+			) \
+			$(addprefix common/, \
+				ray_shooting \
+				ray_light_shooting \
 			) \
 		) \
 		$(addprefix verbose/, \
@@ -169,20 +192,13 @@ objs:
 	@mkdir -p objs/running/verbose
 	@mkdir -p objs/running/raytracing/malloc
 	@mkdir objs/running/raytracing/stack
+	@mkdir -p objs/running/raytracing/primitives/cone
+	@mkdir objs/running/raytracing/primitives/cylinder
+	@mkdir objs/running/raytracing/primitives/plane
+	@mkdir objs/running/raytracing/primitives/sphere
+	@mkdir objs/running/raytracing/common
 	@mkdir -p objs/printing/verbose
-	@mkdir objs/color
-	@mkdir objs/events
-	@mkdir objs/mlx_functions
-	@mkdir objs/singleton
 	@mkdir objs/tools
-	@mkdir objs/verbose
-	@mkdir objs/z_oldrenderer
-	@mkdir objs/parsing_tmp
-	@mkdir objs/raytracing
-	@mkdir objs/raytracing/normal
-	@mkdir objs/raytracing/intersections
-	@mkdir objs/parsing_jsonrtv1/
-	@mkdir objs/json_parser/
 
 clean:
 	@#	make -C ./libs/mlx clean

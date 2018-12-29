@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 09:50:16 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:34:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/29 02:22:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void				printing(t_args *args, t_scene *scenes, t_win *win, void *mlx)
 	}
 	if (args->verbose_mode == PRINTING || args->verbose_mode == ALL_VERBOSE)
 		verbose_printing(args, scenes);
-	mlx_loop(mlx);
+
+	if (args->print_mode != NO_PRINT && args->renderer_mode != NO_RENDERER)
+		mlx_loop(mlx);
 }

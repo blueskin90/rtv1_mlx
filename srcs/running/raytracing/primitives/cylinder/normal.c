@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   running.c                                          :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/27 03:11:04 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:22:07 by toliver          ###   ########.fr       */
+/*   Created: 2018/12/29 02:47:07 by toliver           #+#    #+#             */
+/*   Updated: 2018/12/29 02:47:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void			running(t_args *args, t_scene *scenes)
+void				get_cylindernormal(t_ray *ray)
 {
-	t_scene		*scene;
-	t_obj		*camera;
+	t_vec	center_to_hit;
+	float	len;
+	t_vec	center_under_hit;
 
-	scene = scenes;
-	while (scene)
-	{
-		camera = scene->cameras;
-		while (camera)
-		{
-			raytracing(scene, camera);
-			camera = camera->next;
-		}
-		scene = scene->next;
-	}
-	if (args->verbose_mode == RUNNING || args->verbose_mode == ALL_VERBOSE)
-		verbose_running(args, scenes);
+	center_to_hit = vec_init(ray->obj_hit->pos, ray->hit_pos);
+	len = vec_dotproduct(center_to_hit, ray->obj_hit->dir);
+	center_under_hit = vec_add(ray->obj_hit->pos, vec_mul(ray->obj_hit->dir, len));
+	ray->normal = vec_normalize(vec_init(center_under_hit, ray->hit_pos));
 }

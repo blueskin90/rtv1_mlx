@@ -6,11 +6,12 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:45:08 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:34:42 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/29 02:45:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
 
 void			stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *cam)
 {
@@ -26,7 +27,8 @@ void			stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *cam)
 		{
 			ray = get_actual_ray(renderer, cam, x, y);
 			shoot_ray(scene, &ray);
-			shoot_ray_lights(scene, &ray, cam);
+			if (renderer->print_mode > 2)
+				shoot_ray_lights(scene, &ray, cam);
 			mlx_px_to_img(renderer->img, x, y, ray.color.value);
 			x++;
 		}

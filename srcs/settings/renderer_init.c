@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 22:21:06 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:40:36 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/29 02:17:58 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_renderer		*renderer_init(t_obj *cam, t_args *args, t_env *env)
 	renderer->top_left_vec =
 		get_top_left_vec(cam, &(renderer->increment), env->win);
 	renderer->img = img_init(env->win->winx, env->win->winy, env->mlx);
-	if (renderer->renderer_mode == STACK)
+	if (renderer->renderer_mode == STACK) 
 		return (renderer);
 	renderer->renderer = renderer_malloc(renderer, cam);
 	return (renderer);

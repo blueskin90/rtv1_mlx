@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:08:23 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/18 15:57:06 by cvermand         ###   ########.fr       */
+/*   Updated: 2018/12/29 00:55:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ void		init_cone(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);
+	obj->intersect = &cone_intersection;
 }
 
 void		init_plane(t_elem *elem, t_obj *obj)
 {
 	(void) elem;
 	(void) obj;
-	/*obj->type = PLANE;
+	obj->type = PLANE;
+	/*
 	obj->params.plane.a = 
 		default_float(
 			required_float(
@@ -55,6 +57,7 @@ void		init_plane(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);*/
+	obj->intersect = &plane_intersection;
 }
 
 
@@ -74,6 +77,7 @@ void		init_cylinder(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);
+	obj->intersect = &cylinder_intersection;
 }
 
 void		init_sphere(t_elem *elem, t_obj *obj)
@@ -92,4 +96,5 @@ void		init_sphere(t_elem *elem, t_obj *obj)
 			),
 			0.0
 		);
+	obj->intersect = &sphere_intersection;
 }
