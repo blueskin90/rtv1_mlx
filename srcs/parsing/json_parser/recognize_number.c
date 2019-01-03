@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 17:00:31 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 15:20:59 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 17:52:41 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,26 @@ static int		valid_number(char *line, int i, int *len)
 	else
 		return (1);
 }
+static void		init_int_elem(t_elem *current, int x, int *i, int len)
+{
+	current->value.inty = x;
+	current->type = INTEGER;
+	*i = *i + len;
+}
+
+static void		init_float_elem(t_elem *current, float dec, int *i, int len)
+{
+	current->value.floaty = dec;
+	current->type = FLOAT;
+	*i = *i + len;
+}
 
 int				json_recognize_number(t_elem *current, char *line, int *i)
 {
-	int				x;
-	float			dec;
 	int				len;
 	char			type;
 	char			*tmp;
 
-	x = 0;
 	len = 0;
 	if (!(type = valid_number(line, *i, &len)) || len == 0)
 		return (0);
@@ -65,20 +75,14 @@ int				json_recognize_number(t_elem *current, char *line, int *i)
 		json_error(MALLOC_FAIL);
 	if (type == 1)
 	{
-		x = ft_atoi(tmp);
+		init_int_elem(current, ft_atoi(tmp), i, len);
 		free(tmp);
-		current->value.inty = x;
-		current->type = INTEGER;
-		*i = *i + len;
 		return (current->type);
 	}
 	if (type == 2)
 	{
-		dec = ft_atof(tmp);
+		init_float_elem(current, ft_atof(tmp), i, len);
 		free(tmp);
-		current->value.floaty = dec;
-		current->type = FLOAT;
-		*i = *i + len;
 		return (current->type);
 	}
 	return (0);

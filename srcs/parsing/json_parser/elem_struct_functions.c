@@ -6,13 +6,13 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 21:37:39 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:39:07 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 17:49:44 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json_parser.h"
 
-u_value		set_value_of_type(e_type type, void *value)
+u_value		set_value_of_type(t_json_data type, void *value)
 {
 	u_value		val;
 
@@ -33,7 +33,7 @@ u_value		set_value_of_type(e_type type, void *value)
 	return (val);
 }
 
-t_elem		*create_init_elem(char *key, e_type type, void *value)
+t_elem		*create_init_elem(char *key, t_json_data type, void *value)
 {
 	t_elem		*new;
 
