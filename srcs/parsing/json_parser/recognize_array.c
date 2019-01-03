@@ -6,12 +6,11 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 00:54:47 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:35:37 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 15:26:10 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json_parser.h"
-
 
 int			json_recognize_array(t_elem *current, char **line, int *i, int fd)
 {
@@ -22,28 +21,19 @@ int			json_recognize_array(t_elem *current, char **line, int *i, int fd)
 	first_elem = 1;
 	child = NULL;
 	previous = NULL;
-	if (DEBUG_PRINT)
-		printf("ENTERING ARRAY PARSER i : %d\n", *i);
 	if ((*line)[*i] != '[')
-	{
-		if (DEBUG_PRINT)
-			printf("value is not an array\n");
 		return (0);
-	}
 	*i = *i + 1;
 	current->type = ARRAY;
 	current->value.arrayi = NULL;
-	if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			json_error(UNEXPECTED_END_OF_FILE);
+	ignore_tab_and_spaces(line, i, fd, 0);
 	while ((*line)[*i] == ',' || (first_elem && (*line)[*i] != ']'))
 	{
-		if ((*line)[*i] == ',') 
+		if ((*line)[*i] == ',')
 			*i = *i + 1;
-		if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			json_error(UNEXPECTED_END_OF_FILE);
+		ignore_tab_and_spaces(line, i, fd, 0);
 		child = array_recursive(fd, line, i);
-		if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			json_error(UNEXPECTED_END_OF_FILE);
+		ignore_tab_and_spaces(line, i, fd, 0);
 		if (!current->value.arrayi)
 			current->value.arrayi = (void *)child;
 		if (previous)
@@ -54,8 +44,6 @@ int			json_recognize_array(t_elem *current, char **line, int *i, int fd)
 		}
 		previous = child;
 	}
-	if (DEBUG_PRINT)
-		printf("ARRAY  OUT  : %s i : %d\n", &((*line)[*i]), *i);
 	if ((*line)[*i] != ']')
 		json_error(ARRAY_BAD_FORMAT);
 	current->closed = 1;

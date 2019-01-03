@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 20:16:28 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:45:46 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 15:29:46 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,7 @@ int					update_line(int fd, char **line)
 	return (ret);
 }
 
-void				error_free_line(char *line, char *error)
-{
-	free(line);
-	line = NULL;
-	json_error(error);
-}
-
-int					ignore_tab_and_spaces(char **line, int *i, int fd)
+int					ignore_tab_and_spaces(char **line, int *i, int fd, char end)
 {
 	int ret;
 
@@ -60,7 +53,11 @@ int					ignore_tab_and_spaces(char **line, int *i, int fd)
 		{
 			*i = 0;
 			if ((ret = update_line(fd, line)) != 1)
+			{
+				if (end == 0 && ret != 1)
+					json_error(UNEXPECTED_END_OF_FILE);
 				return (ret);
+			}
 		}
 		else
 			*i = *i + 1;

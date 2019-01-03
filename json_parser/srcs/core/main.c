@@ -6,18 +6,18 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 22:20:22 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 22:21:23 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 15:34:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "json_parser.h"
 
-
 int			main(int ac, char **av)
 {
-	t_scene		*scene;
+	t_elem		*elem;
 		
-	scene = json_parsing(args->files);
-
+	elem = json_parser(av[1]);
+	ft_printf("NO ERRORS\n");
+	return (1);
 }

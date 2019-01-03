@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:52:54 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 15:33:31 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_elem				*json_parser(char *file);
 */
 int			update_line(int fd, char **line);
 void		error_free_line(char *line, char *error);
-int			ignore_tab_and_spaces(char **line, int *i, int fd);
+int			ignore_tab_and_spaces(char **line, int *i, int fd, char end);
 char		end_of_value(char c);
 void		json_error(char *error);
 
