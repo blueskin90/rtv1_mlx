@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:56:51 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 17:55:27 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:41:27 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void					wrong_format(char *form, t_json_data type)
 	exit(0);
 }
 
-void					is_required(char *key, bool one)
+void					is_required(char *key, int one)
 {
 	if (one)
 		ft_putstr_fd(AT_LEAST_ONE_REQUIRED, 2);

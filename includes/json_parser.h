@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 19:05:04 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:55:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,10 @@
 # include "libftprintf.h"
 # include <fcntl.h>
 
-typedef int	bool;
-# define true 1
-# define false 0
 # define TRUE 1
 # define FALSE 0
 # define DEBUG_PRINT 0
-# define PRINT_TREE 1
+# define PRINT_TREE 0
 
 typedef enum		e_json_data
 {

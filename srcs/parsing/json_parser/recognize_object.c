@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 02:00:09 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 17:32:43 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:53:07 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 ** RETURN 0 if object is NOT recognized
 */
 
-static inline void	object_chain_array(t_elem *current,
-		t_elem *previous, t_elem *child)
+static inline void	object_chain_array(t_elem **current,
+		t_elem **previous, t_elem *child)
 {
-	if (!current->value.objecty)
-		current->value.arrayi = (void *)child;
-	if (previous)
-		previous->next = child;
-	previous = child;
+	if (!(*current)->value.objecty)
+		(*current)->value.arrayi = (void *)child;
+	if ((*previous))
+		(*previous)->next = child;
+	(*previous) = child;
 }
 
 int					json_recognize_object(t_elem *current, char **line,
@@ -51,7 +51,7 @@ int					json_recognize_object(t_elem *current, char **line,
 		ignore_tab_and_spaces(line, i, fd, 0);
 		child = json_recursive(fd, line, i);
 		ignore_tab_and_spaces(line, i, fd, 0);
-		object_chain_array(current, previous, child);
+		object_chain_array(&current, &previous, child);
 	}
 	((*line)[*i] != '}') ? json_error(OBJECT_BAD_FORMAT) : 0;
 	current->closed = 1;

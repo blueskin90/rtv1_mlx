@@ -6,24 +6,24 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 00:54:47 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 18:34:10 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:55:42 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json_parser.h"
 
-static inline void	array_chain_array(t_elem *current,
-		t_elem *previous, t_elem *child)
+static inline void	array_chain_array(t_elem **current,
+		t_elem **previous, t_elem *child)
 {
-	if (!current->value.arrayi)
-		current->value.arrayi = (void *)child;
-	if (previous)
+	if (!(*current)->value.arrayi)
+		(*current)->value.arrayi = (void *)child;
+	if ((*previous))
 	{
-		if (previous->type != child->type)
+		if ((*previous)->type != child->type)
 			json_error(ARRAY_MULTIPLE_TYPE);
-		previous->next = child;
+		(*previous)->next = child;
 	}
-	previous = child;
+	(*previous) = child;
 }
 
 int					json_recognize_array(t_elem *current, char **line,
@@ -47,7 +47,7 @@ int					json_recognize_array(t_elem *current, char **line,
 		ignore_tab_and_spaces(line, i, fd, 0);
 		child = array_recursive(fd, line, i);
 		ignore_tab_and_spaces(line, i, fd, 0);
-		array_chain_array(current, previous, child);
+		array_chain_array(&current, &previous, child);
 	}
 	if ((*line)[*i] != ']')
 		json_error(ARRAY_BAD_FORMAT);

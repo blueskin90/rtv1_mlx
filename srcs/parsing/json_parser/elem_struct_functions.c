@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 21:37:39 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 19:02:19 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:48:15 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_value		set_value_of_type(t_json_data type, void *value)
 	if (type == STRING)
 		val.stringy = (char *)value;
 	if (type == BOOL)
-		val.booly = *((bool *)value);
+		val.booly = *((int *)value);
 	if (type == NULL_ELEM)
 		val.nully = 0;
 	if (type == ARRAY)

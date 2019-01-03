@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:23:44 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/18 16:55:23 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:43:38 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_obj			*parse_cameras(t_elem *elem)
 		printf("PARSE CAMERAS\n");
 		child_elem = elem->value.arrayi;
 		if (child_elem == NULL && CAMERAS_REQUIRED)
-			is_required(elem->key, true);
+			is_required(elem->key, 1);
 		while (child_elem)
 		{
 			curr = parse_one_object(child_elem, &init_camera);
@@ -63,7 +63,7 @@ t_obj			*parse_cameras(t_elem *elem)
 		}
 	}
 	else if (CAMERAS_REQUIRED)
-		is_required("cameras", false);
+		is_required("cameras", 0);
 	return (begin);
 
 }

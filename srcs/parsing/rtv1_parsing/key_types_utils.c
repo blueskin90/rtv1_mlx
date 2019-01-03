@@ -27,7 +27,7 @@
 
 			],
 			*/
-static bool		check_float_keys(char *key)
+static int		check_float_keys(char *key)
 {
 	int		(*compare)(const char *, const char *);	
 
@@ -45,12 +45,12 @@ static bool		check_float_keys(char *key)
 		!compare(key, "y") ||
 		!compare(key, "z") ||
 		!compare(key, "angle"))
-			return (true);
+			return (1);
 	wrong_format(key, FLOAT);
-	return (false);
+	return (0);
 }
 
-static bool		check_array_keys(char *key)
+static int		check_array_keys(char *key)
 {
 	int		(*compare)(const char *, const char *);	
 
@@ -63,11 +63,11 @@ static bool		check_array_keys(char *key)
 		!compare(key, "cameras") ||
 		!compare(key, "lights")
 		)
-			return (true);
+			return (1);
 	wrong_format(key, ARRAY);
-	return (false);
+	return (0);
 }
-static bool		check_object_keys(char *key)
+static int		check_object_keys(char *key)
 {
 	int		(*compare)(const char *, const char *);	
 
@@ -90,11 +90,11 @@ static bool		check_object_keys(char *key)
 		!compare(key, "color") ||
 		!compare(key, "lookat")
 		)
-			return (true);
+			return (1);
 	wrong_format(key, OBJECT);
-	return (false);
+	return (0);
 }
-static bool		check_int_keys(char *key)
+static int		check_int_keys(char *key)
 {
 	int		(*compare)(const char *, const char *);	
 
@@ -106,24 +106,24 @@ static bool		check_int_keys(char *key)
 		!compare(key, "brillance") ||
 		!compare(key, "roll") ||
 		!compare(key, "b"))
-			return (true);
+			return (1);
 	wrong_format(key, INTEGER);
-	return (false);
+	return (0);
 }
 
-static bool		check_string_keys(char *key)
+static int		check_string_keys(char *key)
 {
 	int		(*compare)(const char *, const char *);	
 
 	compare = &ft_strcmp;
 	if (!compare(key, "name") || 
 		!compare(key, "hex"))
-			return (true);
+			return (1);
 	wrong_format(key, STRING);
-	return (false);
+	return (0);
 }
 
-static bool		check_null_keys(char *key)
+static int		check_null_keys(char *key)
 {
 	int		(*compare)(const char *, const char *);	
 
@@ -138,13 +138,13 @@ static bool		check_null_keys(char *key)
 		!compare(key, "r") || 
 		!compare(key, "g") ||
 		!compare(key, "b"))
-			return (true);
+			return (1);
 	wrong_format(key, NULL_ELEM);
-	return (false);
+	return (0);
 
 }
 
-bool	check_type_of_key(char *key, t_json_data type)
+int	check_type_of_key(char *key, t_json_data type)
 {
 	if (type == FLOAT)	
 			return (check_float_keys(key));
@@ -158,5 +158,5 @@ bool	check_type_of_key(char *key, t_json_data type)
 			return (check_null_keys(key));
 	else if (type == STRING)
 			return (check_string_keys(key));
-	return (false);
+	return (0);
 }

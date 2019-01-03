@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:24 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/18 16:15:53 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:47:44 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_obj	*new_obj()
 	return (obj);
 }
 
-t_obj	*parse_object(t_elem *elem, bool obj_req,
+t_obj	*parse_object(t_elem *elem, int obj_req,
 		void (*object_parser)(t_elem*, t_obj*), char *key)
 {
 	t_obj		*begin;
@@ -36,7 +36,7 @@ t_obj	*parse_object(t_elem *elem, bool obj_req,
 		check_type_of_key(elem->key, elem->type);
 		child_elem = elem->value.arrayi;
 		if (child_elem == NULL && obj_req)
-			is_required(key, true);
+			is_required(key, 1);
 		while (child_elem)
 		{
 			curr = parse_one_object(child_elem, object_parser);
@@ -50,7 +50,7 @@ t_obj	*parse_object(t_elem *elem, bool obj_req,
 		}
 	}
 	else if (obj_req)
-			is_required(key, false);
+			is_required(key, 0);
 	return (begin);
 }
 
@@ -102,7 +102,7 @@ t_obj		*parse_objects(t_elem *elem)
 				find_elem_by_key(child_elem, "cylinders"), CYLINDERS_REQUIRED,
 				&init_cylinder, "cylinders"), obj); 
 		if (OBJECTS_REQUIRED && obj == NULL)
-			is_required("object", true);
+			is_required("object", 1);
 	}
 	else if (OBJECTS_REQUIRED)
 		ft_error(OBJECTS_IS_REQUIRED);

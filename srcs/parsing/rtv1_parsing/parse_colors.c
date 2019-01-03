@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:51:44 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 19:02:42 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:46:46 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_rgb		parse_rgb(t_elem *elem, t_rgb color)
 	g = parse_float(find_elem_by_key(elem, "g"));
 	b = parse_float(find_elem_by_key(elem, "b"));
 	if (ft_min(r, g, b) == INFINITY && COLOR_RGB_REQUIRED)
-		is_required("RGB of color", false);
+		is_required("RGB of color", 0);
 	if (r != INFINITY && !(r <= 255 && r >= 0))
 		ft_error(RGB_BAD_VAL);
 	if (g != INFINITY && !(g <= 255 && g >= 0))
@@ -97,7 +97,7 @@ t_rgb		parse_rgb(t_elem *elem, t_rgb color)
 	return (color);
 }
 
-t_rgb		parse_color(t_elem *elem, bool required)
+t_rgb		parse_color(t_elem *elem, int required)
 {
 	t_elem		*child_elem;
 	t_rgb		color;
@@ -137,7 +137,7 @@ t_rgb		parse_color(t_elem *elem, bool required)
 		return (color);
 	}
 	else if (required)
-		is_required(elem->key, false);
+		is_required(elem->key, 0);
 	else 
 		color = (t_rgb){.r = 1.0, .g = 1.0, .b = 1.0, .value = 0xffffff};
 	return (color);

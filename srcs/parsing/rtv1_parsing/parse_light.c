@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:56:25 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/18 16:54:48 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:45:20 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_obj				*parse_lights(t_elem *elem)
 //		check_type_of_key(elem->key, elem->type);
 		child_elem = elem->value.arrayi;
 		if (child_elem == NULL && LIGHTS_REQUIRED)
-			is_required(elem->key, true);
+			is_required(elem->key, 1);
 		while (child_elem)
 		{
 			curr = parse_one_object(child_elem, &init_light);
@@ -59,7 +59,7 @@ t_obj				*parse_lights(t_elem *elem)
 		}
 	}
 	else if (LIGHTS_REQUIRED)
-			is_required("lights", false);
+			is_required("lights", 0);
 	return (begin);
 
 }

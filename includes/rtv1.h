@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:03:30 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:46:36 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_scene				*parse_scene(t_elem *elem);
 t_obj				*parse_objects(t_elem *elem);
 t_obj				*parse_lights(t_elem *elem);
 t_obj				*parse_cameras(t_elem *elem);
-t_rgb				parse_color(t_elem *elem, bool required);
+t_rgb				parse_color(t_elem *elem, int required);
 void				parse_dir_lookat_pos(t_elem *elem, t_obj *obj);
 void				parse_up_right_vec(t_elem *elem, t_obj *obj);
 float				parse_float(t_elem *elem);
@@ -129,13 +129,13 @@ void				init_cylinder(t_elem *elem, t_obj *obj);
 void				init_sphere(t_elem *elem, t_obj *obj);
 void				init_light(t_elem *elem, t_obj *obj);
 void				init_camera(t_elem *elem, t_obj *obj);
-float				required_float(float number, bool required, char *error);
-t_vec				required_vec(t_vec vec, bool required, char *error);
+float				required_float(float number, int required, char *error);
+t_vec				required_vec(t_vec vec, int required, char *error);
 float				default_float(float number, float def);
 t_vec				default_vec(t_vec vec, t_vec def);
 t_rgb				default_rgb(t_rgb rgb, t_rgb def);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
-bool				check_type_of_key(char *key, t_json_data type);
+int					check_type_of_key(char *key, t_json_data type);
 //t_obj				*parse_sphere(t_elem *elem);
 //t_obj				*parse_object_direction(t_elem *elem, t_obj *obj);
 //t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
@@ -154,7 +154,7 @@ int					test(void);
 ** JSON PARSER ERRORS
 */
 void				wrong_format(char *form, t_json_data type);
-void				is_required(char *key, bool one);
+void				is_required(char *key, int one);
 
 /*
 ** SETTINGS FUNCTIONS
