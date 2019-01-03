@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 00:36:25 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/05 18:31:47 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 14:54:34 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,81 +16,82 @@ void	show_elem(t_elem *elem)
 {
 	if (elem)
 	{
-		printf("%c--------\n",  '-');
-		printf("key : %s\n",  elem->key);
-		printf("closed : %d\n",  elem->closed);
-		printf("type : %d\n",  elem->type);
+		printf("%c--------\n", '-');
+		printf("key : %s\n", elem->key);
+		printf("closed : %d\n", elem->closed);
+		printf("type : %d\n", elem->type);
 		if (elem->type == INTEGER)
 		{
 			printf("type : %s\n", "INTEGER");
-			printf("value : %d\n",  elem->value.inty);
+			printf("value : %d\n", elem->value.inty);
 		}
 		if (elem->type == FLOAT)
 		{
-		printf("type : %s\n", "FLOAT");
-			printf("value : %f\n",  elem->value.floaty);
+			printf("type : %s\n", "FLOAT");
+			printf("value : %f\n", elem->value.floaty);
 		}
 		if (elem->type == STRING)
 		{
-		printf("type : %s\n", "STRING");
-			printf("value : %s\n",  elem->value.stringy);
+			printf("type : %s\n", "STRING");
+			printf("value : %s\n", elem->value.stringy);
 		}
 		if (elem->type == BOOL)
 		{
 			printf("type : %s\n", "BOOL");
-			printf("value : %d\n",  elem->value.booly);
+			printf("value : %d\n", elem->value.booly);
 		}
 		if (elem->type == NULL_ELEM)
 		{
 			printf("type : %s\n", "NULL");
-			printf("value : %d\n",  elem->value.nully);
+			printf("value : %d\n", elem->value.nully);
 		}
-	if (elem->type == ARRAY)
-	{
-		printf("type : %s\n", "ARRAY");
-	}
-	if (elem->type == OBJECT)
-	{
-		printf("type : %s\n", "OBJECT");
-	}
-		printf("%c--------\n",  '-');
+		if (elem->type == ARRAY)
+		{
+			printf("type : %s\n", "ARRAY");
+		}
+		if (elem->type == OBJECT)
+		{
+			printf("type : %s\n", "OBJECT");
+		}
+		printf("%c--------\n", '-');
 	}
 }
+
 void	show_one_elem(t_elem *elem, int padding)
 {
 	t_elem	*bro;
 
 	printf("%*c--------\n", padding, '-');
-	printf("%*ckey : %s\n", padding,' ', elem->key);
-	printf("%*cclosed : %d\n", padding,' ', elem->closed);
+	printf("%*ckey : %s\n", padding, ' ', elem->key);
+	printf("%*cclosed : %d\n", padding, ' ', elem->closed);
 	if (elem->type == INTEGER)
 	{
-		printf("%*ctype : %s\n",padding,' ', "INTEGER");
+		printf("%*ctype : %s\n", padding, ' ', "INTEGER");
 		printf("%*cvalue : %d\n", padding, ' ', elem->value.inty);
 	}
 	if (elem->type == FLOAT)
 	{
-		printf("%*ctype : %s\n",padding,' ', "FLOAT");
-		printf("%*cvalue : %f\n", padding,' ', elem->value.floaty);
+		printf("%*ctype : %s\n", padding, ' ', "FLOAT");
+		printf("%*cvalue : %f\n", padding, ' ', elem->value.floaty);
 	}
 	if (elem->type == STRING)
 	{
-		printf("%*ctype : %s\n",padding,' ', "STRING");
-		printf("%*cvalue : %s\n", padding,' ', elem->value.stringy);
+		printf("%*ctype : %s\n", padding, ' ', "STRING");
+		printf("%*cvalue : %s\n", padding, ' ', elem->value.stringy);
 	}
 	if (elem->type == BOOL)
 	{
-		printf("%*ctype : %s\n",padding,' ', "BOOL");
-		printf("%*cvalue : %d\n", padding,' ', elem->value.booly);
+		printf("%*ctype : %s\n", padding, ' ', "BOOL");
+		printf("%*cvalue : %d\n", padding, ' ', elem->value.booly);
 	}
 	if (elem->type == NULL_ELEM)
 	{
-		printf("%*ctype : %s\n",padding,' ', "NULL");
-		printf("%*cvalue : %d\n", padding,' ', elem->value.nully);
+		printf("%*ctype : %s\n", padding, ' ', "NULL");
+		printf("%*cvalue : %d\n", padding, ' ', elem->value.nully);
 	}
 	if (elem->type == ARRAY)
 	{
-		printf("%*ctype : %s\n",padding,' ', "ARRAY");
+		printf("%*ctype : %s\n", padding, ' ', "ARRAY");
 		bro = (t_elem *)elem->value.arrayi;
 		while (bro)
 		{
@@ -100,7 +101,7 @@ void	show_one_elem(t_elem *elem, int padding)
 	}
 	if (elem->type == OBJECT)
 	{
-		printf("%*ctype : %s\n",padding,' ', "OBJECT");
+		printf("%*ctype : %s\n", padding, ' ', "OBJECT");
 		bro = (t_elem *)elem->value.objecty;
 		while (bro)
 		{

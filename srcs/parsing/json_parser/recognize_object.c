@@ -6,11 +6,18 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 02:00:09 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:36:36 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 15:17:31 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json_parser.h"
+
+/*
+** This function tries to recognize if the given element is formatted to be an
+** OBJECT
+** RETURN 1 if object is recognized
+** RETURN 0 if object is NOT recognized
+*/
 
 int			json_recognize_object(t_elem *current, char **line, int *i, int fd)
 {
@@ -19,49 +26,29 @@ int			json_recognize_object(t_elem *current, char **line, int *i, int fd)
 	char	first_elem;
 
 	first_elem = 1;
-	child = NULL;
 	previous = NULL;
-	if (DEBUG_PRINT)
-		printf("ENTERING OBJECT PARSER i : %d\n", *i);
 	if ((*line)[*i] != '{')
-	{
-		if (DEBUG_PRINT)
-			printf("value is not an object\n");
 		return (0);
-	}
 	*i = *i + 1;
 	current->type = OBJECT;
-	if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			json_error(UNEXPECTED_END_OF_FILE);
-	if (DEBUG_PRINT)
-		printf("pos of string : %s\n", &(*line)[*i]);
+	ignore_tab_and_spaces(line, i, fd, 0);
 	while ((*line)[*i] == ',' || (first_elem && ((*line)[*i] != '}')))
 	{
 		first_elem = 0;
-		if ((*line)[*i] == ',') 
+		if ((*line)[*i] == ',')
 			*i = *i + 1;
-		if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			json_error(UNEXPECTED_END_OF_FILE);
-		if (DEBUG_PRINT)
-			printf("Child element : \n");
+		ignore_tab_and_spaces(line, i, fd, 0);
 		child = json_recursive(fd, line, i);
-		if (DEBUG_PRINT)
-			printf("Back from child element\n");
-		if ((ignore_tab_and_spaces(line, i, fd) != 1))
-			json_error(UNEXPECTED_END_OF_FILE);
+		ignore_tab_and_spaces(line, i, fd, 0);
 		if (!current->value.objecty)
 			current->value.arrayi = (void *)child;
 		if (previous)
 			previous->next = child;
 		previous = child;
 	}
-	if (DEBUG_PRINT)
-		printf("ploufs\n");
 	if ((*line)[*i] != '}')
 		json_error(OBJECT_BAD_FORMAT);
 	current->closed = 1;
 	*i = *i + 1;
-	if (DEBUG_PRINT)
-		printf("end object : %s whole line : %s\n", &(*line)[*i], *line);
 	return (current->type);
 }

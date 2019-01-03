@@ -6,13 +6,13 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:03:05 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 21:44:14 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 15:44:55 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json_parser.h"
 
-int		key_cmp(t_elem *elem)
+static int		key_cmp(t_elem *elem)
 {
 	t_elem	*next;
 
@@ -30,7 +30,7 @@ int		key_cmp(t_elem *elem)
 	return (0);
 }
 
-int		check_for_same_key_in_object(t_elem *begin)
+static int		check_for_same_key_in_object(t_elem *begin)
 {
 	t_elem	*current;
 	t_elem	*child;
@@ -48,7 +48,6 @@ int		check_for_same_key_in_object(t_elem *begin)
 				check_for_same_key_in_object(child);
 			}
 		}
-		// CHECK SI CA MARCHE ENCORE
 		if (current->type == ARRAY)
 			if (current->value.arrayi)
 			{
@@ -60,7 +59,7 @@ int		check_for_same_key_in_object(t_elem *begin)
 	return (0);
 }
 
-void	check_end_of_json_file(char *line, int fd)
+static void		check_end_of_json_file(char *line, int fd)
 {
 	int ret;
 
@@ -68,7 +67,7 @@ void	check_end_of_json_file(char *line, int fd)
 		json_error(END_OF_FILE_BAD_FORMAT);
 }
 
-t_elem	*json_parser(char *file)
+t_elem			*json_parser(char *file)
 {
 	int		fd;
 	char	*line;
