@@ -4,13 +4,9 @@
 		"objects" : {
 			"spheres" : [
 				{
-					"specular" : {
-						"hex" : "0xa610ff"
-					},
-					"diffuse" : {
-						"hex" : "0xa610ff"
-					},
-					"brillance" : 1,
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : -35.0,
 						"y" : 30.0,
@@ -27,12 +23,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : {
-						"hex" : "0xffaaaa"
-					},
-					"diffuse" : {
-						"hex" : "0xffaaaa"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 5.0,
 						"y" : 0.0,
@@ -49,12 +42,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : {
-						"hex" : "0x10ff10"
-					},
-					"diffuse" : {
-						"hex" : "0x10ff10"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 25.0,
 						"y" : 12.0,
@@ -71,12 +61,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : {
-						"hex" : "0x901044"
-					},
-					"diffuse" : {
-						"hex" : "0x901044"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 6.0,
 						"y" : 6.0,
@@ -93,12 +80,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : {
-						"hex" : "0x9010f0"
-					},
-					"diffuse" : {
-						"hex" : "0x9010f0"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : -3.0,
 						"y" : -3.0,
@@ -117,12 +101,9 @@
 			],
 			"cylinders" : [
 				{
-					"specular" : {
-						"hex" : "0xaaffff"
-					},
-					"diffuse" : {
-						"hex" : "0xaaffff"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"lookat" : {
 						"x" : 6.0,
 						"y" : 6.0,
@@ -139,12 +120,9 @@
 					"radius" : 1.0
 				},
 				{
-					"specular" : {
-						"hex" : "0xaaff00"
-					},
-					"diffuse" : {
-						"hex" : "0xaaff00"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : -20.0,
 						"y" : 20.0,
@@ -161,12 +139,9 @@
 					"radius" : 1.0
 				},
 				{
-					"specular" : {
-						"hex" : "0xaa50ff"
-					},
-					"diffuse" : {
-						"hex" : "0xaa50ff"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : -10.0,
 						"y" : 20.0,
@@ -185,12 +160,9 @@
 			],
 			"planes" : [
 				{
-					"specular" : {
-						"hex" : "0xaabbcc"
-					},
-					"diffuse" : {
-						"hex" : "0xaabbcc"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 0.0,
 						"y" : -50.0,
@@ -206,12 +178,9 @@
 					}
 				},
 				{
-					"specular" : {
-						"hex" : "0xaabbcc"
-					},
-					"diffuse" : {
-						"hex" : "0xaabbcc"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 0.0,
 						"y" : 50.0,
@@ -227,12 +196,9 @@
 					}
 				},
 				{
-					"specular" : {
-						"hex" : "0xaabbcc"
-					},
-					"diffuse" : {
-						"hex" : "0xaabbcc"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 50.0,
 						"y" : 0.0,
@@ -248,12 +214,9 @@
 					}
 				},
 				{
-					"specular" : {
-						"hex" : "0xaabbcc"
-					},
-					"diffuse" : {
-						"hex" : "0xaabbcc"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : -50.0,
 						"y" : 0.0,
@@ -269,12 +232,9 @@
 					}
 				},
 				{
-					"specular" : {
-						"hex" : "0xaabbcc"
-					},
-					"diffuse" : {
-						"hex" : "0xaabbcc"
-					},
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : 0.0,
 						"y" : 0.0,
@@ -291,13 +251,10 @@
 				}
 			],
 			"cones" : [
-				{
-					"specular" : {
-						"hex" : "0xff50aa"
-					},
-					"diffuse" : {
-						"hex" : "0xff50aa"
-					},
+					{
+					"specular" : 0.8,
+					"diffuse" : 0.6,
+					"brillance" : 100,
 					"position" : {
 						"x" : -29.0,
 						"y" : -40.0,

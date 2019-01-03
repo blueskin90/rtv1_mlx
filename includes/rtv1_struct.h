@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 18:41:47 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 21:55:21 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,25 +102,6 @@ typedef struct		s_ray
 	float			length;
 	struct s_obj	*obj_hit;
 }					t_ray;
-
-typedef struct		s_parse_obj
-{
-	t_vec			specular;	
-	t_vec			diffuse;
-	t_vec			position;
-	t_vec			direction;
-	t_vec			lookat;
-	t_vec			translation;
-	t_vec			rotation;
-	t_vec			up;
-	t_vec			right;
-	float			brillance;
-	float			ambiant;
-	float			roll;
-	t_rgb			color;
-	t_type			type;
-	t_params		params;
-}					t_parse_obj;
 
 typedef struct		s_obj
 {
