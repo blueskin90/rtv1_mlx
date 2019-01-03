@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:52:41 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 18:42:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_matrix		obj_to_world_matrix(t_obj *obj)
 	return (matrix);
 }
 
-t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c)
+t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c)
 {
 	t_obj		*obj;
 
@@ -126,7 +126,7 @@ t_vec			get_updir(t_vec dir, t_vec right)
 	return (vec_norm(vec_crossproduct(dir, right)));
 }
 
-t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c)
+t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_rgb c)
 {
 	t_obj		*obj;
 

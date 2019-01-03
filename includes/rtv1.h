@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 10:42:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:02:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "rtv1_errors.h"
 # include "rtv1_required_information.h"
 # include "rtv1_struct.h"
+# include "colors.h"
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 768
@@ -48,7 +49,7 @@
 void				print_angles(void);
 void				print_matrix(t_matrix matrix);
 void				print_vec(t_vec v);
-void				print_color(t_RGB color, char *name); 
+void				print_color(t_rgb color, char *name); 
 
 /*
 ** ARGS PARSING
@@ -111,7 +112,7 @@ t_scene				*parse_scene(t_elem *elem);
 t_obj				*parse_objects(t_elem *elem);
 t_obj				*parse_lights(t_elem *elem);
 t_obj				*parse_cameras(t_elem *elem);
-t_RGB				parse_color(t_elem *elem, bool required);
+t_rgb				parse_color(t_elem *elem, bool required);
 void				parse_dir_lookat_pos(t_elem *elem, t_obj *obj);
 void				parse_up_right_vec(t_elem *elem, t_obj *obj);
 float				parse_float(t_elem *elem);
@@ -132,7 +133,7 @@ float				required_float(float number, bool required, char *error);
 t_vec				required_vec(t_vec vec, bool required, char *error);
 float				default_float(float number, float def);
 t_vec				default_vec(t_vec vec, t_vec def);
-t_RGB				default_rgb(t_RGB rgb, t_RGB def);
+t_rgb				default_rgb(t_rgb rgb, t_rgb def);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
 bool				check_type_of_key(char *key, e_type type);
 //t_obj				*parse_sphere(t_elem *elem);
@@ -207,23 +208,15 @@ void				print_renderer(t_renderer *renderer);
 ** TO ORDER INSIDE RUNNING
 */
 
-void				print_color(t_RGB color, char *name);
+void				print_color(t_rgb color, char *name);
 void				print_matrix(t_matrix m);
 void				print_vec(t_vec v);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
-
-void				rgb_updatevalue(t_RGB *rgb);
-t_RGB				rgb_mul_rgb(t_RGB a, t_RGB b);
-t_RGB				rgb_mul(t_RGB a, float scalar);
-t_RGB				rgb_div(t_RGB a, float scalar);
-t_RGB				rgb_add(t_RGB a, t_RGB b);
-t_RGB				rgb_init(int value);
-
 t_ray				reflect_ray(t_ray *ray);
 t_vec				reflect_vector(t_vec vec, t_vec axis);
-t_RGB				get_specular(t_ray *ray, t_ray to_light, t_obj light, t_obj *cam);
-t_RGB				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
-t_RGB				get_ambiant(t_ray *ray);
+t_rgb				get_specular(t_ray *ray, t_ray to_light, t_obj light, t_obj *cam);
+t_rgb				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
+t_rgb				get_ambiant(t_ray *ray);
 void				shoot_ray_lights(t_scene *scene, t_ray *ray, t_obj *cam);
 void				shoot_ray(t_scene *scene, t_ray *ray);
 
@@ -240,8 +233,8 @@ t_vec				vec_z(void);
 t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
 t_matrix			world_to_obj_matrix(t_obj *obj);
 t_matrix			obj_to_world_matrix(t_obj *obj);
-t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
-t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_rgb c);
 void				obj_sphere_params(t_obj *obj, float radius);
 void				obj_cylinder_params(t_obj *obj, float radius);
 void				obj_cone_params(t_obj *obj, float angle);
@@ -322,8 +315,8 @@ void				json_parsing(void);
 ** STRUCTURES 
 */
 /*
-t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
-t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_rgb c);
 void				obj_sphere_params(t_obj *obj, float radius);
 void				obj_cylinder_params(t_obj *obj, float radius);
 void				obj_cone_params(t_obj *obj, float angle);
@@ -375,8 +368,8 @@ char				**files_get();
 ** OBJET MALLOC
 */
 /*
-t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_RGB c);
-t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_RGB c);
+t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c);
+t_obj				*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_rgb c);
 void				obj_sphere_params(t_obj *obj, float radius);
 void				obj_cylinder_params(t_obj *obj, float radius);
 void				obj_cone_params(t_obj *obj, float angle);
@@ -403,9 +396,9 @@ void				shoot_ray(t_ray *ray);
 void				shoot_ray_lights(t_ray *ray);
 
 t_ray				reflect_ray(t_ray *ray);
-t_RGB				get_ambiant(t_ray *ray);
-t_RGB				get_specular(t_ray *ray, t_ray to_light, t_obj light);
-t_RGB				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
+t_rgb				get_ambiant(t_ray *ray);
+t_rgb				get_specular(t_ray *ray, t_ray to_light, t_obj light);
+t_rgb				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
 */
 
 /*
@@ -466,11 +459,11 @@ void				print_obj_hit_color_mode(void);
 ** COLOR HANDLING FUNCTIONS
 */
 /*
-t_RGB				rgb_init(int value);
-t_RGB				rgb_add(t_RGB a, t_RGB b);
-t_RGB				rgb_mul(t_RGB a, float scalar);
-t_RGB				rgb_mul_rgb(t_RGB a, t_RGB b);
-void				rgb_updatevalue(t_RGB *rgb);
+t_rgb				rgb_init(int value);
+t_rgb				rgb_add(t_rgb a, t_rgb b);
+t_rgb				rgb_mul(t_rgb a, float scalar);
+t_rgb				rgb_mul_rgb(t_rgb a, t_rgb b);
+void				rgb_updatevalue(t_rgb *rgb);
 */
 /*
 ** TEMPORARY PARSING FUNCTIONS

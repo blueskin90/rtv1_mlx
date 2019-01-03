@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 20:21:07 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 00:55:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 18:42:31 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_scene				*tmp_parsing(void)
 	t_scene			*scene;
 	t_vec			pos;
 	t_vec			lookat;
-	t_RGB			color;
+	t_rgb			color;
 	t_obj			*objptr;
 
 	scene = (t_scene*)ft_malloc(sizeof(t_scene));

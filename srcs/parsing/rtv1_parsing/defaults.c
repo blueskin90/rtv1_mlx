@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:45:42 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 18:12:49 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 18:43:34 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_vec		default_vec(t_vec vec, t_vec def)
 	return (vec);
 }
 
-t_RGB		default_rgb(t_RGB rgb, t_RGB def)
+t_rgb		default_rgb(t_rgb rgb, t_rgb def)
 {
 	if (rgb.r == INFINITY)
 		rgb.r = def.r;

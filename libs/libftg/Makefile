@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/12/11 15:17:48 by cvermand         ###   ########.fr        #
+#    Updated: 2019/01/03 18:38:49 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,7 @@ NAME = libftg.a
 
 FLAGS = -Wall -Wextra -Werror -Ofast
 
-FILES = colorconversion \
-		colorconversionhsl \
-		colorconversion2\
-		definition\
+FILES = definition\
 		vec\
 		matrix\
 		operations\

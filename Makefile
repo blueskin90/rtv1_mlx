@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/29 11:02:26 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/03 18:36:59 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -153,7 +153,18 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		) \
 	) \
 	\
-	$(addprefix tools/, math_tools general_tools vector mlx_tools print_tools) \
+	$(addprefix tools/, \
+		math_tools \
+		general_tools \
+		vector \
+		mlx_tools \
+		print_tools \
+		$(addprefix colors_handling/, \
+			colors_init \
+			rgb_functions \
+		) \
+	) \
+	\
 	)) 
 
 
@@ -162,6 +173,12 @@ HEADERS = includes/rtv1.h \
 		  includes/args_parsing.h \
 		  includes/rtv1_struct.h \
 		  includes/json_parser.h \
+		  includes/colors.h \
+		  includes/json_parser_errors.h \
+		  includes/libft_errors.h \
+		  includes/mlx_errors.h \
+		  includes/rtv1_errors.h \
+		  includes/rtv1_required_information.h \
 
 all: $(NAME)
 
@@ -197,7 +214,7 @@ objs:
 	@mkdir objs/running/raytracing/primitives/sphere
 	@mkdir objs/running/raytracing/common
 	@mkdir -p objs/printing/verbose
-	@mkdir objs/tools
+	@mkdir -p objs/tools/colors_handling
 
 clean:
 	@#	make -C ./libs/mlx clean

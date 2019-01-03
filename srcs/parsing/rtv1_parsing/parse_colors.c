@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:51:44 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/18 16:29:38 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:02:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int			parse_hex(t_elem *elem)
 	return (hex);
 }
 
-t_RGB		parse_rgb(t_elem *elem, t_RGB color)
+t_rgb		parse_rgb(t_elem *elem, t_rgb color)
 {
 	float	r;
 	float	g;
@@ -91,18 +91,18 @@ t_RGB		parse_rgb(t_elem *elem, t_RGB color)
 		ft_error(RGB_BAD_VAL);
 	if (b != INFINITY && !(b <= 255 && b >= 0))
 		ft_error(RGB_BAD_VAL);
-	color.r = r;
-	color.g = g;
-	color.b = b;
+	color.r = r / 255.0;
+	color.g = g / 255.0;
+	color.b = b / 255.0;
 	return (color);
 }
 
-t_RGB		parse_color(t_elem *elem, bool required)
+t_rgb		parse_color(t_elem *elem, bool required)
 {
 	t_elem		*child_elem;
-	t_RGB		color;
+	t_rgb		color;
 
-	color = (t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
+	color = (t_rgb){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
 	if (elem != NULL)
 	{
 		check_type_of_key(elem->key, elem->type);
@@ -113,8 +113,8 @@ t_RGB		parse_color(t_elem *elem, bool required)
 				&& color.value != -1)
 		{
 			color = default_rgb(color, 
-					(t_RGB){.r = 0, .g = 0, .b = 0, .value = 0});
-			if ( color.value != get_rgb((unsigned char) color.r, (unsigned char) color.g, (unsigned char) color.b))
+					(t_rgb){.r = 0, .g = 0, .b = 0, .value = 0});
+			if ( color.value != rgb_getvalue(color))
 				ft_error(RGB_HEX_CONFLICT);
 		}
 		else if (color.value != -1)
@@ -126,19 +126,19 @@ t_RGB		parse_color(t_elem *elem, bool required)
 		else if (ft_min(color.r, color.g, color.b) != INFINITY)
 		{
 			color = default_rgb(color, 
-					(t_RGB){.r = 0, .g = 0, .b = 0, .value = 0});
-			color.value = get_rgb((unsigned char) color.r, (unsigned char) color.g, (unsigned char) color.b);
+					(t_rgb){.r = 0, .g = 0, .b = 0, .value = 0});
+			rgb_updatevalue(&color);
 		}
 		else 
 		{
 			color = default_rgb(color, 
-					(t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});
+					(t_rgb){.r = 1.0, .g = 1.0, .b = 1.0, .value = 0xffffff});
 		}
 		return (color);
 	}
 	else if (required)
 		is_required(elem->key, false);
 	else 
-		color = (t_RGB){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
+		color = (t_rgb){.r = 1.0, .g = 1.0, .b = 1.0, .value = 0xffffff};
 	return (color);
 }

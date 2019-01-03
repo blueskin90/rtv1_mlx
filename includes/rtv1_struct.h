@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 15:10:59 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 18:41:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RTV1_STRUCT_H
 
 # include "libftg.h"
+# include "colors.h"
 
 typedef struct		s_img
 {
@@ -25,14 +26,6 @@ typedef struct		s_img
 	int				sl;
 	int				endian;
 }					t_img;
-
-typedef struct		s_RGB
-{
-	float			r;
-	float			g;
-	float			b;
-	int				value;
-}					t_RGB;
 
 typedef enum		e_type
 {
@@ -103,7 +96,7 @@ typedef struct		s_ray
 	t_vec			pos;
 	t_vec			dir;
 	t_vec			lookat;
-	t_RGB			color;
+	t_rgb			color;
 	t_vec			normal;
 	t_vec			hit_pos;
 	float			length;
@@ -124,7 +117,7 @@ typedef struct		s_parse_obj
 	float			brillance;
 	float			ambiant;
 	float			roll;
-	t_RGB			color;
+	t_rgb			color;
 	t_type			type;
 	t_params		params;
 }					t_parse_obj;
@@ -137,9 +130,9 @@ typedef struct		s_obj
 	t_vec			up;
 	t_vec			right;
 	float			roll;
-	t_RGB			color;
-	t_RGB			specular;
-	t_RGB			diffuse;
+	t_rgb			color;
+	t_rgb			specular;
+	t_rgb			diffuse;
 	float			ambiant;
 	float			brillance;
 	t_matrix		world_to_obj;
