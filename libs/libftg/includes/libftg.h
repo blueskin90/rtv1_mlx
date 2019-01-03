@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 20:04:44 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:32:01 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ float				ft_max(float a, float b, float c);
 ** Vector and Vertex matrix and math handling functions
 */
 
+t_vec				vec_x(void);
+t_vec				vec_y(void);
+t_vec				vec_z(void);
 t_vec				vec_init(t_vec a, t_vec b);
 t_vec				vec_init0(float x, float y, float z);
 t_vec				vec_normalize(t_vec a);
@@ -57,6 +60,7 @@ t_matrix			translation_matrix_init(t_vec tranvec);
 t_matrix			rotx_matrix_init(float degrees);
 t_matrix			roty_matrix_init(float degrees);
 t_matrix			rotz_matrix_init(float degrees);
+t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
 t_matrix			matrix_mult(t_matrix a, t_matrix b);
 t_vec				matrix_mult_vec(t_matrix a, t_vec b);
 float				degtorad(float deg);

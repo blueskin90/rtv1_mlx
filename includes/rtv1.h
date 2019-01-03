@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:46:36 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:36:01 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,10 +227,6 @@ void				shoot_ray(t_scene *scene, t_ray *ray);
 
 // to order but in structures malloc
 
-t_vec				vec_x(void);
-t_vec				vec_y(void);
-t_vec				vec_z(void);
-t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
 t_matrix			world_to_obj_matrix(t_obj *obj);
 t_matrix			obj_to_world_matrix(t_obj *obj);
 t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c);

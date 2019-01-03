@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:58:45 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:12:31 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:24:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void				print_object(t_obj *obj)
 	print_object_common(obj);
 	print_object_specs(obj);
 }
+
 void				print_scene(t_scene *scene)
 {
 	ft_printf("\tname : %s\n", scene->name);

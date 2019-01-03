@@ -6,13 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:56:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:09:12 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:24:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static char				*object_type_string(t_obj *obj)
+static char			*object_type_string(t_obj *obj)
 {
 	if (obj->type == PLANE)
 		return ("PLAN");
@@ -44,10 +44,7 @@ void				print_scenes(t_scene *scene)
 	}
 	i = 0;
 	if (!(ptr = scene))
-	{
 		ft_printf("\tNo scenes availlable\n");
-		return ;
-	}
 	while (ptr)
 	{
 		i++;
@@ -59,11 +56,11 @@ void				print_scenes(t_scene *scene)
 	}
 }
 
-void					print_cameras(t_obj *cameras)
+void				print_cameras(t_obj *cameras)
 {
-	t_obj				*ptr;
-	int					cameras_nbr;
-	int					i;
+	t_obj			*ptr;
+	int				cameras_nbr;
+	int				i;
 
 	ptr = cameras;
 	cameras_nbr = 0;
@@ -86,11 +83,11 @@ void					print_cameras(t_obj *cameras)
 	ft_printf("\t&& end of printing cameras &&\n");
 }
 
-void					print_lights(t_obj *lights)
+void				print_lights(t_obj *lights)
 {
-	t_obj				*ptr;
-	int					light_nbr;
-	int					i;
+	t_obj			*ptr;
+	int				light_nbr;
+	int				i;
 
 	ptr = lights;
 	light_nbr = 0;
