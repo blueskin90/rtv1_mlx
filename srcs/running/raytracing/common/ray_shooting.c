@@ -6,18 +6,18 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 03:26:38 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 08:51:14 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 17:38:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void				add_tolerance(t_ray *ray)
+static void			add_tolerance(t_ray *ray)
 {
-	ray->hit_pos = vec_add(ray->hit_pos, vec_mul(ray->normal, TOLERANCE)); // ca c'est pour la tolerance, ressortir un peu de l'objet, si ca merde, voir ici !
+	ray->hit_pos = vec_add(ray->hit_pos, vec_mul(ray->normal, TOLERANCE));
 }
 
-static void				set_ray_hitparams(t_ray *ray)
+static void			set_ray_hitparams(t_ray *ray)
 {
 	if (ray->length == INFINITY)
 	{
