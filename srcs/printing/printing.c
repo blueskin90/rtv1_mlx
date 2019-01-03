@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 09:50:16 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 14:59:39 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:46:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void				print_malloc_raytracer(t_scene *scenes, t_win *win,
 void				printing(t_args *args, t_scene *scenes, t_win *win,
 		void *mlx)
 {
-	(void)win;
-	(void)mlx;
+//	step_set(PRINTING);
 	if (args->print_mode != NO_PRINT && args->renderer_mode != NO_RENDERER)
 	{
 		if (args->renderer_mode == STACK)

@@ -6,19 +6,19 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 10:47:04 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 18:44:49 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:49:56 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void					print_color(t_rgb color, char *name)
+void				print_color(t_rgb color, char *name)
 {
 	ft_printf("%-10s : RGB[%f, %f, %f] HEX : #%X\n", name,
 			color.r, color.g, color.b, color.value);
 }
 
-void			print_matrix(t_matrix m)
+void				print_matrix(t_matrix m)
 {
 	ft_printf("| %5f %5f %5f %5f |\n", m.matrix[0][0], m.matrix[0][1],
 			m.matrix[0][2], m.matrix[0][3]);

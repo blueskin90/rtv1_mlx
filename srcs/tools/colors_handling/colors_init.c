@@ -6,12 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 18:20:37 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:02:44 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:44:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.h"
-// include minimath pour le clamp
 
 t_rgb			rgb_init(int value)
 {
@@ -30,15 +29,24 @@ t_rgb			rgb_init(int value)
 	return (rgb);
 }
 
+static int		clampi(int toclamp, int inf, int sup)
+{
+	if (toclamp < inf)
+		return (inf);
+	if (toclamp > sup)
+		return (sup);
+	return (toclamp);
+}
+
 void			rgb_updatevalue(t_rgb *rgb)
 {
 	int			r;
 	int			g;
 	int			b;
 
-	r = (int)roundf(rgb->r * 255); // clamp 0 - 255
-	g = (int)roundf(rgb->g * 255);
-	b = (int)roundf(rgb->b * 255);
+	r = clampi((int)roundf(rgb->r * 255), 0, 255);
+	g = clampi((int)roundf(rgb->g * 255), 0, 255);
+	b = clampi((int)roundf(rgb->b * 255), 0, 255);
 	rgb->value = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
@@ -49,9 +57,9 @@ int				rgb_getvalue(t_rgb rgb)
 	int			b;
 	int			value;
 
-	r = (int)roundf(rgb.r * 255); // clamp 0 - 255
-	g = (int)roundf(rgb.g * 255);
-	b = (int)roundf(rgb.b * 255);
+	r = clampi((int)roundf(rgb.r * 255), 0, 255);
+	g = clampi((int)roundf(rgb.g * 255), 0, 255);
+	b = clampi((int)roundf(rgb.b * 255), 0, 255);
 	value = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 	return (value);
 }
