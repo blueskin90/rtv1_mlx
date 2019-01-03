@@ -6,11 +6,24 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:16:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/22 18:26:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 22:31:41 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+char		*string_to_lower(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
+}
 
 void				*ft_malloc(size_t size)
 {

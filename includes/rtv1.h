@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 22:06:57 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:27:51 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int					check_int_keys(char *key);
 int					hex_color_to_int(t_elem *elem);
 t_rgb				parse_rgb(t_elem *elem, t_rgb color);
 int					parse_hex(t_elem *elem);
+t_rgb				parse_rgb_and_val(t_elem *child_elem);
 char				*string_to_lower(char *str);
 
 /*

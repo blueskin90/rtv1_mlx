@@ -6,23 +6,19 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 22:04:43 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 22:05:56 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:35:08 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-char		*string_to_lower(char *str)
+t_rgb		parse_rgb_and_val(t_elem *child_elem)
 {
-	int		i;
+	t_rgb	color;
 
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-	return (str);
+	color.value = parse_hex(find_elem_by_key(child_elem, "hex"));
+	color = parse_rgb(child_elem, color);
+	return (color);
 }
 
 int			parse_hex(t_elem *elem)
@@ -62,6 +58,18 @@ t_rgb		parse_rgb(t_elem *elem, t_rgb color)
 	return (color);
 }
 
+void		verify_hex_integrity(int value, char *str)
+{
+	char	*compare_str;
+
+	compare_str = ft_itoa_hex(value, 0);
+	if (ft_strcmp_case_insensitive(compare_str, str) != 0)
+		ft_error(BAD_FORMAT_HEX);
+	free(compare_str);
+	if (value > 0xFFFFFF || value < 0)
+		ft_error(HEX_NOT_IN_LIMIT);
+}
+
 int			hex_color_to_int(t_elem *elem)
 {
 	int		value;
@@ -88,11 +96,5 @@ int			hex_color_to_int(t_elem *elem)
 		value = ft_atoi_base(str, 16);
 	else
 		ft_error(BAD_FORMAT_HEX);
-	compare_str = ft_itoa_hex(value, 0);
-	if (ft_strcmp_case_insensitive(compare_str, str) != 0)
-		ft_error(BAD_FORMAT_HEX);
-	free(compare_str);
-	if (value > 0xFFFFFF || value < 0)
-		ft_error(HEX_NOT_IN_LIMIT);
 	return (value);
 }
