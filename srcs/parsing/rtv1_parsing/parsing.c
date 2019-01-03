@@ -6,11 +6,38 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 18:25:28 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/24 04:55:46 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:38:46 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+static void free_elem(t_elem *begin)
+{
+	t_elem	*bro;
+
+	if (elem->type == STRING)
+		free(elem->value.stringy);
+	if (elem->type == OBJECT)
+	{
+		bro = (t_elem *)elem->value.objecty;
+		if (bro)
+		{
+			free_elem(bro);
+			bro = bro->next;
+		}
+	}
+	if (elem->type == ARRAY)
+	{
+		bro = (t_elem *)elem->value.arrayi;
+		if (bro)
+		{
+			show_one_elem(bro, padding + 10);
+			bro = bro->next;
+		}
+	}
+
+}
 
 t_scene	*rtv1_parsing(t_elem *begin)
 {

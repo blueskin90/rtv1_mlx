@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/23 00:59:04 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:11:50 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define BAD_FORMAT_HEX "hex in color should be a valid hexadecimal\n"
 # define HEX_NOT_IN_LIMIT "Hex is to big or to small to enter color spectrum \n"
 # define RADIUS_BAD_FORMAT "Radius of object should be higher than 0\n"
+# define BRILLANCE_BAD_FORMAT "Brillance must be between 1 and 128 included\n"
 
 /*
 ** INFORMATION REQUIRED

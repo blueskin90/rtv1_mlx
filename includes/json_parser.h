@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 19:55:13 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:31:18 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "json_parser_errors.h"
 # include "libft.h"
+# include <limits.h>
 # include "libftprintf.h"
 # include <fcntl.h>
 

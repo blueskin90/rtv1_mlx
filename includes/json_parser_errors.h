@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 02:51:57 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/23 03:26:07 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:30:03 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@
 # define OBJECT_BAD_FORMAT "OBJECT HAS NO CLOSING BRACKET\n"
 # define SAME_KEY_NAME "ONE OBJECT HAS DUPLICATE KEY\n"
 # define BAD_BEGIN_OF_FILE "JSON FILE MUST BEGIN WITH [ or {\n"
+# define STRING_TO_LONG "STRING MUST BE SMALLER THAN MAX_INT\n"
+# define KEY_TO_LONG "KEY MUST BE SMALLER THAN MAX_INT\n"
 
 #endif

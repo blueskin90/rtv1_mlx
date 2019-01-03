@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:46:36 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:16:51 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void				parse_dir_lookat_pos(t_elem *elem, t_obj *obj);
 void				parse_up_right_vec(t_elem *elem, t_obj *obj);
 float				parse_float(t_elem *elem);
 t_vec				parse_vector(t_elem *elem);
+t_vec				parse_angle_vector(t_elem *elem);
 t_obj				*parse_one_object(t_elem *elem,
 		void (*parse_obj)(t_elem *elem, t_obj *obj));
 t_obj				*new_obj();

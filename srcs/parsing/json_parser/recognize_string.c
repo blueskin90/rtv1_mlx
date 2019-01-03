@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 22:53:30 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 15:04:31 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:31:34 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ int			json_recognize_string(t_elem *current, char *line, int *i)
 
 	len = 0;
 	if (line[*i] != '"')
-	{
-		(DEBUG_PRINT) ? ft_printf("value is not a string\n") : ft_printf("");
 		return (0);
-	}
 	*i = *i + 1;
 	begin = *i;
 	while (line[*i] != '\0' && line[*i] != '"')
 	{
+		if (len == INT_MAX)
+			json_error(STRING_TO_LONG);
 		len++;
 		*i = *i + 1;
 	}
