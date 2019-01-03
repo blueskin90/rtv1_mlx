@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 21:55:21 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 22:08:19 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ typedef struct		s_obj
 	t_vec			right;
 	float			roll;
 	t_rgb			color;
-	t_rgb			specular;
-	t_rgb			diffuse;
+	float			specular;
+	float			diffuse;
 	float			ambiant;
 	float			brillance;
 	t_matrix		world_to_obj;
