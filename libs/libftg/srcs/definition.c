@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 04:17:32 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 18:09:12 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:02:46 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_vec		vec_init(t_vec a, t_vec b)
 	return (c);
 }
 
-
 t_vec		vec_init0(float x, float y, float z)
 {
 	t_vec	c;
@@ -34,4 +33,3 @@ t_vec		vec_init0(float x, float y, float z)
 	c.w = 0;
 	return (c);
 }
-

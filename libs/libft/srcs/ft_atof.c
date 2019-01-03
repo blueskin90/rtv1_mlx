@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:10:33 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/23 00:34:45 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:00:45 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char				*before_dec(char *str, float *result)
 	return (str);
 }
 
-static	float	get_exp(int i)
+static	float			get_exp(int i)
 {
 	float	exp;
 
@@ -45,7 +45,6 @@ static	float	get_exp(int i)
 		exp *= 10;
 	return (exp);
 }
-
 
 float					ft_atof(char *str)
 {

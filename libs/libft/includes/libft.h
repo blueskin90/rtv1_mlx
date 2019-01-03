@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:09:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/16 16:48:36 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 19:57:19 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft_errors.h"
 # include <unistd.h>
 # include <string.h>
-# include <float.h> // utilise pour limit des floats
+# include <float.h>
 # include <stdlib.h>
 # include <sys/uio.h>
 # include <sys/types.h>

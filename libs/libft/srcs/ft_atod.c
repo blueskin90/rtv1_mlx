@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:10:33 by cvermand          #+#    #+#             */
-/*   Updated: 2018/11/23 00:22:21 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:00:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char				*before_dec(char *str, double *result)
 	return (str);
 }
 
-static	double	get_exp()
+static	double			get_exp(void)
 {
 	static double	exp = 1;
 

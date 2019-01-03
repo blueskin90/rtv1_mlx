@@ -1,57 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   vec_norm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/15 04:25:54 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 20:15:55 by toliver          ###   ########.fr       */
+/*   Created: 2019/01/03 20:13:02 by toliver           #+#    #+#             */
+/*   Updated: 2019/01/03 20:13:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_vec		vec_add(t_vec a, t_vec b)
+float		vec_magnitude(t_vec a)
 {
-	t_vec	c;
-
-	c.x = a.x + b.x;
-	c.y = a.y + b.y;
-	c.z = a.z + b.z;
-	c.w = 0;
-	return (c);
+	return (sqrtf(powf(a.x, 2) + powf(a.y, 2) + powf(a.z, 2)));
 }
 
-t_vec		vec_sub(t_vec a, t_vec b)
+t_vec		vec_norm(t_vec a)
 {
-	t_vec	c;
-
-	c.x = a.x - b.x;
-	c.y = a.y - b.y;
-	c.z = a.z - b.z;
-	c.w = 0;
-	return (c);
-}
-
-t_vec		vec_mul(t_vec a, float s)
-{
+	float	magnitude;
 	t_vec	b;
 
-	b.x = a.x * s;
-	b.y = a.y * s;
-	b.z = a.z * s;
+	magnitude = vec_magnitude(a);
+	if (magnitude == 0.0)
+		return (a);
+	b.x = a.x / magnitude;
+	b.y = a.y / magnitude;
+	b.z = a.z / magnitude;
 	b.w = 0;
 	return (b);
 }
 
-t_vec		vec_opposite(t_vec a)
+t_vec		vec_normalize(t_vec a)
 {
+	float	magnitude;
 	t_vec	b;
 
-	b.x = -a.x;
-	b.y = -a.y;
-	b.z = -a.z;
+	magnitude = vec_magnitude(a);
+	if (magnitude == 0.0)
+		return (a);
+	b.x = a.x / magnitude;
+	b.y = a.y / magnitude;
+	b.z = a.z / magnitude;
 	b.w = 0;
 	return (b);
 }

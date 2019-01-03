@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 06:15:34 by toliver           #+#    #+#             */
-/*   Updated: 2018/11/18 17:34:22 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:15:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ float		vec_dotproduct(t_vec a, t_vec b)
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_vec	vec_div(t_vec a, float s)
+t_vec		vec_div(t_vec a, float s)
 {
 	t_vec	b;
 
@@ -41,18 +41,7 @@ t_vec	vec_div(t_vec a, float s)
 	return (b);
 }
 
-t_vec	vec_opposite(t_vec a)
-{
-	t_vec	b;
-
-	b.x = -a.x;
-	b.y = -a.y;
-	b.z = -a.z;
-	b.w = 0;
-	return (b);
-}
-
-t_vec	vec_crossproduct(t_vec a, t_vec b)
+t_vec		vec_crossproduct(t_vec a, t_vec b)
 {
 	t_vec c;
 

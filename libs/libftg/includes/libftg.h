@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 18:39:53 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:04:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct		s_vec
 	float			y;
 	float			z;
 	float			w;
-}				t_vec;
+}					t_vec;
 
 typedef struct		s_matrix
 {
@@ -37,16 +37,16 @@ float				ft_max(float a, float b, float c);
 ** Vector and Vertex matrix and math handling functions
 */
 
-t_vec			vec_init(t_vec a, t_vec b);
-t_vec			vec_init0(float x, float y, float z);
-t_vec			vec_normalize(t_vec a);
-t_vec			vec_norm(t_vec a);
-t_vec			vec_add(t_vec a, t_vec b);
-t_vec			vec_sub(t_vec a, t_vec b);
-t_vec			vec_mul(t_vec a, float s);
-t_vec			vec_div(t_vec a, float s);
-t_vec			vec_opposite(t_vec a);
-t_vec			vec_crossproduct(t_vec a, t_vec b);
+t_vec				vec_init(t_vec a, t_vec b);
+t_vec				vec_init0(float x, float y, float z);
+t_vec				vec_normalize(t_vec a);
+t_vec				vec_norm(t_vec a);
+t_vec				vec_add(t_vec a, t_vec b);
+t_vec				vec_sub(t_vec a, t_vec b);
+t_vec				vec_mul(t_vec a, float s);
+t_vec				vec_div(t_vec a, float s);
+t_vec				vec_opposite(t_vec a);
+t_vec				vec_crossproduct(t_vec a, t_vec b);
 float				vec_dotproduct(t_vec a, t_vec b);
 float				vec_dot(t_vec a, t_vec b);
 float				vec_magnitude(t_vec a);

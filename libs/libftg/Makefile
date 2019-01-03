@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2019/01/03 18:38:49 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/03 20:14:14 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,14 @@ FLAGS = -Wall -Wextra -Werror -Ofast
 
 FILES = definition\
 		vec\
-		matrix\
+		matrix_func\
+		matrix_init\
+		matrix_init_rot\
 		operations\
 		operations1\
 		tools\
-		utility 
+		utility\
+		vec_norm	
 
 INCLUDES = -I./includes
 

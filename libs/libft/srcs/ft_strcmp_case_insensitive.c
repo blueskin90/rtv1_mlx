@@ -6,11 +6,11 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:16:43 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/11 17:19:26 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:01:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 int		ft_strcmp_case_insensitive(const char *s1, const char *s2)
 {
