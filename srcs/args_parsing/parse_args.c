@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:42:09 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 03:43:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:09:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void			parse_flags_check(t_args *args)
 {
 	if (args->renderer_mode == NO_RENDERER)
 		args->print_mode = NO_PRINT;
+	if (args->renderer_mode == STACK && args->print_mode == DEPTH_COLOR)
+		args->print_mode = HIT_COLOR;
+	if (args->renderer_mode == STACK && args->print_mode > TOTAL_COLOR)
+		args->print_mode = TOTAL_COLOR;
 }
 
 void			parse_arguments(int ac, char **av, t_args *args)

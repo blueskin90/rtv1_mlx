@@ -6,12 +6,14 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 02:44:37 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:45:38 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:47:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
+
+// verifier que cette fonction soit biennnn !
 void				get_conenormal(t_ray *ray)
 {
 	t_vec	center_to_hit;

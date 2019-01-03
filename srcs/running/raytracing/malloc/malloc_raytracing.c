@@ -6,13 +6,14 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:45:34 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:45:07 by toliver          ###   ########.fr       */
+/*   Updated: 2018/12/29 10:58:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void			malloc_raytracing(t_scene *scene, t_renderer *renderer, t_obj *cam)
+void			malloc_raytracing(t_scene *scene, t_renderer *renderer,
+		t_obj *cam)
 {
 	int				i;
 	int				raymax;

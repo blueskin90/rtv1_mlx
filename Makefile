@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/12/29 08:52:41 by toliver          ###   ########.fr        #
+#    Updated: 2018/12/29 11:02:26 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,6 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		running \
 		$(addprefix raytracing/, \
 			raytracing \
-			order_this \
 			$(addprefix primitives/, \
 				$(addprefix cone/, \
 					intersect \
@@ -154,7 +153,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		) \
 	) \
 	\
-	$(addprefix tools/, math_tools general_tools vector) \
+	$(addprefix tools/, math_tools general_tools vector mlx_tools print_tools) \
 	)) 
 
 

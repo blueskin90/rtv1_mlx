@@ -6,13 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 22:21:06 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:17:58 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:00:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static t_vec			get_actual_dir(t_vec topleft, t_vec inc, int x, int y)
+static t_vec	get_actual_dir(t_vec topleft, t_vec inc, int x, int y)
 {
 	t_vec		final;
 
@@ -29,10 +29,10 @@ t_ray			get_actual_ray(t_renderer *renderer, t_obj *cam, int x, int y)
 	dir = get_actual_dir(renderer->top_left_vec, renderer->increment, x, y);
 	ray = ray_init(vec_init0(0, 0, 0), dir);
 	ray = ray_to_world(ray, cam);
-	return (ray);	
+	return (ray);
 }
 
-static t_vec		get_top_left_vec(t_obj *cam, t_vec *increment, t_win *win)
+static t_vec	get_top_left_vec(t_obj *cam, t_vec *increment, t_win *win)
 {
 	float		x;
 	float		y;
@@ -86,7 +86,7 @@ t_renderer		*renderer_init(t_obj *cam, t_args *args, t_env *env)
 	renderer->top_left_vec =
 		get_top_left_vec(cam, &(renderer->increment), env->win);
 	renderer->img = img_init(env->win->winx, env->win->winy, env->mlx);
-	if (renderer->renderer_mode == STACK) 
+	if (renderer->renderer_mode == STACK)
 		return (renderer);
 	renderer->renderer = renderer_malloc(renderer, cam);
 	return (renderer);

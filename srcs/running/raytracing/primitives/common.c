@@ -6,13 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 02:49:39 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 10:15:00 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:38:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int				quadratic(float a, float b, float c, float l[2])
+int					quadratic(float a, float b, float c, float l[2])
 {
 	float		d;
 

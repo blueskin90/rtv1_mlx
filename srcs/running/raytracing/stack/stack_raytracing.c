@@ -6,14 +6,14 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:45:08 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:45:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:09:11 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-
-void			stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *cam)
+void			stack_raytracing(t_scene *scene, t_renderer *renderer,
+		t_obj *cam)
 {
 	int				x;
 	int				y;
@@ -29,7 +29,8 @@ void			stack_raytracing(t_scene *scene, t_renderer *renderer, t_obj *cam)
 			shoot_ray(scene, &ray);
 			if (renderer->print_mode > 2)
 				shoot_ray_lights(scene, &ray, cam);
-			mlx_px_to_img(renderer->img, x, y, ray.color.value);
+			if (renderer->print_mode > 0)
+				mlx_px_to_img(renderer->img, x, y, ray.color.value);
 			x++;
 		}
 		y++;

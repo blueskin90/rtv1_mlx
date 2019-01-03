@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 06:28:48 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 02:20:27 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:02:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ void				verbose_settings(t_args *args, t_env *env)
 		ft_printf("\tNo scenes were allocated !!!\n");
 	else
 		print_renderers(env->scene);
-	// ptet penser a faire un numerotage et autre des scenes 
 	ft_printf("\n===== end of settings verbose ======\n\n");
 }

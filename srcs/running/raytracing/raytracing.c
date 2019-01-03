@@ -6,13 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:44:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 03:42:14 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:04:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-
 
 void			raytracing(t_scene *scene, t_obj *camera)
 {

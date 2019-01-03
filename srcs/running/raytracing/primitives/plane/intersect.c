@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 02:47:31 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 08:52:59 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 15:17:12 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ float			plane_intersect(t_ray ray, t_obj *plane)
 	t_vec		diff;
 
 	diff = vec_sub(ray.pos, plane->pos);
-//	diff = ray.pos;
 	denom = vec_dotproduct(ray.dir, plane->dir);
 	if (denom != 0)
 	{
@@ -30,7 +29,7 @@ float			plane_intersect(t_ray ray, t_obj *plane)
 	return (INFINITY);
 }
 
-static float			try_intersection(t_ray ray, t_obj *plane)
+static float	try_intersection(t_ray ray, t_obj *plane)
 {
 	return (plane_intersect(ray, plane));
 }
