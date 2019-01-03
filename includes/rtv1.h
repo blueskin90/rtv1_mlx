@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 22:27:51 by cvermand         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef RTV1_H
 # define RTV1_H
 
@@ -209,9 +197,9 @@ void				print_vec(t_vec v);
 void				mlx_px_to_img(t_img *img, int x, int y, int color);
 t_ray				reflect_ray(t_ray *ray);
 t_vec				reflect_vector(t_vec vec, t_vec axis);
-t_rgb				get_specular(t_ray *ray, t_ray to_light, t_obj light, t_obj *cam);
-t_rgb				get_diffuse(t_ray *ray, t_ray to_light, t_obj light);
-t_rgb				get_ambiant(t_ray *ray);
+t_rgb				get_specular(t_ray *ray, t_ray to_light, t_obj *light, t_obj *cam);
+t_rgb				get_diffuse(t_ray *ray, t_ray to_light, t_obj *light);
+t_rgb				get_ambiant(t_ray *ray, t_scene *scene);
 void				shoot_ray_lights(t_scene *scene, t_ray *ray, t_obj *cam);
 void				shoot_ray(t_scene *scene, t_ray *ray);
 
