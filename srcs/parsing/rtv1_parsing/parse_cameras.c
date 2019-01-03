@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:23:44 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 21:48:19 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:53:30 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void					init_camera(t_elem *elem, t_obj *obj)
 	obj->type = CAMERA;
 }
 
-static inline void		camera_chained_array(t_obj **begin, t_obj **curr, t_obj **previous)
+static inline void		camera_chained_array(t_obj **begin,
+		t_obj **curr, t_obj **previous)
 {
 	if ((*begin) == NULL)
 		(*begin) = (*curr);

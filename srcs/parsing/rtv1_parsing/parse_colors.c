@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:51:44 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 20:03:42 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:54:25 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,15 +129,15 @@ t_rgb		parse_color(t_elem *elem, int required)
 					(t_rgb){.r = 0, .g = 0, .b = 0, .value = 0});
 			rgb_updatevalue(&color);
 		}
-		else 
+		else
 		{
-			color = default_rgb(color, 
-					(t_rgb){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});
+			color = default_rgb(color,
+			(t_rgb){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});
 		}
 	}
 	else if (required)
 		is_required(elem->key, 0);
-	else 
+	else
 		color = (t_rgb){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
 	color.r = color.r / 255.0;
 	color.g = color.g / 255.0;
