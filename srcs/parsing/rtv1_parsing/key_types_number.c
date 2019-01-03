@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 21:05:58 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 21:07:00 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:50:15 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int		check_int_keys(char *key)
 			!compare(key, "fov") ||
 			!compare(key, "intensity") ||
 			!compare(key, "brillance") ||
+			!compare(key, "x") ||
+			!compare(key, "y") ||
+			!compare(key, "z") ||
 			!compare(key, "roll") ||
 			!compare(key, "b"))
 		return (1);
