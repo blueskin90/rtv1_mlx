@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 06:28:16 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:48:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:04:07 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void			tmp_colors_settings(t_scene *scene)
 		{
 			// tmp brillance setting
 			obj->brillance = 100;
-			obj->color = rgb_div(obj->color, 255.0);
-			obj->specular = rgb_div(obj->specular, 255.0);
-			obj->diffuse = rgb_div(obj->diffuse, 255.0);
+		//	obj->color = rgb_div(obj->color, 255.0);
+		//	obj->specular = rgb_div(obj->specular, 255.0);
+		//	obj->diffuse = rgb_div(obj->diffuse, 255.0);
 			obj = obj->next;
 		}
 		obj = scenes->lights;
 		while (obj)
 		{
-			obj->color = rgb_div(obj->color, 255.0);
+		//	obj->color = rgb_div(obj->color, 255.0);
 			obj = obj->next;
 		}
 		scenes = scenes->next;

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:51:44 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 19:46:46 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:03:42 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ t_rgb		parse_rgb(t_elem *elem, t_rgb color)
 		ft_error(RGB_BAD_VAL);
 	if (b != INFINITY && !(b <= 255 && b >= 0))
 		ft_error(RGB_BAD_VAL);
-	color.r = r / 255.0;
-	color.g = g / 255.0;
-	color.b = b / 255.0;
+	color.r = r;
+	color.g = g;
+	color.b = b;
 	return (color);
 }
 
@@ -132,13 +132,15 @@ t_rgb		parse_color(t_elem *elem, int required)
 		else 
 		{
 			color = default_rgb(color, 
-					(t_rgb){.r = 1.0, .g = 1.0, .b = 1.0, .value = 0xffffff});
+					(t_rgb){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff});
 		}
-		return (color);
 	}
 	else if (required)
 		is_required(elem->key, 0);
 	else 
-		color = (t_rgb){.r = 1.0, .g = 1.0, .b = 1.0, .value = 0xffffff};
+		color = (t_rgb){.r = 255.0, .g = 255.0, .b = 255.0, .value = 0xffffff};
+	color.r = color.r / 255.0;
+	color.g = color.g / 255.0;
+	color.b = color.b / 255.0;
 	return (color);
 }
