@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 22:04:43 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 22:35:08 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:42:39 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int			hex_color_to_int(t_elem *elem)
 {
 	int		value;
 	char	*str;
-	char	*compare_str;
 	int		len;
 
 	check_type_of_key(elem->key, elem->type);
