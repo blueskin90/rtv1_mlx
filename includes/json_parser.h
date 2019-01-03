@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 15:33:31 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 17:50:44 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef int bool;
 # define true 1
 # define false 0
 # define DEBUG_PRINT 0
-# define PRINT_TREE 0
+# define PRINT_TREE 1
 
-typedef enum		s_type
+typedef enum	e_json_data
 {
 	NOTYPE,
 	INTEGER,
@@ -34,7 +34,7 @@ typedef enum		s_type
 	OBJECT,
 	NULL_ELEM,
 	ARRAY,
-}					e_type;
+}				t_json_data;
 
 typedef union		s_value
 {
@@ -52,7 +52,7 @@ typedef struct		s_elem
 	char			main;
 	char			closed;
 	char			*key;
-	e_type			type;
+	t_json_data		type;
 	u_value			value;
 	struct s_elem	*next;
 }					t_elem;
@@ -84,8 +84,8 @@ void		json_error(char *error);
 ** Elem structures
 */
 t_elem		*create_elem();
-u_value		set_value_of_type(e_type type, void *defaulty);
-t_elem		*create_init_elem(char *key, e_type type, void *value);
+u_value		set_value_of_type(t_json_data type, void *defaulty);
+t_elem		*create_init_elem(char *key, t_json_data type, void *value);
 /*
 **	Recognize elements
 */

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/29 10:42:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 17:51:42 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ float				default_float(float number, float def);
 t_vec				default_vec(t_vec vec, t_vec def);
 t_RGB				default_rgb(t_RGB rgb, t_RGB def);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
-bool				check_type_of_key(char *key, e_type type);
+bool				check_type_of_key(char *key, t_json_data type);
 //t_obj				*parse_sphere(t_elem *elem);
 //t_obj				*parse_object_direction(t_elem *elem, t_obj *obj);
 //t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
@@ -152,7 +152,7 @@ int					test(void);
 /*
 ** JSON PARSER ERRORS
 */
-void				wrong_format(char *form, e_type type);
+void				wrong_format(char *form, t_json_data type);
 void				is_required(char *key, bool one);
 
 /*
