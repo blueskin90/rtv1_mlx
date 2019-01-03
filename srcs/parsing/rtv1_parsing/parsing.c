@@ -6,37 +6,43 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 18:25:28 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 20:38:46 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:21:13 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void free_elem(t_elem *begin)
+static void free_elem(t_elem *elem)
 {
 	t_elem	*bro;
+	t_elem	*child;
 
 	if (elem->type == STRING)
 		free(elem->value.stringy);
 	if (elem->type == OBJECT)
 	{
-		bro = (t_elem *)elem->value.objecty;
-		if (bro)
+		child = (t_elem *)elem->value.objecty;
+		while (child)
 		{
-			free_elem(bro);
-			bro = bro->next;
+			bro = child->next;
+			free_elem(child);
+			child = bro;
 		}
 	}
 	if (elem->type == ARRAY)
 	{
-		bro = (t_elem *)elem->value.arrayi;
-		if (bro)
+		child = (t_elem *)elem->value.arrayi;
+		if (child)
 		{
-			show_one_elem(bro, padding + 10);
-			bro = bro->next;
+			bro = child->next;
+			free_elem(child);
+			child = bro;
 		}
 	}
-
+//	printf("ELEM : %s has been freed\n", elem->key);
+	if (elem->key)
+		free(elem->key);
+	free(elem);
 }
 
 t_scene	*rtv1_parsing(t_elem *begin)
@@ -65,7 +71,6 @@ t_scene	*rtv1_parsing(t_elem *begin)
 				prev_scene = scene;
 				curr = curr->next;
 		}
-		// Est-ce qu'on peut donner un fichier json vide et esperer une  valeur par defayt ? 
-		//
+	free_elem(begin);
 	return (first_scene);
 }

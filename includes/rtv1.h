@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 03:54:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 20:16:51 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:07:30 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ t_vec				default_vec(t_vec vec, t_vec def);
 t_rgb				default_rgb(t_rgb rgb, t_rgb def);
 t_elem				*find_elem_by_key(t_elem *elem, char *key);
 int					check_type_of_key(char *key, t_json_data type);
+int					check_float_keys(char *key);
+int					check_int_keys(char *key);
 //t_obj				*parse_sphere(t_elem *elem);
 //t_obj				*parse_object_direction(t_elem *elem, t_obj *obj);
 //t_obj				*parse_roll_up_right(t_elem *elem, t_obj *obj);
@@ -228,10 +230,6 @@ void				shoot_ray(t_scene *scene, t_ray *ray);
 
 // to order but in structures malloc
 
-t_vec				vec_x(void);
-t_vec				vec_y(void);
-t_vec				vec_z(void);
-t_matrix			rotmatrix_axis_angle(t_vec axis, float angle);
 t_matrix			world_to_obj_matrix(t_obj *obj);
 t_matrix			obj_to_world_matrix(t_obj *obj);
 t_obj				*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c);

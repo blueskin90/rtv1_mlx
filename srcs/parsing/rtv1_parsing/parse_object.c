@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 20:26:04 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:54:42 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
 		parse_vector(find_elem_by_key(elem, "translation")),
 		TRANSLATION_REQUIRED,"translation"),vec_init0(0.0, 0.0, 0.0));
 	obj->pos = vec_add(obj->pos, translation);
+	/* DEAJ EN RADIAN */
 	rotation = default_vec(required_vec(
 		parse_angle_vector(find_elem_by_key(elem, "rotation")),
 		ROTATION_REQUIRED,"rotation"), vec_init0(0.0, 0.0, 0.0));
@@ -53,6 +54,7 @@ t_obj	*parse_one_object(t_elem *elem, void (*parse_obj)(t_elem *, t_obj *))
 				BRILLANCE_REQ, "Brillance"), 1.0);
 	if (obj->brillance < 1.0 || obj->brillance > 128)
 		ft_error(BRILLANCE_BAD_FORMAT);
+	obj->brillance = obj->brillance / 128.0;
 	obj = parse_rotation_translation(child_elem, obj);
 // TODO : creer renderer camera > scene > projet
 	return (obj);

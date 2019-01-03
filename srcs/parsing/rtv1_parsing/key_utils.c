@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/17 21:10:35 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:09:26 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ t_elem		*find_elem_by_key(t_elem *elem, char *key)
 	}
 	return (NULL);
 }
-

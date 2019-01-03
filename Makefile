@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/03 18:36:59 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/03 21:07:53 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			init_object \
 			key_utils \
 			key_types_utils \
+			key_types_number \
 			parsing \
 			parse_scene \
 			parse_utils \

@@ -6,59 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 18:42:47 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 20:37:53 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-t_vec			vec_x(void)
-{
-	return (vec_init0(1, 0, 0));
-}
-
-t_vec			vec_y(void)
-{
-	return (vec_init0(0, 1, 0));
-}
-
-t_vec			vec_z(void)
-{
-	return (vec_init0(0, 0, 1));
-}
-
-t_matrix		rotmatrix_axis_angle(t_vec axis, float angle)
-{
-	float		cos;
-	float		sin;
-	float		t;
-	float		tmp1;
-	float		tmp2;
-	t_matrix	matrix;
-
-	matrix = identity_matrix_init();
-	if (angle == 0 || angle == NAN || vec_magnitude(axis) == 0)
-		return (matrix);
-	cos = cosf(angle);
-	sin = sinf(angle);
-	t = 1.0 - cos;
-	matrix.matrix[0][0] = cos + axis.x * axis.x * t;
-	matrix.matrix[1][1] = cos + axis.y * axis.y * t;
-	matrix.matrix[2][2] = cos + axis.z * axis.z * t;
-	tmp1 = axis.x * axis.y * t;
-	tmp2 = axis.z * sin;
-	matrix.matrix[1][0] = tmp1 + tmp2;
-	matrix.matrix[0][1] = tmp1 - tmp2;
-	tmp1 = axis.x * axis.z * t;
-	tmp2 = axis.y * sin;
-	matrix.matrix[2][0] = tmp1 - tmp2;
-	matrix.matrix[0][2] = tmp1 + tmp2;
-	tmp1 = axis.y * axis.z * t;
-	tmp2 = axis.x * sin;
-	matrix.matrix[2][1] = tmp1 + tmp2;
-	matrix.matrix[1][2] = tmp1 - tmp2;
-	return (matrix);
-}
 
 t_matrix		world_to_obj_matrix(t_obj *obj)
 {
