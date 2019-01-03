@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 17:50:44 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:05:04 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
 # include "libft.h"
 # include "libftprintf.h"
 # include <fcntl.h>
-# include <stdio.h>
-typedef int bool;
+
+typedef int	bool;
 # define true 1
 # define false 0
+# define TRUE 1
+# define FALSE 0
 # define DEBUG_PRINT 0
 # define PRINT_TREE 1
 
-typedef enum	e_json_data
+typedef enum		e_json_data
 {
 	NOTYPE,
 	INTEGER,
@@ -34,18 +36,18 @@ typedef enum	e_json_data
 	OBJECT,
 	NULL_ELEM,
 	ARRAY,
-}				t_json_data;
+}					t_json_data;
 
-typedef union		s_value
+typedef union		u_value
 {
 	int				inty;
 	float			floaty;
-	bool			booly;
+	int				booly;
 	char			*stringy;
 	void			*arrayi;
 	void			*objecty;
 	int				nully;
-}					u_value;
+}					t_value;
 
 typedef struct		s_elem
 {
@@ -53,20 +55,16 @@ typedef struct		s_elem
 	char			closed;
 	char			*key;
 	t_json_data		type;
-	u_value			value;
+	t_value			value;
 	struct s_elem	*next;
 }					t_elem;
-
-
-
 
 /*
 **	TO DELETE
 */
-void		show_elem(t_elem *elem);
-void		show_one_elem(t_elem *elem, int padding);
-void		show_every_elem(t_elem *elem, int padding);
-
+void				show_elem(t_elem *elem);
+void				show_one_elem(t_elem *elem, int padding);
+void				show_every_elem(t_elem *elem, int padding);
 /*
 ** JSON PARSER
 */
@@ -74,42 +72,42 @@ t_elem				*json_parser(char *file);
 /*
 ** Utils
 */
-int			update_line(int fd, char **line);
-void		error_free_line(char *line, char *error);
-int			ignore_tab_and_spaces(char **line, int *i, int fd, char end);
-char		end_of_value(char c);
-void		json_error(char *error);
-
+int					update_line(int fd, char **line);
+void				error_free_line(char *line, char *error);
+int					ignore_tab_and_spaces(char **line, int *i,
+					int fd, char end);
+char				end_of_value(char c);
+void				json_error(char *error);
 /*
 ** Elem structures
 */
-t_elem		*create_elem();
-u_value		set_value_of_type(t_json_data type, void *defaulty);
-t_elem		*create_init_elem(char *key, t_json_data type, void *value);
+t_elem				*create_elem();
+t_value				set_value_of_type(t_json_data type, void *defaulty);
+t_elem				*create_init_elem(char *key, t_json_data type, void *value);
 /*
 **	Recognize elements
 */
-t_elem		*json_recursive(int fd, char **line, int *i);
-t_elem		*array_recursive(int fd, char **line, int *i);
-int			recognize_type(t_elem *current, char **line, int *i);
-int			recognize_key(int *i, t_elem *current, char *line, int fd);
-int			json_recognize_number(t_elem *current, char *line, int *i);
-int			json_recognize_string(t_elem *current, char *line, int *i);
-int			json_recognize_bool(t_elem *current, char *line, int *i);
-int			json_recognize_null(t_elem *current, char *line, int *i);
-int			json_recognize_array(t_elem *current, char **line, int *i, int fd);
-int			json_recognize_object(t_elem *current, char **line, int *i, int fd);
-
+t_elem				*json_recursive(int fd, char **line, int *i);
+t_elem				*array_recursive(int fd, char **line, int *i);
+int					recognize_type(t_elem *current, char **line, int *i);
+int					recognize_key(int *i, t_elem *current, char *line, int fd);
+int					json_recognize_number(t_elem *current, char *line, int *i);
+int					json_recognize_string(t_elem *current, char *line, int *i);
+int					json_recognize_bool(t_elem *current, char *line, int *i);
+int					json_recognize_null(t_elem *current, char *line, int *i);
+int					json_recognize_array(t_elem *current, char **line,
+					int *i, int fd);
+int					json_recognize_object(t_elem *current, char **line,
+					int *i, int fd);
 /*
 **	SINGLETONS
 */
-int			get_line_number();
-void		set_line_number(int nbr);
-void		add_line_number(int nbr);
+int					get_line_number();
+void				set_line_number(int nbr);
+void				add_line_number(int nbr);
 /*
 ** Generic functions
 */
-
 void				*json_malloc(size_t size);
 void				ft_error(char *str);
 #endif

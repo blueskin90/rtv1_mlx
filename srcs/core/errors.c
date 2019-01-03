@@ -6,13 +6,13 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:56:51 by cvermand          #+#    #+#             */
-/*   Updated: 2018/12/23 19:47:25 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 17:55:27 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void					wrong_format(char *form, e_type type)
+void					wrong_format(char *form, t_json_data type)
 {
 	ft_putstr_fd(X_BAD_FORMAT, 2);
 	ft_putstr_fd(form, 2);

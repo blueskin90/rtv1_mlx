@@ -1,6 +1,6 @@
 {
 	"key1" : {
-		"child_key_1" : 1},
+		"child_key_1" : 1,
 		"child_key_2" : { "deep_key_2_string" : "hello",
 			"deep_key_2_int" : 10,
 			"deep_key_2_float" : 0.123 ,

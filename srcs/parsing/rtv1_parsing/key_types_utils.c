@@ -144,7 +144,7 @@ static bool		check_null_keys(char *key)
 
 }
 
-bool	check_type_of_key(char *key, e_type type)
+bool	check_type_of_key(char *key, t_json_data type)
 {
 	if (type == FLOAT)	
 			return (check_float_keys(key));

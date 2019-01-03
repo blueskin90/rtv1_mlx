@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 21:17:26 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 15:07:09 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 18:35:17 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		json_error(char *error)
 	ft_error(error);
 }
 
-void				error_free_line(char *line, char *error)
+void		error_free_line(char *line, char *error)
 {
 	free(line);
 	line = NULL;

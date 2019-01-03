@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 17:00:31 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 17:52:41 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 18:04:20 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int		valid_number(char *line, int i, int *len)
 	else
 		return (1);
 }
+
 static void		init_int_elem(t_elem *current, int x, int *i, int len)
 {
 	current->value.inty = x;

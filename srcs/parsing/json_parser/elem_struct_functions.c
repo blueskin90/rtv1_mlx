@@ -6,15 +6,15 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 21:37:39 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 17:49:44 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:02:19 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json_parser.h"
 
-u_value		set_value_of_type(t_json_data type, void *value)
+t_value		set_value_of_type(t_json_data type, void *value)
 {
-	u_value		val;
+	t_value		val;
 
 	if (type == INTEGER)
 		val.inty = *((int*)value);
