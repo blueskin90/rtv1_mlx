@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:58:45 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 20:40:22 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:08:28 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void				print_object_common(t_obj *obj)
 	ft_printf("\t\t%-10s : ", "dir");
 	print_vec(obj->dir);
 	print_color(obj->color, "color");
-	print_color(obj->specular, "specular");
-	print_color(obj->diffuse, "diffuse");
 	ft_printf("%-10s : %f\n", "brillance", obj->brillance);
+	ft_printf("%-10s : %f\n", "specular", obj->brillance);
+	ft_printf("%-10s : %f\n", "diffuse", obj->brillance);
+	ft_printf("%-10s : %f\n", "ambiant", obj->brillance);
 	ft_printf("\t\t%-10s : \n", "world to obj");
 	print_matrix(obj->world_to_obj);
 	ft_printf("\t\t%-10s : \n", "obj to world ");

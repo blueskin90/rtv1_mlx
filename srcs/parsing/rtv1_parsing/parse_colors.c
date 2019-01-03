@@ -6,24 +6,11 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:51:44 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 21:54:25 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:05:09 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-char		*string_to_lower(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-	return (str);
-}
 
 int			hex_color_to_int(t_elem *elem)
 {
@@ -41,7 +28,7 @@ int			hex_color_to_int(t_elem *elem)
 		str = &str[1];
 		value = ft_atoi_base(str, 16);
 	}
-	else if ( len > 1 && str[0] == '0' && str[1] == 'x')
+	else if (len > 1 && str[0] == '0' && str[1] == 'x')
 	{
 		str = &str[2];
 		value = ft_atoi_base(str, 16);
@@ -49,7 +36,7 @@ int			hex_color_to_int(t_elem *elem)
 	else if (len > 0 && (ft_isdigit(str[0]) ||
 			(str[0] >= 'a' && str[0] <= 'f')))
 		value = ft_atoi_base(str, 16);
-	else 
+	else
 		ft_error(BAD_FORMAT_HEX);
 	compare_str = ft_itoa_hex(value, 0);
 	if (ft_strcmp_case_insensitive(compare_str, str) != 0)
@@ -69,7 +56,7 @@ int			parse_hex(t_elem *elem)
 	{
 		check_type_of_key(elem->key, elem->type);
 		hex = hex_color_to_int(elem);
-		return hex;
+		return (hex);
 	}
 	return (hex);
 }
@@ -109,12 +96,12 @@ t_rgb		parse_color(t_elem *elem, int required)
 		child_elem = elem->value.objecty;
 		color.value = parse_hex(find_elem_by_key(child_elem, "hex"));
 		color = parse_rgb(child_elem, color);
-		if (ft_min(color.r, color.g, color.b) != INFINITY 
+		if (ft_min(color.r, color.g, color.b) != INFINITY
 				&& color.value != -1)
 		{
-			color = default_rgb(color, 
+			color = default_rgb(color,
 					(t_rgb){.r = 0, .g = 0, .b = 0, .value = 0});
-			if ( color.value != rgb_getvalue(color))
+			if (color.value != rgb_getvalue(color))
 				ft_error(RGB_HEX_CONFLICT);
 		}
 		else if (color.value != -1)
@@ -125,7 +112,7 @@ t_rgb		parse_color(t_elem *elem, int required)
 		}
 		else if (ft_min(color.r, color.g, color.b) != INFINITY)
 		{
-			color = default_rgb(color, 
+			color = default_rgb(color,
 					(t_rgb){.r = 0, .g = 0, .b = 0, .value = 0});
 			rgb_updatevalue(&color);
 		}

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 21:05:58 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 21:50:15 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:00:16 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		check_float_keys(char *key)
 	compare = &ft_strcmp;
 	if (!compare(key, "ambiant") ||
 			!compare(key, "radius") ||
+			!compare(key, "specular") ||
+			!compare(key, "diffuse") ||
 			!compare(key, "roll") ||
 			!compare(key, "intensity") ||
 			!compare(key, "brillance") ||
@@ -43,6 +45,8 @@ int		check_int_keys(char *key)
 	if (!compare(key, "r") ||
 			!compare(key, "g") ||
 			!compare(key, "fov") ||
+			!compare(key, "specular") ||
+			!compare(key, "diffuse") ||
 			!compare(key, "intensity") ||
 			!compare(key, "brillance") ||
 			!compare(key, "x") ||

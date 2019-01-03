@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 20:54:42 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/03 22:03:36 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ t_obj	*parse_one_object(t_elem *elem, void (*parse_obj)(t_elem *, t_obj *))
 	parse_up_right_vec(child_elem, obj);
 	parse_obj(child_elem, obj);
 	obj->color = parse_color(find_elem_by_key(child_elem, "color"), COLOR_REQ);
-	obj->specular = 
-		parse_color(find_elem_by_key(child_elem, "specular"), SPECULAR_REQ);
-	obj->diffuse = parse_color(find_elem_by_key(child_elem, "diffuse"), 
-			DIFFUSE_REQ);
+	obj->specular = default_float(required_float(
+				parse_float(find_elem_by_key(child_elem, "specular")),
+				SPECULAR_REQ, "Specular"), 1.0);
+	obj->diffuse = default_float(required_float(
+				parse_float(find_elem_by_key(child_elem, "diffuse")),
+				DIFFUSE_REQ, "Diffuse"), 1.0);
 	obj->ambiant = default_float(required_float(
 				parse_float(find_elem_by_key(child_elem, "ambiant")), 
 				AMBIANT_REQ, "Ambiant"), 0.0);

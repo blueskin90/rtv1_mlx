@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/03 21:07:53 by cvermand         ###   ########.fr        #
+#    Updated: 2019/01/03 22:09:10 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,6 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		) \
 		$(addprefix rtv1_parsing/, \
 			defaults \
-			init_camera \
-			init_light \
 			init_object \
 			key_utils \
 			key_types_utils \
@@ -80,6 +78,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			parse_cameras \
 			parse_vectors \
 			parse_colors \
+			color_utils \
 			required \
 		) \
 		$(addprefix json_parser/, \
