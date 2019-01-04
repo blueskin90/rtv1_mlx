@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/04 18:37:09 by cvermand         ###   ########.fr        #
+#    Updated: 2019/01/04 18:39:23 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ LIBS = ./libs/libft/libft.a \
 
 INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libftg/includes/ -I ./libs/ft_printf/includes/
 
-FLAGS = -Wall -Wextra -g3 -Ofast 
-#-fsanitize=address
+FLAGS = -Wall -Wextra -g3 -Ofast#-fsanitize=address
+
 MLXFLAGS = -framework OpenGL -framework AppKit
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \

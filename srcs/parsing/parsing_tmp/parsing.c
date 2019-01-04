@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 20:21:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 18:42:31 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 20:03:01 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,12 +220,3 @@ t_scene				*tmp_parsing(void)
 	return (scene);
 }
 
-t_scene				*json_parsing(char **files)
-{
-	t_elem			*json;
-	t_scene			*scene;
-
-	json = json_parser(*files); // penser a faire la loop qui fait malloc les scenes
-	scene = rtv1_parsing(json);
-	return (scene);
-}

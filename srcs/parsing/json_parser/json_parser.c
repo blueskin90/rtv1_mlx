@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:03:05 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 18:35:02 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 20:43:50 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,10 @@ t_elem			*json_parser(char *file)
 	check_for_same_key_in_object(begin);
 	if (PRINT_TREE)
 		show_every_elem(begin, 0);
+	printf("INSIDE BEFORE JSON\n");
+	read(1,0,1);
+	check_end_of_json_file(line, fd);
+	printf("INSIDE AFTER JSON\n");
+	read(1,0,1);
 	return (begin);
 }
