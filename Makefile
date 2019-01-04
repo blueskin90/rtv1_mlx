@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/04 19:58:39 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/04 21:33:42 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,6 +157,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	) \
 	$(addprefix loop/, \
 		loop \
+		free_env \
 		$(addprefix verbose/, \
 			verbose_loop \
 		) \

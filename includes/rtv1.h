@@ -245,6 +245,7 @@ void				verbose_printing(t_args *args, t_scene *scenes);
 
 int					key_pressed(int key, t_env *env);
 void				loop(t_args *args, t_env *env);
+void				free_env(t_env *env);
 
 void				verbose_loop(t_args *args, t_env *env);
 

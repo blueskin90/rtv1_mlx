@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:11:39 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 03:16:56 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 21:05:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void			verbose_running(t_args *args, t_scene *scenes)
 {
 	(void)args;
 	(void)scenes;
+	ft_printf("no verbose for running\n");
 }
