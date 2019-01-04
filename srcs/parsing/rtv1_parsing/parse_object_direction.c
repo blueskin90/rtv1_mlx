@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 19:37:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 17:46:06 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:12:12 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void					parse_dir_lookat_pos(t_elem *elem, t_obj *obj)
 				POSITION_REQUIRED, "Position"),
 			vec_init0(0.0, 0.0, 0.0));
 	dir = parse_vector(find_elem_by_key(elem, "direction"));
-	print_vec(dir);
 	lookat = parse_vector(find_elem_by_key(elem, "lookat"));
 	if (min_of_vec(dir) != INFINITY && min_of_vec(lookat) != INFINITY)
 		dir_lookat_given(dir, lookat, obj);

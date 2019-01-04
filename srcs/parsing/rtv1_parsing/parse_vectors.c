@@ -6,11 +6,11 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:10:28 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 20:18:12 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:18:15 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "rtv1.h"
 
+#include "rtv1.h"
 
 float		get_vec_float(t_elem *elem)
 {
@@ -18,7 +18,7 @@ float		get_vec_float(t_elem *elem)
 	{
 		if (!check_type_of_key(elem->key, elem->type))
 			ft_error(VECTOR_BAD_FORMAT);
-		return elem->value.floaty;
+		return (elem->value.floaty);
 	}
 	else if (VECTOR_POINT_REQUIRED)
 		ft_error(VECTOR_POINT_IS_REQUIRED);
@@ -28,7 +28,7 @@ float		get_vec_float(t_elem *elem)
 t_vec		parse_angle_vector(t_elem *elem)
 {
 	t_elem	*child_elem;
-	
+
 	if (elem != NULL)
 	{
 		if (!check_type_of_key(elem->key, elem->type))
@@ -43,13 +43,13 @@ t_vec		parse_angle_vector(t_elem *elem)
 	}
 	else if (VECTOR_REQUIRED)
 		ft_error(VECTOR_IS_REQUIRED);
-	return vec_init0(INFINITY, INFINITY, INFINITY);
+	return (vec_init0(INFINITY, INFINITY, INFINITY));
 }
 
 t_vec		parse_vector(t_elem *elem)
 {
 	t_elem	*child_elem;
-	
+
 	if (elem != NULL)
 	{
 		if (!check_type_of_key(elem->key, elem->type))
@@ -64,5 +64,5 @@ t_vec		parse_vector(t_elem *elem)
 	}
 	else if (VECTOR_REQUIRED)
 		ft_error(VECTOR_IS_REQUIRED);
-	return vec_init0(INFINITY, INFINITY, INFINITY);
+	return (vec_init0(INFINITY, INFINITY, INFINITY));
 }

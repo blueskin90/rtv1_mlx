@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 21:05:19 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 22:00:45 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:31:00 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int		check_null_keys(char *key)
 	int		(*compare)(const char *, const char *);
 
 	compare = &ft_strcmp;
-	if (			!compare(key, "ambiant") ||
+	if (!compare(key, "ambiant") ||
 			!compare(key, "radius") ||
 			!compare(key, "x") ||
 			!compare(key, "y") ||
