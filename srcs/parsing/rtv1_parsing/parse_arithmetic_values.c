@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:18:34 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 21:52:59 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:50:24 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ float		parse_degree_to_rad(float angle)
 		return (INFINITY);
 	angle = fmod(angle, 360);
 	if (angle < 0)
-		angle = 360 - angle;
+		angle = angle + 360;
 	return (degtorad(angle));
 }
 

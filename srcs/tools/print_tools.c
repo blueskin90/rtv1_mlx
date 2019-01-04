@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 10:47:04 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:49:56 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 16:55:18 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void				print_color(t_rgb color, char *name)
 {
-	ft_printf("%-10s : RGB[%f, %f, %f] HEX : #%X\n", name,
+	ft_printf("\t\t%-10s : RGB[%f, %f, %f] HEX : #%X\n", name,
 			color.r, color.g, color.b, color.value);
 }
 
 void				print_matrix(t_matrix m)
 {
-	ft_printf("| %5f %5f %5f %5f |\n", m.matrix[0][0], m.matrix[0][1],
+	ft_printf("\t\t| %5f %5f %5f %5f |\n", m.matrix[0][0], m.matrix[0][1],
 			m.matrix[0][2], m.matrix[0][3]);
-	ft_printf("| %5f %5f %5f %5f |\n", m.matrix[1][0], m.matrix[1][1],
+	ft_printf("\t\t| %5f %5f %5f %5f |\n", m.matrix[1][0], m.matrix[1][1],
 			m.matrix[1][2], m.matrix[1][3]);
-	ft_printf("| %5f %5f %5f %5f |\n", m.matrix[2][0], m.matrix[2][1],
+	ft_printf("\t\t| %5f %5f %5f %5f |\n", m.matrix[2][0], m.matrix[2][1],
 			m.matrix[2][2], m.matrix[2][3]);
-	ft_printf("| %5f %5f %5f %5f |\n", m.matrix[3][0], m.matrix[3][1],
+	ft_printf("\t\t| %5f %5f %5f %5f |\n", m.matrix[3][0], m.matrix[3][1],
 			m.matrix[3][2], m.matrix[3][3]);
 	ft_printf("\n");
 }

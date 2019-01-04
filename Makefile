@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/04 01:21:03 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/04 17:32:55 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			parse_light \
 			parse_arithmetic_values \
 			parse_object_direction \
+			parse_object_direction_extension \
 			parse_cameras \
 			parse_vectors \
 			parse_colors \

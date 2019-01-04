@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 21:15:45 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:33:47 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define RADIUS_BAD_FORMAT "Radius of object should be higher than 0\n"
 # define BRILLANCE_BAD_FORMAT "Brillance must be between 1 and 128 included\n"
 # define FOV_BAD_FORMAT "FOV must be between ]0 and 180[ excluded\n"
+# define ITENSITITY_BAD_FORMAT "Itensity must be between 0 and 1 included\n"
 
 /*
 ** INFORMATION REQUIRED
