@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 17:00:27 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 23:00:56 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
 	rotation = default_vec(required_vec(
 		parse_angle_vector(find_elem_by_key(elem, "rotation")),
 		ROTATION_REQUIRED, "rotation"), vec_init0(0.0, 0.0, 0.0));
+	// CEST ICI BETRAVE (POUR LA ROTATION)
 	return (obj);
 }
 

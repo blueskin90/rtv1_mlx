@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:03:05 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 20:43:50 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 22:59:45 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,25 @@ static int		check_for_same_key_in_object(t_elem *begin)
 	return (0);
 }
 
-static void		check_end_of_json_file(char *line, int fd)
+static void		check_end_of_json_file(char **line, int fd)
 {
 	int ret;
 
-	if ((ret = ft_get_next_line(fd, &line)) != 0)
+	if ((*line))
+		free((*line));
+	(*line) = NULL;
+	add_line_number(1);
+	if ((ret = ft_get_next_line(fd, line)) != 0)
 		json_error(END_OF_FILE_BAD_FORMAT);
+	if ((*line))
+		free((*line));
+	(*line) = NULL;
+}
+
+static void		print_tree(t_elem *begin)
+{
+	if (PRINT_TREE)
+		show_every_elem(begin, 0);
 }
 
 t_elem			*json_parser(char *file)
@@ -89,14 +102,9 @@ t_elem			*json_parser(char *file)
 		json_recognize_array(begin, &line, &x, fd);
 	else
 		json_error(BAD_BEGIN_OF_FILE);
-	check_end_of_json_file(line, fd);
+	check_end_of_json_file(&line, fd);
 	check_for_same_key_in_object(begin);
-	if (PRINT_TREE)
-		show_every_elem(begin, 0);
-	printf("INSIDE BEFORE JSON\n");
-	read(1,0,1);
-	check_end_of_json_file(line, fd);
-	printf("INSIDE AFTER JSON\n");
-	read(1,0,1);
+	check_end_of_json_file(&line, fd);
+	print_tree(begin);
 	return (begin);
 }

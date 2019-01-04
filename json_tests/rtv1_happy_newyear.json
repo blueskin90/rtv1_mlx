@@ -118,44 +118,6 @@
 						"hex" : "0xaaffff"
 					},
 					"radius" : 1.0
-				},
-				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
-					"position" : {
-						"x" : -20.0,
-						"y" : 20.0,
-						"z" : 50.0
-					},
-					"lookat" : {
-						"x" : -20.0,
-						"y" : 21.0,
-						"z" : 50.0
-					},
-					"color" : {
-						"hex" : "0xaaff00"
-					},
-					"radius" : 1.0
-				},
-				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
-					"position" : {
-						"x" : -10.0,
-						"y" : 20.0,
-						"z" : 10.0
-					},
-					"lookat" : {
-						"x" : -8.0,
-						"y" : 19.0,
-						"z" : 10.0
-					},
-					"color" : {
-						"hex" : "0xaa50ff"
-					},
-					"radius" : 5.0
 				}
 			],
 			"planes" : [
@@ -250,27 +212,6 @@
 					}
 				}
 			],
-			"cones" : [
-					{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 50,
-					"position" : {
-						"x" : -29.0,
-						"y" : -40.0,
-						"z" : 10.0
-					},
-					"lookat" : {
-						"x" : -30.0,
-						"y" : -38.0,
-						"z" : 11.0
-					},
-					"color" : {
-						"hex" : "0xff50aa"
-					},
-					"angle" : 30.0
-				}
-			]
 			},
 		"lights" : [
 			{

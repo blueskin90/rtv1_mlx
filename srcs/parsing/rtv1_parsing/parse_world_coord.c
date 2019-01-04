@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 01:55:40 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 23:07:05 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,6 @@ t_matrix		obj_to_world_matrix(t_obj *obj)
 	return (matrix);
 }
 
-t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c)
-{
-	t_obj		*obj;
-
-	obj = obj_malloc_dir(pos, vec_sub(lookat, pos), up, c);
-	obj->lookat = lookat;
-	return (obj);
-}
-
 t_vec			get_rightdir(t_vec dir)
 {
 	if (is_equal_vec(dir, vec_y()))
@@ -77,60 +68,4 @@ t_vec			get_rightdir(t_vec dir)
 t_vec			get_updir(t_vec dir, t_vec right)
 {
 	return (vec_norm(vec_crossproduct(dir, right)));
-}
-
-t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_rgb c)
-{
-	t_obj		*obj;
-
-	(void)up;
-	obj = (t_obj*)ft_malloc(sizeof(t_obj));
-	obj->pos = pos;
-	obj->dir = vec_normalize(dir);
-	obj->right = get_rightdir(obj->dir);
-	obj->up = get_updir(obj->dir, obj->right);
-	obj->color = c;
-	obj->world_to_obj = world_to_obj_matrix(obj);
-	obj->obj_to_world = obj_to_world_matrix(obj);
-	return (obj);
-}
-
-void			obj_sphere_params(t_obj *obj, float radius)
-{
-	obj->params.sphere.radius = radius;
-	obj->type = SPHERE;
-	obj->intersect = &sphere_intersection;
-}
-
-void			obj_cylinder_params(t_obj *obj, float radius)
-{
-	obj->params.cylinder.radius = radius;
-	obj->type = CYLINDER;
-	obj->intersect = &cylinder_intersection;
-}
-
-void			obj_plane_params(t_obj *obj)
-{
-	obj->type = PLANE;
-	obj->intersect = &plane_intersection;
-}
-
-void			obj_cone_params(t_obj *obj, float angle)
-{
-	obj->params.cone.angle = degtorad(angle);
-	obj->type = CONE;
-	obj->intersect = &cone_intersection;
-}
-
-void			obj_camera_params(t_obj *obj, float fov)
-{
-	obj->params.camera.fov = degtorad(fov);
-	obj->type = CAMERA;
-	obj->params.camera.renderer = NULL;
-}
-
-void			obj_light_params(t_obj *obj, float intensity)
-{
-	obj->params.light.intensity = intensity;
-	obj->type = LIGHT;
 }

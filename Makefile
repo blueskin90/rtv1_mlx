@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/04 18:39:23 by cvermand         ###   ########.fr        #
+#    Updated: 2019/01/04 23:08:01 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBS = ./libs/libft/libft.a \
 
 INCLUDES = -I includes/ -I ./libs/mlx/ -I ./libs/libft/includes/ -I ./libs/libftg/includes/ -I ./libs/ft_printf/includes/
 
-FLAGS = -Wall -Wextra -g3 -Ofast#-fsanitize=address
+FLAGS = -Wall -Wextra -g3 -Ofast #-fsanitize=address
 
 MLXFLAGS = -framework OpenGL -framework AppKit
 
@@ -52,10 +52,6 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		) \
 	$(addprefix parsing/, \
 		parsing \
-		$(addprefix parsing_tmp/, \
-			parsing \
-			structures_malloc \
-		) \
 		$(addprefix verbose/, \
 			verbose_parsing \
 			verbose_parsing_loops \
@@ -69,17 +65,18 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			key_types_utils \
 			key_types_number \
 			malloc_structures \
-			parsing \
-			parse_scene \
-			parse_objects \
-			parse_object \
-			parse_light \
 			parse_arithmetic_values \
+			parse_cameras \
+			parse_colors \
+			parse_light \
+			parse_object \
+			parse_objects \
 			parse_object_direction \
 			parse_object_direction_extension \
-			parse_cameras \
+			parse_scene \
+			parse_world_coord \
 			parse_vectors \
-			parse_colors \
+			parsing \
 			required \
 		) \
 		$(addprefix json_parser/, \
@@ -157,6 +154,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	) \
 	$(addprefix loop/, \
 		loop \
+		free_env \
 		$(addprefix verbose/, \
 			verbose_loop \
 		) \

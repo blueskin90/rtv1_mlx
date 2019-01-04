@@ -37,8 +37,61 @@ void do_loop_flush(CFRunLoopObserverRef observer, CFRunLoopActivity activity, vo
     }
 }
 
+static void	mlx_destroy_font_list(mlx_img_list_t *fontlist)
+{
+	mlx_img_list_t	*ptr;
 
+	if (fontlist == NULL)
+		return ;
+	ptr = fontlist;
+	while (ptr)
+	{
+		fontlist = ptr->next;
+		free(ptr->buffer);
+		ptr = fontlist;
+	}
+}
 
+static void	mlx_destroy_img_list(mlx_img_list_t *imglist)
+{
+	mlx_img_list_t	*ptr;
+
+	if (imglist == NULL)
+		return ;
+	ptr = imglist;
+	while (ptr)
+	{
+		imglist = ptr->next;
+		free(ptr);
+		ptr = imglist;
+	}
+}
+
+static void	mlx_destroy_win_list(mlx_win_list_t *winlist)
+{
+	mlx_win_list_t	*ptr;
+
+	if (winlist == NULL)
+		return ;
+	ptr = winlist;
+	while (ptr)
+	{
+		winlist = ptr->next;
+		free(ptr);
+		ptr = winlist;
+	}
+}
+
+void	mlx_destroy(void *mlx)
+{
+	mlx_ptr_t	*ptr;
+
+	ptr = (mlx_ptr_t*)mlx;
+	mlx_destroy_win_list(ptr->win_list);
+	mlx_destroy_img_list(ptr->img_list);
+	mlx_destroy_font_list(ptr->font);
+	free(mlx);
+}
 
 void *mlx_init()
 {

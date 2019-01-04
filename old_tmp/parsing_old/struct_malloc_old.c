@@ -1,16 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   struct_malloc_old.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/23 20:21:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 20:03:01 by cvermand         ###   ########.fr       */
+/*   Created: 2019/01/04 21:40:15 by toliver           #+#    #+#             */
+/*   Updated: 2019/01/04 21:41:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+t_obj			*obj_malloc_lookat(t_vec pos, t_vec lookat, t_vec up, t_rgb c)
+{
+	t_obj		*obj;
+
+	obj = obj_malloc_dir(pos, vec_sub(lookat, pos), up, c);
+	obj->lookat = lookat;
+	return (obj);
+}
+
+t_obj			*obj_malloc_dir(t_vec pos, t_vec dir, t_vec up, t_rgb c)
+{
+	t_obj		*obj;
+
+	(void)up;
+	obj = (t_obj*)ft_malloc(sizeof(t_obj));
+	obj->pos = pos;
+	obj->dir = vec_normalize(dir);
+	obj->right = get_rightdir(obj->dir);
+	obj->up = get_updir(obj->dir, obj->right);
+	obj->color = c;
+	obj->world_to_obj = world_to_obj_matrix(obj);
+	obj->obj_to_world = obj_to_world_matrix(obj);
+	return (obj);
+}
+
+void			obj_sphere_params(t_obj *obj, float radius)
+{
+	obj->params.sphere.radius = radius;
+	obj->type = SPHERE;
+	obj->intersect = &sphere_intersection;
+}
+
+void			obj_cylinder_params(t_obj *obj, float radius)
+{
+	obj->params.cylinder.radius = radius;
+	obj->type = CYLINDER;
+	obj->intersect = &cylinder_intersection;
+}
+
+void			obj_plane_params(t_obj *obj)
+{
+	obj->type = PLANE;
+	obj->intersect = &plane_intersection;
+}
+
+void			obj_cone_params(t_obj *obj, float angle)
+{
+	obj->params.cone.angle = degtorad(angle);
+	obj->type = CONE;
+	obj->intersect = &cone_intersection;
+}
+
+void			obj_camera_params(t_obj *obj, float fov)
+{
+	obj->params.camera.fov = degtorad(fov);
+	obj->type = CAMERA;
+	obj->params.camera.renderer = NULL;
+}
+
+void			obj_light_params(t_obj *obj, float intensity)
+{
+	obj->params.light.intensity = intensity;
+	obj->type = LIGHT;
+}
 
 void				obj_add(t_scene *scene, t_obj *obj)
 {
@@ -171,16 +236,13 @@ t_scene				*tmp_parsing(void)
 	obj_plane_params(objptr);
 	obj_add(scene, objptr);
 
-	/*
 	color = rgb_init(0xaabbcc);
 	pos = vec_init0(0, 0, -50);
 	lookat = vec_init0(0, 0, -49);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_plane_params(objptr);
 	obj_add(scene, objptr);
-	*/
 
-/*
 	pos = vec_init0(15, 25, -15);
 	color = rgb_init(0xFFFFFF);
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
@@ -192,7 +254,6 @@ t_scene				*tmp_parsing(void)
 	objptr = obj_malloc_lookat(pos, lookat, vec_y(), color);
 	obj_sphere_params(objptr, 1);
 	obj_add(scene, objptr);
-	*/
 // 2 lights
 
 //	lookat = vec_init0(0, -3, 1);
@@ -219,4 +280,3 @@ t_scene				*tmp_parsing(void)
 	scene->name = "test_de_base";
 	return (scene);
 }
-
