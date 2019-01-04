@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:42:09 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 15:09:59 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 23:40:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ void			parse_arguments(int ac, char **av, t_args *args)
 	}
 	if (i < ac)
 		args->files = av + i;
+	if (args->files == NULL || args->files[0] == NULL)
+		print_usage();
 	parse_flags_check(args);
 }
