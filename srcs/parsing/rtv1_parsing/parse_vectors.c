@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:10:28 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 18:18:15 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/05 00:34:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ float		get_vec_float(t_elem *elem)
 	{
 		if (!check_type_of_key(elem->key, elem->type))
 			ft_error(VECTOR_BAD_FORMAT);
+		if (elem->type == INTEGER)
+			return ((float)elem->value.inty);
 		return (elem->value.floaty);
 	}
 	else if (VECTOR_POINT_REQUIRED)

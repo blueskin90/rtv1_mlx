@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 03:28:10 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 17:47:10 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/05 00:12:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ static char		*verbose_mode_string(int mode)
 		return ("SETTINGS");
 	if (mode == RUNNING)
 		return ("RUNNING");
+	if (mode == PRINTING)
+		return ("PRINTING");
+	if (mode == LOOP)
+		return ("LOOP");
 	return ("ERROR, BAD VERBOSE MODE !\n");
 }
 

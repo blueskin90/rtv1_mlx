@@ -6,13 +6,26 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 23:00:56 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/05 00:43:51 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
+static void		set_matrix_obj(t_obj *obj, t_vec rotation)
+{
+	t_matrix	matrix;
+
+	matrix = world_to_obj_matrix(obj);
+	matrix = matrix_mult(matrix, rotmatrix_axis_angle(obj->dir, obj->roll));
+	matrix = matrix_mult(matrix, rotmatrix_axis_angle(vec_x(), rotation.x));
+	matrix = matrix_mult(matrix, rotmatrix_axis_angle(vec_y(), -rotation.y));
+	matrix = matrix_mult(matrix, rotmatrix_axis_angle(vec_z(), rotation.z));
+	obj->world_to_obj = matrix;
+	obj->obj_to_world = obj_to_world_matrix(obj);
+}
+
+static void		parse_rotation_translation(t_elem *elem, t_obj *obj)
 {
 	t_vec	translation;
 	t_vec	rotation;
@@ -24,8 +37,7 @@ static t_obj	*parse_rotation_translation(t_elem *elem, t_obj *obj)
 	rotation = default_vec(required_vec(
 		parse_angle_vector(find_elem_by_key(elem, "rotation")),
 		ROTATION_REQUIRED, "rotation"), vec_init0(0.0, 0.0, 0.0));
-	// CEST ICI BETRAVE (POUR LA ROTATION)
-	return (obj);
+	set_matrix_obj(obj, rotation);
 }
 
 static void		parse_color_information(t_elem *child_elem, t_obj *obj)
@@ -39,7 +51,7 @@ static void		parse_color_information(t_elem *child_elem, t_obj *obj)
 				DIFFUSE_REQ, "Diffuse"), 1.0);
 	obj->ambiant = default_float(required_float(
 				parse_float(find_elem_by_key(child_elem, "ambiant")),
-				AMBIANT_REQ, "Ambiant"), 0.0);
+				AMBIANT_REQ, "Ambiant"), 0.0); // de 0 a 1 pour ambiant, diff, spec
 	obj->brillance = default_float(required_float(
 				parse_float(find_elem_by_key(child_elem, "brillance")),
 				BRILLANCE_REQ, "Brillance"), 1.0);
@@ -60,6 +72,6 @@ t_obj			*parse_one_object(t_elem *elem,
 	if (obj->brillance < 1.0 || obj->brillance > 128)
 		ft_error(BRILLANCE_BAD_FORMAT);
 	obj->brillance = obj->brillance / 128.0;
-	obj = parse_rotation_translation(child_elem, obj);
+	parse_rotation_translation(child_elem, obj);
 	return (obj);
 }

@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 19:37:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 18:12:12 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/05 00:28:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void					parse_up_right_vec(t_elem *elem, t_obj *obj)
 	obj->right = get_right_dir(obj->dir);
 	obj->right = vec_rot_zaxis_angle(obj->right, obj->dir, obj->roll);
 	obj->up = get_up_dir(obj->dir, obj->right);
-	obj->world_to_obj = world_to_obj_matrix(obj);
-	obj->obj_to_world = obj_to_world_matrix(obj);
 }
 
 static void				dir_lookat_given(t_vec dir, t_vec lookat, t_obj *obj)
