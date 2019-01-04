@@ -47,7 +47,6 @@ t_args				*args_parsing(int ac, char **av);
 t_args				*args_init(void);
 
 void				verbose_args(t_args *args);
-void				print_parse_mode(int mode);
 void				print_renderer_mode(int mode);
 void				print_print_mode(int mode);
 void				print_verbose_mode(int mode);

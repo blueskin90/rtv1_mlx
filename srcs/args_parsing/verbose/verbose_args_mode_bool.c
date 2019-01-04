@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 03:24:51 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 03:26:30 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:46:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,4 @@ void			print_debug_mode(int mode)
 
 	value = (mode == 1 ? "ON" : "OFF");
 	ft_printf("	Debug mode is %s\n", mode);
-}
-
-void			print_parse_mode(int mode)
-{
-	char		*value;
-
-	value = (mode == 0) ? "STANDARD" : "JSON";
-	ft_printf("	Parsing mode is : %s\n", value);
 }

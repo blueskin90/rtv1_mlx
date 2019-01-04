@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:18:49 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 04:19:18 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:52:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 #include "rtv1_struct.h"
 
 #define PROGRAM_NAME "./rtv1"
-#define SHORT_FLAGS "dp"
+#define SHORT_FLAGS "d"
 #define LONG_FLAGS "print;verbose;renderer"
 
-# define USAGE "usage: rtv1 [-dp] [--renderer=RENDERER_MODE][--print[=PRINT_MODE]] [--verbose[=VERBOSE_MODE]] [file]\n"
 
 /*
 ** USAGE FUNCTIONS

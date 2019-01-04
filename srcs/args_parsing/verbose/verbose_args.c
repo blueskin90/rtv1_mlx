@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 02:33:25 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:04:33 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:46:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void			verbose_args(t_args *args)
 {
 	ft_printf("\n/!\\ == Verbose for args == /!\\\n\n");
-	print_parse_mode(args->parse_mode);
 	print_renderer_mode(args->renderer_mode);
 	print_args_files(args->files);
 	print_print_mode(args->print_mode);
