@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/04 17:32:55 by cvermand         ###   ########.fr        #
+#    Updated: 2019/01/04 18:25:28 by cvermand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,14 +62,15 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			verbose_parsing_printing \
 		) \
 		$(addprefix rtv1_parsing/, \
+			color_utils \
 			defaults \
 			init_object \
 			key_utils \
 			key_types_utils \
 			key_types_number \
+			malloc_structures \
 			parsing \
 			parse_scene \
-			parse_utils \
 			parse_objects \
 			parse_object \
 			parse_light \
@@ -79,26 +80,26 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			parse_cameras \
 			parse_vectors \
 			parse_colors \
-			color_utils \
 			required \
 		) \
 		$(addprefix json_parser/, \
-			json_parser \
-			recognize_key \
+			array_recursive \
 			elem_struct_functions \
+			free_structure \
+			json_parser \
+			json_errors \
+			json_utils \
+			print_elem_architecture \
 			recognize_number \
 			recognize_string \
-			print_elem_architecture \
-			json_errors \
-			singleton \
-			json_utils \
 			recognize_bool \
 			recognize_null \
 			recognize_array \
 			recognize_object \
 			object_recursive \
-			array_recursive \
 			recognize_type \
+			recognize_key \
+			singleton \
 		) \
 	) \
 	$(addprefix settings/, \

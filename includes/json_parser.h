@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 20:31:18 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:23:49 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void				json_error(char *error);
 t_elem				*create_elem();
 t_value				set_value_of_type(t_json_data type, void *defaulty);
 t_elem				*create_init_elem(char *key, t_json_data type, void *value);
+void				free_elem(t_elem *elem);
 /*
 **	Recognize elements
 */
