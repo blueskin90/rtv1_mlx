@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 21:30:55 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 21:34:47 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 21:36:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void			free_mlx(void *mlx, t_win *win)
 static void			free_cameras(t_obj *cameras, void *mlx)
 {
 	t_obj			*ptr;
-	
+
 	ptr = cameras;
 	while (ptr)
 	{

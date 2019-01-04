@@ -6,14 +6,14 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 18:17:11 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 19:02:44 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 21:45:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLORS_H
 # define COLORS_H
 
-#include <math.h>
+# include <math.h>
 
 typedef struct		s_rgb
 {

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 09:50:16 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 19:47:37 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 21:36:58 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void				print_stack_raytracer(t_scene *scenes, t_win *win,
 		void *mlx)
 {
-		mlx_put_image_to_window(mlx, win->winptr,
-			scenes->cameras->params.camera.renderer->img->imgptr, 0, 0);
+	mlx_put_image_to_window(mlx, win->winptr,
+				scenes->cameras->params.camera.renderer->img->imgptr, 0, 0);
 }
 
 void				print_malloc_raytracer(t_scene *scenes, t_win *win,

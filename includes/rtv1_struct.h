@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 21:07:33 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 21:58:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct		s_renderer
 	t_vec			top_left_vec;
 	t_vec			increment;
 	t_img			*img;
-	struct s_ray	*renderer; // renderer[x][y] = screen, renderer[x][y][value] = xieme rayon du pixel tant
+	struct s_ray	*renderer;
 }					t_renderer;
 
 typedef struct		s_camera
@@ -179,7 +179,7 @@ typedef enum		e_verbose_mode
 	SETTINGS,
 	RUNNING,
 	PRINTING,
-	LOOP,	
+	LOOP,
 	ALL_VERBOSE,
 	MAX_VERBOSE_MODE,
 }					t_verbose_mode;

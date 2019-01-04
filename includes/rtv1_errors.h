@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:21:48 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 16:33:47 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 21:54:21 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 */
 # define IS_REQUIRED " is required\n"
 # define AT_LEAST_ONE_REQUIRED "at least one "
-# define SCENE_IS_REQUIRED "At least one SCENE is required\n" 
+# define SCENE_IS_REQUIRED "At least one SCENE is required\n"
 # define NAME_IS_REQUIRED "Name is required\n"
 # define SPHERES_IS_REQUIRED "Spheres is required\n"
 # define ONE_SPHERE_IS_REQUIRED "At least one SPHERE is required\n"
@@ -54,14 +54,15 @@
 # define LOOKAT_DIRECTION_CONFLICT "Lookat and direction given and not equal\n"
 # define DIR_CANNOT_POINT_0 "Direction cannot point (0,0,0)\n"
 # define LOOKAT_CANNOT_POINT_0 "vec between Lookat & pos cannot point (0,0,0)\n"
-# define RGB_BAD_VAL "RGB values must be between 0 and 255\n" 
+# define RGB_BAD_VAL "RGB values must be between 0 and 255\n"
 # define RGB_HEX_CONFLICT "RGB and HEX given but value are different\n"
-//# define ROLL_RIGHT_UP_CONFLICT "Right Roll & UP where given but dont match\n"
-//# define RIGHT_UP_CONFLICT "Right And UP where given but angle is not 90deg\n"
-//# define RIGHT_ROLL_CONFLICT "Right and Roll where given but dont match\n"
-//# define UP_ROLL_CONFLICT "UP and Roll where given but dont match\n"
-//# define UP_DIR_CONFLICT "Up is given but bad angle with dir\n"
-//# define RIGHT_DIR_CONFLICT "Right is given but bad angle with dir\n"
-//# define DIRECTION_CONFLICT "Direction CONFLICT on UP RIGHT DIR\n"
-
+/*
+**# define ROLL_RIGHT_UP_CONFLICT "Right Roll & UP where given but dont match\n"
+**# define RIGHT_UP_CONFLICT "Right And UP where given but angle is not 90deg\n"
+**# define RIGHT_ROLL_CONFLICT "Right and Roll where given but dont match\n"
+**# define UP_ROLL_CONFLICT "UP and Roll where given but dont match\n"
+**# define UP_DIR_CONFLICT "Up is given but bad angle with dir\n"
+**# define RIGHT_DIR_CONFLICT "Right is given but bad angle with dir\n"
+**# define DIRECTION_CONFLICT "Direction CONFLICT on UP RIGHT DIR\n"
+*/
 #endif

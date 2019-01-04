@@ -6,20 +6,19 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:18:49 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 17:52:36 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 21:45:07 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARGS_PARSING_H
 # define ARGS_PARSING_H
 
-#include "libft.h"
-#include "rtv1_struct.h"
+# include "libft.h"
+# include "rtv1_struct.h"
 
-#define PROGRAM_NAME "./rtv1"
-#define SHORT_FLAGS "d"
-#define LONG_FLAGS "print;verbose;renderer"
-
+# define PROGRAM_NAME "./rtv1"
+# define SHORT_FLAGS "d"
+# define LONG_FLAGS "print;verbose;renderer"
 
 /*
 ** USAGE FUNCTIONS
@@ -45,4 +44,4 @@ void				parse_render_mode(char *flagvalue, t_args *args);
 void				parse_renderer_mode(char *flagvalue, t_args *args);
 void				parse_print_mode(char *flagvalue, t_args *args);
 
-# endif
+#endif

@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rtv1_required_information.h                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/04 21:54:40 by toliver           #+#    #+#             */
+/*   Updated: 2019/01/04 21:55:36 by toliver          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RTV1_REQUIRED_INFORMATION_H
 # define RTV1_REQUIRED_INFORMATION_H
 
 # define SCENE_REQUIRED 1
 # define NAME_REQUIRED 0
 # define OBJECTS_REQUIRED 1
-# define VECTOR_REQUIRED 0 
-# define VECTOR_POINT_REQUIRED 0 
+# define VECTOR_REQUIRED 0
+# define VECTOR_POINT_REQUIRED 0
 # define ONE_SPHERE_REQUIRED 1
 # define SPHERES_REQUIRED 0
 # define CONES_REQUIRED 0
@@ -17,9 +29,11 @@
 # define CYLINDER_RADIUS_REQUIRED 1
 # define PLANE_ANGLE_REQUIRED 1
 # define CONE_ANGLE_REQUIRED 1
+
 /*
 ** OBJECTS
 */
+
 # define POSITION_REQUIRED 1
 # define LOOKAT_REQUIRED 0
 # define DIRECTION_REQUIRED 0
@@ -31,8 +45,11 @@
 # define ROLL_REQUIRED 0
 # define INTENSITY_REQUIRED 1
 # define FOV_REQUIRED 1
-//# define UP_REQUIRED 0
-//# define RIGHT_REQUIRED 0
+
+/*
+**# define UP_REQUIRED 0
+**# define RIGHT_REQUIRED 0
+*/
 
 /*
 ** COLORS
