@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/05 00:43:51 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/05 00:58:31 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void		set_matrix_obj(t_obj *obj, t_vec rotation)
 	t_matrix	matrix;
 
 	matrix = world_to_obj_matrix(obj);
-	matrix = matrix_mult(matrix, rotmatrix_axis_angle(obj->dir, obj->roll));
 	matrix = matrix_mult(matrix, rotmatrix_axis_angle(vec_x(), rotation.x));
 	matrix = matrix_mult(matrix, rotmatrix_axis_angle(vec_y(), -rotation.y));
 	matrix = matrix_mult(matrix, rotmatrix_axis_angle(vec_z(), rotation.z));
