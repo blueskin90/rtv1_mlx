@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:58:45 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 23:56:23 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 01:55:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void				print_object_common(t_obj *obj)
 	ft_printf("\t\t%-10s : ", "dir");
 	print_vec(obj->dir);
 	print_color(obj->color, "color");
-	ft_printf("%-10s : %f\n", "brillance", obj->brillance);
-	ft_printf("%-10s : %f\n", "specular", obj->specular);
-	ft_printf("%-10s : %f\n", "diffuse", obj->diffuse);
-	ft_printf("%-10s : %f\n", "ambiant", obj->ambiant);
+	ft_printf("\t\t%-10s : %f\n", "brillance", obj->brillance);
+	ft_printf("\t\t%-10s : %f\n", "specular", obj->specular);
+	ft_printf("\t\t%-10s : %f\n", "diffuse", obj->diffuse);
+	ft_printf("\t\t%-10s : %f\n", "ambiant", obj->ambiant);
+	ft_printf("\t\t%-10s : %f\n", "roll", obj->roll);
 	ft_printf("\t\t%-10s : \n", "world to obj");
 	print_matrix(obj->world_to_obj);
 	ft_printf("\t\t%-10s : \n", "obj to world ");

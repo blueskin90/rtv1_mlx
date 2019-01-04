@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 05:56:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 20:24:43 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 01:40:34 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void				print_objects(t_obj *obj)
 	{
 		i++;
 		ft_printf("\t- obj [%d] of [%d]\n", i, obj_nbr);
-		ft_printf("\t\tIs a %s\n", object_type_string(obj));
+		ft_printf("\t\tIs a %s\n", object_type_string(ptr));
 		print_object(ptr);
 		ft_printf("\n");
 		ptr = ptr->next;
