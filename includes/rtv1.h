@@ -130,7 +130,9 @@ int					hex_color_to_int(t_elem *elem);
 t_rgb				parse_rgb(t_elem *elem, t_rgb color);
 int					parse_hex(t_elem *elem);
 t_rgb				parse_rgb_and_val(t_elem *child_elem);
-char				*string_to_lower(char *str);
+t_vec				get_right_dir(t_vec dir);
+t_vec				get_up_dir(t_vec dir, t_vec right);
+t_vec				vec_rot_zaxis_angle(t_vec v, t_vec zaxis, float angle);
 
 /*
  ** JSON PARSER ERRORS
@@ -252,6 +254,7 @@ void				verbose_loop(t_args *args, t_env *env);
 
 void				*ft_malloc(size_t size);
 void				ft_error(char *str);
+char				*string_to_lower(char *str);
 
 /*
  ** BASIC MATH UTILS FUNCTIONS
