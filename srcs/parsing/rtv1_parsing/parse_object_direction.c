@@ -6,13 +6,13 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 19:37:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 17:44:07 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:46:06 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void				parse_up_right_vec(t_elem *elem, t_obj *obj)
+void					parse_up_right_vec(t_elem *elem, t_obj *obj)
 {
 	obj->roll = default_float(required_float(parse_degree_to_rad(
 					parse_float(find_elem_by_key(elem, "roll"))),
@@ -35,7 +35,7 @@ static void				dir_lookat_given(t_vec dir, t_vec lookat, t_obj *obj)
 	lookat = vec_normalize(lookat);
 	if (!is_equal_vec(dir, lookat))
 		ft_error(LOOKAT_DIRECTION_CONFLICT);
-	obj->dir = dir;	
+	obj->dir = dir;
 }
 
 static void				lookat_given(t_vec lookat, t_obj *obj)

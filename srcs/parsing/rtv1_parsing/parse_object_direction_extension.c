@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 17:33:05 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/04 17:44:29 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:46:18 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ t_vec			vec_rot_zaxis_angle(t_vec v, t_vec zaxis, float angle)
 	t_matrix	rotmatrix;
 
 	rotmatrix = rotmatrix_axis_angle(zaxis, -angle);
-	return (matrix_mult_vec(rotmatrix, v)); 	
+	return (matrix_mult_vec(rotmatrix, v));
 }
-
