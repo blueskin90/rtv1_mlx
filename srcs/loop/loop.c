@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:42:05 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 18:37:31 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 20:34:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void				free_mlx(void *mlx, t_win *win)
 	free(win->img);
 	mlx_destroy_window(mlx, win->winptr);
 	free(win);
-	free(mlx);
+	mlx_destroy(mlx);
+
 }
 
 void				free_cameras(t_obj *cameras, void *mlx)
@@ -81,10 +82,7 @@ void				freeenv(t_env *env)
 	free_args(env->args);
 	free_scenes(env->scene, env->mlx);
 	free_mlx(env->mlx, env->win);
-	read(1, NULL, 1);
 	free(env);
-	read(1, NULL, 1);
-	ft_printf("go free l'env !\n");
 }
 
 int					key_pressed(int key, t_env *env)
@@ -97,15 +95,23 @@ int					key_pressed(int key, t_env *env)
 	return (0);
 }
 
+int					window_closed(t_env *env)
+{
+	freeenv(env);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 void				loop(t_args *args, t_env *env)
 {
 	env->args = args;
 	if (args->print_mode != NO_PRINT && args->renderer_mode != NO_RENDERER)
 	{
-		mlx_hook(env->win->winptr, X_KEYPRESS, X_KEYPRESS_MASK, key_pressed,
-				env);
+		mlx_hook(env->win->winptr, 2, 0, key_pressed, env);
+		mlx_hook(env->win->winptr, 17, 0, window_closed, env);
 		mlx_loop(env->mlx);
 	}
 	if (args->verbose_mode == LOOP || args->verbose_mode == ALL_VERBOSE)
 		verbose_loop(args, env);
+	freeenv(env);
 }

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 18:37:29 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 20:07:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,4 +192,5 @@ typedef enum		e_print_mode
 	TOTAL_COLOR,
 	MAX_PRINT_MODE,
 }					t_print_mode;
+
 #endif
