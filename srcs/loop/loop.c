@@ -6,18 +6,24 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:42:05 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 01:22:53 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:52:32 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+void				freeenv(t_env *env)
+{
+	(void)env;
+	ft_printf("go free l'env !\n");
+}
 
 int					key_pressed(int key, t_env *env)
 {
 	(void)env;
 	if (key == X_KEY_ESCAPE)
 	{
-		//freeenv(env);
+		freeenv(env);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
@@ -26,6 +32,7 @@ int					key_pressed(int key, t_env *env)
 void				loop(t_args *args, t_env *env)
 {
 	//	step_set(LOOP);
+	env->args = args;
 	if (args->print_mode != NO_PRINT && args->renderer_mode != NO_RENDERER)
 	{
 		mlx_hook(env->win->winptr, X_KEYPRESS, X_KEYPRESS_MASK, key_pressed,

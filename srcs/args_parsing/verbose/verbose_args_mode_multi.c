@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 03:28:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/27 10:04:23 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:47:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static char		*print_mode_string(int mode)
 		return ("DEPTH_COLOR");
 	if (mode == TOTAL_COLOR)
 		return ("TOTAL_COLOR");
-	if (mode == TEST_COLOR)
-		return ("TEST_COLOR");
 	return ("ERROR, BAD RENDER MODE !\n");
 }
 

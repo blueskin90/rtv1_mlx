@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 23:54:09 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 03:37:29 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:52:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void			print_usage(void)
 {
-	ft_error(USAGE);
+	ft_putstr_fd("usage: rtv1 [-d] [--renderer=RENDERER_MODE]", 2);
+   	ft_putstr_fd(" [--print[=PRINT_MODE]] [--verbose[=VERBOSE_MODE]] ", 2);
+	ft_error("[file]\n");
 }
 
 void			print_print_usage(void)
@@ -26,7 +28,6 @@ void			print_print_usage(void)
 	ft_putstr_fd("			1 : print hit color mode\n", 2);
 	ft_putstr_fd("			2 : print depth color mode\n", 2);
 	ft_putstr_fd("			3 : print full options raytracing\n", 2);
-	ft_putstr_fd("			4 : print test options raytracing\n", 2);
 	ft_error(NULL);
 }
 

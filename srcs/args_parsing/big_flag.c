@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 00:07:38 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/24 04:40:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:45:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			parse_bigflag_default_value(char *flagvalue, t_args *args)
 {
 	if (strcmp(flagvalue, "print") == 0)
-		args->print_mode = TEST_COLOR;
+		args->print_mode = MAX_PRINT_MODE;
 	else if (strcmp(flagvalue, "verbose") == 0)
 		args->verbose_mode = ALL_VERBOSE;
 	else

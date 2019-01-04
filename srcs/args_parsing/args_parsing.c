@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 18:50:27 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 01:11:59 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:41:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_args			*args_init(void)
 	t_args		*args;
 
 	args = (t_args*)ft_malloc(sizeof(t_args));
-	args->parse_mode = STANDARD;
 	args->verbose_mode = NO_VERBOSE;
 	args->print_mode = TOTAL_COLOR;
 	args->debug_mode = 0;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 01:55:44 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 17:45:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,11 @@ typedef struct		s_env
 	void			*mlx;
 	t_win			*win;
 	t_scene			*scene;
+	struct s_args	*args;
 }					t_env;
 
 typedef struct		s_args
 {
-	int				parse_mode;
 	int				verbose_mode;
 	int				renderer_mode;
 	int				print_mode;
@@ -169,12 +169,6 @@ typedef enum		e_renderer_mode
 	CLUSTERING,
 	MAX_RENDERER_MODE = 3,
 }					t_renderer_mode;
-
-typedef enum		e_parse_mode
-{
-	STANDARD,
-	JSON,
-}					t_parse_mode;
 
 typedef enum		e_verbose_mode
 {
@@ -196,7 +190,6 @@ typedef enum		e_print_mode
 	HIT_COLOR,
 	DEPTH_COLOR,
 	TOTAL_COLOR,
-	TEST_COLOR,
 	MAX_PRINT_MODE,
 }					t_print_mode;
 #endif
