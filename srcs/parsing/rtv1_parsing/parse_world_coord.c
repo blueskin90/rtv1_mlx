@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 04:50:59 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 23:07:05 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/05 00:09:51 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_matrix		world_to_obj_matrix(t_obj *obj)
 	matrix.matrix[2][0] = zaxis.x;
 	matrix.matrix[2][1] = zaxis.y;
 	matrix.matrix[2][2] = zaxis.z;
-	matrix_mult(matrix, rotmatrix_axis_angle(vec_z(), obj->roll));
 	return (matrix);
 }
 

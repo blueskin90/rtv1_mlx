@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 21:52:51 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 21:53:00 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 23:43:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,16 +263,4 @@ float				clampf(float a, float inf_limit, float sup_limit);
 int					is_equal_float(float a, float b);
 int					is_equal_vec(t_vec a, t_vec b);
 int					is_opposite_vec(t_vec a, t_vec b);
-
-/*
-** SINGLETON FUNCTIONS
-*/
-
-t_env				*env_get(void);
-void				env_set(t_env *env);
-t_args				*args_get(void);
-void				args_set(t_args *arg);
-int					step_get(void);
-void				step_set(int value);
-
 #endif

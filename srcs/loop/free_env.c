@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 21:30:55 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 21:36:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/05 00:44:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 static void			free_mlx(void *mlx, t_win *win)
 {
-	mlx_destroy_image(mlx, win->img->imgptr);
-	free(win->img);
-	mlx_destroy_window(mlx, win->winptr);
-	free(win);
-	mlx_destroy(mlx);
+	if (win)
+	{
+		if (win->img)
+		{
+			mlx_destroy_image(mlx, win->img->imgptr);
+			free(win->img);
+		}
+		mlx_destroy_window(mlx, win->winptr);
+		free(win);
+		mlx_destroy(mlx);
+	}
 }
 
 static void			free_cameras(t_obj *cameras, void *mlx)
@@ -30,7 +36,9 @@ static void			free_cameras(t_obj *cameras, void *mlx)
 	{
 		if (ptr->params.camera.renderer)
 		{
-			mlx_destroy_image(mlx, ptr->params.camera.renderer->img->imgptr);
+			if (mlx)
+				mlx_destroy_image(mlx,
+						ptr->params.camera.renderer->img->imgptr);
 			free(ptr->params.camera.renderer->img);
 			free(ptr->params.camera.renderer->renderer);
 			free(ptr->params.camera.renderer);
