@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/03 22:09:10 by cvermand         ###   ########.fr        #
+#    Updated: 2019/01/04 01:21:03 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,6 +140,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix common/, \
 				ray_shooting \
 				ray_light_shooting \
+				reflect \
 			) \
 		) \
 		$(addprefix verbose/, \
@@ -150,6 +151,12 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 		printing \
 		$(addprefix verbose/, \
 			verbose_printing \
+		) \
+	) \
+	$(addprefix loop/, \
+		loop \
+		$(addprefix verbose/, \
+			verbose_loop \
 		) \
 	) \
 	\
@@ -214,6 +221,7 @@ objs:
 	@mkdir objs/running/raytracing/primitives/sphere
 	@mkdir objs/running/raytracing/common
 	@mkdir -p objs/printing/verbose
+	@mkdir -p objs/loop/verbose
 	@mkdir -p objs/tools/colors_handling
 
 clean:

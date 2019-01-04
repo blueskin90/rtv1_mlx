@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general_tools.c                                    :+:      :+:    :+:   */
+/*   reflect.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 16:16:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 01:13:31 by toliver          ###   ########.fr       */
+/*   Created: 2019/01/04 00:35:02 by toliver           #+#    #+#             */
+/*   Updated: 2019/01/04 00:40:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-char				*string_to_lower(char *str)
+t_ray			reflect_ray(t_ray *ray)
 {
-	int				i;
+	t_matrix	rotmatrix;
+	t_vec		reflected;
 
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-	return (str);
+	rotmatrix = rotmatrix_axis_angle(ray->normal, degtorad(180));
+	reflected = matrix_mult_vec(rotmatrix, vec_opposite(ray->dir));
+	return (ray_init(ray->hit_pos, vec_norm(reflected)));
 }
 
-void				*ft_malloc(size_t size)
+t_vec			reflect_vec(t_vec vec, t_vec axis)
 {
-	void			*ptr;
+	t_matrix	rotmatrix;
 
-	if (!(ptr = malloc(size)))
-		ft_error(MALLOC_FAIL);
-	ft_bzero(ptr, size);
-	return (ptr);
-}
-
-void				ft_error(char *str)
-{
-	ft_putstr_fd(str, 2);
-	exit(0);
-}
-
-void				ft_illegal_flag(char flag)
-{
-	ft_putstr_fd("rtv1: illegal option -- %c\n", flag);
+	rotmatrix = rotmatrix_axis_angle(axis, degtorad(180));
+	return (vec_normalize(matrix_mult_vec(rotmatrix, vec)));
 }

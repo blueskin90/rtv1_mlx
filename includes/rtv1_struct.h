@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:55:41 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 22:39:17 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 00:39:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,8 @@ typedef enum		e_verbose_mode
 	PARSING,
 	SETTINGS,
 	RUNNING,
-	PRINTING, 
+	PRINTING,
+	LOOP,	
 	ALL_VERBOSE,
 	MAX_VERBOSE_MODE,
 }					t_verbose_mode;

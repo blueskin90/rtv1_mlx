@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 03:45:08 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 15:09:11 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/03 23:32:49 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			stack_raytracing(t_scene *scene, t_renderer *renderer,
 		{
 			ray = get_actual_ray(renderer, cam, x, y);
 			shoot_ray(scene, &ray);
-			if (renderer->print_mode > 2)
+			if (renderer->print_mode > 2 && ray.length != INFINITY)
 				shoot_ray_lights(scene, &ray, cam);
 			if (renderer->print_mode > 0)
 				mlx_px_to_img(renderer->img, x, y, ray.color.value);

@@ -161,6 +161,9 @@ void				print_renderer(t_renderer *renderer);
  ** RUNNING FUNCTIONS
  */
 
+t_ray				reflect_ray(t_ray *ray);
+t_vec				reflect_vec(t_vec vec, t_vec axis);
+
 /*
  ** PRIMITIVES FUNCTIONS
  */
@@ -234,6 +237,15 @@ void				verbose_running(t_args *args, t_scene *scenes);
 void				printing(t_args *args, t_scene *scenes, t_win *win, void *mlx);
 
 void				verbose_printing(t_args *args, t_scene *scenes);
+
+/*
+** LOOP FUNCTIONS
+*/
+
+int					key_pressed(int key, t_env *env);
+void				loop(t_args *args, t_env *env);
+
+void				verbose_loop(t_args *args, t_env *env);
 
 /*
  ** BASIC UTILS FUNCTIONS

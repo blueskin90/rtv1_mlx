@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:37:52 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/03 15:03:04 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/04 01:12:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ t_env				*init(t_args *args)
 {
 	t_env			*env;
 
-//	step_set(INIT);
 	env = env_init(args);
-//	env_set(env);
 	if (args->verbose_mode == INIT || args->verbose_mode == ALL_VERBOSE)
 		verbose_env(env);
 	return (env);

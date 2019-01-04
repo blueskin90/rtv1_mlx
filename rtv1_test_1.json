@@ -4,9 +4,9 @@
 		"objects" : {
 			"spheres" : [
 				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
+					"specular" : 0.9,
+					"diffuse" : 0.7,
+					"brillance" : 10,
 					"position" : {
 						"x" : -35.0,
 						"y" : 30.0,
@@ -23,9 +23,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
+					"specular" : 0.9,
+					"diffuse" : 0.7,
+					"brillance" : 10,
 					"position" : {
 						"x" : 5.0,
 						"y" : 0.0,
@@ -42,9 +42,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
+					"specular" : 0.9,
+					"diffuse" : 0.7,
+					"brillance" : 10,
 					"position" : {
 						"x" : 25.0,
 						"y" : 12.0,
@@ -61,9 +61,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
+					"specular" : 0.9,
+					"diffuse" : 0.7,
+					"brillance" : 10,
 					"position" : {
 						"x" : 6.0,
 						"y" : 6.0,
@@ -80,9 +80,9 @@
 					"radius" : 4.0
 				},
 				{
-					"specular" : 0.8,
-					"diffuse" : 0.6,
-					"brillance" : 100,
+					"specular" : 0.9,
+					"diffuse" : 0.7,
+					"brillance" : 10,
 					"position" : {
 						"x" : -3.0,
 						"y" : -3.0,
@@ -254,7 +254,7 @@
 					{
 					"specular" : 0.8,
 					"diffuse" : 0.6,
-					"brillance" : 100,
+					"brillance" : 50,
 					"position" : {
 						"x" : -29.0,
 						"y" : -40.0,
@@ -282,7 +282,7 @@
 				"color" : {
 					"hex" : "0xffffff"
 				},
-				"intensity" : 0.6
+				"intensity" : 0.9
 			},
 			{
 				"position" : {
@@ -293,7 +293,7 @@
 				"color" : {
 					"hex" : "0xffffff"
 				},
-				"intensity" : 0.9
+				"intensity" : 0.6
 			}
 		],
 		"cameras" : [
