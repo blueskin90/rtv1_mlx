@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 21:54:40 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 21:55:36 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/05 18:11:30 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RTV1_REQUIRED_INFORMATION_H
 
 # define SCENE_REQUIRED 1
-# define NAME_REQUIRED 0
+# define NAME_REQUIRED 1
 # define OBJECTS_REQUIRED 1
 # define VECTOR_REQUIRED 0
 # define VECTOR_POINT_REQUIRED 0

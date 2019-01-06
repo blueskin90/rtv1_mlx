@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 16:42:52 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/05 00:58:31 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/06 18:07:00 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,19 @@ static void		parse_color_information(t_elem *child_elem, t_obj *obj)
 				DIFFUSE_REQ, "Diffuse"), 1.0);
 	obj->ambiant = default_float(required_float(
 				parse_float(find_elem_by_key(child_elem, "ambiant")),
-				AMBIANT_REQ, "Ambiant"), 0.0); // de 0 a 1 pour ambiant, diff, spec
+				AMBIANT_REQ, "Ambiant"), 0.0);
 	obj->brillance = default_float(required_float(
 				parse_float(find_elem_by_key(child_elem, "brillance")),
 				BRILLANCE_REQ, "Brillance"), 1.0);
+	if (obj->brillance < 1.0 || obj->brillance > 128)
+		ft_error(BRILLANCE_BAD_FORMAT);
+	obj->brillance = obj->brillance / 128.0;
+	if (obj->specular < 0.0 || obj->specular > 1.0)
+		ft_error(SPECULAR_BAD_FORMAT);
+	if (obj->diffuse < 0.0 || obj->diffuse > 1.0)
+		ft_error(DIFFUSE_BAD_FORMAT);
+	if (obj->ambiant < 0.0 || obj->ambiant > 1.0)
+		ft_error(AMBIANT_BAD_FORMAT);
 }
 
 t_obj			*parse_one_object(t_elem *elem,
@@ -68,9 +77,6 @@ t_obj			*parse_one_object(t_elem *elem,
 	parse_up_right_vec(child_elem, obj);
 	parse_obj(child_elem, obj);
 	parse_color_information(child_elem, obj);
-	if (obj->brillance < 1.0 || obj->brillance > 128)
-		ft_error(BRILLANCE_BAD_FORMAT);
-	obj->brillance = obj->brillance / 128.0;
 	parse_rotation_translation(child_elem, obj);
 	return (obj);
 }
