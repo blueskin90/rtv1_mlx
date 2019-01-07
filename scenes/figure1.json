@@ -1,0 +1,56 @@
+[
+	 {
+		"name" : "one sphere with light",
+		"objects" : {
+			"spheres" : [
+				{
+					"specular" : 0.9,
+					"diffuse" : 0.5,
+					"brillance" : 128,
+					"position" : {
+						"x" : 10.0,
+						"y" : 20.0,
+						"z" : 30.0
+					},
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 6.0
+					},
+					"color" : {
+						"hex" : "0xff3030"
+					},
+					"radius" : 4.0
+				}
+			]
+		},
+		"lights" : [
+			{
+				"position" : {
+					"x" : 20.0,
+					"y" : 20.0,
+					"z" : 20.0
+				},
+				"color" : {
+					"hex" : "0xffffff"
+				},
+				"intensity" : 1
+			}
+			],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 10.0,
+					"y" : 20.0,
+					"z" : 20.0
+				},
+				"lookat" : {
+					"x" : 10.0,
+					"y" : 20.0,
+					"z" : 30.0
+				},
+				"fov" : 60.0
+			}
+		]	
+	}
+]

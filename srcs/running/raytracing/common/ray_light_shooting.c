@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 08:50:30 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 00:41:01 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/07 03:28:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_rgb			get_ambiant(t_ray *ray, t_scene *scene)
 	}
 	if (total_intensity != 0)
 		color = rgb_div(color, total_intensity);
-	color = rgb_mul(color, 0.2);
+//	color = rgb_mul(color, 0.2);
+	color = rgb_mul(color, 0.0);
 	color = rgb_mul_rgb(ray->obj_hit->color, color);
 	color = rgb_mul(color, ray->obj_hit->diffuse);
 	rgb_updatevalue(&color);
@@ -57,7 +58,7 @@ t_rgb			get_specular(t_ray *ray, t_ray to_light, t_obj *light,
 	mult_value = powf(mult_value, (ray->obj_hit->brillance * 128));
 	mult_value *= light->params.light.intensity;
 	rgb = rgb_mul(light->color, mult_value);
-	rgb = rgb_mul_rgb(rgb, ray->obj_hit->color);
+//	rgb = rgb_mul_rgb(rgb, ray->obj_hit->color);
 	(void)to_light;
 	return (rgb);
 }

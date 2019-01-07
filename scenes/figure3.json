@@ -1,0 +1,76 @@
+[
+	 {
+		"name" : "one cylinder with light",
+		"objects" : {
+			"cones" : [
+				{
+					"specular" : 0.3,
+					"diffuse" : 0.5,
+					"brillance" : 2,
+					"position" : {
+						"x" : 0.0,
+						"y" : 5.0,
+						"z" : 30.0
+					},
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 6.0,
+						"z" : 30.0
+					},
+					"color" : {
+						"hex" : "0xffff30"
+					},
+					"angle" : 35.0
+				}
+			],
+			"planes" : [
+				{
+					"specular" : 0.3,
+					"diffuse" : 0.5,
+					"brillance" : 2,
+					"position" : {
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"lookat" : {
+						"x" : 0.0,
+						"y" : 1.0,
+						"z" : 0.0
+					},
+					"color" : {
+						"hex" : "0x1010ff"
+					}
+				}
+			]
+		},
+		"lights" : [
+			{
+				"position" : {
+					"x" : 10.0,
+					"y" : 5.0,
+					"z" : 20.0
+				},
+				"color" : {
+					"hex" : "0xffffff"
+				},
+				"intensity" : 1
+			}
+			],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 5.0,
+					"z" : 0.0
+				},
+				"lookat" : {
+					"x" : 0.0,
+					"y" : 5.0,
+					"z" : 30.0
+				},
+				"fov" : 60.0
+			}
+		]	
+	}
+]
