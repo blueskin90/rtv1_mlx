@@ -1,1344 +1,0 @@
-
-includes/args_parsing.h,120
-# define ARGS_PARSING_H14,915
-# define PROGRAM_NAME 19,987
-# define SHORT_FLAGS 20,1018
-# define LONG_FLAGS 21,1043
-
-includes/colors.h,75
-# define COLORS_H14,909
-typedef struct		s_rgb18,948
-}					t_rgb;24,1023
-
-includes/json_parser.h,440
-# define JSON_PARSER_H14,914
-# define TRUE 22,1059
-# define FALSE 23,1075
-# define DEBUG_PRINT 24,1092
-# define PRINT_TREE 25,1115
-typedef enum		e_json_data27,1138
-	NOTYPE,29,1166
-	INTEGER,30,1175
-	STRING,31,1185
-	FLOAT,32,1194
-	BOOL,33,1202
-	OBJECT,34,1209
-	NULL_ELEM,35,1218
-	ARRAY,36,1230
-}					t_json_data;37,1238
-typedef union		u_value39,1258
-}					t_value;48,1397
-typedef struct		s_elem50,1413
-}					t_elem;58,1542
-
-includes/json_parser_errors.h,559
-# define JSON_PARSER_ERRORS_H14,921
-# define FD_FAIL 18,988
-# define EMPTY_FILE	19,1029
-# define END_OF_FILE_BAD_FORMAT 20,1067
-# define JSON_PARSING_ERROR 25,1161
-# define KEY_NOT_FOUND 26,1215
-# define NO_CLOSING_BRACKETS 27,1265
-# define VALUE_NOT_RECOGNIZED 28,1318
-# define UNEXPECTED_END_OF_FILE 29,1382
-# define ARRAY_BAD_FORMAT 30,1437
-# define ARRAY_MULTIPLE_TYPE 31,1496
-# define OBJECT_BAD_FORMAT 32,1562
-# define SAME_KEY_NAME 33,1623
-# define BAD_BEGIN_OF_FILE 34,1679
-# define STRING_TO_LONG 35,1743
-# define KEY_TO_LONG 36,1807
-
-includes/keys.h,2755
-# define X_KEYS_H14,909
-# define X_KEYPRESS 16,928
-# define X_BUTTONPRESS 17,950
-# define X_MOTIONNOTIFY 18,975
-# define X_DESTROYNOTIFY 19,1001
-# define X_NOEVENT_MASK 21,1030
-# define X_KEYPRESS_MASK 22,1057
-# define X_KEYRELEASE_MASK 23,1092
-# define X_BUTTONPRESS_MASK 24,1129
-# define X_BUTTONRELEASE_MASK 25,1167
-# define X_ENTERWINDOW_MASK 26,1207
-# define X_LEAVEWINDOW_MASK 27,1245
-# define X_POINTERMOTION_MASK 28,1283
-# define X_POINTERMOTIONHINT_MASK 29,1323
-# define X_BUTTON1MOTION_MASK 30,1367
-# define X_BUTTON2MOTION_MASK 31,1407
-# define X_BUTTON3MOTION_MASK 32,1447
-# define X_BUTTON4MOTION_MASK 33,1488
-# define X_BUTTON5MOTION_MASK 34,1529
-# define X_BUTTONMOTION_MASK 35,1570
-# define X_KEYMAPSTATE_MASK 36,1610
-# define X_EXPOSUREMASK_MASK 37,1649
-# define X_VISIBILITYCHANGE_MASK 38,1689
-# define X_STRUCTURENOTIFY_MASK 39,1733
-# define X_RESIZEREDIRECT_MASK 40,1776
-# define X_SUBSTRUCTURENOTIFY_MASK 41,1818
-# define X_SUBSTRUCTUREREDIRECT_MASK 42,1864
-# define X_FOCUSCHANGE_MASK 43,1912
-# define X_PROPERTYCHANGE_MASK 44,1951
-# define X_COLORMAPCHANGE_MASK 45,1993
-# define X_OWNERGRABBUTTON_MASK 46,2035
-# define X_KEY_A 48,2079
-# define X_KEY_S 49,2098
-# define X_KEY_D 50,2117
-# define X_KEY_F 51,2136
-# define X_KEY_H 52,2155
-# define X_KEY_G 53,2174
-# define X_KEY_Z 54,2193
-# define X_KEY_X 55,2212
-# define X_KEY_C 56,2231
-# define X_KEY_V 57,2250
-# define X_KEY_B 58,2269
-# define X_KEY_Q 59,2289
-# define X_KEY_W 60,2309
-# define X_KEY_E 61,2329
-# define X_KEY_R 62,2349
-# define X_KEY_Y 63,2369
-# define X_KEY_T 64,2389
-# define X_KEY_1 65,2409
-# define X_KEY_2 66,2429
-# define X_KEY_3 67,2449
-# define X_KEY_4 68,2469
-# define X_KEY_6 69,2489
-# define X_KEY_5 70,2509
-# define X_KEY_EQUAL 71,2529
-# define X_KEY_9 72,2553
-# define X_KEY_7 73,2573
-# define X_KEY_MINUS 74,2593
-# define X_KEY_8 75,2617
-# define X_KEY_0 76,2637
-# define X_KEY_O 77,2657
-# define X_KEY_U 78,2677
-# define X_KEY_I 79,2697
-# define X_KEY_P 80,2717
-# define X_KEY_ENTER 81,2737
-# define X_KEY_L 82,2761
-# define X_KEY_J 83,2781
-# define X_KEY_K 84,2801
-# define X_KEY_N 85,2821
-# define X_KEY_M 86,2841
-# define X_KEY_TAB 87,2861
-# define X_KEY_SPACE 88,2883
-# define X_KEY_BACKTICK 89,2907
-# define X_KEY_BACKSPACE 90,2934
-# define X_KEY_ESCAPE 91,2962
-# define X_KEY_DEL 92,2987
-# define X_KEY_L_ARROW 93,3010
-# define X_KEY_R_ARROW 94,3037
-# define X_KEY_U_ARROW 95,3064
-# define X_KEY_D_ARROW 96,3091
-# define X_KEY_L_CTRL 97,3118
-# define X_KEY_L_SHIFT 98,3144
-# define X_KEY_R_SHIFT 99,3171
-# define X_KEY_L_ALT 100,3198
-# define X_KEY_R_ALT 101,3223
-# define X_KEY_R_CTRL 102,3248
-# define X_SCROLL_DOWN 104,3275
-# define X_SCROLL_UP 105,3300
-
-includes/libft_errors.h,60
-# define LIBFT_ERRORS_H14,915
-# define MALLOC_FAIL 16,940
-
-includes/mlx_errors.h,115
-# define MLX_ERRORS_H14,913
-# define MLX_FAIL 16,936
-# define WINDOW_FAIL 17,977
-# define MLX_IMG_FAIL 18,1029
-
-includes/rtv1.h,108
-# define RTV1_H14,907
-# define WIN_WIDTH 29,1214
-# define WIN_HEIGHT 30,1238
-# define TOLERANCE 31,1262
-
-includes/rtv1_errors.h,1269
-# define RTV1_ERRORS_H14,914
-# define FIRST_ELEM_BAD_FORMAT 19,960
-# define SCENE_BAD_FORMAT 20,1023
-# define SCENE_NAME_BAD_FORMAT 21,1092
-# define OBJECTS_BAD_FORMAT 22,1165
-# define VECTOR_BAD_FORMAT 23,1243
-# define SPHERES_BAD_FORMAT 24,1319
-# define SPHERE_BAD_FORMAT 25,1397
-# define X_BAD_FORMAT 26,1476
-# define X_SHOULD_NOT_BE 27,1518
-# define X_MUST_BE 28,1561
-# define BAD_FORMAT_HEX 29,1593
-# define HEX_NOT_IN_LIMIT 30,1664
-# define RADIUS_BAD_FORMAT 31,1745
-# define BRILLANCE_BAD_FORMAT 32,1817
-# define SPECULAR_BAD_FORMAT 33,1896
-# define DIFFUSE_BAD_FORMAT 34,1971
-# define AMBIANT_BAD_FORMAT 35,2044
-# define FOV_BAD_FORMAT 36,2117
-# define ITENSITITY_BAD_FORMAT 37,2186
-# define IS_REQUIRED 42,2294
-# define AT_LEAST_ONE_REQUIRED 43,2332
-# define SCENE_IS_REQUIRED 44,2379
-# define NAME_IS_REQUIRED 45,2441
-# define SPHERES_IS_REQUIRED 46,2488
-# define ONE_SPHERE_IS_REQUIRED 47,2541
-# define OBJECTS_IS_REQUIRED 48,2609
-# define VECTOR_IS_REQUIRED 49,2690
-# define VECTOR_POINT_IS_REQUIRED 50,2741
-# define CANNOT_POSITION 51,2805
-# define LOOKAT_DIRECTION_CONFLICT 56,2901
-# define DIR_CANNOT_POINT_0 57,2981
-# define LOOKAT_CANNOT_POINT_0 58,3044
-# define RGB_BAD_VAL 59,3125
-# define RGB_HEX_CONFLICT 60,3187
-
-includes/rtv1_required_information.h,1336
-# define RTV1_REQUIRED_INFORMATION_H14,928
-# define SCENE_REQUIRED 16,966
-# define NAME_REQUIRED 17,992
-# define OBJECTS_REQUIRED 18,1017
-# define VECTOR_REQUIRED 19,1045
-# define VECTOR_POINT_REQUIRED 20,1072
-# define ONE_SPHERE_REQUIRED 21,1105
-# define SPHERES_REQUIRED 22,1136
-# define CONES_REQUIRED 23,1164
-# define PLANES_REQUIRED 24,1190
-# define CYLINDERS_REQUIRED 25,1217
-# define LIGHTS_REQUIRED 26,1247
-# define CAMERAS_REQUIRED 27,1274
-# define SPHERE_RADIUS_REQUIRED 28,1302
-# define CYLINDER_RADIUS_REQUIRED 29,1336
-# define PLANE_ANGLE_REQUIRED 30,1372
-# define CONE_ANGLE_REQUIRED 31,1404
-# define POSITION_REQUIRED 37,1454
-# define LOOKAT_REQUIRED 38,1483
-# define DIRECTION_REQUIRED 39,1510
-# define LOOKAT_OR_DIRECTION_REQUIRED 40,1540
-# define ROLL_OR_UP_OR_RIGHT_REQUIRED 41,1580
-# define TRANSLATION_REQUIRED 42,1620
-# define ROTATION_REQUIRED 43,1652
-# define DIR_REQUIRED 44,1681
-# define ROLL_REQUIRED 45,1705
-# define INTENSITY_REQUIRED 46,1730
-# define FOV_REQUIRED 47,1760
-# define COLOR_REQ 57,1861
-# define DIFFUSE_REQ 58,1882
-# define SPECULAR_REQ 59,1905
-# define BRILLANCE_REQ 60,1929
-# define AMBIANT_REQ 61,1954
-# define COLOR_RGB_REQUIRED 62,1977
-# define COLOR_HEX_REQUIRED 63,2007
-# define COLOR_AT_LEAST_ONE_REQUIRED 64,2037
-# define AMBIANT_REQUIRED 65,2076
-
-includes/rtv1_struct.h,1687
-# define RTV1_STRUCT_H14,914
-typedef struct		s_img19,981
-}					t_img;28,1112
-typedef enum		e_type30,1126
-	SPHERE,32,1149
-	PLANE,33,1158
-	CONE,34,1166
-	CYLINDER,35,1173
-	LIGHT,36,1184
-	CAMERA,37,1192
-}					t_type;38,1201
-typedef struct		s_sphere40,1216
-}					t_sphere;43,1260
-typedef struct		s_plane45,1277
-}					t_plane;48,1314
-typedef struct		s_cone50,1330
-}					t_cone;53,1371
-typedef struct		s_cylinder55,1386
-}					t_cylinder;58,1432
-typedef struct		s_renderer60,1451
-}					t_renderer;71,1652
-typedef struct		s_camera73,1671
-}					t_camera;77,1736
-typedef struct		s_light79,1753
-}					t_light;82,1799
-typedef union		u_params84,1815
-}					t_params;92,1954
-typedef struct		s_ray94,1971
-}					t_ray;104,2132
-typedef struct		s_obj106,2146
-}					t_obj;126,2502
-typedef struct		s_scene128,2516
-}					t_scene;135,2633
-typedef struct		s_win137,2649
-}					t_win;143,2733
-typedef struct		s_env145,2747
-}					t_env;151,2841
-typedef struct		s_args153,2855
-}					t_args;160,2982
-typedef enum		e_renderer_mode162,2997
-	NO_RENDERER,164,3029
-	STACK,165,3043
-	MALLOC,166,3051
-	MULTITHREAD,167,3060
-	GRAPHIQUE,168,3074
-	CLUSTERING,169,3086
-	MAX_RENDERER_MODE 170,3099
-}					t_renderer_mode;171,3123
-typedef enum		e_verbose_mode173,3147
-	NO_VERBOSE,175,3178
-	ARGS_PARSING,176,3191
-	INIT,177,3206
-	PARSING,178,3213
-	SETTINGS,179,3223
-	RUNNING,180,3234
-	PRINTING,181,3244
-	LOOP,182,3255
-	ALL_VERBOSE,183,3262
-	MAX_VERBOSE_MODE,184,3276
-}					t_verbose_mode;185,3295
-typedef enum		e_print_mode187,3318
-	NO_PRINT,189,3347
-	HIT_COLOR,190,3358
-	DEPTH_COLOR,191,3370
-	TOTAL_COLOR,192,3384
-	MAX_PRINT_MODE,193,3398
-}					t_print_mode;194,3415
-
-json_parser_unit_testing/srcs/core/main.c,19
-int			main(16,936
-
-libs/ft_printf/includes/libftprintf.h,854
-# define LIBFTPRINTF_H14,914
-# define BUFFSIZE 23,1067
-# define DBL_MAX_EXP_VAL 24,1090
-# define LDBL_MAX_EXP_VAL 25,1121
-# define ISHEXA 26,1154
-# define ISSHORTEST 27,1172
-# define ISEXP 28,1194
-# define ISDECI 29,1211
-typedef union				u_types31,1230
-}							t_types;61,1828
-typedef struct				s_arg63,1846
-}							t_arg;73,2011
-typedef struct				s_penv75,2027
-}							t_penv;88,2350
-typedef struct				s_ldoublesplit92,2401
-}							t_ldoublesplit;98,2539
-typedef union				u_ldouble99,2563
-}							t_ldouble;103,2638
-typedef	struct				s_doublesplit104,2657
-}							t_doublesplit;109,2771
-typedef	union				u_double110,2794
-}							t_double;114,2863
-typedef union				u_hexa118,2902
-}							t_hexa;122,2983
-typedef struct				s_splitd123,2999
-}							t_splitd;140,3372
-typedef struct				s_bigint141,3390
-}							t_bigint;150,3593
-
-libs/ft_printf/srcs/bigint_handle.c,91
-int				mulnum(15,918
-int				multab(34,1276
-int				divtab(53,1630
-int				addtab(75,2095
-
-libs/ft_printf/srcs/buff_fill1.c,87
-int			buff_fills(15,918
-int			buff_fillwstrnull(36,1482
-int			buff_fillwstr(43,1614
-
-libs/ft_printf/srcs/buff_fill_utility.c,140
-size_t		ft_wstrlen(15,918
-size_t		ft_pstrlen(25,1016
-size_t		chartofill(35,1114
-size_t		ft_wcharstrlen(50,1415
-int			issmaller(77,1943
-
-libs/ft_printf/srcs/buff_fillbinary.c,162
-int					buff_printdouble(15,918
-int					buff_printldouble(35,1397
-int					buff_printbits(58,1984
-int					get_bitlen(81,2378
-int					buff_fillbinary(108,2814
-
-libs/ft_printf/srcs/buff_fillchar.c,141
-int				octsize(15,918
-int				buff_fillchar(35,1255
-int				buff_fillc(43,1405
-int				buff_fillwchar(56,1744
-int				buff_putwchar(82,2443
-
-libs/ft_printf/srcs/buff_fillfloat.c,142
-int						buff_fillexponenthexa(15,918
-int						buff_fillhexalongd(23,1110
-int						buff_fillhexad(51,1704
-int						buff_fillfloat(78,2297
-
-libs/ft_printf/srcs/buff_fillfloat_deci.c,170
-int				mustround(15,918
-int				float_rounding_pastcoma(31,1340
-int				float_rounding_tilcoma(57,1868
-int				float_rounding(70,2194
-int				buff_fillfloatdeci(95,2886
-
-libs/ft_printf/srcs/buff_fillfloat_deci_write.c,97
-int				putfloatsign(15,918
-int				float_writeoutput2(26,1148
-int				float_writeoutput(52,1628
-
-libs/ft_printf/srcs/buff_fillfloat_error.c,66
-int						buff_fillerror2(15,918
-int						buff_fillerror(24,1064
-
-libs/ft_printf/srcs/buff_fillfloat_exp.c,115
-int				sizeofexponent(15,918
-int				putexponent(25,1058
-int				exp_setting(35,1329
-int				buff_fillexp(62,1863
-
-libs/ft_printf/srcs/buff_fillfloat_exp_write.c,94
-int				charnumberset(15,918
-int				fucklanorme(27,1277
-int				float_writeexpoutput(50,1750
-
-libs/ft_printf/srcs/buff_fillfloat_hexautil.c,91
-int						hexavaluesetd(15,918
-int						setaswritable(37,1245
-int						numberlen(50,1439
-
-libs/ft_printf/srcs/buff_fillfloat_roundinghexa.c,62
-int						roundinghexa2(15,918
-int						roundinghexa(33,1185
-
-libs/ft_printf/srcs/buff_fillfloat_writehexa.c,101
-int						writehexasetvalues(15,918
-int						writehexa_filldeci(26,1318
-int						writehexa(35,1519
-
-libs/ft_printf/srcs/buff_fillfloatinit.c,155
-int					initdoublevalues(15,918
-int					initdouble(26,1109
-int					initlongdoublesub(52,1671
-int					initlongdouble(60,1859
-int					splitinit(86,2380
-
-libs/ft_printf/srcs/buff_fillhexaoct.c,110
-int			buff_putprefix(15,918
-int			buff_filloct(28,1283
-int			valueset(55,2080
-int			buff_fillhexa(65,2370
-
-libs/ft_printf/srcs/buff_fillhexaoctutil.c,64
-int			buff_uimaxtoahexa(15,918
-int			buff_uimaxtoaoct(30,1227
-
-libs/ft_printf/srcs/buff_fillint.c,117
-int			buff_putsign(15,918
-int			buff_fillint_init(26,1135
-int			buff_fillint(34,1344
-int			buff_filluint(62,2243
-
-libs/ft_printf/srcs/buff_fillint_getcasted.c,72
-intmax_t	get_castedintmaxt(15,918
-intmax_t	get_casteduintmaxt(37,1541
-
-libs/ft_printf/srcs/buff_fillint_utility.c,127
-size_t		ft_uintmaxtlenbase(15,918
-size_t		ft_intmaxtlenbase(28,1073
-int			buff_uimaxtoa(36,1263
-int			buff_imaxtoa(48,1470
-
-libs/ft_printf/srcs/buff_fillptr.c,88
-int			buff_fillptrinit(15,918
-int			buff_fillptr(23,1130
-int			buff_fillnptr(52,1997
-
-libs/ft_printf/srcs/buff_fillutility.c,127
-int				buff_padding(15,918
-int				buff_fillwith(25,1085
-int				buff_fillwithnumber(33,1206
-int				buff_fillwithstr(43,1332
-
-libs/ft_printf/srcs/bufferhandling.c,53
-void			buff_check(17,938
-void			buff_flush(26,1064
-
-libs/ft_printf/srcs/env_ptrarrayinit.c,189
-void							env_getarrayinittab(15,918
-void							env_getarrayinit(42,1759
-void							env_ptrarrayinit0(57,1952
-void							env_ptrarrayinit1(83,2738
-void							env_ptrarrayinit(97,3108
-
-libs/ft_printf/srcs/fillfloat_deci_bigint.c,135
-int				initbigint(15,918
-int				fillint(37,1183
-int				copyintvalue(62,1536
-int				resetbigint(73,1709
-int				fill_bigint(88,1881
-
-libs/ft_printf/srcs/fillfloat_deci_bigint2.c,112
-int				filldeciinit(15,918
-int				filldeci(24,1092
-int				write_bigint(53,1524
-int				copydecivalue(67,1772
-
-libs/ft_printf/srcs/ft_printf.c,59
-void							env_pinit(15,918
-int								ft_printf(34,1293
-
-libs/ft_printf/srcs/get_arg1.c,137
-int				get_intmaxt(15,918
-int				get_sizet(21,1030
-int				get_ptrdifft(27,1137
-int				get_ldouble(33,1250
-int				get_double(39,1363
-
-libs/ft_printf/srcs/get_arg2.c,128
-int				get_int(15,918
-int				get_char(21,1018
-int				get_short(27,1125
-int				get_long(33,1239
-int				get_longlong(39,1346
-
-libs/ft_printf/srcs/get_arg3.c,49
-int				get_wintt(15,918
-int				get_ptr(21,1024
-
-libs/ft_printf/srcs/parse_conv1.c,139
-int				parse_hconv(15,918
-int				parse_lconv(26,1169
-int				parse_jconv(37,1420
-int				parse_zconv(44,1547
-int				parse_tconv(51,1674
-
-libs/ft_printf/srcs/parse_conv2.c,30
-int				parse_lmajconv(15,918
-
-libs/ft_printf/srcs/parse_flag1.c,156
-int				parse_minusflag(15,918
-int				parse_plusflag(22,1016
-int				parse_zeroflag(29,1113
-int				parse_spaceflag(36,1209
-int				parse_hashflag(43,1306
-
-libs/ft_printf/srcs/parse_flag2.c,66
-int				parse_apostropheflag(15,918
-void			flags_cleanup(22,1020
-
-libs/ft_printf/srcs/parse_size.c,56
-void			fill_buffer(15,918
-int				parse_pcsize(26,1062
-
-libs/ft_printf/srcs/parse_size1.c,136
-void			arg_parse(15,918
-int				get_arg(25,1036
-int				parse_dsize(33,1243
-int				parse_bigdsize(45,1437
-int				parse_osize(58,1686
-
-libs/ft_printf/srcs/parse_size2.c,148
-int				parse_bigosize(15,918
-int				parse_usize(28,1167
-int				parse_bigusize(40,1362
-int				parse_xsize(53,1612
-int				parse_bigxsize(65,1807
-
-libs/ft_printf/srcs/parse_size3.c,145
-int				parse_csize(15,918
-int				parse_bigcsize(28,1136
-int				parse_ssize(43,1463
-int				parse_bigssize(60,1735
-int				parse_nsize(79,2116
-
-libs/ft_printf/srcs/parse_size4.c,139
-int				parse_esize(15,918
-int				parse_fsize(28,1158
-int				parse_gsize(41,1398
-int				parse_asize(53,1611
-int				parse_bsize(65,1808
-
-libs/ft_printf/srcs/parse_size5.c,27
-int				parse_psize(15,918
-
-libs/ft_printf/srcs/parsing.c,108
-int					parse_string(15,918
-int					parse_token(42,1295
-void				arg_init(53,1465
-int					pfatoi(65,1640
-
-libs/ft_printf/srcs/parsing1.c,115
-int				parse_error(15,918
-int				parse_preci(29,1137
-int				parse_wildchar(48,1411
-int				parse_number(71,1717
-
-libs/libft/includes/libft.h,156
-# define LIBFT_H14,908
-# define BUFF_SIZE 24,1083
-typedef struct		s_list26,1107
-}					t_list;31,1196
-typedef	struct		s_lst33,1211
-}					t_lst;38,1282
-
-libs/libft/includes/libft_errors.h,60
-# define LIBFT_ERRORS_H14,915
-# define MALLOC_FAIL 16,940
-
-libs/libft/srcs/ft_atod.c,180
-static char				*move_to_start_of_number(move_to_start_of_number15,912
-static char				*before_dec(before_dec28,1129
-static	double			get_exp(39,1298
-double					ft_atod(47,1385
-
-libs/libft/srcs/ft_atof.c,178
-static char				*move_to_start_of_number(move_to_start_of_number15,912
-static char				*before_dec(before_dec28,1129
-static	float			get_exp(39,1297
-float					ft_atof(49,1396
-
-libs/libft/srcs/ft_atoi.c,24
-int					ft_atoi(13,892
-
-libs/libft/srcs/ft_atoi_base.c,26
-int		ft_atoi_base(15,912
-
-libs/libft/srcs/ft_atoi_base_ll.c,38
-unsigned long	ft_atoi_base_ll(15,912
-
-libs/libft/srcs/ft_bzero.c,22
-void	ft_bzero(15,912
-
-libs/libft/srcs/ft_error.c,25
-void				ft_error(15,912
-
-libs/libft/srcs/ft_ftoa.c,33
-char				*ft_ftoa(ft_ftoa15,912
-
-libs/libft/srcs/ft_get_next_line.c,137
-static int			lst_fill(15,912
-static t_lst		*lst_new(lst_new41,1478
-static int			line_split(53,1659
-int					ft_get_next_line(81,2174
-
-libs/libft/srcs/ft_isalnum.c,24
-int		ft_isalnum(13,892
-
-libs/libft/srcs/ft_isalpha.c,24
-int		ft_isalpha(13,892
-
-libs/libft/srcs/ft_isascii.c,24
-int		ft_isascii(13,892
-
-libs/libft/srcs/ft_isdigit.c,24
-int		ft_isdigit(13,892
-
-libs/libft/srcs/ft_isprint.c,24
-int		ft_isprint(13,892
-
-libs/libft/srcs/ft_itoa.c,64
-static int			nbr_size(15,912
-char				*ft_itoa(ft_itoa35,1123
-
-libs/libft/srcs/ft_itoa_base.c,68
-static int	ft_pow(15,912
-char		*ft_itoa_base(ft_itoa_base23,1033
-
-libs/libft/srcs/ft_itoa_hex.c,39
-char		*ft_itoa_hex(ft_itoa_hex15,912
-
-libs/libft/srcs/ft_lstadd.c,23
-void	ft_lstadd(15,912
-
-libs/libft/srcs/ft_lstdel.c,24
-void		ft_lstdel(15,912
-
-libs/libft/srcs/ft_lstdelone.c,26
-void	ft_lstdelone(15,912
-
-libs/libft/srcs/ft_lstiter.c,24
-void	ft_lstiter(15,912
-
-libs/libft/srcs/ft_lstmap.c,36
-t_list	*ft_lstmap(ft_lstmap15,912
-
-libs/libft/srcs/ft_lstnew.c,37
-t_list		*ft_lstnew(ft_lstnew15,912
-
-libs/libft/srcs/ft_memalloc.c,39
-void		*ft_memalloc(ft_memalloc15,912
-
-libs/libft/srcs/ft_memccpy.c,37
-void		*ft_memccpy(ft_memccpy15,912
-
-libs/libft/srcs/ft_memchr.c,37
-void				*ft_memchr(ft_memchr15,912
-
-libs/libft/srcs/ft_memcmp.c,24
-int			ft_memcmp(15,912
-
-libs/libft/srcs/ft_memcpy.c,34
-void	*ft_memcpy(ft_memcpy15,912
-
-libs/libft/srcs/ft_memdel.c,23
-void	ft_memdel(15,912
-
-libs/libft/srcs/ft_memmove.c,37
-void		*ft_memmove(ft_memmove15,912
-
-libs/libft/srcs/ft_memset.c,37
-void				*ft_memset(ft_memset15,912
-
-libs/libft/srcs/ft_putchar.c,24
-void	ft_putchar(15,912
-
-libs/libft/srcs/ft_putchar_fd.c,27
-void	ft_putchar_fd(15,912
-
-libs/libft/srcs/ft_putendl.c,27
-void				ft_putendl(15,912
-
-libs/libft/srcs/ft_putendl_fd.c,30
-void				ft_putendl_fd(15,912
-
-libs/libft/srcs/ft_putnbr.c,23
-void	ft_putnbr(15,912
-
-libs/libft/srcs/ft_putnbr_fd.c,29
-void				ft_putnbr_fd(15,912
-
-libs/libft/srcs/ft_putstr.c,26
-void				ft_putstr(15,912
-
-libs/libft/srcs/ft_putstr_fd.c,29
-void				ft_putstr_fd(15,912
-
-libs/libft/srcs/ft_strcat.c,35
-char		*ft_strcat(ft_strcat15,912
-
-libs/libft/srcs/ft_strchr.c,34
-char	*ft_strchr(ft_strchr15,912
-
-libs/libft/srcs/ft_strclr.c,26
-void				ft_strclr(13,892
-
-libs/libft/srcs/ft_strcmp.c,23
-int		ft_strcmp(13,892
-
-libs/libft/srcs/ft_strcmp_case_insensitive.c,40
-int		ft_strcmp_case_insensitive(15,912
-
-libs/libft/srcs/ft_strcpy.c,35
-char		*ft_strcpy(ft_strcpy15,912
-
-libs/libft/srcs/ft_strdel.c,26
-void				ft_strdel(15,912
-
-libs/libft/srcs/ft_strdup.c,34
-char	*ft_strdup(ft_strdup15,912
-
-libs/libft/srcs/ft_strequ.c,26
-int					ft_strequ(13,892
-
-libs/libft/srcs/ft_strisvalidint.c,58
-static int	is_neg(15,912
-int			ft_strisvalidint(25,1027
-
-libs/libft/srcs/ft_striter.c,27
-void				ft_striter(13,892
-
-libs/libft/srcs/ft_striteri.c,25
-void	ft_striteri(13,892
-
-libs/libft/srcs/ft_strjoin.c,39
-char				*ft_strjoin(ft_strjoin15,912
-
-libs/libft/srcs/ft_strlcat.c,27
-size_t		ft_strlcat(15,912
-
-libs/libft/srcs/ft_strlen.c,26
-size_t		ft_strlen(15,912
-
-libs/libft/srcs/ft_strmap.c,37
-char				*ft_strmap(ft_strmap15,912
-
-libs/libft/srcs/ft_strmapi.c,39
-char				*ft_strmapi(ft_strmapi15,912
-
-libs/libft/srcs/ft_strncat.c,37
-char		*ft_strncat(ft_strncat15,912
-
-libs/libft/srcs/ft_strncmp.c,24
-int		ft_strncmp(15,912
-
-libs/libft/srcs/ft_strncpy.c,37
-char		*ft_strncpy(ft_strncpy15,912
-
-libs/libft/srcs/ft_strnequ.c,27
-int					ft_strnequ(15,912
-
-libs/libft/srcs/ft_strnew.c,37
-char				*ft_strnew(ft_strnew15,912
-
-libs/libft/srcs/ft_strnstr.c,37
-char		*ft_strnstr(ft_strnstr15,912
-
-libs/libft/srcs/ft_strrchr.c,37
-char		*ft_strrchr(ft_strrchr15,912
-
-libs/libft/srcs/ft_strsplit.c,112
-static int			wrd_nbr(15,912
-static char			*wordcut(wordcut37,1188
-char				**ft_strsplit(ft_strsplit57,1489
-
-libs/libft/srcs/ft_strstr.c,35
-char		*ft_strstr(ft_strstr15,912
-
-libs/libft/srcs/ft_strsub.c,37
-char				*ft_strsub(ft_strsub15,912
-
-libs/libft/srcs/ft_strtrim.c,40
-char					*ft_strtrim(ft_strtrim15,912
-
-libs/libft/srcs/ft_tolower.c,24
-int		ft_tolower(13,892
-
-libs/libft/srcs/ft_toupper.c,24
-int		ft_toupper(13,892
-
-libs/libftg/includes/libftg.h,132
-# define LIBFTG_H14,909
-typedef struct		s_vec18,948
-}					t_vec;24,1020
-typedef struct		s_matrix26,1034
-}					t_matrix;29,1084
-
-libs/libftg/srcs/definition.c,116
-t_vec		vec_init(15,913
-t_vec		vec_init0(26,1040
-t_vec		vec_x(37,1153
-t_vec		vec_y(42,1207
-t_vec		vec_z(47,1261
-
-libs/libftg/srcs/matrix_func.c,63
-t_matrix		matrix_mult(15,913
-t_vec			matrix_mult_vec(38,1255
-
-libs/libftg/srcs/matrix_init.c,119
-t_matrix		identity_matrix_init(15,913
-t_matrix		scale_matrix_init(38,1368
-t_matrix		translation_matrix_init(49,1608
-
-libs/libftg/srcs/matrix_init_rot.c,188
-t_matrix		rotx_matrix_init(15,913
-t_matrix		roty_matrix_init(33,1301
-t_matrix		rotz_matrix_init(51,1689
-t_matrix		matrix_axis_angle_get(69,2077
-t_matrix		rotmatrix_axis_angle(94,2775
-
-libs/libftg/srcs/operations.c,100
-t_vec		vec_add(15,913
-t_vec		vec_sub(26,1039
-t_vec		vec_mul(37,1165
-t_vec		vec_opposite(48,1285
-
-libs/libftg/srcs/operations1.c,135
-float		vec_cos(15,913
-float		vec_dot(21,1027
-float		vec_dotproduct(26,1110
-t_vec		vec_div(31,1200
-t_vec		vec_crossproduct(44,1349
-
-libs/libftg/srcs/tools.c,45
-float		ft_max(15,913
-float		ft_min(24,1046
-
-libs/libftg/srcs/utility.c,48
-float		degtorad(15,913
-float		radtodeg(20,973
-
-libs/libftg/srcs/vec.c,77
-float		min_of_vec(15,913
-float		max_of_vec(24,1083
-int			vec_is_0(33,1253
-
-libs/libftg/srcs/vec_norm.c,84
-float		vec_magnitude(15,913
-t_vec		vec_norm(20,1009
-t_vec		vec_normalize(35,1231
-
-libs/mlx/font.c,20
-} font_atlas 8,229
-
-libs/mlx/mlx.h,22
-#define	MLX_H47,1288
-
-libs/mlx/mlx_int.h,471
-#define	MAX_EVENT	10,100
-#define MAX_PIXEL_NB	11,121
-#define UNIQ_BPP	12,149
-#define FONT_WIDTH	14,169
-#define	FONT_HEIGHT	15,191
-typedef int (*func_t)func_t18,216
-typedef struct	glsl_info_s22,257
-} glsl_info_t;50,926
-typedef struct	mlx_img_list_s53,943
-} mlx_img_list_t;60,1079
-typedef struct	mlx_img_ctx_s63,1099
-} mlx_img_ctx_t;69,1221
-typedef struct	mlx_win_list_s71,1239
-} mlx_win_list_t;78,1381
-typedef struct		mlx_ptr_s81,1401
-} mlx_ptr_t;91,1631
-
-libs/mlx/mlx_int_str_to_wordtab.c,120
-int	mlx_int_str_str(9,77
-int	mlx_int_str_str_cote(35,433
-char	**mlx_int_str_to_wordtab(mlx_int_str_to_wordtab67,862
-
-libs/mlx/mlx_new_window.h,59
-@interface NSWindowEvent 12,144
-@interface MlxWin 29,667
-
-libs/mlx/mlx_rgb.c,50
-struct s_col_name mlx_col_name[mlx_col_name7,96
-
-libs/mlx/mlx_shaders.c,143
-void display_log(10,125
-int mlx_shaders_pixel(23,414
-int mlx_shaders_image(88,2344
-int mlx_shaders_font(160,4421
-int mlx_shaders(233,6598
-
-libs/mlx/mlx_xpm.c,516
-typedef struct  s_xpm_col13,187
-} t_xpm_col;17,258
-struct  s_col_name20,273
-#define	RETURN	30,394
-char	*mlx_int_get_line(mlx_int_get_line38,610
-char	*mlx_int_static_line(mlx_int_static_line57,1011
-int	mlx_int_get_col_name(79,1402
-int	mlx_int_get_text_rgb(89,1552
-void	mlx_int_xpm_set_pixel(112,1937
-void	*mlx_int_parse_xpm(mlx_int_parse_xpm132,2296
-void	mlx_int_file_get_rid_comment(284,5610
-void	*mlx_xpm_file_to_image(mlx_xpm_file_to_image302,6086
-void	*mlx_xpm_to_image(mlx_xpm_to_image328,6691
-
-srcs/args_parsing/args_parsing.c,83
-t_args			*args_init(args_init16,937
-t_args			*args_parsing(args_parsing29,1187
-
-srcs/args_parsing/big_flag.c,115
-void			parse_bigflag_default_value(15,919
-void			parse_bigflag_given_value(25,1169
-void			parse_bigflag(37,1521
-
-srcs/args_parsing/parse_args.c,65
-void			parse_flags_check(15,919
-void			parse_arguments(25,1240
-
-srcs/args_parsing/parse_mode.c,103
-void			parse_print_mode(15,919
-void			parse_verbose_mode(28,1228
-void			parse_renderer_mode(41,1545
-
-srcs/args_parsing/small_flag.c,31
-void			parse_smallflag(15,919
-
-srcs/args_parsing/usage.c,134
-void			print_usage(15,919
-void			print_print_usage(22,1115
-void			print_verbose_usage(34,1563
-void			print_renderer_usage(49,2148
-
-srcs/args_parsing/verbose/verbose_args.c,28
-void			verbose_args(15,911
-
-srcs/args_parsing/verbose/verbose_args_files.c,32
-void			print_args_files(15,911
-
-srcs/args_parsing/verbose/verbose_args_mode_bool.c,32
-void			print_debug_mode(15,911
-
-srcs/args_parsing/verbose/verbose_args_mode_multi.c,189
-static char		*print_mode_string(print_mode_string15,911
-void			print_print_mode(26,1150
-static char		*verbose_mode_string(verbose_mode_string42,1487
-void			print_verbose_mode(61,1887
-
-srcs/args_parsing/verbose/verbose_args_mode_multi1.c,100
-static char		*renderer_mode_string(renderer_mode_string15,911
-void			print_renderer_mode(30,1235
-
-srcs/core/errors.c,60
-void					wrong_format(15,911
-void					is_required(37,1463
-
-srcs/core/main.c,20
-int				main(15,911
-
-srcs/init/init.c,139
-t_img				*img_init(img_init15,911
-t_win				*win_init(win_init29,1257
-t_env				*env_init(env_init43,1596
-t_env				*init(init62,1975
-
-srcs/init/verbose/verbose_env.c,111
-void			print_mlx(15,911
-void			print_mlximg(23,1042
-void			print_window(38,1443
-void			verbose_env(50,1686
-
-srcs/loop/free_env.c,161
-static void			free_mlx(15,911
-static void			free_cameras(30,1139
-static void			free_objs(52,1562
-static void			free_scenes(65,1699
-void				free_env(82,1965
-
-srcs/loop/loop.c,81
-int					key_pressed(15,911
-int					window_closed(25,1041
-void				loop(32,1130
-
-srcs/loop/verbose/verbose_loop.c,29
-void				verbose_loop(15,911
-
-srcs/parsing/json_parser/array_recursive.c,50
-t_elem		*array_recursive(array_recursive20,1010
-
-srcs/parsing/json_parser/elem_struct_functions.c,129
-t_value		set_value_of_type(15,918
-t_elem		*create_init_elem(create_init_elem36,1346
-t_elem		*create_elem(create_elem50,1621
-
-srcs/parsing/json_parser/free_structure.c,58
-static void		free_child(15,918
-void			free_elem(25,1052
-
-srcs/parsing/json_parser/json_errors.c,56
-void		json_error(15,918
-void		error_free_line(24,1073
-
-srcs/parsing/json_parser/json_parser.c,199
-static int		key_cmp(15,918
-static int		check_for_same_key_in_object(33,1183
-static void		check_end_of_json_file(62,1718
-static void		print_tree(77,1992
-t_elem			*json_parser(json_parser83,2082
-
-srcs/parsing/json_parser/json_utils.c,139
-void				*json_malloc(json_malloc15,918
-char				end_of_value(25,1064
-int					update_line(34,1225
-int					ignore_tab_and_spaces(45,1387
-
-srcs/parsing/json_parser/object_recursive.c,47
-t_elem		*json_recursive(json_recursive15,918
-
-srcs/parsing/json_parser/print_elem_architecture.c,158
-static void		show_json_data(15,918
-void			show_elem(33,1547
-static void		show_value(56,2205
-void			show_one_elem(81,2888
-void			show_every_elem(102,3367
-
-srcs/parsing/json_parser/recognize_array.c,83
-static inline void	array_chain_array(15,918
-int					json_recognize_array(29,1241
-
-srcs/parsing/json_parser/recognize_bool.c,33
-int		json_recognize_bool(15,918
-
-srcs/parsing/json_parser/recognize_key.c,74
-static char		*create_key(create_key15,918
-int				recognize_key(25,1115
-
-srcs/parsing/json_parser/recognize_null.c,33
-int		json_recognize_null(15,918
-
-srcs/parsing/json_parser/recognize_number.c,146
-static int		valid_number(23,1133
-static void		init_int_elem(52,1680
-static void		init_float_elem(59,1821
-int				json_recognize_number(66,1970
-
-srcs/parsing/json_parser/recognize_object.c,86
-static inline void	object_chain_array(22,1090
-int					json_recognize_object(32,1333
-
-srcs/parsing/json_parser/recognize_string.c,37
-int			json_recognize_string(22,1087
-
-srcs/parsing/json_parser/recognize_type.c,29
-int			recognize_type(19,981
-
-srcs/parsing/json_parser/singleton.c,161
-static int			*get_ptr_line_number(get_ptr_line_number15,918
-int					get_line_number(22,1018
-void				set_line_number(27,1089
-void				add_line_number(35,1211
-
-srcs/parsing/parsing.c,83
-t_scene				*json_parsing(json_parsing15,911
-t_scene				*parsing(parsing29,1114
-
-srcs/parsing/rtv1_parsing/color_utils.c,152
-t_rgb		parse_rgb_and_val(15,911
-int			parse_hex(24,1095
-t_rgb		parse_rgb(38,1285
-void		verify_hex_integrity(61,1865
-int			hex_color_to_int(73,2148
-
-srcs/parsing/rtv1_parsing/defaults.c,85
-float		default_float(15,911
-t_vec		default_vec(22,1021
-t_rgb		default_rgb(33,1205
-
-srcs/parsing/rtv1_parsing/init_object.c,106
-void		init_cone(15,911
-void		init_plane(30,1218
-void		init_cylinder(38,1350
-void		init_sphere(53,1677
-
-srcs/parsing/rtv1_parsing/key_types_number.c,59
-int		check_float_keys(15,911
-int		check_int_keys(40,1497
-
-srcs/parsing/rtv1_parsing/key_types_utils.c,186
-static int		check_array_keys(15,911
-static int		check_object_keys(32,1302
-static int		check_string_keys(54,1845
-static int		check_null_keys(66,2071
-int				check_type_of_key(84,2454
-
-srcs/parsing/rtv1_parsing/key_utils.c,51
-t_elem		*find_elem_by_key(find_elem_by_key15,911
-
-srcs/parsing/rtv1_parsing/malloc_structures.c,31
-t_obj	*new_obj(new_obj15,911
-
-srcs/parsing/rtv1_parsing/parse_arithmetic_values.c,92
-float		parse_degree_to_rad(15,911
-float		parse_radius(25,1094
-float		parse_float(34,1246
-
-srcs/parsing/rtv1_parsing/parse_cameras.c,127
-void					init_camera(15,911
-static inline void		camera_chained_array(31,1312
-t_obj					*parse_cameras(parse_cameras42,1561
-
-srcs/parsing/rtv1_parsing/parse_colors.c,189
-static t_rgb		init_color(15,911
-static t_rgb		color_from_value(20,1038
-static t_rgb		color_from_rgb_and_value(31,1222
-static t_rgb		color_from_rgb(42,1449
-t_rgb				parse_color(50,1616
-
-srcs/parsing/rtv1_parsing/parse_light.c,107
-void				init_light(15,911
-void				light_chain_array(30,1273
-t_obj				*parse_lights(parse_lights41,1507
-
-srcs/parsing/rtv1_parsing/parse_object.c,183
-static void		set_matrix_obj(15,911
-static void		parse_rotation_translation(27,1326
-static void		parse_color_information(42,1831
-t_obj			*parse_one_object(parse_one_object68,2917
-
-srcs/parsing/rtv1_parsing/parse_object_direction.c,153
-void					parse_up_right_vec(15,911
-static void				dir_lookat_given(25,1270
-static void				lookat_given(39,1723
-void					parse_dir_lookat_pos(47,1947
-
-srcs/parsing/rtv1_parsing/parse_object_direction_extension.c,95
-t_vec			get_right_dir(15,911
-t_vec			get_up_dir(24,1145
-t_vec			vec_rot_zaxis_angle(29,1243
-
-srcs/parsing/rtv1_parsing/parse_objects.c,262
-static void			object_chain_array(15,911
-t_obj				*parse_object(parse_object26,1152
-t_obj				*add_objects_to_list(add_objects_to_list54,1757
-static t_obj		*parse_all_object_types(parse_all_object_types73,2089
-t_obj				*parse_objects(parse_objects90,2735
-
-srcs/parsing/rtv1_parsing/parse_scene.c,147
-static t_scene		*new_scene(new_scene15,911
-static	char		*parse_scene_name(parse_scene_name23,1031
-t_scene				*parse_scene(parse_scene35,1280
-
-srcs/parsing/rtv1_parsing/parse_vectors.c,93
-float		get_vec_float(15,911
-t_vec		parse_angle_vector(30,1245
-t_vec		parse_vector(51,1817
-
-srcs/parsing/rtv1_parsing/parse_world_coord.c,134
-t_matrix		world_to_obj_matrix(15,911
-t_matrix		obj_to_world_matrix(38,1420
-t_vec			get_rightdir(58,2193
-t_vec			get_updir(67,2426
-
-srcs/parsing/rtv1_parsing/parsing.c,45
-t_scene			*rtv1_parsing(rtv1_parsing15,911
-
-srcs/parsing/rtv1_parsing/required.c,59
-float		required_float(15,911
-t_vec		required_vec(22,1059
-
-srcs/parsing/verbose/verbose_parsing.c,31
-void			verbose_parsing(15,911
-
-srcs/parsing/verbose/verbose_parsing_loops.c,184
-static char			*object_type_string(object_type_string15,911
-void				print_scenes(32,1265
-void				print_cameras(59,1730
-void				print_lights(86,2168
-void				print_objects(113,2591
-
-srcs/parsing/verbose/verbose_parsing_printing.c,131
-void				print_object_common(15,911
-void				print_object_specs(37,1667
-void				print_object(51,2207
-void				print_scene(57,2298
-
-srcs/printing/printing.c,104
-void				print_stack_raytracer(15,911
-void				print_malloc_raytracer(22,1096
-void				printing(48,1559
-
-srcs/printing/verbose/verbose_printing.c,34
-void					verbose_printing(15,911
-
-srcs/running/raytracing/common/ray_light_shooting.c,153
-t_rgb			get_ambiant(15,911
-t_rgb			get_specular(40,1518
-t_rgb			get_diffuse(65,2272
-void			set_light_colors(81,2682
-void			shoot_ray_lights(91,2995
-
-srcs/running/raytracing/common/ray_shooting.c,104
-static void			add_tolerance(15,911
-static void			set_ray_hitparams(20,1028
-void				shoot_ray(33,1300
-
-srcs/running/raytracing/common/reflect.c,57
-t_ray			reflect_ray(15,911
-t_vec			reflect_vec(25,1172
-
-srcs/running/raytracing/malloc/malloc_raytracing.c,33
-void			malloc_raytracing(15,911
-
-srcs/running/raytracing/primitives/common.c,89
-int					quadratic(15,911
-void				check_for_closest(30,1156
-void				get_normal(39,1325
-
-srcs/running/raytracing/primitives/cone/intersect.c,186
-static void		cone_get_variables(15,911
-static float	cone_return_length(29,1372
-float			cone_intersect(49,1731
-static float	try_intersection(61,1984
-void			cone_intersection(66,2080
-
-srcs/running/raytracing/primitives/cone/normal.c,106
-static t_vec		get_real_axis(15,911
-static t_vec		get_hypotenuse(35,1475
-void				get_conenormal(55,2160
-
-srcs/running/raytracing/primitives/cylinder/intersect.c,202
-static void		cylinder_get_variables(15,911
-static float	cylinder_return_length(23,1245
-float			cylinder_intersect(43,1616
-static float	try_intersection(55,1893
-void			cylinder_intersection(60,2001
-
-srcs/running/raytracing/primitives/cylinder/normal.c,35
-void				get_cylindernormal(15,911
-
-srcs/running/raytracing/primitives/plane/intersect.c,106
-float			plane_intersect(15,911
-static float	try_intersection(32,1230
-void			plane_intersection(37,1329
-
-srcs/running/raytracing/primitives/plane/normal.c,32
-void				get_planenormal(15,911
-
-srcs/running/raytracing/primitives/sphere/intersect.c,138
-float			sphere_radius(15,911
-float			sphere_intersect(20,993
-static float	try_intersection(46,1709
-void			sphere_intersection(51,1811
-
-srcs/running/raytracing/primitives/sphere/normal.c,33
-void				get_spherenormal(15,911
-
-srcs/running/raytracing/raytracing.c,26
-void			raytracing(15,911
-
-srcs/running/raytracing/stack/stack_raytracing.c,32
-void			stack_raytracing(15,911
-
-srcs/running/running.c,23
-void			running(15,911
-
-srcs/running/verbose/verbose_running.c,31
-void			verbose_running(15,911
-
-srcs/settings/ray.c,116
-t_ray			ray_init_lookat(15,911
-t_ray			ray_init(24,1094
-t_ray			ray_to_obj(36,1320
-t_ray			ray_to_world(49,1618
-
-srcs/settings/renderer_init.c,207
-static t_vec	get_actual_dir(15,911
-t_ray			get_actual_ray(24,1125
-static t_vec	get_top_left_vec(35,1390
-t_ray			*renderer_malloc(renderer_malloc49,1799
-t_renderer		*renderer_init(renderer_init74,2207
-
-srcs/settings/settings.c,59
-void			renderers_settings(15,911
-void			settings(33,1230
-
-srcs/settings/verbose/verbose_settings.c,98
-void				print_renderer(15,911
-void				print_renderers(32,1532
-void				verbose_settings(52,1911
-
-srcs/tools/colors_handling/colors_init.c,114
-t_rgb			rgb_init(15,913
-static int		clampi(32,1184
-void			rgb_updatevalue(41,1330
-int				rgb_getvalue(53,1612
-
-srcs/tools/colors_handling/rgb_functions.c,104
-t_rgb			rgb_add(20,1007
-t_rgb			rgb_mul_rgb(30,1125
-t_rgb			rgb_mul(40,1247
-t_rgb			rgb_div(50,1379
-
-srcs/tools/general_tools.c,146
-char				*string_to_lower(string_to_lower15,911
-void				*ft_malloc(ft_malloc28,1047
-void				ft_error(38,1189
-void				ft_illegal_flag(44,1255
-
-srcs/tools/math_tools.c,126
-int					is_equal_float(15,911
-float				maxf(26,1052
-float				minf(33,1128
-int					clampi(40,1204
-float				clampf(49,1358
-
-srcs/tools/mlx_tools.c,27
-void	mlx_px_to_img(15,911
-
-srcs/tools/print_tools.c,85
-void				print_color(15,911
-void				print_matrix(21,1065
-void				print_vec(34,1553
-
-srcs/tools/vector.c,60
-int				is_equal_vec(15,911
-int				is_opposite_vec(23,1071
