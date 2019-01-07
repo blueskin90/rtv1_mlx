@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 21:52:51 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 23:43:16 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/07 16:31:28 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void				print_window(t_win *win);
 ** PARSING FUNCTIONS
 */
 
-t_scene				*json_parsing(char**files);
 t_scene				*parsing(t_args *args);
 
 void				verbose_parsing(t_scene *scene);

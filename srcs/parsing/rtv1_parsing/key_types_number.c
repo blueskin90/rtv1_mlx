@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 21:05:58 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/03 22:00:16 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/07 15:17:04 by cvermand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		check_int_keys(char *key)
 			!compare(key, "y") ||
 			!compare(key, "z") ||
 			!compare(key, "roll") ||
+			!compare(key, "angle") ||
 			!compare(key, "b"))
 		return (1);
 	wrong_format(key, INTEGER);
