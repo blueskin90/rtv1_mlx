@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/01/05 00:14:56 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/06 23:28:51 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -190,7 +190,8 @@ HEADERS = includes/rtv1.h \
 all: $(NAME)
 
 $(NAME): objs $(OBJS) $(HEADERS)
-	@printf  "\033[92m\033[1:32mCompiling -------------> \033[91m$(NAME)\033[0m:\033[0m%-16s\033[32m[✔]\033[0m\n"
+
+	@printf "\033[92m\033[1:32mCompiling -------------> \033[91m$(NAME)\033[0m:\033[0m%-16s\033[32m[✔]\033[0m\n"
 	@make -C ./libs/mlx
 	@make -C ./libs/libft
 	@make -C ./libs/libftg
@@ -225,25 +226,25 @@ objs:
 	@mkdir -p objs/tools/colors_handling
 
 clean:
-	@#	make -C ./libs/mlx clean
-	@#	make -C ./libs/libft clean
-	@#	make -C ./libs/libftg clean
-	@#	make -C ./libs/ft_printf clean
+	@	make -C ./libs/mlx clean
+	@	make -C ./libs/libft clean
+	@	make -C ./libs/libftg clean
+	@	make -C ./libs/ft_printf clean
 	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
 	@rm -rf objs
 
 fclean: clean
 	@printf  "\033[1:32mCleaning binary -------> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
-	@rm -f $(NAME)
-	@#	rm -f $(MLX)
-	@#	make -C ./libs/libft fclean
-	@#	make -C ./libs/libftg fclean
-	@#	make -C ./libs/ft_printf fclean
+	@	rm -f $(NAME)
+	@	rm -f $(MLX)
+	@	make -C ./libs/libft fclean
+	@	make -C ./libs/libftg fclean
+	@	make -C ./libs/ft_printf fclean
 
 re:
 	@$(MAKE) fclean
 	@$(MAKE)
-	@#	make -C ./libs/libft re
-	@#	make -C ./libs/libftg re
-	@#	make -C ./libs/mlx re
-	@#	make -C ./libs/ft_printf re
+	@	make -C ./libs/libft re
+	@	make -C ./libs/libftg re
+	@	make -C ./libs/mlx re
+	@	make -C ./libs/ft_printf re

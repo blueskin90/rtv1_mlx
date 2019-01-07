@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 00:43:10 by toliver           #+#    #+#             */
-/*   Updated: 2017/11/17 11:57:05 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/07 00:26:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static int			line_split(t_lst *lst, char **line)
 		nl_pos = ft_strchr(lst->str, '\n') - lst->str;
 		if (!(*line = ft_strsub(lst->str, 0, nl_pos)))
 			return (-1);
-		if (!(tmp = ft_strsub(lst->str, nl_pos + 1, ft_strlen(lst->str))))
+		if (!(tmp = ft_strsub(lst->str, nl_pos + 1,
+						ft_strlen(lst->str + nl_pos + 1))))
 			return (-1);
 		free(lst->str);
 		lst->str = tmp;

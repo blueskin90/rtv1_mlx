@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:16:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 01:13:31 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/07 01:19:19 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void				*ft_malloc(size_t size)
 void				ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 void				ft_illegal_flag(char flag)
