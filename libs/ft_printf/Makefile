@@ -6,13 +6,13 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2019/01/06 23:13:28 by toliver          ###   ########.fr        #
+#    Updated: 2019/01/07 16:27:39 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -Werror -Wextra -Wall  -g3 -fsanitize=address
+FLAGS = -Werror -Wextra -Wall -Ofast
 
 FILES = ft_printf \
 		parsing \

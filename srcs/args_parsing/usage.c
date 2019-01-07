@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 23:54:09 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/04 23:39:52 by toliver          ###   ########.fr       */
+/*   Updated: 2019/01/07 16:31:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void			print_verbose_usage(void)
 	ft_putstr_fd("			3 : verbose on parsing\n", 2);
 	ft_putstr_fd("			4 : verbose on settings\n", 2);
 	ft_putstr_fd("			5 : verbose on running\n", 2);
-	ft_putstr_fd("			6 : all of the above\n", 2);
+	ft_putstr_fd("			6 : verbose on printing\n", 2);
+	ft_putstr_fd("			7 : verbose on loop\n", 2);
+	ft_putstr_fd("			8 : all of the above\n", 2);
 	ft_error(NULL);
 }
 
