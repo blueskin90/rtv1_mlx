@@ -6,7 +6,7 @@
 /*   By: cvermand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:59 by cvermand          #+#    #+#             */
-/*   Updated: 2019/01/05 18:07:25 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/09 18:00:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void				json_error(char *error);
 /*
 ** Elem structures
 */
-t_elem				*create_elem();
+t_elem				*create_elem(void);
 t_value				set_value_of_type(t_json_data type, void *defaulty);
 t_elem				*create_init_elem(char *key, t_json_data type, void *value);
 void				free_elem(t_elem *elem);
@@ -101,7 +101,7 @@ int					json_recognize_object(t_elem *current, char **line,
 /*
 **	SINGLETONS
 */
-int					get_line_number();
+int					get_line_number(void);
 void				set_line_number(int nbr);
 void				add_line_number(int nbr);
 /*
