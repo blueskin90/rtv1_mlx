@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 21:52:51 by toliver           #+#    #+#             */
-/*   Updated: 2019/01/07 16:31:28 by cvermand         ###   ########.fr       */
+/*   Updated: 2019/01/31 22:12:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_vec				parse_vector(t_elem *elem);
 t_vec				parse_angle_vector(t_elem *elem);
 t_obj				*parse_one_object(t_elem *elem,
 		void (*parse_obj)(t_elem *elem, t_obj *obj));
-t_obj				*new_obj();
+t_obj				*new_obj(void);
 float				parse_radius(float radius);
 float				parse_degree_to_rad(float angle);
 void				init_object(t_elem *elem, t_obj *obj);
